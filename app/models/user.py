@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from models import favorites
+from .products import favorites
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'

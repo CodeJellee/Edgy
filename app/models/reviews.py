@@ -10,10 +10,11 @@ class Review(db.Model):
     userId = db.Column(db.Integer, nullable=False)
     stars = db.Column(db.Integer, nullable=False)
     review = db.Column(db.Integer, nullable=False)
+    createdAt = db.Column(db.DateTime)
+    updatedAt = db.Column(db.DateTime)
 
     user = db.relationship("User", back_populates="review")
     product = db.relationship("Product", back_populates="review")
-
     def to_dict(self):
         return {
             "id": self.id,
