@@ -1,7 +1,7 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from models import favorites
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -15,6 +15,10 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(255), nullable=False, unique=True)
     last_name = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    products = db.relationship("Product",secondary=favorites, back_populates="users", cascade='all, delete-orphan')
+    review = db.relationship("Review", back_populates="user", cascade='all, delete-orphan')
+    item = db.relationship("CartItem", back_populates="user", cascade='all, delete-orphan')
 
     @property
     def password(self):

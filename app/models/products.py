@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from .db import db, environment, SCHEMA
 
-db = SQLAlchemy()
+db=SQLAlchemy()
 
 #Many-to-Many Relationship between Users & Products
 favorites = db.Table(
@@ -11,6 +12,10 @@ favorites = db.Table(
 
 class Product(db.Model):
     __tablename__ = "products"
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String(255))
     price = db.Column(db.Integer, nullable=False)
@@ -25,8 +30,10 @@ class Product(db.Model):
 
     # One-to-Many Relationship with Product and ProductImage
     # This relationship states that Product will be listening to the class ProductImage
-    image = db.relationship("ProductImage", back_populates="product")
+    image = db.relationship("ProductImage", back_populates="product", cascade="all, delete-orphan")
     users = db.relationship("User",secondary=favorites, back_populates="products")
+    review = db.relationship("Review", back_populates="product", cascade="all, delete-orphan")
+    item = db.relationship("CartItem", back_populates="product", cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
@@ -55,10 +62,19 @@ class ProductImage(db.Model):
   # This relationship states that ProductImage will be listening to the class Product
   product = db.relationship("Product", back_populates="image")
 
-
   def to_dict(self):
     return {
         "id": self.id,
         "productId": self.productId,
         "product_imageURL": self.product_imageURL
     }
+
+class CartItem(db.Model):
+   __tablename__ = "cart_items"
+
+   id = db.Column(db.Integer, primary_key=True)
+   productId = db.Column(db.Integer, db.ForeignKey("product.id"), nullable=False)
+   userId = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+
+   product = db.relationship("Product", back_populates="item")
+   user = db.relationship("User", back_populates="item")
