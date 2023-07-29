@@ -1,9 +1,8 @@
-from flask import Blueprint
-from flask_login import login_required
+from flask import Blueprint, request
+from flask_login import current_user
 from app.models import Product, User
+# from .. import login
 # from ..app import login
-
-products_routes = Blueprint("products", __name__)
 
 
 @products_routes.route("/")
@@ -13,6 +12,19 @@ def get_products():
     return {"Products": products}
 
 
-@products_routes.route("/")
+# @login.user_loader
+@products_routes.route("/current")
 def user_products():
-    pass
+    # grabs current user instance and turns it into a dic that grabs the id
+    userId = current_user.to_dict()["id"]
+    user_products = Product.query.filter(Product.sellerId == userId).all()
+    return {
+
+        "Products": [p.to_dict() for p in user_products]
+
+    }
+
+@products_routes.route('/<int:id>')
+def product_details(id):
+    product = Product.query.get(id)
+    return "hi"
