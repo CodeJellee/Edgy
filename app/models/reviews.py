@@ -23,3 +23,5 @@ class Review(db.Model):
             "stars": self.stars,
             "review": self.review
         }
+
+#alsdkfjl
