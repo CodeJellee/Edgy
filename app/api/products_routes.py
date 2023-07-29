@@ -4,7 +4,8 @@ from app.models import Product
 
 products_routes = Blueprint('products', __name__)
 
-# @products_routes("")
-# def get_products():
-#     products = Product.to_dict().all()
-#     return products
+@products_routes.routes("/")
+def get_products():
+    print("in get products")
+    # products = Product.to_dict().all()
+    return "hi"
