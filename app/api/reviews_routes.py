@@ -49,7 +49,9 @@ reviews_routes = Blueprint('reviews', __name__)
 
 
 
-# @reviews_routes.route("/<Int:reviewId>", methods=[''])
+
+# @reviews_routes.route("/<reviewId>", methods=[''])
+
 # def post_product_review():
 #     # form = ProductForm()
 #     print("in ...reviews/current")
