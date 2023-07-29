@@ -24,8 +24,8 @@ def seed():
         undo_products()
         undo_users()
     users = seed_users()
-    products = seed_products(users,reviews)
-    reviews = seed_reviews(users, products)
+    products = seed_products(users)
+    seed_reviews(users, products)
     seed_product_images(products)
 
     # Add other seed functions here
