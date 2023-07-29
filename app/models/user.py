@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # assoc needed for favorites join table
-    products = db.relationship("Product",secondary=favorites, back_populates="user", cascade='all, delete-orphan')
+    products = db.relationship("Product",secondary=favorites, back_populates="user")
     review = db.relationship("Review", back_populates="user", cascade='all, delete-orphan')
     item = db.relationship("CartItem", back_populates="user", cascade='all, delete-orphan')
 
