@@ -8,7 +8,7 @@ class Review(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     stars = db.Column(db.Integer, nullable=False)
-    review = db.Column(db.Integer, nullable=False)
+    review = db.Column(db.String(255), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     productId= db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), nullable=False)
     createdAt = db.Column(db.DateTime, default=db.func.now())
@@ -25,4 +25,3 @@ class Review(db.Model):
             "userId": self.userId,
             "productId": self.productId,
         }
-
