@@ -10,7 +10,7 @@ reviews_routes = Blueprint('reviews', __name__)
 # @login_required
 # def get_users_reviews():
 #     print("in ...reviews/current")
-#  
+#
 #     return "hi"
 
 
@@ -40,18 +40,18 @@ reviews_routes = Blueprint('reviews', __name__)
 
 
 
-@reviews_routes.routes("/<Int:reviewId>", methods=['PUT'])
-def post_product_review():
-    # form = ProductForm()
-    print("in ...reviews/current")
-    # products = Product.to_dict().all()
-    return "hi"
+# @reviews_routes.routes("/<Int:reviewId>", methods=['PUT'])
+# def post_product_review():
+#     # form = ProductForm()
+#     print("in ...reviews/current")
+#     # products = Product.to_dict().all()
+#     return "hi"
 
 
 
-@reviews_routes.routes("/<Int:reviewId>", methods=[''])
-def post_product_review():
-    # form = ProductForm()
-    print("in ...reviews/current")
-    # products = Product.to_dict().all()
-    return "hi"
+# @reviews_routes.routes("/<Int:reviewId>", methods=[''])
+# def post_product_review():
+#     # form = ProductForm()
+#     print("in ...reviews/current")
+#     # products = Product.to_dict().all()
+#     return "hi"
