@@ -4,17 +4,13 @@ from app.models import Product, User
 # from .. import login
 # from ..app import login
 
-products_routes = Blueprint('products', __name__)
 
 @products_routes.route("/")
 def get_products():
     products = Product.query.all()
     products = [p.to_dict() for p in products]
-    return {
+    return {"Products": products}
 
-        "Products": products
-
-        }
 
 # @login.user_loader
 @products_routes.route("/current")

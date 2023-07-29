@@ -13,7 +13,7 @@ def seed_products(users):
             "description": "This is a super PC",
             "quantity": 1,
             "preview_imageURL": "https://i.pinimg.com/originals/9f/0b/2f/9f0b2f1a33b6f4f4ec157152337ea296.jpg",
-            # reviewId = not required
+            "reviewId" : 1,
             "sellerId": 5,
         },
         {
@@ -24,7 +24,7 @@ def seed_products(users):
             "description": "This is powered by a potato, but supercharged if Jenny uses it to DJ",
             "quantity": 1,
             "preview_imageURL": "https://www.apple.com/newsroom/images/product/mac/standard/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.slideshow-xlarge_2x.jpg",
-            # reviewId = not required
+            "reviewId": 2,
             "sellerId": 6,
         },
         {
@@ -35,7 +35,7 @@ def seed_products(users):
             "description": "This is a one of a life time deal",
             "quantity": 1,
             "preview_imageURL": "https://m.media-amazon.com/images/S/mms-media-storage-prod/final/BrandPosts/brandPosts/a868ad77-879d-40d7-8bed-dad04be63a15/f43af8aa-0309-40d6-a244-87b52d0ef5df/media._SL480_.jpeg",
-            # reviewId = not required
+            "reviewId": 3,
             "sellerId": 4,
         },
         {
@@ -46,7 +46,7 @@ def seed_products(users):
             "description": "This is a super PC",
             "quantity": 1,
             "preview_imageURL": "https://thumbs.dreamstime.com/b/loud-speaker-icon-white-background-illustration-loud-speaker-icon-white-background-107356852.jpg",
-            # reviewId = not required
+            "reviewId": 4,
             "sellerId": 7,
         },
     ]
