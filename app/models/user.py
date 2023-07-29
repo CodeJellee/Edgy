@@ -16,11 +16,11 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(255), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
     # assoc needed for favorites join table
-    products = db.relationship("Product",secondary=favorites, back_populates="users")
+    products = db.relationship("Product",secondary=favorites, back_populates="user")
 
     products = db.relationship("Product",secondary=favorites, back_populates="users", cascade='all, delete-orphan')
-    review = db.relationship("Review", back_populates="users", cascade='all, delete-orphan')
-    item = db.relationship("CartItem", back_populates="users", cascade='all, delete-orphan')
+    review = db.relationship("Review", back_populates="user", cascade='all, delete-orphan')
+    item = db.relationship("CartItem", back_populates="user", cascade='all, delete-orphan')
 
     @property
     def password(self):
