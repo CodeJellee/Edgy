@@ -18,8 +18,14 @@ class User(db.Model, UserMixin):
 
     # assoc needed for favorites join table
     products = db.relationship("Product",secondary=favorites, back_populates="user")
+
+
     review = db.relationship("Review", back_populates="user", cascade='all, delete-orphan')
     item = db.relationship("CartItem", back_populates="user", cascade='all, delete-orphan')
+
+
+    # one to many, one side
+    product = db.relationship("Product", back_populates="user", cascade='all, delete-orphan')
 
     @property
     def password(self):
