@@ -35,7 +35,7 @@ class Product(db.Model):
     # This relationship states that Product will be listening to the class ProductImage
     image = db.relationship("ProductImage", back_populates="product", cascade="all, delete-orphan")
     user = db.relationship("User",secondary=favorites, back_populates="products")
-    review = db.relationship("Review", back_populates="product", cascade="all, delete-orphan")
+    review = db.relationship("Review", back_populates="product")
     item = db.relationship("CartItem", back_populates="product", cascade='all, delete-orphan')
 
     def to_dict(self):
