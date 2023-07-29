@@ -5,26 +5,30 @@ def seed_reviews(user, product):
     reviews = [
         {
             "id": 1,
-            "userId": 3,
             "stars": 3,
+            "userId": 3,
+            "productId": 1,
             "review": "PC was okay, could be faster..."
         },
         {
             "id": 2,
-            "userId": 4,
             "stars": 5,
+            "userId": 4,
+            "productId": 2,
             "review": "Mack is best!"
         },
         {
             "id": 3,
-            "userId":1,
             "stars": 1,
+            "userId":1,
+            "productId": 3,
             "review": "Great sound package!"
         },
         {
             "id": 4,
-            "userId":2,
             "stars": 2,
+            "userId":2,
+            "productId": 4,
             "review": "Rage rage rage!"
         },
     ]
