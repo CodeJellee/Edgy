@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask_login import login_required
 from app.models import Product, User
-from ..app import login
+# from ..app import login
 
 products_routes = Blueprint("products", __name__)
 
