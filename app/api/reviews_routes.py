@@ -30,7 +30,7 @@ def post_product_review():
 
 
     # products = Product.to_dict().all()
-    return "hi"
+    return returnItem
 
 
 
