@@ -36,7 +36,7 @@ class Product(db.Model):
     image = db.relationship("ProductImage", back_populates="product", cascade="all, delete-orphan")
 
     # join table relationship
-    user = db.relationship("User",secondary=favorites, back_populates="products", cascade='all, delete-orphan')
+    user = db.relationship("User",secondary=favorites, back_populates="products")
 
     # one to many, many side
     review = db.relationship("Review", back_populates="product")
