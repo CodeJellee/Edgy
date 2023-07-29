@@ -26,4 +26,3 @@ class Review(db.Model):
             "productId": self.productId,
         }
 
-#alsdkfjl
