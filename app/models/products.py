@@ -7,6 +7,7 @@ favorites = db.Table(
   "favorites",
   db.Column("userId", db.ForeignKey("users.id"), primary_key=True),
   db.Column("productId", db.ForeignKey("products.id"), primary_key=True),
+  schema=SCHEMA if environment == "production" else None
 )
 
 class Product(db.Model):
