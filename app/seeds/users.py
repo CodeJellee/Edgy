@@ -5,15 +5,62 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password', first_name='demo1', last_name='work1')
+        username="Demo",
+        email="demo@aa.io",
+        password="password",
+        first_name="demo1",
+        last_name="work1",
+    )
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', first_name='demo2', last_name='work2')
+        username="marnie",
+        email="marnie@aa.io",
+        password="password",
+        first_name="demo2",
+        last_name="work2",
+    )
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', first_name='demo3', last_name='work3')
+        username="bobbie",
+        email="bobbie@aa.io",
+        password="password",
+        first_name="demo3",
+        last_name="work3",
+    )
+    chris = User(
+        username="chris",
+        email="chris@aa.io",
+        password="password",
+        first_name="Chris",
+        last_name="demoT",
+    )
+    minh = User(
+        username="minh",
+        email="minh@aa.io",
+        password="password",
+        first_name="Minh",
+        last_name="demoT",
+    )
+    jenny = User(
+        username="jenny",
+        email="jenny@aa.io",
+        password="password",
+        first_name="Jenny",
+        last_name="demoL",
+    )
+    thandi = User(
+        username="thandi",
+        email="thandi@aa.io",
+        password="password",
+        first_name="Thandi",
+        last_name="demoM",
+    )
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(chris)
+    db.session.add(minh)
+    db.session.add(jenny)
+    db.session.add(thandi)
     db.session.commit()
 
 

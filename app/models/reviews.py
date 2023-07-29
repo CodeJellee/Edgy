@@ -10,8 +10,8 @@ class Review(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     stars = db.Column(db.Integer, nullable=False)
     review = db.Column(db.Integer, nullable=False)
-    createdAt = db.Column(db.DateTime)
-    updatedAt = db.Column(db.DateTime)
+    createdAt = db.Column(db.DateTime, default=db.func.now())
+    updatedAt = db.Column(db.DateTime, default=db.func.now())
 
     user = db.relationship("User", back_populates="review")
     product = db.relationship("Product", back_populates="review", cascade="all, delete-orphan")
