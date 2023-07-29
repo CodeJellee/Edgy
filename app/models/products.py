@@ -34,7 +34,7 @@ class Product(db.Model):
     # One-to-Many Relationship with Product and ProductImage
     # This relationship states that Product will be listening to the class ProductImage
     image = db.relationship("ProductImage", back_populates="product", cascade="all, delete-orphan")
-    users = db.relationship("User",secondary=favorites, back_populates="products")
+    user = db.relationship("User",secondary=favorites, back_populates="products")
     review = db.relationship("Review", back_populates="product", cascade="all, delete-orphan")
     item = db.relationship("CartItem", back_populates="product", cascade='all, delete-orphan')
 
@@ -56,6 +56,10 @@ class Product(db.Model):
 
 class ProductImage(db.Model):
   __tablename__ = "product_images"
+
+  if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
   id = db.Column(db.Integer, primary_key=True)
   # other columns
   productId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")))
@@ -74,6 +78,9 @@ class ProductImage(db.Model):
 
 class CartItem(db.Model):
    __tablename__ = "cart_items"
+
+   if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
    id = db.Column(db.Integer, primary_key=True)
    productId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), nullable=False)
