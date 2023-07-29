@@ -32,6 +32,9 @@ def upgrade():
     sa.Column('updatedAt', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
@@ -43,6 +46,9 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('item_name', sa.String(length=255), nullable=True),
@@ -59,6 +65,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['sellerId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
+
     op.create_table('cart_items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=False),
@@ -67,6 +76,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+
     op.create_table('favorites',
     sa.Column('userId', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=False),
@@ -74,6 +86,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('userId', 'productId')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE favorites SET SCHEMA {SCHEMA};")
+
     op.create_table('product_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=True),
@@ -81,14 +96,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['productId'], ['products.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE favorites SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE product_images SET SCHEMA {SCHEMA};")
+
+
     # ### end Alembic commands ###
     # ### end Alembic commands ###
 
