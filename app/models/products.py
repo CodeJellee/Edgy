@@ -1,14 +1,17 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .reviews import Review
 
 
 #Many-to-Many Relationship between Users & Products
 favorites = db.Table(
   "favorites",
-  db.Column("userId", db.ForeignKey("users.id"), primary_key=True),
-  db.Column("productId", db.ForeignKey("products.id"), primary_key=True),
-  schema=SCHEMA if environment == "production" else None
+  db.Model.metadata,
+  db.Column("userId", db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
+  db.Column("productId", db.ForeignKey(add_prefix_for_prod("products.id")), primary_key=True),
 )
+
+if environment == "production":
+    favorites.schema = SCHEMA
 
 class Product(db.Model):
     __tablename__ = "products"
@@ -23,8 +26,8 @@ class Product(db.Model):
     description = db.Column(db.String(255), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     preview_imageURL = db.Column(db.String, nullable=False)
-    reviewId = db.Column(db.Integer, db.ForeignKey("reviews.id"))
-    sellerId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    reviewId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("reviews.id")))
+    sellerId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     createdAt = db.Column(db.DateTime)
     updatedAt = db.Column(db.DateTime)
 
@@ -55,7 +58,7 @@ class ProductImage(db.Model):
   __tablename__ = "product_images"
   id = db.Column(db.Integer, primary_key=True)
   # other columns
-  productId = db.Column(db.Integer, db.ForeignKey("products.id"))
+  productId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")))
   product_imageURL = db.Column(db.String(255), nullable=True)
 
   # One-to-Many Relationship with Product and ProductImage
@@ -73,8 +76,8 @@ class CartItem(db.Model):
    __tablename__ = "cart_items"
 
    id = db.Column(db.Integer, primary_key=True)
-   productId = db.Column(db.Integer, db.ForeignKey("products.id"), nullable=False)
-   userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+   productId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), nullable=False)
+   userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
 
    product = db.relationship("Product", back_populates="item")
    user = db.relationship("User", back_populates="item")
