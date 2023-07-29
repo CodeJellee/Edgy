@@ -1,9 +1,9 @@
-from app.models import db, environment, SCHEMA, Product
+from app.models import db, environment, SCHEMA, Product, User
 from sqlalchemy.sql import text
 
 
 # Adds a product, you can add other products here if you want
-def seed_products():
+def seed_products(users):
     products = [
         {
             "id": 1,
@@ -19,7 +19,8 @@ def seed_products():
     ]
 
     for product in products:
-        each_product = Product.to_dict(product)
+        each_product = Product(**product)
+        print(each_product)
         db.session.add(each_product)
         db.session.commit()
     return products
