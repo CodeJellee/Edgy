@@ -3,7 +3,8 @@ from __future__ import with_statement
 import logging
 from logging.config import fileConfig
 
-from flask import current_app
+from sqlalchemy import engine_from_config
+from sqlalchemy import pool
 
 from alembic import context
 
@@ -19,7 +20,17 @@ config = context.config
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
-logger = logging.getLogger("alembic.env")
+logger = logging.getLogger('alembic.env')
+
+
+def get_engine():
+    try:
+        # this works with Flask-SQLAlchemy<3 and Alchemical
+        return current_app.extensions['migrate'].db.get_engine()
+    except TypeError:
+        # this works with Flask-SQLAlchemy>=3
+        return current_app.extensions['migrate'].db.engine
+
 
 
 def get_engine():
@@ -86,11 +97,11 @@ def run_migrations_online():
     # when there are no changes to the schema
     # reference: http://alembic.zzzcomputing.com/en/latest/cookbook.html
     def process_revision_directives(context, revision, directives):
-        if getattr(config.cmd_opts, "autogenerate", False):
+        if getattr(config.cmd_opts, 'autogenerate', False):
             script = directives[0]
             if script.upgrade_ops.is_empty():
                 directives[:] = []
-                logger.info("No changes in schema detected.")
+                logger.info('No changes in schema detected.')
 
     connectable = engine_from_config(
         config.get_section(config.config_ini_section),
@@ -103,7 +114,7 @@ def run_migrations_online():
             connection=connection,
             target_metadata=get_metadata(),
             process_revision_directives=process_revision_directives,
-            **current_app.extensions["migrate"].configure_args,
+            **current_app.extensions['migrate'].configure_args
         )
 
         with context.begin_transaction():
