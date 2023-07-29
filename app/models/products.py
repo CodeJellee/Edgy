@@ -6,7 +6,7 @@ from .reviews import Review
 favorites = db.Table(
   "favorites",
   db.Column("userId", db.ForeignKey("users.id"), primary_key=True),
-  db.Column("productId", db.ForeignKey("products.id"), primary_key=True)
+  db.Column("productId", db.ForeignKey("products.id"), primary_key=True),
 )
 
 class Product(db.Model):
