@@ -34,8 +34,15 @@ class Product(db.Model):
     # One-to-Many Relationship with Product and ProductImage
     # This relationship states that Product will be listening to the class ProductImage
     image = db.relationship("ProductImage", back_populates="product", cascade="all, delete-orphan")
+
+    # join table relationship
     user = db.relationship("User",secondary=favorites, back_populates="products", cascade='all, delete-orphan')
+
+    # one to many, many side
     review = db.relationship("Review", back_populates="product")
+    seller = db.relationship("User", back_populates="product")
+
+    # one to many, one side
     item = db.relationship("CartItem", back_populates="product", cascade='all, delete-orphan')
 
     def to_dict(self):
