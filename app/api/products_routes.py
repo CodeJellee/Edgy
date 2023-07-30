@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user
 from app.models import Product, User, Review, ProductImage, db
-from app.forms import NewProduct, NewProductImage
+from app.forms import NewProduct, NewProductImage, NewReview
 
 products_routes = Blueprint('products', __name__)
 
@@ -29,7 +29,9 @@ def user_products():
 def product_details(id):
     product = Product.query.get(id)
     if not product:
-        return "Product couldnt be found"
+        return {
+            "message": "Product couldn't be found"
+        }
     product = product.to_dict()
     reviews = Review.query.filter(Review.productId == id).all()
     reviews = [r.to_dict() for r in reviews]
@@ -81,7 +83,9 @@ def add_images(id):
 def delete_product(id):
     product = Product.query.get(id)
     if not product:
-        return "Product couldnt be found"
+        return {
+            "message": "Product couldn't be found"
+        }
     db.session.delete(product)
     db.session.commit()
     return {
@@ -89,3 +93,44 @@ def delete_product(id):
      "message": "Successfully deleted"
 
     }
+
+@products_routes.route('/<int:id>/reviews')
+def get_reviews(id):
+    reviews = Review.query.filter(Review.productId == id).all()
+    if not reviews:
+        return {
+                "message": "Product couldn't be found"
+        }
+    revs = []
+    for r in reviews:
+        r = r.to_dict()
+        user = User.query.get(r["userId"]).to_dict()
+        r["User"] = {
+            "id": user["id"],
+            "first_name": user["first_name"],
+            "last_name": user["last_name"]
+        }
+        revs.append(r)
+
+    return {
+        "Reviews": revs
+    }
+
+@products_routes.route("/<int:id>/reviews", methods=["POST"])
+def create_review(id):
+    product = Product.query.get(id)
+    if not product:
+        return {
+                "message": "Product couldn't be found"
+        }
+    form = NewReview()
+    #if form.validate_on_submit():
+    new_review = Review(
+        stars = form.data['stars'],
+        review = form.data['review'],
+        userId = current_user.to_dict()["id"],
+        productId = id
+    )
+    db.session.add(new_review)
+    db.session.commit()
+    return new_review.to_dict()
