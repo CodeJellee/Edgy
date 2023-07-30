@@ -43,9 +43,19 @@ def post_product_review():
 
 
 
-# @reviews_routes.route("/<int:reviewId>", methods=[''])
-# def post_product_review():
-#     # form = ProductForm()
-#     print("in ...reviews/current")
-#     # products = Product.to_dict().all()
-#     return "hi"
+@reviews_routes.route("/<int:reviewId>", methods=['DELETE'])
+@login_required
+def delete_review(reviewId):
+    cur_user = current_user.to_dict()
+    review = Review.query.filter(Review.id == reviewId).first()
+    # review = review.to_dict()
+    pprint(review)
+
+    try:
+        db.session.delete(review)
+        db.session.commit()
+
+        return"successfully deleted"
+    except:
+        return {"error": "review not found"}
+    # delete(Review).where(Review.)
