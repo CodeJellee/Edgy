@@ -15,27 +15,6 @@ favorites_routes = Blueprint("favorites", __name__)
 def get_current_favorites():
     curr_user_id = current_user.id
     user = User.query.get(curr_user_id)
-    # this returns an array
-    # user_favorited_product_ids = [product.id for product in user.products]
-
-    # this returns a dictionary of the id and item name
-    # user_favorited_product_ids = {
-    #     product.id: product.item_name for product in user.products
-    # }
-    # pprint(user.to_dict())
-    # pprint([product.to_dict() for product in user.products])
-    # pprint(
-    # {
-    #     "Favorites": [
-    #         {
-    #             **user.to_dict(),
-    #             "User": user,
-    #             "Products": [product.to_dict() for product in user.products],
-    #         }
-    #     ]
-    # }
-    # )
-    # print(user.products)
 
     # The FINAL Form
     if user.products:
@@ -56,6 +35,22 @@ def get_current_favorites():
 
 
 # Delete Favorite
-@favorites_routes.route("/<int:productId>")
-def del_favorite_by_id():
-    return "<h1>Delete Favorite Item for Current User</h1>"
+@favorites_routes.route("/<int:productId>", methods=["DELETE"])
+@login_required
+def del_favorite_by_id(productId):
+    user_id = current_user.id
+
+    # this is the delete condition that will execute if true
+    delete_condition = favorites.delete().where(
+        (favorites.c.userId == user_id) & (favorites.c.productId == productId)
+    )
+    res = db.session.execute(delete_condition)
+    db.session.commit()
+
+    # This checks if any row was affected
+    if res.rowcount > 0:
+        return {"message": f"Favorite item with ID {productId} deleted successfully."}
+    else:
+        return {
+            "error": f"Favorite item with ID {productId} not found for the user."
+        }, 404
