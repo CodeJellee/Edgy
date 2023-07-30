@@ -11,7 +11,7 @@ function ReviewsCurr() {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
     const userReviews = useSelector(state => state.reviews.userReviews)
-    const [hasRenderedOnce, setHasRenderedOnce] = useState(false);
+
 
 
     useEffect(() => {
@@ -36,7 +36,7 @@ function ReviewsCurr() {
         <>
             {userReviews.Reviews.map((review) => (
                 <>
-                    <ReviewCard userFirstName={userReviews.User.firstName} review={review} from="userReviews" ></ReviewCard>
+                    <ReviewCard key={review.id} userFirstName={userReviews.User.firstName} review={review} from="userReviews" ></ReviewCard>
                 </>
             ))}
 

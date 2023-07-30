@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ReviewsCurr from './components/Reviews/ReviewsCurr'
+import ProductIdPage from './components/Products/ProductIdPage'
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/your_reviews">
             <ReviewsCurr />
+          </Route>
+          <Route path="/products/:id">
+            <ProductIdPage />
           </Route>
         </Switch>
       )}
