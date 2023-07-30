@@ -1,14 +1,48 @@
+import { useEffect, useState } from "react";
 import './ReviewsCurr.css'
-
-
+import "."
+import * as reviewsActions from '../../../store/reviews'
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from 'react-router-dom'
+import ReviewCard from "../ReviewCard";
 
 
 function ReviewsCurr() {
+    const dispatch = useDispatch()
+    const currentUser = useSelector(state => state.session.user)
+    const userReviews = useSelector(state => state.reviews.userReviews)
+    const [hasRenderedOnce, setHasRenderedOnce] = useState(false);
 
 
+    useEffect(() => {
+
+
+
+        dispatch(reviewsActions.thunkGetReviewsById(currentUser.id))
+
+
+
+    }, [dispatch])
+
+
+
+
+
+
+    if (!userReviews.User) return <h1>...loading</h1>
+
+    console.log(userReviews)
     return (
         <>
-    <h1>Hi this should be a list of users reviews</h1>
+            {userReviews.Reviews.map((review) => (
+                <>
+                    <ReviewCard userFirstName={userReviews.User.firstName} review={review} from="userReviews" ></ReviewCard>
+                </>
+            ))}
+
+
+
+
         </>
     );
 }
