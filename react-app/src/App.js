@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ReviewsCurr from "./components/Reviews/ReviewsCurr";
+import FavoritesPage from "./components/FavoritesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function App() {
             <ReviewsCurr />
           </Route>
           <Route exact path="/favorites/current">
-            <Favorites />
+            <FavoritesPage />
           </Route>
         </Switch>
       )}

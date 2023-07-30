@@ -13,9 +13,9 @@ function FavoritesPage() {
 
   if (!sessionUser) return null;
 
-  useEffect(() => {
-    // insert thunk query to grab user's favorite items
-  }, [dispatch]);
+  //   useEffect(() => {
+  //     // insert thunk query to grab user's favorite items
+  //   }, [dispatch]);
 
   return (
     <>
