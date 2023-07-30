@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as productActions from "../../store/products"
 import "./HomePage.css"
+import { Link } from "react-router-dom";
+import EditorsPickCard from "../CategoryCards/EditorsPick";
 
 function HomePage(){
     const { products } = useSelector((state) => state.products)
@@ -11,22 +13,43 @@ function HomePage(){
         dispatch(productActions.getAllProducts())
     }, [dispatch])
 
-    let eachProduct = products.Products
-    return (
-        <>
-       {eachProduct ? eachProduct.map((p) =>
-            <>
-            <p>{p.item_name}</p>
-            <p>{p.price}</p>
-            <p>{p.quantity}</p>
-            <img src={p.preview_imageURL}></img>
-            <p>{p.description}</p>
-            <p>{p.category}</p>
-            </>
+        let eachProduct = products?.Products
 
-        ) : null}
-        </>
-    )
+        console.log(eachProduct)
+
+        if (!eachProduct) return <h1>Loading</h1>
+
+        return (
+             <>
+             <h2>Discrover fresh summer finds from creative sellers!</h2>
+             <div className="searchResults">
+                <div className="result">
+                    <Link to="/">Gift Ideas</Link>
+                    <img></img>
+                </div>
+                <div className="result">
+                    <Link to="/">Manga</Link>
+                    <img></img>
+                </div>
+                <div className="result">
+                    <Link to="/">Best Sellers</Link>
+                    <img></img>
+                </div>
+                <div className="result">
+                    <Link to="/">Jewlery</Link>
+                    <img></img>
+                </div>
+                <div className="result">
+                    <Link to="/">Cool Finds</Link>
+                    <img></img>
+                </div>
+
+             </div>
+            <EditorsPickCard/>
+                </>
+            )
+
+
 }
 
 export default HomePage

@@ -94,10 +94,10 @@ export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case GET_PRODUCTS:
-      newState = initialState
-      console.log(action.payload)
-      newState.products = action.payload
-      return newState
+      return  {
+        ...state,
+        products: action.payload,
+      }
     default:
       return state;
   }

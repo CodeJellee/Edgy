@@ -1,0 +1,10 @@
+
+.products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.p > img {
+    height: 200px;
+    width: 200px
+}

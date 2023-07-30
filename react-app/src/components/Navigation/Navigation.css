@@ -5,3 +5,15 @@
 .hidden {
   display: none;
 }
+
+.nav {
+  display: flex;
+  gap: 20px
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 50px
+
+}
