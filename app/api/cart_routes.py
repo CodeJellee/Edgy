@@ -8,38 +8,6 @@ from pprint import pprint
 
 cart_routes = Blueprint('cart_items', __name__)
 
-# @cart_routes.route('/shopping_cart', methods=["GET"])
-# @login_required
-# def get_cart_items():
-#     cur_user = current_user.to_dict()
-#     shopping_cart = {"Shopping_Cart": []}
-
-#     #Retrieve cart products for the current user
-#     cart_items = CartItem.query.filter(CartItem.userId == cur_user["id"]).all()
-
-#     #Add the favorite products to the list
-#     for item in cart_items:
-#         product = Product.query.get(item.productId)
-#         if product:
-#             item_info = {
-#                 "id": item.id,
-#                 "userId": item.userId,
-#                 "Products": {
-#                     "id": product.id,
-#                     "sellerId": product.sellerId,
-#                     "itemName": product.itemName,
-#                     "price": product.price,
-#                     "description": product.description,
-#                     "previewImage": product.preview_imageURL,
-#                     "category": product.category
-#                 },
-#             }
-#             shopping_cart["Shopping_Cart"].append(item_info)
-#     return shopping_cart.to_dict()
-
-
-cart_routes = Blueprint('cart_items', __name__)
-
 @cart_routes.route('/shopping_cart', methods=["GET"])
 @login_required
 def get_cart_items():
@@ -52,6 +20,7 @@ def get_cart_items():
     for item in cart_items:
         # print("this is item", item.to_dict()) #{'id': 7, 'productId': 3, 'userId': 6}
         i = item.to_dict()
+        del i["productId"]
         product = Product.query.get(item.productId)
         i["Product"] = product.to_dict()
         cart_products.append(i)
