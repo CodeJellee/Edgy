@@ -5,7 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import ReviewsCurr from './components/Reviews/ReviewsCurr'
+import ReviewsCurr from "./components/Reviews/ReviewsCurr";
+import FavoritesPage from "./components/FavoritesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,14 +20,17 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          <Route exact path="/login">
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/your_reviews">
+          <Route exact path="/your_reviews">
             <ReviewsCurr />
+          </Route>
+          <Route exact path="/favorites/current">
+            <FavoritesPage />
           </Route>
         </Switch>
       )}
