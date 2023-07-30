@@ -3,7 +3,6 @@ from .reviews import Review
 
 
 # Many-to-Many Relationship between Users & Products
-# We will be having a 'favorites page' so we will need access to the favorites data and return to the front-end what the user's favorite products are, therefore we will be making a class model for this
 favorites = db.Table(
     "favorites",
     db.Model.metadata,
