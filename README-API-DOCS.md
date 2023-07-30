@@ -1098,23 +1098,31 @@ Returns all the Favorite Items that belong to the Current User
     {
       "Favorites": [
         {
-          "id": 1,
-          "userId": 1,
-          "productId": 1,
           "User": {
             "id": 1,
             "firstName": "John",
             "lastName": "Smith"
           },
-          "Product": {
-            "id": 1,
-            "productId": 1,
-            "itemName": "Spiked Collar",
-            "price": 15.99,
-            "description": "Black pleather spiked collar will attract the attention you seek!",
-            "previewImage": "image url",
-            "category": "jewelry"
-          }
+            "Product": [
+            {
+              "id": 1,
+              "productId": 1,
+              "itemName": "Spiked Collar",
+              "price": 15.99,
+              "description": "Black pleather spiked collar will attract the attention you seek!",
+              "previewImage": "image url",
+              "category": "jewelry"
+            },
+            {
+              "id": 1,
+              "productId": 1,
+              "itemName": "Spiked Collar",
+              "price": 15.99,
+              "description": "Black pleather spiked collar will attract the attention you seek!",
+              "previewImage": "image url",
+              "category": "jewelry"
+            }
+          ]
         }
       ]
     }
