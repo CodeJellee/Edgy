@@ -19,19 +19,15 @@ def post_product_review():
 
     for review in reviews:
 
-        # print(review["productId"], "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         product = Product.query.filter(Product.id == review["productId"]).first()
         product = product.to_dict()
         del product["updatedAt"]
         del product["createdAt"]
-        # del review.productId
         product["previewImageURL"] = product["preview_imageURL"]
         del product["preview_imageURL"]
         del review["productId"]
-
         review["Product"] = product
         pprint(review)
-
     returnItem = {"Reviews": reviews,
                   "User": {
                       "id": cur_user["id"],
@@ -39,11 +35,7 @@ def post_product_review():
                       "lastName": cur_user["last_name"],
                   }
                   }
-    # pprint(returnItem)
-    # SimplePerson.query.filter(SimplePerson.name.startswith("M")).all()
 
-
-    # products = Product.to_dict().all()
     return returnItem
 
 
