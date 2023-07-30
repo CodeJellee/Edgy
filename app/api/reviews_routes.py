@@ -1,11 +1,10 @@
 from flask import Blueprint
 from ..models import Review, Product, db
 # from ..forms import ProductForm
-from flask_login import current_user, login_required
 from pprint import pprint
 
+from flask_login import current_user, login_required
 reviews_routes = Blueprint('reviews', __name__)
-
 
 @reviews_routes.route("/current", methods=['GET'])
 @login_required
@@ -14,8 +13,13 @@ def post_product_review():
     pprint(cur_user)
 
     reviews = Review.query.filter(Review.userId == cur_user["id"]).all()
-    reviews = [review.to_dict() for review in reviews]
-
+    reviewsTest = Review.query.filter(Review.userId == cur_user["id"]).first()
+    reviewsTest.to_dict()
+    print("bye this is before the review query========================= ", reviewsTest)
+    pprint(reviewsTest)
+    reviews = [review.to_dict_noUpdated() for review in reviews]
+    print("hi")
+    pprint(reviews[0])
     for review in reviews:
 
         product = Product.query.filter(Product.id == review["productId"]).first()

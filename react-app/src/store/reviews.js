@@ -10,12 +10,13 @@ export const thunkGetReviewsById = () => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
+  console.log(response)
   if (response.ok) {
     const userReviewsData = await response.json();
     if (userReviewsData.errors) {
       return;
     }
-    console.log(userReviewsData, "THIS IS THE DATA being passed to actions")
+
 
     dispatch(setUserReviews(userReviewsData));
   }
@@ -67,8 +68,16 @@ export default function reducer(state = initialState, action) {
     case GET_USER_REVIEWS:
       let newState = Object.assign({}, state)
 
-      action.userReviewsData.Reviews.forEach(review => newState.userReviews[review.id] = { ...review })
+      // flattens array of reviews
+      // newState.userReviews.Reviews
+      // console.log(newStateRe.userReviews)
+      newState.userReviews.Reviews = {}
+      action.userReviewsData.Reviews.forEach(review => newState.userReviews.Reviews[review.id] = review)
 
+
+      // newState.userReviews.Reviews = newState.userReviews
+      // appends user object to  userReviews.user
+      newState.userReviews.User = (action.userReviewsData.User)
 
       return newState
 
