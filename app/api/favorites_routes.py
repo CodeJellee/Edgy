@@ -35,7 +35,9 @@ def get_current_favorites():
     #     ]
     # }
     # )
-    print(user.products)
+    # print(user.products)
+
+    # The FINAL Form
     user_favorited_products = {
         "Favorites": [
             {
