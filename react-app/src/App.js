@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ReviewsCurr from './components/Reviews/ReviewsCurr'
+import HomePage from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,8 +26,14 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
           <Route path="/your_reviews">
             <ReviewsCurr />
+          </Route>
+          <Route path="/">
+            <h2>404 not found</h2>
           </Route>
         </Switch>
       )}
