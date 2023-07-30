@@ -7,7 +7,6 @@ from pprint import pprint
 reviews_routes = Blueprint('reviews', __name__)
 
 
-# !!!!!!!!!!!!!!!!!!!! NEED TO ADD PRODUCT STILL
 @reviews_routes.route("/current", methods=['GET'])
 @login_required
 def post_product_review():
