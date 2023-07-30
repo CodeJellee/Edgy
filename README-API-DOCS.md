@@ -8,7 +8,7 @@
 ## Database Schema Design
 
 <!--!!START SILENT -->
-[group5-database-schema]: https://media.discordapp.net/attachments/1133156281809637466/1134622389515329647/image.png?width=997&height=676
+[group5-database-schema]: https://media.discordapp.net/attachments/1133156281809637466/1135010217881513984/image.png?width=1040&height=676
 
 ![group5-database-schema]
 
@@ -610,14 +610,13 @@ Returns all the reviews written by the current user.
           "userId": 1,
           "stars": 5,
           "review": "This was an awesome product!",
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36",
           "Product": {
             "id": 1,
             "sellerId": 1,
             "itemName": "Spiked Collar",
             "price": 15.99,
             "description": "Black pleather spiked collar will attract the attention you seek!",
+            "previewImageURL": "https://m.media-amazon.com/images/S/mms-media-storage-prod/final/BrandPosts/brandPosts/a868ad77-879d-40d7-8bed-dad04be63a15/f43af8aa-0309-40d6-a244-87b52d0ef5df/media._SL480_.jpeg",
             "quantity": 3,
             "previewImage": "image url",
             "category": "jewelry",
