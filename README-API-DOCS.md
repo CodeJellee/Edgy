@@ -600,6 +600,10 @@ Returns all the reviews written by the current user.
 
     ```json
     {
+      "User":{"id": 1,
+            "firstName": "John",
+            "lastName": "Smith"
+      }
       "Reviews": [
         {
           "id": 1,
@@ -607,12 +611,7 @@ Returns all the reviews written by the current user.
           "stars": 5,
           "review": "This was an awesome product!",
           "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36" ,
-          "Users": {
-            "id": 1,
-            "firstName": "John",
-            "lastName": "Smith"
-          },
+          "updatedAt": "2021-11-19 20:39:36",
           "Product": {
             "id": 1,
             "sellerId": 1,
