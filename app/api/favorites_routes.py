@@ -1,6 +1,9 @@
 from flask import Blueprint
 from flask_login import login_required, current_user
 from app.models.products import favorites
+from pprint import pprint
+from app.models.db import db
+from app.models.user import User
 
 # prefix='/api/favorites'
 favorites_routes = Blueprint("favorites", __name__)
@@ -10,10 +13,18 @@ favorites_routes = Blueprint("favorites", __name__)
 @favorites_routes.route("/current")
 @login_required
 def get_current_favorites():
-    # cur_userId = current_user.to_dict()["id"]
-    # cur_fav = favorites.query.all()
-    # print(cur_fav)
-    return "<h1>cookies suck, and we currently have no seeder data</h1>"
+    curr_user_id = current_user.id
+    user = User.query.get(curr_user_id)
+
+    # this returns an array
+    # user_favorited_product_ids = [product.id for product in user.products]
+
+    # this returns a dictionary of the id and item name
+    user_favorited_product_ids = {
+        product.id: product.item_name for product in user.products
+    }
+
+    return user_favorited_product_ids
 
 
 # Delete Favorite
