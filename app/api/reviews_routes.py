@@ -1,5 +1,4 @@
 from flask import Blueprint
-from flask_login import login_required
 from ..models import Review, User, db
 # from ..forms import ProductForm
 from flask_login import current_user, login_required

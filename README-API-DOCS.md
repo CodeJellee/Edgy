@@ -8,7 +8,7 @@
 ## Database Schema Design
 
 <!--!!START SILENT -->
-[group5-database-schema]: https://media.discordapp.net/attachments/1133156281809637466/1134622389515329647/image.png?width=997&height=676
+[group5-database-schema]: https://media.discordapp.net/attachments/1133156281809637466/1135010217881513984/image.png?width=1040&height=676
 
 ![group5-database-schema]
 
