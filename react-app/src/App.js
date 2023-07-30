@@ -5,8 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import ReviewsCurr from "./components/Reviews/ReviewsCurr";
-import FavoritesPage from "./components/FavoritesPage";
+import ReviewsCurr from './components/Reviews/ReviewsCurr'
 
 function App() {
   const dispatch = useDispatch();
@@ -26,11 +25,8 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/your_reviews">
+          <Route path="/your_reviews">
             <ReviewsCurr />
-          </Route>
-          <Route exact path="/favorites/current">
-            <FavoritesPage />
           </Route>
         </Switch>
       )}
