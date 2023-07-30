@@ -15,16 +15,40 @@ favorites_routes = Blueprint("favorites", __name__)
 def get_current_favorites():
     curr_user_id = current_user.id
     user = User.query.get(curr_user_id)
-
     # this returns an array
     # user_favorited_product_ids = [product.id for product in user.products]
 
     # this returns a dictionary of the id and item name
-    user_favorited_product_ids = {
-        product.id: product.item_name for product in user.products
+    # user_favorited_product_ids = {
+    #     product.id: product.item_name for product in user.products
+    # }
+    # pprint(user.to_dict())
+    # pprint([product.to_dict() for product in user.products])
+    # pprint(
+    # {
+    #     "Favorites": [
+    #         {
+    #             **user.to_dict(),
+    #             "User": user,
+    #             "Products": [product.to_dict() for product in user.products],
+    #         }
+    #     ]
+    # }
+    # )
+    print(user.products)
+    user_favorited_products = {
+        "Favorites": [
+            {
+                "User": user.to_dict(),
+                # Including all the kvp BESIDES 'updatedAt'
+                "Products": [
+                    {k: v for k, v in product.to_dict().items() if k != "updatedAt"}
+                    for product in user.products
+                ],
+            }
+        ]
     }
-
-    return user_favorited_product_ids
+    return user_favorited_products
 
 
 # Delete Favorite
