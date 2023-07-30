@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import CartItem, Product, User, db
 from app.models.products import favorites
@@ -22,8 +22,12 @@ def get_cart_items():
 
 @cart_routes.route('/shopping_cart/<int:productId>', methods=["DELETE"])
 @login_required
-def delete_cart_item():
+def delete_cart_item(productId):
+    item = Product.query.get(productId)
+    if not item:
+        return {
+            "message": "Item couldn't be found"
+        }
     return {
         "message": "Successfully deleted"
     }
-#if cant find item: "message": "Item couldn't be found" --> do we need this?
