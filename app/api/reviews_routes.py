@@ -47,15 +47,18 @@ def post_product_review():
 @login_required
 def delete_review(reviewId):
     cur_user = current_user.to_dict()
-    review = Review.query.filter(Review.id == reviewId).first()
+
     # review = review.to_dict()
-    pprint(review)
+    # pprint(review)
 
     try:
-        db.session.delete(review)
-        db.session.commit()
+          review = Review.query.filter(Review.id == reviewId).first()
+          pprint(review)
+    #     db.session.delete(review)
+    #     db.session.commit()
 
-        return"successfully deleted"
+          return "hi"
+    #     return"successfully deleted"
     except:
         return {"error": "review not found"}
     # delete(Review).where(Review.)
