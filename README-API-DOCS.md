@@ -904,7 +904,7 @@ Return all the shopping cart that the current user has made.
         {
           "id": 1,
           "userId": 2,
-          "Products": [
+          "Products":
             {
             "id": 1,
             "sellerId": 1,
@@ -914,10 +914,7 @@ Return all the shopping cart that the current user has made.
             "quantity": 3,
             "previewImage": "image url",
             "category": "jewelry",
-            }
-          ],
-          "createdAt": "2021-11-19 20:39:36",
-          "updatedAt": "2021-11-19 20:39:36"
+            },
         }
       ]
     }
