@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user
-from app.models import Product, User, Review, db
+from app.models import Product, User, Review, ProductImage, db
 from app.forms import NewProduct, NewProductImage
 
 products_routes = Blueprint('products', __name__)
@@ -27,13 +27,19 @@ def user_products():
 
 @products_routes.route('/<int:id>')
 def product_details(id):
-    product = Product.query.get(id).to_dict()
+    product = Product.query.get(id)
+    if not product:
+        return "Product couldnt be found"
+    product = product.to_dict()
     reviews = Review.query.filter(Review.productId == id).all()
     reviews = [r.to_dict() for r in reviews]
     sellerId = product["sellerId"]
     seller = User.query.get(sellerId).to_dict()
+    product_images = ProductImage.query.filter(ProductImage.productId == id).all()
+    product_images = [i.to_dict() for i in product_images]
     product["Reviews"] = reviews
     product["Seller"] = seller
+    product["ProductImages"] = product_images
     return product
 
 @products_routes.route('/', methods=["POST"])
@@ -71,9 +77,11 @@ def add_images(id):
     # return "Bad data"
 
 
-@products_routes.route('/<int:id>')
+@products_routes.route('/<int:id>', methods=['DELETE'])
 def delete_product(id):
     product = Product.query.get(id)
+    if not product:
+        return "Product couldnt be found"
     db.session.delete(product)
     db.session.commit()
     return {
