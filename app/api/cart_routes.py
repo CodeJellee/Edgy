@@ -28,6 +28,8 @@ def delete_cart_item(productId):
         return {
             "message": "Item couldn't be found"
         }
+    db.session.delete(item)
+    db.session.commit()
     return {
         "message": "Successfully deleted"
     }
