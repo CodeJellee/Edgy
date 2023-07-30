@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import './ReviewsCurr.css'
+import "."
 import * as reviewsActions from '../../../store/reviews'
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from 'react-router-dom'
+import ReviewCard from "../ReviewCard";
 
 
 function ReviewsCurr() {
@@ -19,45 +22,27 @@ function ReviewsCurr() {
 
 
 
-    }, [dispatch, userReviews])
+    }, [dispatch])
 
 
 
 
-    console.log("Type of userReviews:", typeof userReviews);
-    console.log("userReviews:", userReviews);
-    // console.log(userReviews.Reviews)
-    // if (!Object.keys(userReviews).length) return null
-    // if (!currentUser || !Object.values(userReviews).length ) return null
-    // console.log("hi")
-    // console.log(Object.keys(usersReviews))
-    // if (Object.keys(usersReviews) == 0) return null
-    // console.log(Object.keys(usersReviews))
+
+
+    if (!userReviews.User) return <h1>...loading</h1>
+
     console.log(userReviews)
     return (
         <>
-            {/* {userReviews.Reviews && Object.values(userReviews.Reviews).map((review) => ( */}
-            <div className="Ru-card">
-
-                <div className="Ru-stars">
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                </div>
-                <p>This will be the description things, man this product sure was bad. it broke after only 2 uses!
-                review.Description
-                </p>
-                <div>
-                    <p>!!!userReviews.User.FirstName!!!</p>
-                    <p></p>
-                </div>
+            {userReviews.Reviews.map((review) => (
+                <>
+                    <ReviewCard userFirstName={userReviews.User.firstName} review={review} from="userReviews" ></ReviewCard>
+                </>
+            ))}
 
 
 
-            </div>
-            {/* ))} */}
-            <h1>outside of map</h1>
+
         </>
     );
 }
