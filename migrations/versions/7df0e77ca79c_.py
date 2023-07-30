@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: bc99c4382e8e
+Revision ID: 7df0e77ca79c
 Revises:
-Create Date: 2023-07-29 18:38:16.951192
+Create Date: 2023-07-29 19:59:35.305774
 
 """
 from alembic import op
@@ -12,8 +12,9 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
+
 # revision identifiers, used by Alembic.
-revision = 'bc99c4382e8e'
+revision = '7df0e77ca79c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -79,7 +80,6 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE favorites SET SCHEMA {SCHEMA};")
 
-
     op.create_table('product_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=True),
@@ -91,11 +91,10 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE product_images SET SCHEMA {SCHEMA};")
 
-
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('stars', sa.Integer(), nullable=False),
-    sa.Column('review', sa.Integer(), nullable=False),
+    sa.Column('review', sa.String(length=255), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=False),
     sa.Column('createdAt', sa.DateTime(), nullable=True),
