@@ -1,5 +1,11 @@
-img {
+.home > img {
     width: 150px;
     height: 150px
+}
+
+.searchResults {
+    display: flex;
+    justify-content: center;
+    gap: 40px
 }
 
