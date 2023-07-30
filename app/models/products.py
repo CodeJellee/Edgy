@@ -31,7 +31,6 @@ class Product(db.Model):
     description = db.Column(db.String(255), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     preview_imageURL = db.Column(db.String, nullable=False)
-    reviewId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("reviews.id")))
     sellerId = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
     )
@@ -48,7 +47,7 @@ class Product(db.Model):
     user = db.relationship("User", secondary=favorites, back_populates="products")
 
     # one to many, many side
-    review = db.relationship("Review", back_populates="product")
+    review = db.relationship("Review", back_populates="product", cascade="all, delete-orphan")
     seller = db.relationship("User", back_populates="product")
 
     # one to many, one side
@@ -65,7 +64,6 @@ class Product(db.Model):
             "description": self.description,
             "quantity": self.quantity,
             "preview_imageURL": self.preview_imageURL,
-            "reviewId": self.reviewId,
             "sellerId": self.sellerId,
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt,
