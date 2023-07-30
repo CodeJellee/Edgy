@@ -1,5 +1,5 @@
 from flask import Blueprint
-from ..models import Review, User, db
+from ..models import Review, Product, db
 # from ..forms import ProductForm
 from flask_login import current_user, login_required
 from pprint import pprint
@@ -16,7 +16,22 @@ def post_product_review():
 
     reviews = Review.query.filter(Review.userId == cur_user["id"]).all()
     reviews = [review.to_dict() for review in reviews]
-    # user = User.query.filter(User.email == form.data['email']).first()
+
+    for review in reviews:
+
+        # print(review["productId"], "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+        product = Product.query.filter(Product.id == review["productId"]).first()
+        product = product.to_dict()
+        del product["updatedAt"]
+        del product["createdAt"]
+        # del review.productId
+        product["previewImageURL"] = product["preview_imageURL"]
+        del product["preview_imageURL"]
+        del review["productId"]
+
+        review["Product"] = product
+        pprint(review)
+
     returnItem = {"Reviews": reviews,
                   "User": {
                       "id": cur_user["id"],
@@ -24,7 +39,7 @@ def post_product_review():
                       "lastName": cur_user["last_name"],
                   }
                   }
-    pprint(returnItem)
+    # pprint(returnItem)
     # SimplePerson.query.filter(SimplePerson.name.startswith("M")).all()
 
 
