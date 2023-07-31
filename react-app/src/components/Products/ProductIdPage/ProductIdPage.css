@@ -1,0 +1,69 @@
+.PID-product {
+    display: flex;
+    height: 575px;
+    gap: 8px;
+}
+
+
+.PID-images-div {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    gap: 15px
+}
+
+.PID-all-Images {
+    display: flex;
+    width: 70%;
+
+    gap: 5px;
+}
+
+
+.PID-small-img {
+    border-radius: 15px;
+    /* aspect-ratio: 1/1 */
+}
+
+
+/* TODO MEDIA QUERY SO small screens the images and product info also shrink so the main image doesnt shrink to disappearing */
+.PID-main-image-div {
+    width: 100%;
+
+
+    /* object-fit: contain; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* max-height: 200px; */
+}
+
+
+/* .PID-about-product-div {
+    display: flex;
+    direction: column;
+} */
+
+.PID-main-image {
+    max-width: 100%;
+    /* max-height: 700px; */
+    width: 100%;
+    /* or any custom size */
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.PID-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.PID-about-buttons-div {
+    margin-left: 30px;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.PID-count {
+    margin-right: 8px;
+}
