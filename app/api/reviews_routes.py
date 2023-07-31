@@ -51,14 +51,20 @@ def delete_review(reviewId):
     # review = review.to_dict()
     # pprint(review)
 
-    try:
-          review = Review.query.filter(Review.id == reviewId).first()
-          pprint(review)
-    #     db.session.delete(review)
-    #     db.session.commit()
+    review = Review.query.filter(Review.id == reviewId).first()
+    if not review:
+        return {
+            "message": "Product couldn't be found"
+        }
 
-          return "hi"
-    #     return"successfully deleted"
-    except:
-        return {"error": "review not found"}
-    # delete(Review).where(Review.)
+    print(review.userId)
+    print(cur_user["id"])
+    print(cur_user["id"] == review.userId)
+    if review.userId == cur_user["id"]:
+        db.session.delete(review)
+        db.session.commit()
+        return"successfully deleted"
+    else:
+        return "Not your review to delete"
+
+

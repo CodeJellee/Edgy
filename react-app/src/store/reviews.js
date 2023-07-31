@@ -28,9 +28,6 @@ export const thunkGetReviewsById = () => async (dispatch) => {
 };
 
 
-
-
-
 export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
 
   console.log(productId, "PRODUCT ID")
@@ -47,7 +44,6 @@ export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
   if (response.ok) {
 
     const productReviewsData = await response.json();
-    console.log("original Query object", productReviewsData)
     if (productReviewsData.errors) {
       return;
     }
@@ -63,6 +59,46 @@ export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
 };
 
 
+// post a review
+
+export const thunkSubmitReview = (stars, review, id) => async (dispatch) => {
+
+  const response = await fetch(`/api/products/${id}/reviews`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      stars,
+      review,
+    }),
+
+
+  });
+  console.log("hi")
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(postReview(data))
+    // return null so front side will know there is not an error
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+
+
+
+
+}
+
+
+
+
 //*  ======================= end of thunks ===================//
 
 
@@ -74,6 +110,7 @@ export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
 
 const GET_USER_REVIEWS = "REVIEWS/GetUserReviews";
 const GET_PRODUCT_REVIEWS = "REVIEWS/GetProductReviews";
+const POST_REVIEW = "REVIEWS/PostReview"
 
 //?  ===================end of types ===================//
 
@@ -98,6 +135,13 @@ const setProductReviews = (productReviewsData) => {
   }
 }
 
+const postReview = (newReview) => {
+  return {
+    type: POST_REVIEW,
+    newReview
+  }
+}
+
 //*  ======================= end of actions ===================//
 
 
@@ -116,6 +160,10 @@ export default function reducer(state = initialState, action) {
 
     case GET_PRODUCT_REVIEWS:
       return { ...state, productReviews: action.productReviewsData };
+
+    case POST_REVIEW:
+      state.productReviews?.Reviews.push(action.newReview)
+      return { ...state };
 
     default:
       return state;
