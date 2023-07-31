@@ -9,7 +9,7 @@ function EditorsPickCard(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(productActions.getAllProducts())
+        dispatch(productActions.thunkGetAllProducts())
     }, [dispatch])
 
         let eachProduct = products?.Products

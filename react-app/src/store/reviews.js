@@ -11,13 +11,13 @@ export const thunkGetReviewsById = () => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
-  console.log(response)
+  // console.log(response)
 
 
 
   if (response.ok) {
     const userReviewsData = await response.json();
-    console.log(userReviewsData)
+    // console.log(userReviewsData)
     if (userReviewsData.errors) {
       return;
     }
@@ -30,14 +30,14 @@ export const thunkGetReviewsById = () => async (dispatch) => {
 
 export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
 
-  console.log(productId, "PRODUCT ID")
+  // console.log(productId, "PRODUCT ID")
 
   const response = await fetch(`/api/products/${productId}/reviews`, {
     headers: {
       "Content-Type": "application/json",
     },
   });
-  console.log(response)
+  // console.log(response)
 
 
 
@@ -52,7 +52,7 @@ export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
     let passingObj = {}
 
     passingObj.Reviews = productReviewsData.Reviews
-    console.log("before passing in", passingObj)
+    // console.log("before passing in", passingObj)
 
     dispatch(setProductReviews(productReviewsData));
   }
@@ -75,7 +75,7 @@ export const thunkSubmitReview = (stars, review, id) => async (dispatch) => {
 
 
   });
-  console.log("hi")
+  // console.log("hi")
 
   if (response.ok) {
     const data = await response.json();

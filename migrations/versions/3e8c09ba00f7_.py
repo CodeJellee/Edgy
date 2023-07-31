@@ -2,11 +2,11 @@
 
 <<<<<<<< HEAD:migrations/versions/20961ae37f22_.py
 Revision ID: 20961ae37f22
-Revises: 
+Revises:
 Create Date: 2023-07-30 22:39:26.225035
 ========
 Revision ID: 938761a87aea
-Revises: 
+Revises:
 Create Date: 2023-07-30 20:31:37.104032
 >>>>>>>> fe_favorites:migrations/versions/938761a87aea_.py
 

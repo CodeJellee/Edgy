@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import Product, User, Review, ProductImage, db
+from app.models import Product, User, Review, ProductImage, db, CartItem
 from app.models.products import favorites
 from app.forms import NewProduct, NewProductImage, NewReview
 from sqlalchemy import insert
@@ -8,6 +8,8 @@ from pprint import pprint
 
 products_routes = Blueprint("products", __name__)
 
+
+#prefix /products
 
 @products_routes.route("/")
 def get_products():
@@ -44,7 +46,7 @@ def product_details(id):
     return product
 
 
-@products_routes.route("/", methods=["POST"])
+@products_routes.route("/new", methods=["POST"])
 @login_required
 def create_product():
     form = NewProduct()
@@ -165,5 +167,30 @@ def post_favorite_item(productId):
             "Product": product_exists.to_dict(),
             "User": user.to_dict(),
         }
+    else:
+        return {"message": "Item couldn't be found"}
+
+
+#POST: add item to cart
+@products_routes.route('/<int:productId>/add_to_cart', methods=["POST"])
+@login_required
+def post_cart_items(productId):
+    cur_user = current_user.to_dict()
+    # print("CURRENT USER", cur_user)
+    product_exists = Product.query.get(productId)
+    # print("PRODUCT", product_exists.sellerId)
+
+    #Edge Cases
+    if product_exists and cur_user["id"] == product_exists.sellerId:
+        return {"message": "You may not add your own product to your cart."}
+
+    if product_exists and product_exists.sellerId != cur_user["id"]:
+        add_to_cart = CartItem(
+            userId=cur_user["id"],
+            productId=productId
+        )
+        db.session.add(add_to_cart)
+        db.session.commit()
+        return {"message": "You've successfully added this item to cart."}
     else:
         return {"message": "Item couldn't be found"}

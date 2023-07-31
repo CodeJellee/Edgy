@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import CartItem, Product, User, db
-from app.models.products import favorites
+from sqlalchemy import insert
 from pprint import pprint
 
 #url_prefix='/api/carts'
@@ -31,33 +31,50 @@ def get_cart_items():
     return {"Shopping_Cart": cart_products}
 
 
+#need to be in the products route
+@cart_routes.route('/<int:productId>/add_to_cart', methods=["POST"])
+@login_required
+def post_cart_items(productId):
+    cur_user = current_user.to_dict()
+    product_exists = Product.query.get(productId)
 
-# @cart_routes.route('/shopping_cart', methods=["GET"])
+    #Edge Cases
+    if product_exists and cur_user["id"] == product_exists.sellerId:
+        return {"message": "You may not add to cart your own product."}
+
+    if product_exists and product_exists.sellerId != cur_user["id"]:
+        add_to_cart = insert(CartItem).values(
+            userId=cur_user,
+            productId=productId
+        )
+        db.session.execute(add_to_cart)
+        db.session.commit()
+        return {"message": "You've successfully added this item to cart."}
+    else:
+        return {"message": "Item couldn't be found"}
+
+
+#need to be in the products route
+# @cart_routes.route('/<int:productId>/add_to_cart', methods=["POST"])
 # @login_required
-# def get_cart_items():
+# def post_cart_items(productId):
 #     cur_user = current_user.to_dict()
-#     cart_products = {}
-#     cart_products["Shopping_Cart"] = []
-#     # cart_products["Product"] = {}
-#     #Retrieve cart products for the current user
-#     cart_items = CartItem.query.filter(CartItem.userId == cur_user["id"]).all()
-#     cart_products["Shopping_Cart"] = cart_items
+#     product_exists = Product.query.get(productId)
 
-#     #Add the favorite products to the list
-#     for item in cart_items:
-#         item = item.to_dict()
-#         # cart_products.append(item.to_dict())
-#         product = Product.query.get(item.productId)
-#         item["Product"] = product.to_dict()
-#         del item["productId"]
+#     #Edge Cases
+#     if product_exists and cur_user["id"] == product_exists.sellerId:
+#         return {"message": "You may not add to cart your own product."}
 
-#         # cart_products["Product"]= product.to_dict()
-
-
-#     print(cart_products) #getting back an list of dict
-
-#     return cart_products
-
+#     if product_exists and product_exists.sellerId != cur_user["id"]:
+#         add_to_cart = insert(CartItem).values(
+#             userId=cur_user,
+#             productId=productId
+#         )
+#         db.session.execute(add_to_cart)
+#         db.session.commit()
+#         return {"message": "You've successfully added this item to cart."}
+#     else:
+#         return {"message": "Item couldn't be found"}
 
 
 

@@ -12,12 +12,12 @@ function HomePage(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(productActions.getAllProducts())
+        dispatch(productActions.thunkGetAllProducts())
     }, [dispatch])
 
         let eachProduct = products?.Products
 
-        console.log(eachProduct)
+        // console.log(eachProduct)
 
         if (!eachProduct) return <h1>Loading</h1>
 

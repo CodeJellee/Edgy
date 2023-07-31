@@ -1,3 +1,4 @@
+// import { csrfFetch } from './csrf'
 
 
 //*  =====================  thunks ===========================//
@@ -13,10 +14,10 @@
 
 //? =====================  types ===========================//
 
-
+const GET_SHOPPING_CART= "SHOPPING_CART/GetShoppingCart"
+const DELETE_CART_ITEM=
 
 //?  ===================end of types ===================//
-
 
 
 
@@ -33,13 +34,27 @@
 
 
 
+//*  =====================  thunks ===========================//
+
+
+
+//*  ======================= end of thunks ===================//
+
+
+
+
+
+
+
+
+
 
 //? ================== reducer================================//
 
 let initialState = { user: {} };
 
 export default function reducer(state = initialState, action) {
-  let newState;
+  // let newState;
   switch (action.type) {
     default:
       return state;
