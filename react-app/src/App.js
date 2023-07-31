@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import ReviewsCurr from "./components/Reviews/ReviewsCurr";
 import HomePage from "./components/HomePage";
 import Categories from "./components/Categories";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

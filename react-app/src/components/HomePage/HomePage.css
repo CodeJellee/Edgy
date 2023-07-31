@@ -9,3 +9,19 @@
     gap: 40px
 }
 
+.result > img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cap {
+    display: flex;
+    justify-content: center;
+}
