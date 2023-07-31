@@ -2,6 +2,7 @@
 
 const GET_USER_FAVORITES_ACTION = "favorites/GET_USER_FAVORITES_ACTION";
 const POST_FAVORITE_PRODUCT_ACTION = "favorites/POST_FAVORITE_PRODUCT_ACTION";
+const DELETE_FAVORITE_ACTION = "favorites/DELETE_FAVORITE_ACTION";
 
 //*  ===================end of types ===================//
 
@@ -11,6 +12,13 @@ const getUserFavoritesAction = (favs) => {
   return {
     type: GET_USER_FAVORITES_ACTION,
     favs,
+  };
+};
+
+const deleteFavoriteAction = (productId) => {
+  return {
+    type: DELETE_FAVORITE_ACTION,
+    productId,
   };
 };
 
@@ -54,6 +62,15 @@ export const thunkPostFavoriteProduct =
     return res;
   };
 
+export const thunkDeleteFavorite = (productId) => async (dispatch) => {
+  let product = await fetch(`/api/favorites/${productId}`, {
+    method: "DELETE",
+  });
+  product = await product.json();
+  dispatch(deleteFavoriteAction(productId));
+  return product;
+};
+
 //*  ======================= end of thunks ===================//
 
 //? ================== reducer================================//
@@ -88,6 +105,12 @@ export default function reducer(state = initialState, action) {
       newState = { ...state };
       newState.user = action.res.User;
       newState.userFavorites[action.res.Product.id] = action.res.Product;
+      return newState;
+    }
+    case DELETE_FAVORITE_ACTION: {
+      newState = { ...state };
+      newState.userFavorites = { ...newState.userFavorites };
+      delete newState.userFavorites[action.productId];
       return newState;
     }
     default:
