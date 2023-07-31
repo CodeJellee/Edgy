@@ -1,1 +1,19 @@
 /* TODO Add site wide styles */
+
+
+
+/* wrap full page with 2 divs as seen below, to make content column  */
+/* <div className="column-holder">
+<div className="column"> */
+/* <...page content> */
+/* </div>
+</div> */
+
+.column-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    width: 900px;
+}
