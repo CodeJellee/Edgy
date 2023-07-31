@@ -5,6 +5,7 @@ import "./HomePage.css"
 import { Link } from "react-router-dom";
 import EditorsPickCard from "../CategoryCards/EditorsPick";
 import ShopLookCard from "../CategoryCards/ShopTheLook";
+import EditorsPickTwoCard from "../CategoryCards/EditorsPick2";
 
 function HomePage(){
     const { products } = useSelector((state) => state.products)
@@ -48,6 +49,7 @@ function HomePage(){
              </div>
             <EditorsPickCard/>
             <ShopLookCard />
+            <EditorsPickTwoCard />
             </>
             )
 

@@ -1,0 +1,17 @@
+
+
+.sec3, .sec4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.imgTwo > img {
+    width: 100px;
+    height: 200px
+}
+
+.epTwo {
+    margin: 40px
+}

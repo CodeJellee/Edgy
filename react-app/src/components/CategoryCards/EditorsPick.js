@@ -16,25 +16,18 @@ function EditorsPickCard(){
 
         if (!eachProduct) return <h1>Loading</h1>
 
+        eachProduct = eachProduct.filter((p) => p.category == "Computer")
+
+        console.log(eachProduct)
+
         return (
             <div className="ep">
                 <div className="sections">
                 <div className="sec1">
                 <div className='epTitle'>
                 <h3>Editors' Picks</h3>
-                 <h2>Computer</h2>
+                 <h2>Computers</h2>
                  <Link to='/categories/computer'>See more</Link>
-                </div>
-                <div className='imgOne'>
-                    <img src={eachProduct[1].preview_imageURL}></img>
-                </div>
-                <div className='imgOne'>
-                    <img src={eachProduct[2].preview_imageURL}></img>
-                </div>
-                </div>
-                <div className="sec2">
-                <div className='imgOne'>
-                    <img src={eachProduct[3].preview_imageURL}></img>
                 </div>
                 <div className='imgOne'>
                     <img src={eachProduct[0].preview_imageURL}></img>
@@ -42,8 +35,19 @@ function EditorsPickCard(){
                 <div className='imgOne'>
                     <img src={eachProduct[1].preview_imageURL}></img>
                 </div>
+                </div>
+                <div className="sec2">
                 <div className='imgOne'>
                     <img src={eachProduct[2].preview_imageURL}></img>
+                </div>
+                <div className='imgOne'>
+                    <img src={eachProduct[3].preview_imageURL}></img>
+                </div>
+                <div className='imgOne'>
+                    <img src={eachProduct[4].preview_imageURL}></img>
+                </div>
+                <div className='imgOne'>
+                    <img src={eachProduct[0].preview_imageURL}></img>
                 </div>
                 </div>
                 </div>

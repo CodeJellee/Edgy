@@ -11,16 +11,13 @@
 
     .sections {
         display: flex;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-left: 10px;
-        margin-right: 10px;
+        margin: 30px;
         background-color: white;
         max-width: 66%;
-        max-height: 400px;
+        max-height: auto;
         height: auto;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: center;
     }
 
     .ep {
@@ -46,6 +43,7 @@
     .imgOne {
         margin-top: 10px;
         max-width: 22%;
+        height: auto;
     }
 
     .sec1, .sec2 {
