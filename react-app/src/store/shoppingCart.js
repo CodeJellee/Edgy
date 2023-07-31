@@ -1,53 +1,23 @@
 // import { csrfFetch } from './csrf'
 
-
 //*  =====================  thunks ===========================//
 
-
-
 //*  ======================= end of thunks ===================//
-
-
-
-
-
 
 //? =====================  types ===========================//
 
-const GET_SHOPPING_CART= "SHOPPING_CART/GetShoppingCart"
-const DELETE_CART_ITEM=
+const GET_SHOPPING_CART = "SHOPPING_CART/GetShoppingCart";
+// const DELETE_CART_ITEM=
 
 //?  ===================end of types ===================//
 
-
-
-
-
 //* =====================  actions ===========================//
-
-
-
 
 //*  ======================= end of actions ===================//
 
-
-
-
-
 //*  =====================  thunks ===========================//
 
-
-
 //*  ======================= end of thunks ===================//
-
-
-
-
-
-
-
-
-
 
 //? ================== reducer================================//
 
