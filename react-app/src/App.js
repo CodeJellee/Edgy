@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import ReviewsCurr from "./components/Reviews/ReviewsCurr";
 import HomePage from "./components/HomePage";
 import Categories from "./components/Categories";
+import ProductIdPage from "./components/Products/ProductIdPage";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +55,9 @@ function App() {
           </Route>
           <Route exact path="/categories/figurines">
             <Categories category="figurines" />
+          </Route>
+          <Route path="/products/:id">
+            <ProductIdPage />
           </Route>
           <Route path="/">
             <h2>404 not found</h2>

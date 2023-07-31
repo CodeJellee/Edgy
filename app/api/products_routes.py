@@ -119,6 +119,7 @@ def create_review(id):
     if not product:
         return {"message": "Product couldn't be found"}
     form = NewReview()
+    print(form)
     # if form.validate_on_submit():
     new_review = Review(
         stars=form.data["stars"],
