@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import './ReviewForm.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from 'react-router-dom'
 import * as reviewsActions from '../../../store/reviews'
@@ -37,7 +37,8 @@ function ReviewForm() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+        <h3>Submit a review for this product:</h3>
+            <form onSubmit={handleSubmit} className="RF-Form">
 
                 {/* {submitted &&  <displayError>} */}
                 <label htmlFor="stars"></label>
