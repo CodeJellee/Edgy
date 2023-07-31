@@ -1,0 +1,19 @@
+.shopImg {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shopImg > div > img {
+    width: 350px;
+    height: 530px
+}
+
+.look {
+    margin: 40px;
+    max-width: 1400px
+}
+
+.shopName {
+    display: flex;
+    justify-content: space-between;
+}

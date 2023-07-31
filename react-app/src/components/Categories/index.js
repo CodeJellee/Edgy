@@ -15,10 +15,10 @@ function Categories({ category }){
 
     if (!eachProduct) return null
 
-    if (category === "computer") category = "Technology"
+    //if (category === "computer") category = "Technology"
 
+    console.log(eachProduct[0].category)
     eachProduct = eachProduct.filter((p) => p.category == category)
-    console.log(eachProduct)
 
     return (
         <>
