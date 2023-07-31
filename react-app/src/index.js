@@ -23,6 +23,8 @@ if (process.env.NODE_ENV !== "production") {
 
 //example to use in console to test thunk
 //window.store.dispatch(window.actionName.thunkName(arg))
+//window.store.dispatch(window.productActions.thunkGetAllProducts())
+//window.store.dispatch(window.productActions.thunkDeleteProduct(1))
 
 // Wrap the application with the Modal provider and render the Modal component
 // after the App component so that all the Modal content will be layered as
