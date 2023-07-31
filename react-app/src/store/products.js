@@ -54,9 +54,9 @@ const getSingleProduct = (product) => ({
   product
 });
 
-const deleteProduct = (product) => ({
+const deleteProduct = (productId) => ({
 	type: DELETE_PRODUCT_ACTION,
-  product
+  productId
 });
 
 const createProduct = (product) => ({
@@ -99,21 +99,49 @@ export const thunkGetSingleProduct = (productId) => async dispatch => {
   return product
 }
 
+export const thunkDeleteProduct = (productId) => async dispatch => {
+  let product = await fetch(`/api/products/${productId}`, {
+    method: "DELETE"
+  })
+  product = await product.json()
+  // console.log(productId)
+  await dispatch(deleteProduct(productId))
+  return product
+}
+
 let initialState = { products: {}, userProducts: {}, singleProduct: {} };
 
 export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case GET_ALL_PRODUCTS_ACTION:
+      // previous code that solved render issue
       // console.log(action.products, newState)
-      return  {
-        ...state,
-        products: action.products
-      }
+      // return  {
+      //   ...state,
+      //   products: action.products
+      // }
+
+      // minh's code normalizing the data
+      newState = {...state}
+      // console.log('this is action.products', action.products.Products)
+      action.products.Products.forEach(product => newState.products[product.id] = product)
+      return newState
     case GET_SINGLE_PRODUCT_ACTION: {
       newState = {...state}
       newState.singleProduct = action.product
       return newState
+    }
+    case DELETE_PRODUCT_ACTION: {
+      newState = { ...state }
+      newState.products = {...newState.products}
+      newState.userProducts = {...newState.userProducts}
+      newState.singleProduct = {}
+      // console.log('this is action.product', action.productId) //returns integer
+      delete newState.products[action.productId]
+      //need to add userproducts, by passing in a userid/user in the thunk and action
+      delete newState.userProducts[action.productId]
+      return newState;
     }
     default:
       return state;
