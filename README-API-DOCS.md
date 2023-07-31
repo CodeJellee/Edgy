@@ -920,6 +920,58 @@ Return all the shopping cart that the current user has made.
     }
     ```
 
+### Add Item to Cart
+
+Adds an item to the cart for the current user
+
+* Require Authentication: True
+* Request
+  <!--!!START SILENT -->
+  * Method: POST
+  * URL: /api/products/:productId/add_to_cart
+  <!--!!END -->
+  <!--!!ADD -->
+  <!-- * Method: ? -->
+  <!-- * URL: ? -->
+  <!--!!END_ADD -->
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "You've successfully added this item to cart."
+    }
+    ```
+
+* Error response: Couldn't find item
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Item couldn't be found"
+    }
+    ```
+
+* Error response: Current user Id matches product sellerId
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "You may not add your own product to your cart"
+    }
+    ```
+
 ### Delete a Shopping Cart Item
 
 Delete an existing cartId.
