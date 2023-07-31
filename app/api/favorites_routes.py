@@ -19,16 +19,14 @@ def get_current_favorites():
     # The FINAL Form
     if user.products:
         user_favorited_products = {
-            "Favorites": [
-                {
-                    "User": user.to_dict(),
-                    # Including all the kvp BESIDES 'updatedAt'
-                    "Products": [
-                        {k: v for k, v in product.to_dict().items() if k != "updatedAt"}
-                        for product in user.products
-                    ],
-                }
-            ]
+            "Favorites": {
+                "User": user.to_dict(),
+                # Including all the kvp BESIDES 'updatedAt'
+                "Products": [
+                    {k: v for k, v in product.to_dict().items() if k != "updatedAt"}
+                    for product in user.products
+                ],
+            }
         }
         return user_favorited_products
     return {"message": "Favorites couldn't be found"}
