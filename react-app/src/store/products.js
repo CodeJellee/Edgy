@@ -99,6 +99,10 @@ export const thunkGetSingleProduct = (productId) => async dispatch => {
   return product
 }
 
+export const thunkCreateProduct = () => async dispatch => {
+
+}
+
 export const thunkDeleteProduct = (productId) => async dispatch => {
   let product = await fetch(`/api/products/${productId}`, {
     method: "DELETE"
@@ -108,6 +112,7 @@ export const thunkDeleteProduct = (productId) => async dispatch => {
   await dispatch(deleteProduct(productId))
   return product
 }
+
 
 let initialState = { products: {}, userProducts: {}, singleProduct: {} };
 
