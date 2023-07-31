@@ -43,19 +43,6 @@ const getUserProducts = (products) => ({
   products,
 });
 
-export const thunkCreateProduct = (productFormData) => async (dispatch) => {
-  let newProduct = await fetch(`/api/products/new`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(productFormData),
-  });
-  newProduct = await newProduct.json();
-  dispatch(createProduct(newProduct));
-  return newProduct;
-};
-
 export const thunkGetAllProducts = () => async (dispatch) => {
   const response = await fetch("/api/products/", {
     headers: {
@@ -65,7 +52,7 @@ export const thunkGetAllProducts = () => async (dispatch) => {
   // console.log(response)
   if (response.ok) {
     const data = await response.json();
-    // console.log(data)
+    // console.log(data);
     dispatch(getAllProducts(data));
     return data;
   }
@@ -82,6 +69,32 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
   product = await product.json();
   dispatch(getSingleProduct(product));
   return product;
+};
+
+export const thunkGetUserProducts = () => async (dispatch) => {
+  let userProducts = await fetch(`/api/products/current`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  userProducts = await userProducts.json();
+  dispatch(getUserProducts(userProducts));
+  // await console.log(userProducts);
+  return userProducts;
+};
+
+export const thunkCreateProduct = (productFormData) => async (dispatch) => {
+  let newProduct = await fetch(`/api/products/new`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(productFormData),
+  });
+  newProduct = await newProduct.json();
+  dispatch(createProduct(newProduct));
+  return newProduct;
 };
 
 export const thunkDeleteProduct = (productId) => async (dispatch) => {
@@ -117,6 +130,15 @@ export default function reducer(state = initialState, action) {
     case GET_SINGLE_PRODUCT_ACTION: {
       newState = { ...state };
       newState.singleProduct = action.product;
+      return newState;
+    }
+    case GET_USER_PRODUCTS_ACTION: {
+      newState = { ...state };
+      // console.log("this is state", state);
+      newState.userProducts = {};
+      action.products.Products.forEach(
+        (product) => (newState.userProducts[product.id] = product)
+      );
       return newState;
     }
     case CREATE_PRODUCT_ACTION: {
