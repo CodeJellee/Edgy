@@ -31,28 +31,6 @@ def get_cart_items():
     return {"Shopping_Cart": cart_products}
 
 
-#need to be in the products route
-@cart_routes.route('/<int:productId>/add_to_cart', methods=["POST"])
-@login_required
-def post_cart_items(productId):
-    cur_user = current_user.to_dict()
-    product_exists = Product.query.get(productId)
-
-    #Edge Cases
-    if product_exists and cur_user["id"] == product_exists.sellerId:
-        return {"message": "You may not add to cart your own product."}
-
-    if product_exists and product_exists.sellerId != cur_user["id"]:
-        add_to_cart = insert(CartItem).values(
-            userId=cur_user,
-            productId=productId
-        )
-        db.session.execute(add_to_cart)
-        db.session.commit()
-        return {"message": "You've successfully added this item to cart."}
-    else:
-        return {"message": "Item couldn't be found"}
-
 
 #need to be in the products route
 # @cart_routes.route('/<int:productId>/add_to_cart', methods=["POST"])
