@@ -4,6 +4,7 @@ from app.models import Product, User, Review, ProductImage, db
 from app.models.products import favorites
 from app.forms import NewProduct, NewProductImage, NewReview
 from sqlalchemy import insert
+from pprint import pprint
 
 products_routes = Blueprint("products", __name__)
 
@@ -135,11 +136,23 @@ def create_review(id):
 @login_required
 def post_favorite_item(productId):
     user_id = current_user.id
-    # print(user_id)
-    # print(productId)
     product_exists = Product.query.get(productId)
-    # print(product_exists)
-    if product_exists:
+
+    # ! Edge Case for Postman
+    existing_favorite = (
+        db.session.query(favorites)
+        .filter((favorites.c.userId == user_id) & (favorites.c.productId == productId))
+        .first()
+    )
+    if existing_favorite:
+        return {"message": "You have already favorited this product."}
+
+    # check if the user owns the product (userId = sellerId)
+    # if user_id == product_exists.sellerId:
+    #     return {"message": "You may not favorite your own product."}
+
+    print("this is the product_exists", product_exists)
+    if product_exists and product_exists.sellerId != user_id:
         add_user_favorite = insert(favorites).values(
             userId=user_id, productId=productId
         )
