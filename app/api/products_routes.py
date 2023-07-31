@@ -44,7 +44,7 @@ def product_details(id):
     return product
 
 
-@products_routes.route("/", methods=["POST"])
+@products_routes.route("/new", methods=["POST"])
 @login_required
 def create_product():
     form = NewProduct()

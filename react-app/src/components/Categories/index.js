@@ -8,17 +8,18 @@ function Categories({ category }){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(productActions.getAllProducts())
+        dispatch(productActions.thunkGetAllProducts())
     }, [dispatch])
 
     let eachProduct = products.Products
 
+    // console.log('each product===============',eachProduct)
     if (!eachProduct) return null
 
     if (category === "computer") category = "Technology"
 
-    eachProduct = eachProduct.filter((p) => p.category == category)
-    console.log(eachProduct)
+    eachProduct = eachProduct.filter((p) => p.category === category)
+    // console.log('filtered product==========', eachProduct)
 
     return (
         <>
