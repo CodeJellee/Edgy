@@ -148,8 +148,8 @@ def post_favorite_item(productId):
         return {"message": "You have already favorited this product."}
 
     # check if the user owns the product (userId = sellerId)
-    # if user_id == product_exists.sellerId:
-    #     return {"message": "You may not favorite your own product."}
+    if product_exists and user_id == product_exists.sellerId:
+        return {"message": "You may not favorite your own product."}
 
     print("this is the product_exists", product_exists)
     if product_exists and product_exists.sellerId != user_id:
