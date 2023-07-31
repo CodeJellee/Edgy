@@ -138,6 +138,7 @@ def create_review(id):
 def post_favorite_item(productId):
     user_id = current_user.id
     product_exists = Product.query.get(productId)
+    user = User.query.get(user_id)
 
     # ! Edge Case for Postman
     existing_favorite = (
@@ -159,6 +160,10 @@ def post_favorite_item(productId):
         )
         db.session.execute(add_user_favorite)
         db.session.commit()
-        return {"message": "You've successfully favorited this item."}
+        # Not returning a 'message' here bc we need user/product data for the frontend
+        return {
+            "Product": product_exists.to_dict(),
+            "User": user.to_dict(),
+        }
     else:
         return {"message": "Item couldn't be found"}
