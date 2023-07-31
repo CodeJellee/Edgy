@@ -1,0 +1,9 @@
+.data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.popular {
+    margin: 40px;
+}

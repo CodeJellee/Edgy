@@ -1,0 +1,53 @@
+.footer1 {
+    display: flex;
+    flex-direction: row;
+    background-color: #000000;
+    color: white;
+    width: 100%;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+}
+
+.foot1, .foot2 {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.foot1 {
+    margin-left: 20px
+}
+
+.foot2 {
+    margin-right: 20px
+}
+
+.footer2 {
+    display: flex;
+    background-color: #1b1b1b;
+    color: white;
+    justify-content: center;
+    height: 350px;
+    width: 100%;
+}
+
+.foots {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    left: 0;
+    right: 0;
+}
+
+.sellFoot, .aboutFoot, .shopFoot, .helpFoot {
+    width: 24%
+}
+
+.footer3 {
+    background-image: url("./IMG_2297.PNG");
+    height: 850px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+}

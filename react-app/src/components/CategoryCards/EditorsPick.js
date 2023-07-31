@@ -55,27 +55,6 @@ function EditorsPickCard(){
              </div>
             </div>
 
-            // <div className="sections">
-            // <div className= "sec2">
-            // <h3>Editors' Picks</h3>
-            // <h2>Computer</h2>
-            // <Link to='/categories/computer'>See more</Link>
-            // <div className="sec2Img">
-            // <img src={eachProduct[1].preview_imageURL}></img>
-            // <img src={eachProduct[2].preview_imageURL}></img>
-            // </div>
-            // </div>
-            // <div className="data">
-            // {eachProduct.map((p) =>
-            //     <>
-            //     <img src={p.preview_imageURL}></img>
-            //     </>
-            // )}
-            // </div>
-            // </div>
-            // <img src={eachProduct[0].preview_imageURL}></img>
-            // </div>
-
             )
 
 

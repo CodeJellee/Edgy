@@ -8,12 +8,31 @@
 
 .nav {
   display: flex;
-  gap: 20px
+  justify-content: space-between;
+  width: 100%
 }
 
 .navigation {
   display: flex;
-  justify-content: center;
-  gap: 50px
+  margin-bottom: 15px
 
+}
+
+.edgy {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edgy > input {
+  width: 88%;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.navigations {
+  border-bottom: 2px solid lightgrey;
+  max-width: 100%;
+  margin-left: 40px;
+  margin-right: 40px;
 }
