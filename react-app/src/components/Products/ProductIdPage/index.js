@@ -6,12 +6,12 @@ import ReviewForm from "../../Reviews/ReviewForm"
 
 function ProductIdPage() {
     const { id } = useParams()
-   
+
 
     const dispatch = useDispatch()
     // const currentUser = useSelector(state => state.session.user)
     const productReviews = useSelector(state => state.reviews.productReviews)
-    console.log(id)
+    // console.log(id)
 
     useEffect(() => {
 

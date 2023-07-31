@@ -14,7 +14,7 @@ function ReviewForm() {
     const [errors, setErrors] = useState([]);
 
     const { id } = useParams()
-    console.log(id)
+    // console.log(id)
     // if (sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = async (e) => {
@@ -22,7 +22,7 @@ function ReviewForm() {
         const data = await dispatch(reviewsActions.thunkSubmitReview(stars, review, id));
         if (data) {
             setErrors(data);
-        } 
+        }
     };
 
     return (

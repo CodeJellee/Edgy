@@ -6,8 +6,8 @@ function ReviewCard({ userFirstName, review, from }) {
     if (from === "userReviews") {
         loadProductName = true
     }
-    console.log(from)
-    console.log(loadProductName)
+    // console.log(from)
+    // console.log(loadProductName)
 
     let numOfStars = review.stars
     let star = []

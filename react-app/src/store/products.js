@@ -105,7 +105,7 @@ export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case GET_ALL_PRODUCTS_ACTION:
-      console.log(action.products, newState)
+      // console.log(action.products, newState)
       return  {
         ...state,
         products: action.products
@@ -113,6 +113,7 @@ export default function reducer(state = initialState, action) {
     case GET_SINGLE_PRODUCT_ACTION: {
       newState = {...state}
       newState.singleProduct = action.product
+      return newState
     }
     default:
       return state;
