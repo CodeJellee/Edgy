@@ -14,15 +14,11 @@ function ProductIdPage() {
     // conditional render should also check to make sure product is not being sold by the login user
     const user = useSelector(state => state.session.user)
     const productReviews = useSelector(state => state.reviews.productReviews)
-<<<<<<< HEAD
-    // console.log(id)
-=======
 
     // !!! default should be set to preview img
     // !   product.previewImage
     const [mainImage, setMainImage] = useState("https://i.etsystatic.com/31560168/r/il/4336cd/4425918630/il_794xN.4425918630_38m9.jpg")
     console.log(id)
->>>>>>> reviewsFE-errorHandling
 
     const changeMainImage = (e) => {
         console.log(typeof e.target.src)

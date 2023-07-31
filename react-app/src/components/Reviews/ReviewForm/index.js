@@ -15,17 +15,12 @@ function ReviewForm() {
     const [submitted, setSubmitted] = useState(false)
 
     const { id } = useParams()
-<<<<<<< HEAD
-    // console.log(id)
-    // if (sessionUser) return <Redirect to="/" />;
-=======
     console.log(id)
 
     const resetState = () => {
         setReview("")
         setStars(0)
     }
->>>>>>> reviewsFE-errorHandling
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,13 +29,10 @@ function ReviewForm() {
         if (data) {
             setErrors(data);
         }
-<<<<<<< HEAD
-=======
         console.log(data)
         if (errors.length === 0) {
             resetState()
         }
->>>>>>> reviewsFE-errorHandling
     };
 
     return (
