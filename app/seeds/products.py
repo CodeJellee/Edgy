@@ -302,7 +302,8 @@ def seed_products(users):
             "category": "Books",
             "description": "Experience the world of ghouls with Tokyo Ghoul manga volume 1",
             "quantity": 1,
-            "preview_imageURL": "https://m.media-amazon.com/images/I/51uWQfEYayL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"
+            "preview_imageURL": "https://m.media-amazon.com/images/I/51uWQfEYayL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg",
+            "sellerId": 1,
         },
         {
             "id": 31,
