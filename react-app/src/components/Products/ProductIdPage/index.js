@@ -6,7 +6,7 @@ import ReviewForm from "../../Reviews/ReviewForm"
 
 function ProductIdPage() {
     const { id } = useParams()
-    let productId = id
+   
 
     const dispatch = useDispatch()
     // const currentUser = useSelector(state => state.session.user)
