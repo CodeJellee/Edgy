@@ -33,28 +33,28 @@ function App() {
             <ReviewsCurr />
           </Route>
           <Route exact path="/categories/clothing">
-            <Categories category="clothing" />
+            <Categories category="Clothing" />
           </Route>
           <Route exact path="/categories/home_decor">
-            <Categories category="home_decor" />
+            <Categories category="Home Decor" />
           </Route>
           <Route exact path="/categories/accessories">
-            <Categories category="accessories" />
+            <Categories category="Accessories" />
           </Route>
           <Route exact path="/categories/computer">
-            <Categories category="computer" />
+            <Categories category="Computer" />
           </Route>
           <Route exact path="/categories/waifu_body_pillows">
-            <Categories category="waifu_body_pillows" />
+            <Categories category="Waifu Body Pillows" />
           </Route>
           <Route exact path="/categories/books">
-            <Categories category="books" />
+            <Categories category="Books" />
           </Route>
           <Route exact path="/categories/music">
-            <Categories category="music" />
+            <Categories category="Music" />
           </Route>
           <Route exact path="/categories/figurines">
-            <Categories category="figurines" />
+            <Categories category="Figurines" />
           </Route>
           <Route path="/products/:id">
             <ProductIdPage />
