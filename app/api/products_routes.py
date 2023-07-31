@@ -161,7 +161,7 @@ def post_favorite_item(productId):
         db.session.commit()
         # Not returning a 'message' here bc we need user/product data for the frontend
         return {
-            "Products": product_exists.to_dict(),
+            "Product": product_exists.to_dict(),
             "User": user.to_dict(),
         }
     else:

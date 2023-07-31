@@ -29,19 +29,14 @@ export const thunkPostFavoriteProduct =
         productId,
       }),
     });
-
     res = await res.json();
-    console.log("res in the THUNK", res);
     dispatch(postFavoriteProductAction(res));
-
     return res;
   };
 
 //*  ======================= end of thunks ===================//
 
 //? ================== reducer================================//
-
-let initialState = { user: {} };
 
 /**
  favorites: {
@@ -54,12 +49,15 @@ let initialState = { user: {} };
      }
  */
 
+let initialState = { user: {}, userFavorites: {} };
 export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case POST_FAVORITE_PRODUCT_ACTION: {
       newState = { ...state };
-      console.log("REDUCER RES", action.res);
+      newState.user = action.res.User;
+      newState.userFavorites[action.res.Product.id] = action.res.Product;
+      return newState;
     }
     default:
       return state;
