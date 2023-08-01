@@ -19,9 +19,9 @@ function FavoritesPage() {
   useEffect(() => {
     // insert thunk query to grab user's favorite items
     dispatch(thunkGetUserFavorites(user.id));
-  }, [dispatch]);
+  }, [user.id, dispatch]);
 
-  if (!user || userFavorites.length == 0) return null;
+  if (!user || userFavorites.length === 0) return null;
 
   return (
     <>
@@ -65,15 +65,15 @@ function FavoritesPage() {
       <div id="user-favorites__container">
         {userFavorites?.map((fav) => (
           <>
-            <div key={fav.userId}>
+            <div key={fav.id}>
               <div>
                 <img
                   src={fav.preview_imageURL}
-                  alt={`productId-{fav.productId}`}
+                  alt={`productId-${fav.productId}`}
                 />
               </div>
               <div>{fav.item_name}</div>
-              <div>{fav.sellerId}</div>
+              <div>{fav.Seller.username}</div>
               <div>{fav.price}</div>
             </div>
           </>
