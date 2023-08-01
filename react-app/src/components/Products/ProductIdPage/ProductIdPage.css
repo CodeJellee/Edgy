@@ -1,0 +1,143 @@
+.PID-product {
+    display: flex;
+    height: 575px;
+    gap: 8px;
+}
+
+
+.PID-images-div {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    gap: 15px
+}
+
+.PID-all-Images {
+    display: flex;
+    width: 70%;
+
+    gap: 5px;
+}
+
+
+.PID-small-img {
+    border-radius: 15px;
+    /* aspect-ratio: 1/1 */
+}
+
+
+/* TODO MEDIA QUERY SO small screens the images and product info also shrink so the main image doesnt shrink to disappearing */
+.PID-main-image-div {
+    width: 100%;
+
+
+    /* object-fit: contain; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* max-height: 200px; */
+}
+
+
+/* .PID-about-product-div {
+    display: flex;
+    direction: column;
+} */
+
+.PID-main-image {
+    max-width: 100%;
+    /* max-height: 700px; */
+    width: 100%;
+    /* or any custom size */
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.PID-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.PID-about-buttons-div {
+    /* margin-left: 30px; */
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.PID-P-button {
+    margin-top: 10px;
+}
+
+.PID-count {
+    margin-right: 8px;
+}
+
+.PID-Transp-butt {
+    background-color: transparent;
+    border-radius: 28px;
+    border: 1px solid #52057B;
+    display: inline-block;
+    cursor: pointer;
+    color: #52057B;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 10px 15px;
+    text-decoration: none;
+
+}
+
+.PID-Transp-butt:hover {
+    background-color: #892CDC;
+    color: white;
+
+    .PID-heart {
+        color: white
+    }
+}
+
+.PID-Transp-butt:active {
+    position: relative;
+    top: 1px;
+
+}
+
+.PID-heart {
+    color: #52057B;
+}
+
+
+.PID-cartButt {
+    background-color: #52057B;
+    border-radius: 28px;
+    border: 1px solid #52057B;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 10px 15px;
+    text-decoration: none;
+
+}
+
+.PID-cartButt:hover {
+    background-color: #892CDC;
+
+
+}
+
+.PID-cartButt:active {
+    position: relative;
+    top: 1px;
+}
+
+
+.PID-count {
+    font-size: 3vh;
+    ;
+}
+
+
+.PID-stars {
+    color: #52057B
+}

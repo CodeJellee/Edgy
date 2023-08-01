@@ -1,1 +1,20 @@
 /* TODO Add site wide styles */
+
+
+
+/* wrap full page with 2 divs as seen below, to make content column  */
+/* this shrinks the columns as you get smaller instead of the content and expands the empty columns as you get on bigger screens */
+/* <div className="column-holder">
+<div className="column"> */
+/* <...page content> */
+/* </div>
+</div> */
+
+.column-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    width: 900px;
+}

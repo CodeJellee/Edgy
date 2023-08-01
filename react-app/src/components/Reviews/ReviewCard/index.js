@@ -34,18 +34,18 @@ function ReviewCard({ userFirstName, review, from }) {
 
 
                     {star.map((star) => (
-                        <i className="fas fa-star" />
+                        <i className="fas fa-star PID-stars" />
                     ))}
 
 
                 </div>
-            <p>
-                {review.review}
-            </p>
-            <div className="Ru-name-date">
-                <p>{userFirstName}    </p>
-                <p>{review.createdAt}</p>
-            </div>
+                <p>
+                    {review.review}
+                </p>
+                <div className="Ru-name-date">
+                    <p>{userFirstName}    </p>
+                    <p>{review.createdAt}</p>
+                </div>
             </div>
 
 
