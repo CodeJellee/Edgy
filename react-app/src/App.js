@@ -11,6 +11,7 @@ import Categories from "./components/Categories";
 import ProductIdPage from "./components/Products/ProductIdPage";
 import FavoritesPage from "./components/FavoritesPage";
 
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);

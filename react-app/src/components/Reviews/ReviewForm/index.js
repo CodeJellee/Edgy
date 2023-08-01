@@ -47,7 +47,7 @@ function ReviewForm() {
 
                 {/* {submitted &&  <displayError>} */}
                 <label htmlFor="stars"></label>
-                <input
+                <input className="RF-form-item"
                     type="number"
                     id="stars"
                     min="0"
@@ -59,7 +59,7 @@ function ReviewForm() {
                     value={stars}
                 />
                 <label htmlFor="review"></label>
-                <textarea
+                <textarea className="RF-form-item"
 
                     id="review"
 
@@ -71,11 +71,11 @@ function ReviewForm() {
                 />
 
 
-                <button type="submit">Submit Review</button>
+                <button className="RF-form-item PID-cartButt " type="submit">Submit Review</button>
             </form>
 
 
-            <button type="submit">Submit Review</button>
+
 
         </>
     );

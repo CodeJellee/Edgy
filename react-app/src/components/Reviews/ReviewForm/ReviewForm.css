@@ -1,4 +1,12 @@
 .RF-Form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    margin-bottom: 35px;
+
 }
+
+
+/* .RF-form-item {
+    width: 600px;
+} */
