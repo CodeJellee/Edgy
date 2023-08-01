@@ -66,10 +66,8 @@ function ShoppingCartPage() {
               <button>Proceed To Checkout</button>
 
             </div>
-            <OpenModalButton
-              buttonText="Delete"
-            // modalComponent={<DeleteItemModal productId={item.Product.id} />}
-            />
+
+
           </div>
         ))}
         <button>Proceed To Checkout</button>
