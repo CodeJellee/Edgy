@@ -19,3 +19,13 @@
 .RF-subButt {
     margin-bottom: 15px;
 }
+
+
+#no-cursor:hover {
+    cursor: not-allowed
+}
+
+
+.RF-hidden {
+    display: none;
+}

@@ -22,6 +22,7 @@ function ProductIdPage() {
     const user = useSelector(state => state.session.user)
     const productReviews = useSelector(state => state.reviews.productReviews)
     const product = useSelector(state => state.products.singleProduct)
+    const [hasReview, setHasReview] = useState()
     // !!! default should be set to preview img
     // !   product.previewImage
 
@@ -74,10 +75,13 @@ function ProductIdPage() {
 
 
     const userReviewExist = products.every(review => review.userId !== user.id)
+    // setHasReview(userReviewExist)
 
     console.log(product)
 
     let isSellerCheck = user.id !== product.Seller.id
+
+    console.log("PRODUCT REVIEW:", productReviews)
 
     return (
         <>
@@ -94,10 +98,7 @@ function ProductIdPage() {
 
 
                                 ))}
-                                {/* <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/9b902f/4473276055/il_794xN.4473276055_fcxk.jpg" alt="filler 2"></img> */}
-                                {/* <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/9b902f/4473276055/il_794xN.4473276055_fcxk.jpg" alt="filler 2"></img>
-                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/2f8cab/4425918302/il_794xN.4425918302_1x8r.jpg" alt="filler 3"></img>
-                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/401a30/4473276305/il_794xN.4473276305_qrxw.jpg" alt="filler 4"></img> */}
+
                             </div>
                             <div className='PID-main-image-div'>
 
@@ -144,11 +145,11 @@ function ProductIdPage() {
                         )}
 
                     </p>
-                    {user && userReviewExist && isSellerCheck && <ReviewForm ></ReviewForm>}
+                    {user && userReviewExist && isSellerCheck && <ReviewForm  ></ReviewForm>}
 
                     {productReviews.Reviews.map((review) => (
                         <>
-                            <ReviewCard key={review.id} userFirstName={review.User.first_name} review={review} from="productPage" ></ReviewCard>
+                            <ReviewCard key={review.id} review={review} from="productPage" ></ReviewCard>
                         </>
                     ))}
 
