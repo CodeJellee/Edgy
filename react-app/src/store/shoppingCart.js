@@ -2,8 +2,10 @@
 
 //? =====================  types ===========================//
 
+import { thunkDeleteProduct } from "./products";
+
 const GET_SHOPPING_CART= "shoppingCart/GET_SHOPPING_CART"
-// const DELETE_CART_ITEM= "shoppingCart/DELETE_CART_ITEM"
+const DELETE_CART_ITEM= "shoppingCart/DELETE_CART_ITEM"
 
 //?  ===================end of types ===================//
 
@@ -16,10 +18,17 @@ const getShoppingCartAction = (cart) => {
   };
 };
 
+const deleteShoppingCartAction = (productId) => {
+  return{
+    type: DELETE_CART_ITEM,
+    productId
+  }
+}
 
 //*  ======================= end of actions ===================//
 
 //*  =====================  thunks ===========================//
+//fetch route needs to match route from route file
 
 export const thunkGetShoppingCart = () => async (dispatch) => {
   let current_cart = await fetch(`/api/carts/shopping_cart`,  {
@@ -32,6 +41,16 @@ export const thunkGetShoppingCart = () => async (dispatch) => {
   // console.log("THIS IS CURRENT CART THUNK", current_cart)
   dispatch(getShoppingCartAction(current_cart));
   return current_cart
+}
+
+export const thunkDeleteCartItem = (productId) => async (dispatch) => {
+  let product = await fetch(`/api/shopping_cart/${productId}`, {
+    method:"DELETE",
+  });
+  product = await product.json();
+  console.log('THIS IS DELETE THUNK', productId)
+  await dispatch(deleteShoppingCartAction(productId))
+  return
 }
 
 //*  ======================= end of thunks ===================//
@@ -52,6 +71,13 @@ export default function reducer(state = initialState, action) {
         (product) => (newState.userCart[product.id] = { ...product })
       );
       return newState
+    }
+    case DELETE_CART_ITEM: {
+      newState = { ...state };
+      newState.userCart = { ...newState.userCart }
+      console.log('NEWSTATE.USERCART', newState.userCart)
+      delete newState.userCart[action.productId];
+      return newState;
     }
     default:
       return state;
