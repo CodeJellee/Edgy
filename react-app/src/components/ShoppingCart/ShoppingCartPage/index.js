@@ -2,12 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import * as CartActions from "../../../store/shoppingCart"; //this will be grabbing all of our thunks/reducer from the store file
 import { useSelector, useDispatch } from "react-redux";
-<<<<<<< HEAD
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
-=======
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import OpenModalButton from "../../OpenModalButton";
->>>>>>> fe_favorites_component
 
 function ShoppingCartPage() {
   const { id } = useParams();
@@ -31,30 +26,19 @@ function ShoppingCartPage() {
       dispatch(CartActions.thunkGetShoppingCart());
       // dispatch(CartActions.thunkDeleteCartItem(productId));
     }
-  }, [dispatch, sessionUser]);
+  }, [dispatch]);
 
   if (!sessionUser) return null;
   if (userCart.length === 0 || !userCart) return null;
 
-<<<<<<< HEAD
-    useEffect(() => {
-        if (sessionUser){
-            //if user is logged in, dispatch thunk
-            dispatch(CartActions.thunkGetShoppingCart());
-            // dispatch(CartActions.thunkDeleteCartItem(productId));
-
-        }
-    }, [dispatch])
 
 
-    // const handleRemoveItem = (productId) => {
-    //     // Call the thunkDeleteCartItem action creator to remove the item from the cart.
-    //     dispatch(CartActions.thunkDeleteCartItem(productId));
-    // };
 
-=======
-  // console.log('THIS IS ID', item)
->>>>>>> fe_favorites_component
+  // const handleRemoveItem = (productId) => {
+  //     // Call the thunkDeleteCartItem action creator to remove the item from the cart.
+  //     dispatch(CartActions.thunkDeleteCartItem(productId));
+  // };
+
 
   return (
     <>
@@ -63,49 +47,28 @@ function ShoppingCartPage() {
         {userCart?.map((item) => (
           <div className="cart_item_container">
             <div>
-<<<<<<< HEAD
-                {userCart?.map((item) => (
-                    <div className="cart_item_container">
-                    <div>
-                        <NavLink to={`/products/${item.Product.id}`} className="items-link">
-                            <img src={item.Product.preview_imageURL} alt={item.Product.item_name}/>
-                        </NavLink>
-                        <div className="name_price_container">
-                            <NavLink to={`/products/${item.Product.id}`} className="items-link">
-                                <div>{item.Product.item_name}</div>
-                            </NavLink>
-                            <div>${item.Product.price}</div>
-                        </div>
+              {userCart?.map((item) => (
+                <div className="cart_item_container">
+                  <div>
+                    <NavLink to={`/products/${item.Product.id}`} className="items-link">
+                      <img src={item.Product.preview_imageURL} alt={item.Product.item_name} />
+                    </NavLink>
+                    <div className="name_price_container">
+                      <NavLink to={`/products/${item.Product.id}`} className="items-link">
+                        <div>{item.Product.item_name}</div>
+                      </NavLink>
+                      <div>${item.Product.price}</div>
                     </div>
-                        <button>Delete</button>
-                    </div>
-                ))}
-                <button>Proceed To Checkout</button>
+                  </div>
+                  <button>Delete</button>
+                </div>
+              ))}
+              <button>Proceed To Checkout</button>
 
-=======
-              <NavLink
-                to={`/products/${item.Product.id}`}
-                className="items-link"
-              >
-                <img
-                  src={item.Product.preview_imageURL}
-                  alt={item.Product.item_name}
-                />
-              </NavLink>
-              <div className="name_price_container">
-                <NavLink
-                  to={`/products/${item.Product.id}`}
-                  className="items-link"
-                >
-                  <div>{item.Product.item_name}</div>
-                </NavLink>
-                <div>${item.Product.price}</div>
-              </div>
->>>>>>> fe_favorites_component
             </div>
             <OpenModalButton
               buttonText="Delete"
-              // modalComponent={<DeleteItemModal productId={item.Product.id} />}
+            // modalComponent={<DeleteItemModal productId={item.Product.id} />}
             />
           </div>
         ))}
