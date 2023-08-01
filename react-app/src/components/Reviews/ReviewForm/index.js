@@ -64,6 +64,7 @@ function ReviewForm() {
 
 
         if (review.length < 10) err["Review"] = "Review needs 10 or more characters"
+        if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters"
 
         setVaErrors(err)
 
