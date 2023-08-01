@@ -135,6 +135,7 @@ export default function reducer(state = initialState, action) {
     case GET_USER_PRODUCTS_ACTION: {
       newState = { ...state };
       // console.log("this is state", state);
+      // console.log("this is action.products", action.products);
       newState.userProducts = {};
       action.products.Products.forEach(
         (product) => (newState.userProducts[product.id] = product)
