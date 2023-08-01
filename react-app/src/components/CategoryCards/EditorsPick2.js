@@ -18,7 +18,7 @@ function EditorsPickTwoCard(){
 
         if (!eachProduct) return <h1>Loading</h1>
 
-        eachProduct = eachProduct.filter((p) => p.category == "Books")
+        eachProduct = eachProduct.filter((p) => p.category === "Books")
 
         console.log(eachProduct)
 
@@ -31,24 +31,24 @@ function EditorsPickTwoCard(){
                  <Link to='/categories/computer'>See more</Link>
             </div>
             <div className='imgTwo1'>
-                    <img src={eachProduct[0]?.preview_imageURL}></img>
+                    <img src={eachProduct[0]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgTwo2'>
-                    <img src={eachProduct[1]?.preview_imageURL}></img>
+                    <img src={eachProduct[1]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgTwo3'>
-                    <img src={eachProduct[2]?.preview_imageURL}></img>
+                    <img src={eachProduct[2]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
             </div>
             <div className='sec4'>
             <div className='imgTwo4'>
-                    <img src={eachProduct[3]?.preview_imageURL}></img>
+                    <img src={eachProduct[3]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgTwo5'>
-                    <img src={eachProduct[4]?.preview_imageURL}></img>
+                    <img src={eachProduct[4]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgTwo6'>
-                    <img src={eachProduct[0]?.preview_imageURL}></img>
+                    <img src={eachProduct[0]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='epDescription'>
                 <h3>Thoughtful gifts galore at affordable prices you’ll adore</h3>

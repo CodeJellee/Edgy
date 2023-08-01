@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as productActions from "../../store/products"
 import './CategoryCardsStyle2.css'
-import { Link } from "react-router-dom";
 
 function ShopLookCard(){
     const { products } = useSelector((state) => state.products)
@@ -16,7 +15,7 @@ function ShopLookCard(){
 
         if (!eachProduct) return <h1>Loading</h1>
 
-        eachProduct = eachProduct.filter((p) => p.category == "Clothing")
+        eachProduct = eachProduct.filter((p) => p.category === "Clothing")
 
 
     return (
@@ -24,16 +23,16 @@ function ShopLookCard(){
         <h2>Shop the Look</h2>
         <div className="shopImg">
         <div>
-        <img src={eachProduct[0]?.preview_imageURL}></img>
-        <p>{eachProduct[0]?.item_name} from name</p>
+        <img src="https://m.media-amazon.com/images/I/91Cq8423E5L._AC_UF894,1000_QL80_.jpg" alt="meaningfult text"></img>
+        <p>Demon Slayer photographs</p>
         </div>
         <div>
-        <img src={eachProduct[1]?.preview_imageURL}></img>
-        <p>{eachProduct[1]?.item_name} from name</p>
+        <img src="https://blog.displate.com/wp-content/uploads/2021/09/img_6141ab4ca7e04.jpg" alt="meaningfult text"></img>
+        <p>Cute desk setup</p>
         </div>
         <div>
-        <img src={eachProduct[2]?.preview_imageURL}></img>
-        <p>{eachProduct[2]?.item_name} from name</p>
+        <img src="https://m.media-amazon.com/images/I/81i0oL1CGJL.jpg" alt="meaningfult text"></img>
+        <p>Anime posters for anime wall decore</p>
         </div>
         </div>
     </div>

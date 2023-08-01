@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as productActions from "../../store/products"
 import './CategoryCardsStyle4.css'
-import { Link } from "react-router-dom";
 
 
 
@@ -20,7 +19,7 @@ function RecentlyReviewedCard(){
 
         if (!eachProduct) return <h1>Loading</h1>
 
-        eachProduct = eachProduct.filter((p) => p.category == "Music")
+        eachProduct = eachProduct.filter((p) => p.category === "Music")
 
         console.log(eachProduct)
 
@@ -29,10 +28,10 @@ function RecentlyReviewedCard(){
             <h2>Popular gifts right now</h2>
             <div className="data">
             {eachProduct.map((p) =>
-                <div className="p">
-                <img src={p.preview_imageURL}></img>
-                <p>{p.item_name}</p>
-                <p>{p.price}</p>
+                <div className="popP">
+                <img src={p.preview_imageURL} alt="meaningfult text"></img>
+                <p className="popTitle">{p.item_name}</p>
+                <p>${p.price}</p>
                 </div>
             )}
              </div>

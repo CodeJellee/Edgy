@@ -18,7 +18,7 @@ function Navigation({ isLoaded }){
 					<ProfileButton user={sessionUser} />
 				</div>
 		)}
-		<i>cart</i>
+		<i class="fa-solid fa-cart-shopping"></i>
 		</div>
 
 		<div className="navigation">
@@ -26,11 +26,11 @@ function Navigation({ isLoaded }){
 				<NavLink exact to="/">Home</NavLink>
 				<NavLink exact to="/categories/clothing">Clothing</NavLink>
 				<NavLink exact to="/categories/home_decor">Home Decor</NavLink>
-				<NavLink exact to="/categories/accessories">Accessories</NavLink>
-				<NavLink exact to="/categories/computer">Computer</NavLink>
+				<NavLink exact to="/categories/accessories">Jewlery & Accessories</NavLink>
+				<NavLink exact to="/categories/computer">Computer & Tech</NavLink>
 				<NavLink exact to="/categories/waifu_body_pillows">Waifu Body Pillows</NavLink>
-				<NavLink exact to="/categories/books">Books</NavLink>
-				<NavLink exact to="/categories/music">Music</NavLink>
+				<NavLink exact to="/categories/books">Manga</NavLink>
+				<NavLink exact to="/categories/music">Music & Entertainment</NavLink>
 				<NavLink exact to="/categories/figurines">Figurines</NavLink>
 			</li>
 		</div>
