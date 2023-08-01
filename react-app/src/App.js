@@ -12,6 +12,7 @@ import ProductIdPage from "./components/Products/ProductIdPage";
 import FavoritesPage from "./components/FavoritesPage";
 import Footer from "./components/Footer";
 
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);

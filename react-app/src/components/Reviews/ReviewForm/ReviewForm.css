@@ -1,4 +1,21 @@
 .RF-Form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    /* padding-bottom: 15px; */
+    /* border-bottom: 2px solid rgba(189, 111, 241, 0.281) */
+}
+
+
+/* .RF-form-item {
+    width: 600px;
+} */
+
+
+.RF-textarea {
+    height: 110px;
+}
+
+.RF-subButt {
+    margin-bottom: 15px;
 }

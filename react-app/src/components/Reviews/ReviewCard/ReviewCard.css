@@ -1,0 +1,38 @@
+/* .RC-stars {
+
+} */
+
+.Rc-card {
+    /* border-bottom: 2px solid rgba(189, 111, 241, 0.281); */
+
+    /* display: flex; */
+    /* gap: 10px; */
+}
+
+.Rc-hr {
+
+    border: 2px solid rgba(189, 111, 241, 0.281);
+    /* width: 99%; */
+    border-radius: 25px;
+}
+
+
+.Rc-stars-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+
+.Rc-name-date {
+    display: flex;
+    align-items: center;
+    /* height: 10px; */
+    gap: 10px;
+}
+
+
+.Rc-username-span {
+    margin-right: 8px;
+}

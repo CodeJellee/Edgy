@@ -24,7 +24,7 @@ function ProductIdPage() {
     const product = useSelector(state => state.products.singleProduct)
     // !!! default should be set to preview img
     // !   product.previewImage
-    const [mainImage, setMainImage] = useState("https://i.etsystatic.com/31560168/r/il/4336cd/4425918630/il_794xN.4425918630_38m9.jpg")
+    const [mainImage, setMainImage] = useState("https://i.etsystatic.com/31560168/r/il/9b902f/4473276055/il_794xN.4473276055_fcxk.jpg" || "")
     console.log(id)
 
     const changeMainImage = (e) => {
@@ -47,7 +47,7 @@ function ProductIdPage() {
     }, [dispatch])
 
     if (!productReviews.Reviews || !product.Reviews) return <h1>...loading</h1>
-
+    console.log(product)
 
     let sum = 0
     let count = product.Reviews.length
@@ -59,12 +59,13 @@ function ProductIdPage() {
     }
 
     let starAvg = Math.round(sum / count)
-    console.log("Count:", count, "Sum:", sum, "Star average:", starAvg)
+
     let stars = []
     for (let i = 0; i < starAvg; i++) {
         stars.push("hi")
     }
 
+    let images = Object.values(product.ProductImages)
 
 
     console.log(product)
@@ -76,12 +77,15 @@ function ProductIdPage() {
                     <div className='PID-product'>
                         <div className='PID-all-Images'>
                             <div className='PID-images-div'>
+                                {/* {images.map((image) => {
+                                    <img className='PID-small-img' onClick={changeMainImage} src={image} alt="filler 2"></img>
+                                })} */}
                                 <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/9b902f/4473276055/il_794xN.4473276055_fcxk.jpg" alt="filler 2"></img>
                                 <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/2f8cab/4425918302/il_794xN.4425918302_1x8r.jpg" alt="filler 3"></img>
                                 <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/401a30/4473276305/il_794xN.4473276305_qrxw.jpg" alt="filler 4"></img>
                             </div>
                             <div className='PID-main-image-div'>
-                                <img className='PID-main-image' onClick={changeMainImage} src={mainImage} alt="filler image"></img>
+                                <img className='PID-main-image' onClick={changeMainImage} src={mainImage} alt="filler image :("></img>
                             </div>
                         </div>
 
@@ -95,7 +99,7 @@ function ProductIdPage() {
 
 
                                 <div className='PID-about-product-div'>
-                                    <p>{product.price}</p>
+                                    <p className="PID-price">${product.price}</p>
                                     <p> {product.description}</p>
 
                                     <div className='PID-seller-avg-stars'>

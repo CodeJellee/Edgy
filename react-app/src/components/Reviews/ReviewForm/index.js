@@ -10,7 +10,7 @@ import * as reviewsActions from '../../../store/reviews'
 function ReviewForm() {
     const dispatch = useDispatch();
     // const sessionUser = useSelector((state) => state.session.user);
-    const [stars, setStars] = useState(0);
+    const [stars, setStars] = useState(1);
     const [review, setReview] = useState("");
     const [errors, setErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
@@ -20,7 +20,7 @@ function ReviewForm() {
 
     const resetState = () => {
         setReview("");
-        setStars(0);
+        setStars(1);
     };
 
     const handleSubmit = async (e) => {
@@ -47,10 +47,10 @@ function ReviewForm() {
 
                 {/* {submitted &&  <displayError>} */}
                 <label htmlFor="stars"></label>
-                <input
+                <input className="RF-form-item"
                     type="number"
                     id="stars"
-                    min="0"
+                    min="1"
                     max="5"
                     onChange={(e) => {
                         setStars(e.target.value)
@@ -59,7 +59,7 @@ function ReviewForm() {
                     value={stars}
                 />
                 <label htmlFor="review"></label>
-                <textarea
+                <textarea className="RF-form-item RF-textarea"
 
                     id="review"
 
@@ -71,11 +71,11 @@ function ReviewForm() {
                 />
 
 
-                <button type="submit">Submit Review</button>
+                <button className="RF-form-item PID-cartButt RF-subButt " type="submit">Submit Review</button>
             </form>
+            <hr className="Rc-hr"></hr>
 
 
-            <button type="submit">Submit Review</button>
 
         </>
     );

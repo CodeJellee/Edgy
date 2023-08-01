@@ -1,5 +1,5 @@
 /* TODO Add site wide styles */
-
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 
 /* wrap full page with 2 divs as seen below, to make content column  */
@@ -9,6 +9,8 @@
 /* <...page content> */
 /* </div>
 </div> */
+
+
 
 .column-holder {
     display: flex;
