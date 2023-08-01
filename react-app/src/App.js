@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import ReviewsCurr from "./components/Reviews/ReviewsCurr";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCartPage"
 import HomePage from "./components/HomePage";
 import Categories from "./components/Categories";
 import ProductIdPage from "./components/Products/ProductIdPage";
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/your_reviews">
             <ReviewsCurr />
+          </Route>
+          <Route path="/shopping_cart">
+            <ShoppingCart />
           </Route>
           <Route exact path="/categories/clothing">
             <Categories category="Clothing" />
