@@ -24,11 +24,13 @@ function ProductIdPage() {
     const product = useSelector(state => state.products.singleProduct)
     // !!! default should be set to preview img
     // !   product.previewImage
-    const [mainImage, setMainImage] = useState("https://i.etsystatic.com/31560168/r/il/9b902f/4473276055/il_794xN.4473276055_fcxk.jpg" || "")
-    console.log(id)
+
+
+    const [mainImage, setMainImage] = useState()
+
 
     const changeMainImage = (e) => {
-        console.log(typeof e.target.src)
+
         setMainImage(e.target.src)
     }
 
@@ -47,7 +49,7 @@ function ProductIdPage() {
     }, [dispatch])
 
     if (!productReviews.Reviews || !product.Reviews) return <h1>...loading</h1>
-    console.log(product)
+
 
     let sum = 0
     let count = product.Reviews.length
@@ -67,11 +69,16 @@ function ProductIdPage() {
 
     let images = Object.values(product.ProductImages)
 
-    productReviews.Reviews.map((review) => (
-        console.log(review)
-    ))
+
+    // let userReviewExistCheck = products.include(product => product.userId === user.id)
+
+
+    const userReviewExist = products.every(review => review.userId !== user.id)
 
     console.log(product)
+
+    let isSellerCheck = user.id !== product.Seller.id
+
     return (
         <>
             {/* product info */}
@@ -80,46 +87,52 @@ function ProductIdPage() {
                     <div className='PID-product'>
                         <div className='PID-all-Images'>
                             <div className='PID-images-div'>
-                                {/* {images.map((image) => {
-                                    <img className='PID-small-img' onClick={changeMainImage} src={image} alt="filler 2"></img>
-                                })} */}
-                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/9b902f/4473276055/il_794xN.4473276055_fcxk.jpg" alt="filler 2"></img>
+                                <img className='PID-small-img' onClick={changeMainImage} src={product.preview_imageURL} alt="filler image :("></img>
+                                {images.map((image) => (
+
+                                    <img key={image.id} className='PID-small-img' onClick={changeMainImage} src={image.product_imageURL} alt="filler 2"></img>
+
+
+                                ))}
+                                {/* <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/9b902f/4473276055/il_794xN.4473276055_fcxk.jpg" alt="filler 2"></img> */}
+                                {/* <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/9b902f/4473276055/il_794xN.4473276055_fcxk.jpg" alt="filler 2"></img>
                                 <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/2f8cab/4425918302/il_794xN.4425918302_1x8r.jpg" alt="filler 3"></img>
-                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/401a30/4473276305/il_794xN.4473276305_qrxw.jpg" alt="filler 4"></img>
+                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/401a30/4473276305/il_794xN.4473276305_qrxw.jpg" alt="filler 4"></img> */}
                             </div>
                             <div className='PID-main-image-div'>
-                                <img className='PID-main-image' onClick={changeMainImage} src={mainImage} alt="filler image :("></img>
+
+                                <img className='PID-main-image' onClick={changeMainImage} src={mainImage || product.preview_imageURL} alt="loading"></img>
                             </div>
                         </div>
 
-                        <div>
-                            {/* <div>
+
+                        {/* <div>
                         <i onClick={addToFav} className="fas fa-heart" />
                     </div> */}
 
 
-                            <div className='PID-about-buttons-div'>
+                        <div className='PID-about-buttons-div'>
 
 
-                                <div className='PID-about-product-div'>
-                                    <p className="PID-price">${product.price}</p>
-                                    <p> {product.description}</p>
+                            <div className='PID-about-product-div'>
+                                <p className="PID-price">${product.price}</p>
+                                <p> {product.description}</p>
 
-                                    <div className='PID-seller-avg-stars'>
-                                        <p className='PID-seller'>Seller: {product.Seller.username}   </p>
+                                <div className='PID-seller-avg-stars'>
+                                    <p className='PID-seller'>Seller: {product.Seller.username}   </p>
 
-                                    </div>
                                 </div>
-                                <div className='PID-buttons'>
-                                    <button className='PID-buyNowButt PID-P-button PID-Transp-butt'>Buy it now</button>
-                                    <button className='PID-cartButt PID-P-button'>Add to cart</button>
-                                    <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button>
-                                </div>
-
-
+                            </div>
+                            <div className='PID-buttons'>
+                                <button className='PID-buyNowButt PID-P-button PID-Transp-butt'>Buy it now</button>
+                                <button className='PID-cartButt PID-P-button'>Add to cart</button>
+                                <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button>
                             </div>
 
+
                         </div>
+
+
                     </div>
 
                     <p className='Pid-ave-stars'>
@@ -131,7 +144,7 @@ function ProductIdPage() {
                         )}
 
                     </p>
-                    {user && <ReviewForm ></ReviewForm>}
+                    {user && userReviewExist && isSellerCheck && <ReviewForm ></ReviewForm>}
 
                     {productReviews.Reviews.map((review) => (
                         <>

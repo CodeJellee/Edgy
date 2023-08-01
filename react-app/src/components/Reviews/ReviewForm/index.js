@@ -14,9 +14,9 @@ function ReviewForm() {
     const [review, setReview] = useState("");
     const [errors, setErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
-    console.log(submitted);
+
     const { id } = useParams();
-    console.log(id);
+  
 
     const resetState = () => {
         setReview("");
