@@ -6,3 +6,7 @@ __pycache__/
 .vscode/
 /instance/dev.db
 *dev.db
+.gitignore
+migrations/
+instance/
+/migrations/alembic.ini

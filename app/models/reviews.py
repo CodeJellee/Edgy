@@ -14,6 +14,7 @@ class Review(db.Model):
     createdAt = db.Column(db.DateTime, default=db.func.now())
     updatedAt = db.Column(db.DateTime, default=db.func.now())
 
+
     user = db.relationship("User", back_populates="review")
     product = db.relationship("Product", back_populates="review")
 
@@ -24,4 +25,16 @@ class Review(db.Model):
             "review": self.review,
             "userId": self.userId,
             "productId": self.productId,
+            "updatedAt": self.updatedAt,
+            "createdAt": self.createdAt
+        }
+
+    def to_dict_noUpdated(self):
+        return {
+            "id": self.id,
+            "stars": self.stars,
+            "review": self.review,
+            "userId": self.userId,
+            "productId": self.productId,
+            "createdAt": self.createdAt
         }
