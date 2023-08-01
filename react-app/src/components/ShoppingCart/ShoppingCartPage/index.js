@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import * as CartActions from '../../../store/shoppingCart' //this will be grabbing all of our thunks/reducer from the store file
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
-import OpenModalButton from '../../OpenModalButton';
 
 
 
@@ -25,9 +24,17 @@ function ShoppingCartPage(){
         if (sessionUser){
             //if user is logged in, dispatch thunk
             dispatch(CartActions.thunkGetShoppingCart());
-            dispatch(CartActions.thunkDeleteCartItem(productId));
+            // dispatch(CartActions.thunkDeleteCartItem(productId));
+
         }
-    }, [dispatch, sessionUser])
+    }, [dispatch])
+
+
+    // const handleRemoveItem = (productId) => {
+    //     // Call the thunkDeleteCartItem action creator to remove the item from the cart.
+    //     dispatch(CartActions.thunkDeleteCartItem(productId));
+    // };
+
 
 
     if (!sessionUser) return null;
@@ -53,10 +60,7 @@ function ShoppingCartPage(){
                             <div>${item.Product.price}</div>
                         </div>
                     </div>
-                    <OpenModalButton
-                        buttonText="Delete"
-                        modalComponent={<DeleteItemModal productId={item.Product.id} />}
-                    />
+                        <button>Delete</button>
                     </div>
                 ))}
                 <button>Proceed To Checkout</button>
