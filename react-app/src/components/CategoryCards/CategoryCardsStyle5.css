@@ -1,0 +1,30 @@
+.collections > div > img {
+    width: 100%;
+    height: 200px
+}
+
+.collections {
+    display: flex;
+    gap: 20px
+}
+
+.collections > div {
+    height: 275px;
+
+}
+
+.collections > div {
+    width: 20%;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.shopSelection {
+    margin: 40px
+}
+
+.collections > div > p {
+    font-size: 20px
+}

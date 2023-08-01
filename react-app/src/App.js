@@ -11,6 +11,8 @@ import Categories from "./components/Categories";
 import ProductIdPage from "./components/Products/ProductIdPage";
 import FavoritesPage from "./components/FavoritesPage";
 
+import Footer from "./components/Footer";
+import ProductIdPage from "./components/Products/ProductIdPage"
 
 function App() {
   const dispatch = useDispatch();

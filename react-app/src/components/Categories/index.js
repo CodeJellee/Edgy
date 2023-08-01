@@ -21,21 +21,21 @@ function Categories({ category }) {
   eachProduct = eachProduct.filter((p) => p.category === category);
   // console.log('filtered product==========', eachProduct)
 
-  return (
-    <>
-      <h2>{category}</h2>
-      <h1>Find something you love</h1>
-      <div className="products">
-        {eachProduct.map((p) => (
-          <div className="p">
-            <img src={p.preview_imageURL} alt={p.id}></img>
+    return (
+        <>
+        <h2>{category}</h2>
+        <h1>Find something you love</h1>
+        <div className="products">
+        {eachProduct.map((p) =>
+            <div className="p">
+            <img src={p.preview_imageURL}></img>
             <p>{p.item_name}</p>
             <p>{p.price}</p>
             <p>{p.quantity}</p>
             <p>{p.description}</p>
             <p>{p.category}</p>
           </div>
-        ))}
+        )}
       </div>
     </>
   );

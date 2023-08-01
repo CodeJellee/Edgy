@@ -8,12 +8,13 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
+		<>
 		<div className="navigations">
 		<div className="edgy">
 		<h1>Edgy</h1>
 		<input type="search" placeholder='Search for anything'></input>
 		{isLoaded && (
-				<div>
+				<div className="user">
 					<ProfileButton user={sessionUser} />
 				</div>
 		)}
@@ -34,6 +35,8 @@ function Navigation({ isLoaded }){
 			</li>
 		</div>
 		</div>
+		<div className="border"></div>
+		</>
 	);
 }
 

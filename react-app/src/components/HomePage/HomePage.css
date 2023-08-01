@@ -25,3 +25,10 @@
     display: flex;
     justify-content: center;
 }
+
+.slideshow {
+    height: 400px;
+    width: 94%;
+    padding-left: 40px;
+
+}

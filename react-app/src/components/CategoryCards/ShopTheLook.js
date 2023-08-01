@@ -9,32 +9,31 @@ function ShopLookCard(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(productActions.getAllProducts())
+        dispatch(productActions.thunkGetAllProducts())
     }, [dispatch])
 
-        let eachProduct = products?.Products
+       let eachProduct = Object.values(products)
 
         if (!eachProduct) return <h1>Loading</h1>
 
         eachProduct = eachProduct.filter((p) => p.category == "Clothing")
 
-        console.log(eachProduct)
 
     return (
     <div className="look">
         <h2>Shop the Look</h2>
         <div className="shopImg">
         <div>
-        <img src={eachProduct[0].preview_imageURL}></img>
-        <p>{eachProduct[0].item_name} from name</p>
+        <img src={eachProduct[0]?.preview_imageURL}></img>
+        <p>{eachProduct[0]?.item_name} from name</p>
         </div>
         <div>
-        <img src={eachProduct[1].preview_imageURL}></img>
-        <p>{eachProduct[1].item_name} from name</p>
+        <img src={eachProduct[1]?.preview_imageURL}></img>
+        <p>{eachProduct[1]?.item_name} from name</p>
         </div>
         <div>
-        <img src={eachProduct[2].preview_imageURL}></img>
-        <p>{eachProduct[2].item_name} from name</p>
+        <img src={eachProduct[2]?.preview_imageURL}></img>
+        <p>{eachProduct[2]?.item_name} from name</p>
         </div>
         </div>
     </div>

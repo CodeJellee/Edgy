@@ -4,48 +4,60 @@ import * as productActions from "../../store/products";
 import "./CategoryCardsStyle1.css";
 import { Link } from "react-router-dom";
 
-function EditorsPickCard() {
-  const { products } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
+function EditorsPickCard(){
+    const { products } = useSelector((state) => state.products)
+    const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(productActions.thunkGetAllProducts());
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(productActions.thunkGetAllProducts())
+    }, [dispatch])
 
-  let eachProduct = products?.Products;
+       let eachProduct = Object.values(products)
 
-  if (!eachProduct) return <h1>Loading</h1>;
+        if (!eachProduct) return <h1>Loading</h1>
 
-  return (
-    <div className="home">
-      <div className="sec2">
-        <h3>Editors' Picks</h3>
-        <h2>Computer</h2>
-        <Link to="/categories/computer">See more</Link>
-        <div className="sec2Img">
-          <img
-            src={eachProduct[1].preview_imageURL}
-            alt={eachProduct[1].id}
-          ></img>
-          <img
-            src={eachProduct[2].preview_imageURL}
-            alt={eachProduct[2].id}
-          ></img>
-        </div>
-      </div>
-      <div className="data">
-        {eachProduct.map((p) => (
-          <>
-            <img src={p.preview_imageURL} alt="thandi fix this now"></img>
-          </>
-        ))}
-      </div>
-      <img
-        src={eachProduct[0].preview_imageURL}
-        alt="hey thandi pls fix this"
-      ></img>
-    </div>
-  );
+        eachProduct = eachProduct.filter((p) => p.category == "Computer")
+
+        console.log(eachProduct)
+
+        return (
+            <div className="ep">
+                <div className="sections">
+                <div className="sec1">
+                <div className='epTitle'>
+                <h3>Editors' Picks</h3>
+                 <h2>Computers</h2>
+                 <Link to='/categories/computer'>See more</Link>
+                </div>
+                <div className='imgOne'>
+                    <img src={eachProduct[0]?.preview_imageURL}></img>
+                </div>
+                <div className='imgOne'>
+                    <img src={eachProduct[1]?.preview_imageURL}></img>
+                </div>
+                </div>
+                <div className="sec2">
+                <div className='imgOne'>
+                    <img src={eachProduct[2]?.preview_imageURL}></img>
+                </div>
+                <div className='imgOne'>
+                    <img src={eachProduct[3]?.preview_imageURL}></img>
+                </div>
+                <div className='imgOne'>
+                    <img src={eachProduct[4]?.preview_imageURL}></img>
+                </div>
+                <div className='imgOne'>
+                    <img src={eachProduct[0]?.preview_imageURL}></img>
+                </div>
+                </div>
+                </div>
+             <div className="home">
+             </div>
+            </div>
+
+            )
+
+
 }
 
 export default EditorsPickCard;

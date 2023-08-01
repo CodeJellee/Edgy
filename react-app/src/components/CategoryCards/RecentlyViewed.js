@@ -13,10 +13,10 @@ function RecentlyReviewedCard(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(productActions.getAllProducts())
+        dispatch(productActions.thunkGetAllProducts())
     }, [dispatch])
 
-        let eachProduct = products?.Products
+       let eachProduct = Object.values(products)
 
         if (!eachProduct) return <h1>Loading</h1>
 
