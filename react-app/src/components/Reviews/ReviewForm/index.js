@@ -2,14 +2,15 @@ import React, { useState } from "react";
 
 import './ReviewForm.css'
 import { useDispatch } from "react-redux";
-import { useParams, Redirect, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import * as reviewsActions from '../../../store/reviews'
+import * as productsActions from '../../../store/products'
 
 
 
 function ReviewForm() {
     const dispatch = useDispatch();
-    const his = useHistory()
+
     // const sessionUser = useSelector((state) => state.session.user);
     const [stars, setStars] = useState(1);
     const [review, setReview] = useState("");
@@ -40,7 +41,8 @@ function ReviewForm() {
             resetState();
         }
         setSubmitted(true)
-        his.push(`/products/${id}`)
+        dispatch(reviewsActions.thunkGetReviewsByProductId(id))
+        dispatch(productsActions.thunkGetSingleProduct(id))
     };
 
 
@@ -84,7 +86,7 @@ function ReviewForm() {
                         />
 
 
-                 <button className="RF-form-item PID-cartButt RF-subButt" type="submit" submitted>Submit Review</button>
+                        <button className="RF-form-item PID-cartButt RF-subButt" type="submit" submitted>Submit Review</button>
 
                     </form>
                 </div>}

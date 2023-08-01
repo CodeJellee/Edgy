@@ -2,15 +2,21 @@
 
 } */
 
+.Rc-card {
+    padding-top: 8px;
 
-
-.Rc-hr {
-
-    border: 2px solid rgba(189, 111, 241, 0.281);
-    /* width: 99%; */
-    border-radius: 25px;
 }
 
+.Rc-review {
+    font-size: 2.5vh;
+}
+
+
+.Rc-name-date-p {
+
+    padding-bottom: 12px;
+    font-size: 1.7vh;
+}
 
 .Rc-stars-name {
     display: flex;
@@ -28,6 +34,13 @@
 }
 
 
-.Rc-username-span {
-    margin-right: 8px;
+
+
+
+
+.Rc-hr {
+
+    border: 2px solid rgba(189, 111, 241, 0.281);
+    /* width: 99%; */
+    border-radius: 25px;
 }

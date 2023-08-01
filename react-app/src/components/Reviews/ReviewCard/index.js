@@ -6,7 +6,7 @@ function ReviewCard({ userFirstName, review, from }) {
     if (from === "userReviews") {
         loadProductName = true
     }
-  
+
 
     let numOfStars = review.stars
     let star = []
@@ -35,14 +35,14 @@ function ReviewCard({ userFirstName, review, from }) {
 
 
                 </div>
-                <p>
+                <p className='Rc-review'>
                     {review.review}
                 </p>
                 {/* <div className="Rc-name-date"> */}
-                <p><span className='Rc-username-span'>{userFirstName}  </span>               {review.createdAt}  </p>
+                <p className='Rc-name-date-p'> <span className='Rc-username-span'>{userFirstName}  </span> -  {review.createdAt}  </p>
 
                 {/* </div> */}
-                <hr className='Rc-hr'></hr>
+                <hr className='Rc-hr Rc-hr-bottom'></hr>
             </div>
 
 

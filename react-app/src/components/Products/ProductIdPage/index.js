@@ -22,7 +22,7 @@ function ProductIdPage() {
     const user = useSelector(state => state.session.user)
     const productReviews = useSelector(state => state.reviews.productReviews)
     const product = useSelector(state => state.products.singleProduct)
-    const [hasReview, setHasReview] = useState()
+
     // !!! default should be set to preview img
     // !   product.previewImage
 
@@ -77,11 +77,12 @@ function ProductIdPage() {
     const userReviewExist = products.every(review => review.userId !== user.id)
     // setHasReview(userReviewExist)
 
-    console.log(product)
+
 
     let isSellerCheck = user.id !== product.Seller.id
 
-    console.log("PRODUCT REVIEW:", productReviews)
+
+
 
     return (
         <>
@@ -125,7 +126,7 @@ function ProductIdPage() {
                                 </div>
                             </div>
                             <div className='PID-buttons'>
-                                <button className='PID-buyNowButt PID-P-button PID-Transp-butt'>Buy it now</button>
+                                <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>
                                 <button className='PID-cartButt PID-P-button'>Add to cart</button>
                                 <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button>
                             </div>
@@ -137,7 +138,10 @@ function ProductIdPage() {
                     </div>
 
                     <p className='Pid-ave-stars'>
-                        <span className='PID-count'>{count} reviews</span>
+                        <span className='PID-count'>{count}
+                            {count === 1 ? " review" : " reviews"}
+
+                        </span>
                         {stars.map((star) =>
                             <>
                                 <i className="fas fa-star PID-count PID-stars" />
@@ -147,9 +151,9 @@ function ProductIdPage() {
                     </p>
                     {user && userReviewExist && isSellerCheck && <ReviewForm  ></ReviewForm>}
 
-                    {productReviews.Reviews.map((review) => (
+                    {productReviews.Reviews?.map((review) => (
                         <>
-                            <ReviewCard key={review.id} review={review} from="productPage" ></ReviewCard>
+                            <ReviewCard key={review.id} userFirstName={review.User.first_name} review={review} from="productPage" ></ReviewCard>
                         </>
                     ))}
 
