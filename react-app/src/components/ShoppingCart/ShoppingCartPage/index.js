@@ -27,7 +27,7 @@ function ShoppingCartPage(){
             // dispatch(CartActions.thunkDeleteCartItem(productId));
 
         }
-    }, [dispatch, sessionUser])
+    }, [dispatch])
 
 
     // const handleRemoveItem = (productId) => {
@@ -60,7 +60,7 @@ function ShoppingCartPage(){
                             <div>${item.Product.price}</div>
                         </div>
                     </div>
-                        {/* <button onClick={() => handleRemoveItem(item.Product.id)}>Delete</button> */}
+                        <button>Delete</button>
                     </div>
                 ))}
                 <button>Proceed To Checkout</button>
