@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-
+import './ReviewCard.css'
 
 function ReviewCard({ userFirstName, review, from }) {
     let loadProductName = false
@@ -12,16 +12,16 @@ function ReviewCard({ userFirstName, review, from }) {
     let numOfStars = review.stars
     let star = []
     for (var i = 0; i < numOfStars; i++) {
-        star.push("star")
+        star.push("this can be whatever")
     }
 
 
     return (
         <>
 
-            <div className="Ru-card">
+            <div className="Rc-card">
 
-                <div className="Ru-stars-name">
+                <div className="Rc-stars-name">
 
                     {loadProductName &&
                         <Link to={`products/${review.Product.id}`}>
@@ -30,11 +30,8 @@ function ReviewCard({ userFirstName, review, from }) {
                         </Link>
                     }
 
-
-
-
-                    {star.map((star) => (
-                        <i className="fas fa-star PID-stars" />
+                    {star.map(() => (
+                        <i className="fas fa-star PID-stars RC-stars" />
                     ))}
 
 
@@ -42,10 +39,11 @@ function ReviewCard({ userFirstName, review, from }) {
                 <p>
                     {review.review}
                 </p>
-                <div className="Ru-name-date">
-                    <p>{userFirstName}    </p>
-                    <p>{review.createdAt}</p>
-                </div>
+                {/* <div className="Rc-name-date"> */}
+                <p><span className='Rc-username-span'>{userFirstName}  </span>               {review.createdAt}  </p>
+
+                {/* </div> */}
+                <hr className='Rc-hr'></hr>
             </div>
 
 
