@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { thunkGetUserFavorites } from "../../store/favorites";
 
 function FavoritesPage() {
   // A single page of the user's favorite items
@@ -10,12 +11,14 @@ function FavoritesPage() {
   // I need to grab the userId
   const sessionUser = useSelector((state) => state.session.user);
   const userFavorites = useSelector((state) => state); // figure out the state first
+  console.log("session user===>", sessionUser);
+
+  useEffect(() => {
+    // insert thunk query to grab user's favorite items
+    dispatch(thunkGetUserFavorites);
+  }, [dispatch]);
 
   if (!sessionUser) return null;
-
-  //   useEffect(() => {
-  //     // insert thunk query to grab user's favorite items
-  //   }, [dispatch]);
 
   return (
     <>

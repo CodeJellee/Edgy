@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import * as productActions from "../../store/products"
-import "./HomePage.css"
+import * as productActions from "../../store/products";
+import "./HomePage.css";
 import { Link } from "react-router-dom";
 import EditorsPickCard from "../CategoryCards/EditorsPick";
 import ShopLookCard from "../CategoryCards/ShopTheLook";
@@ -58,4 +58,4 @@ function HomePage(){
 
 }
 
-export default HomePage
+export default HomePage;
