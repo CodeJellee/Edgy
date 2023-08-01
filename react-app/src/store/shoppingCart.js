@@ -28,6 +28,7 @@ const deleteShoppingCartAction = (productId) => {
 //*  ======================= end of actions ===================//
 
 //*  =====================  thunks ===========================//
+//fetch route needs to match route from route file
 
 export const thunkGetShoppingCart = () => async (dispatch) => {
   let current_cart = await fetch(`/api/carts/shopping_cart`,  {
@@ -43,13 +44,13 @@ export const thunkGetShoppingCart = () => async (dispatch) => {
 }
 
 export const thunkDeleteCartItem = (productId) => async (dispatch) => {
-  let product = await fetch(`/api/products/${productId}`, {
+  let product = await fetch(`/api/shopping_cart/${productId}`, {
     method:"DELETE",
   });
   product = await product.json();
   console.log('THIS IS DELETE THUNK', productId)
-  // await dispatch(deleteShoppingCartAction(productId))
-  // return
+  await dispatch(deleteShoppingCartAction(productId))
+  return
 }
 
 //*  ======================= end of thunks ===================//
