@@ -53,3 +53,23 @@
     font-size: 12px;
     padding-top: 3px;
 }
+
+
+
+.PID-submit-review {
+    background-color: #52057B;
+    border-radius: 28px;
+    border: 1px solid #52057B;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+
+.PID-submit-review:hover {
+    cursor: not-allowed;
+}

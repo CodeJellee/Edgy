@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import './ReviewForm.css'
 import { useDispatch } from "react-redux";
@@ -18,8 +18,11 @@ function ReviewForm() {
     const [stars, setStars] = useState(1);
     const [review, setReview] = useState("");
     const [errors, setErrors] = useState([]);
-    const [submitted, setSubmitted] = useState(false);
+    const [submitted, setSubmitted] = useState(false)
+    const [submittedSuc, setSubmittedSuc] = useState(false);
     const [rating, setRating] = useState(0);
+    const [vaErrors, setVaErrors] = useState({})
+
 
     const { id } = useParams();
 
@@ -32,6 +35,8 @@ function ReviewForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true);
+        console.log(vaErrors)
+        if (Object.keys(vaErrors).length) { return }
         console.log("RATING BY STARS =", rating)
         const data = await dispatch(
             reviewsActions.thunkSubmitReview(rating, review, id)
@@ -44,7 +49,7 @@ function ReviewForm() {
         if (errors.length === 0) {
             resetState();
         }
-        setSubmitted(true)
+        setSubmittedSuc(true)
         dispatch(reviewsActions.thunkGetReviewsByProductId(id))
         dispatch(productsActions.thunkGetSingleProduct(id))
     };
@@ -54,10 +59,21 @@ function ReviewForm() {
     }
 
 
+    useEffect(() => {
+        const err = {}
+
+
+        if (review.length < 10) err["Review"] = "Review needs 10 or more characters"
+
+        setVaErrors(err)
+
+    }, [review])
+
     return (
 
         <>
-            {!submitted &&
+            {!submittedSuc &&
+
                 <div className="">
 
 
@@ -83,6 +99,7 @@ function ReviewForm() {
                             value={stars}
                         /> */}
                         <label htmlFor="review"></label>
+
                         <textarea className="RF-form-item RF-textarea"
 
                             id="review"
@@ -93,9 +110,11 @@ function ReviewForm() {
                             placeholder="Please write a review"
                             value={review}
                         />
+                        {vaErrors.Review && submitted && <p className='error-text'>*{vaErrors.Review}</p>}
 
+                        <button className={submitted && (vaErrors.Review || errors.length) ? "RF-form-item PID-submit-review RF-subButt" : " RF-form-item PID-cartButt RF-subButt"}
 
-                        <button className="RF-form-item PID-cartButt RF-subButt" type="submit" submitted>Submit Review</button>
+                            type="submit" submitted>Submit Review</button>
 
                     </form>
                 </div>}
