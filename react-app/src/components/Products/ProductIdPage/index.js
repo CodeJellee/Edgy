@@ -67,6 +67,9 @@ function ProductIdPage() {
 
     let images = Object.values(product.ProductImages)
 
+    productReviews.Reviews.map((review) => (
+        console.log(review)
+    ))
 
     console.log(product)
     return (
@@ -132,7 +135,7 @@ function ProductIdPage() {
 
                     {productReviews.Reviews.map((review) => (
                         <>
-                            <ReviewCard key={review.id} userFirstName={user.first_name} review={review} from="productPage" ></ReviewCard>
+                            <ReviewCard key={review.id} userFirstName={review.User.first_name} review={review} from="productPage" ></ReviewCard>
                         </>
                     ))}
 
