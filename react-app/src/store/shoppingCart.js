@@ -2,8 +2,6 @@
 
 //? =====================  types ===========================//
 
-import { thunkDeleteProduct } from "./products";
-
 const GET_SHOPPING_CART= "shoppingCart/GET_SHOPPING_CART"
 const DELETE_CART_ITEM= "shoppingCart/DELETE_CART_ITEM"
 
@@ -48,7 +46,7 @@ export const thunkDeleteCartItem = (productId) => async (dispatch) => {
     method:"DELETE",
   });
   product = await product.json();
-  console.log('THIS IS DELETE THUNK', productId)
+  // console.log('THIS IS DELETE THUNK', productId)
   await dispatch(deleteShoppingCartAction(productId))
   return
 }
@@ -75,7 +73,7 @@ export default function reducer(state = initialState, action) {
     case DELETE_CART_ITEM: {
       newState = { ...state };
       newState.userCart = { ...newState.userCart }
-      console.log('NEWSTATE.USERCART', newState.userCart)
+      // console.log('NEWSTATE.USERCART', newState.userCart)
       delete newState.userCart[action.productId];
       return newState;
     }
