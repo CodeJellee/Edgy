@@ -42,13 +42,13 @@ export const thunkGetShoppingCart = () => async (dispatch) => {
 }
 
 export const thunkDeleteCartItem = (productId) => async (dispatch) => {
-  let product = await fetch(`/api/shopping_cart/${productId}`, {
+  let product = await fetch(`/api/carts/shopping_cart/${productId}`, {
     method:"DELETE",
   });
   product = await product.json();
-  // console.log('THIS IS DELETE THUNK', productId)
+  console.log('THIS IS DELETE THUNK', product, productId)
   await dispatch(deleteShoppingCartAction(productId))
-  return
+  return product
 }
 
 //*  ======================= end of thunks ===================//
