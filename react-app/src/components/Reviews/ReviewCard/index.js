@@ -29,8 +29,8 @@ function ReviewCard({ userFirstName, review, from }) {
                         </Link>
                     }
 
-                    {star.map(() => (
-                        <i className="fas fa-star PID-stars RC-stars" />
+                    {star.map((star, idx) => (
+                        <i key={idx} className="fas fa-star PID-stars RC-stars" />
                     ))}
 
 

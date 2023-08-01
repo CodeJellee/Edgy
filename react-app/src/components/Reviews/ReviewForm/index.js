@@ -46,9 +46,6 @@ function ReviewForm() {
     };
 
 
-    const alreadySubmitted = () => {
-        alert("you have already submitted a review")
-    }
 
     return (
 

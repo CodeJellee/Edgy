@@ -47,7 +47,7 @@ function ProductIdPage() {
         dispatch(productsActions.thunkGetSingleProduct(id))
 
 
-    }, [dispatch])
+    }, [dispatch, id])
 
     if (!productReviews.Reviews || !product.Reviews) return <h1>...loading</h1>
 
@@ -92,10 +92,10 @@ function ProductIdPage() {
                     <div className='PID-product'>
                         <div className='PID-all-Images'>
                             <div className='PID-images-div'>
-                                <img className='PID-small-img' onClick={changeMainImage} src={product.preview_imageURL} alt="filler image :("></img>
-                                {images.map((image) => (
+                                <img className='PID-small-img' alt="product first loaded" onClick={changeMainImage} src={product.preview_imageURL} ></img>
+                                {images.map((image, idx) => (
 
-                                    <img key={image.id} className='PID-small-img' onClick={changeMainImage} src={image.product_imageURL} alt="filler 2"></img>
+                                    <img key={idx} className='PID-small-img' onClick={changeMainImage} src={image.product_imageURL} alt="filler 2"></img>
 
 
                                 ))}
@@ -142,10 +142,10 @@ function ProductIdPage() {
                             {count === 1 ? " review" : " reviews"}
 
                         </span>
-                        {stars.map((star) =>
-                            <>
-                                <i className="fas fa-star PID-count PID-stars" />
-                            </>
+                        {stars.map((star, idx) =>
+
+                            <i key={idx} className="fas fa-star PID-count PID-stars" />
+
                         )}
 
                     </p>
