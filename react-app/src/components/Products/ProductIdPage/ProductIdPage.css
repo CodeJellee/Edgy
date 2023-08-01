@@ -1,6 +1,9 @@
 .PID-product {
     display: flex;
-    height: 575px;
+    height: fit-content;
+    min-height: 340px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     gap: 8px;
 }
 
@@ -22,6 +25,8 @@
 
 .PID-small-img {
     border-radius: 15px;
+    /* width: 100px;
+    height: 100px; */
     /* aspect-ratio: 1/1 */
 }
 
@@ -29,12 +34,11 @@
 /* TODO MEDIA QUERY SO small screens the images and product info also shrink so the main image doesn't shrink to disappearing */
 .PID-main-image-div {
     width: 100%;
-
-
-    /* object-fit: contain; */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* max-height: 200px; */
+    height: fit-content
+        /* object-fit: contain; */
+        /* display: flex; */
+        /* justify-content: center; */
+        /* max-height: 200px; */
 }
 
 
@@ -72,9 +76,9 @@
     flex-direction: column;
 }
 
-/* .PID-about-buttons-div {
-
-} */
+.PID-about-buttons-div {
+    width: 400px;
+}
 
 .PID-P-button {
     margin-top: 10px;

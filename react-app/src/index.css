@@ -20,3 +20,8 @@
 .column {
     width: 900px;
 }
+
+
+.error-text {
+    color: red
+}
