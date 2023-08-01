@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom'
 import * as reviewsActions from '../../../store/reviews'
 import * as productsActions from '../../../store/products'
+import StarRating from "./StarRating";
+
+
 
 
 
@@ -16,7 +19,7 @@ function ReviewForm() {
     const [review, setReview] = useState("");
     const [errors, setErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
-
+    const [rating, setRating] = useState(0);
 
     const { id } = useParams();
 
@@ -29,8 +32,9 @@ function ReviewForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitted(true);
+        console.log("RATING BY STARS =", rating)
         const data = await dispatch(
-            reviewsActions.thunkSubmitReview(stars, review, id)
+            reviewsActions.thunkSubmitReview(rating, review, id)
         );
         // if error exit out of handle submit
         if (data) {
@@ -45,6 +49,9 @@ function ReviewForm() {
         dispatch(productsActions.thunkGetSingleProduct(id))
     };
 
+    const handleRatingChange = (number) => {
+        setRating(parseInt(number))
+    }
 
 
     return (
@@ -59,7 +66,12 @@ function ReviewForm() {
 
                         {/* {submitted &&  <displayError>} */}
                         <label htmlFor="stars"></label>
-                        <input className="RF-form-item"
+                        <StarRating
+                            disabled={false}
+                            onChange={handleRatingChange}
+                            rating={rating}
+                        />
+                        {/* <input className="RF-form-item"
                             type="number"
                             id="stars"
                             min="1"
@@ -69,7 +81,7 @@ function ReviewForm() {
                             }}
                             placeholder="Stars"
                             value={stars}
-                        />
+                        /> */}
                         <label htmlFor="review"></label>
                         <textarea className="RF-form-item RF-textarea"
 

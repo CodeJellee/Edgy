@@ -29,3 +29,27 @@
 .RF-hidden {
     display: none;
 }
+
+
+.rating-input {
+    display: flex;
+    margin-right: 4px;
+}
+
+.review-item {
+    display: flex;
+}
+
+.rating-input .filled {
+    color: #52057B;
+}
+
+.rating-input .empty {
+    color: #BC6FF1;
+}
+
+#star-name {
+    margin-left: 5px;
+    font-size: 12px;
+    padding-top: 3px;
+}
