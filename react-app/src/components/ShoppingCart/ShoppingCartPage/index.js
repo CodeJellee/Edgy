@@ -16,6 +16,8 @@ function ShoppingCartPage(){
     //had to insert Object.values to const userCart because item was not rendering properly, bc of that no need to Object.values in the return at the bottom/html section for userCart
     //wasn't working with Object.values and chaining it with .map
 
+    const itemLength = userCart.length
+    console.log('length of cart here', itemLength)
 
     useEffect(() => {
         if (sessionUser){
@@ -32,7 +34,7 @@ function ShoppingCartPage(){
 
     return (
         <>
-            <h1>User's Shopping Cart Page</h1>
+            <h1>{itemLength} items in your cart</h1>
             <div>
                 {userCart?.map((item) => (
                     <div class="cart_item_container">
