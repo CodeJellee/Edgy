@@ -11,15 +11,11 @@ function Categories({ category }){
         dispatch(productActions.thunkGetAllProducts())
     }, [dispatch])
 
-    let eachProduct = products.Products
+       let eachProduct = Object.values(products)
 
-    // console.log('each product===============',eachProduct)
-    if (!eachProduct) return null
+        if (!eachProduct) return <h1>Loading</h1>
 
-    //if (category === "computer") category = "Technology"
-
-    eachProduct = eachProduct.filter((p) => p.category === category)
-    // console.log('filtered product==========', eachProduct)
+        eachProduct = eachProduct.filter((p) => p.category == category)
 
     return (
         <>

@@ -15,7 +15,7 @@
 //? =====================  types ===========================//
 
 const GET_SHOPPING_CART= "SHOPPING_CART/GetShoppingCart"
-const DELETE_CART_ITEM=
+//const DELETE_CART_ITEM=
 
 //?  ===================end of types ===================//
 

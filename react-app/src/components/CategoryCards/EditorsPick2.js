@@ -11,10 +11,10 @@ function EditorsPickTwoCard(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(productActions.getAllProducts())
+        dispatch(productActions.thunkGetAllProducts())
     }, [dispatch])
 
-        let eachProduct = products?.Products
+       let eachProduct = Object.values(products)
 
         if (!eachProduct) return <h1>Loading</h1>
 
@@ -31,24 +31,24 @@ function EditorsPickTwoCard(){
                  <Link to='/categories/computer'>See more</Link>
             </div>
             <div className='imgTwo1'>
-                    <img src={eachProduct[0].preview_imageURL}></img>
+                    <img src={eachProduct[0]?.preview_imageURL}></img>
                 </div>
                 <div className='imgTwo2'>
-                    <img src={eachProduct[1].preview_imageURL}></img>
+                    <img src={eachProduct[1]?.preview_imageURL}></img>
                 </div>
                 <div className='imgTwo3'>
-                    <img src={eachProduct[2].preview_imageURL}></img>
+                    <img src={eachProduct[2]?.preview_imageURL}></img>
                 </div>
             </div>
             <div className='sec4'>
             <div className='imgTwo4'>
-                    <img src={eachProduct[3].preview_imageURL}></img>
+                    <img src={eachProduct[3]?.preview_imageURL}></img>
                 </div>
                 <div className='imgTwo5'>
-                    <img src={eachProduct[4].preview_imageURL}></img>
+                    <img src={eachProduct[4]?.preview_imageURL}></img>
                 </div>
                 <div className='imgTwo6'>
-                    <img src={eachProduct[0].preview_imageURL}></img>
+                    <img src={eachProduct[0]?.preview_imageURL}></img>
                 </div>
                 <div className='epDescription'>
                 <h3>Thoughtful gifts galore at affordable prices you’ll adore</h3>

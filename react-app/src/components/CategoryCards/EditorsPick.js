@@ -12,7 +12,7 @@ function EditorsPickCard(){
         dispatch(productActions.thunkGetAllProducts())
     }, [dispatch])
 
-        let eachProduct = products?.Products
+       let eachProduct = Object.values(products)
 
         if (!eachProduct) return <h1>Loading</h1>
 
@@ -30,24 +30,24 @@ function EditorsPickCard(){
                  <Link to='/categories/computer'>See more</Link>
                 </div>
                 <div className='imgOne'>
-                    <img src={eachProduct[0].preview_imageURL}></img>
+                    <img src={eachProduct[0]?.preview_imageURL}></img>
                 </div>
                 <div className='imgOne'>
-                    <img src={eachProduct[1].preview_imageURL}></img>
+                    <img src={eachProduct[1]?.preview_imageURL}></img>
                 </div>
                 </div>
                 <div className="sec2">
                 <div className='imgOne'>
-                    <img src={eachProduct[2].preview_imageURL}></img>
+                    <img src={eachProduct[2]?.preview_imageURL}></img>
                 </div>
                 <div className='imgOne'>
-                    <img src={eachProduct[3].preview_imageURL}></img>
+                    <img src={eachProduct[3]?.preview_imageURL}></img>
                 </div>
                 <div className='imgOne'>
-                    <img src={eachProduct[4].preview_imageURL}></img>
+                    <img src={eachProduct[4]?.preview_imageURL}></img>
                 </div>
                 <div className='imgOne'>
-                    <img src={eachProduct[0].preview_imageURL}></img>
+                    <img src={eachProduct[0]?.preview_imageURL}></img>
                 </div>
                 </div>
                 </div>

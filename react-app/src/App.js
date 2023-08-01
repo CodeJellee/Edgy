@@ -9,6 +9,7 @@ import ReviewsCurr from "./components/Reviews/ReviewsCurr";
 import HomePage from "./components/HomePage";
 import Categories from "./components/Categories";
 import Footer from "./components/Footer";
+import ProductIdPage from "./components/Products/ProductIdPage"
 
 function App() {
   const dispatch = useDispatch();

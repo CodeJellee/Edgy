@@ -7,6 +7,7 @@ import EditorsPickCard from "../CategoryCards/EditorsPick";
 import ShopLookCard from "../CategoryCards/ShopTheLook";
 import EditorsPickTwoCard from "../CategoryCards/EditorsPick2";
 import RecentlyReviewedCard from "../CategoryCards/RecentlyViewed";
+import ShopSelectionCard from "../CategoryCards/ShopSelection";
 
 function HomePage(){
     const { products } = useSelector((state) => state.products)
@@ -16,14 +17,13 @@ function HomePage(){
         dispatch(productActions.thunkGetAllProducts())
     }, [dispatch])
 
-        let eachProduct = products?.Products
-
-        // console.log(eachProduct)
+       let eachProduct = Object.values(products)
 
         if (!eachProduct) return <h1>Loading</h1>
 
         return (
              <>
+             <img className="slideshow" src="https://womeninendo.org/wp-content/uploads/2021/11/no-image.png"></img>
              <h2 className="cap">Discrover fresh summer finds from creative sellers!</h2>
              <div className="searchResults">
                 <div className="result">
@@ -52,6 +52,7 @@ function HomePage(){
             <EditorsPickTwoCard />
             <ShopLookCard />
             <EditorsPickCard/>
+            <ShopSelectionCard />
             </>
             )
 
