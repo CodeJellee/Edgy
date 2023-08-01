@@ -29,7 +29,7 @@ export const thunkGetShoppingCart = () => async (dispatch) => {
     },
   });
   current_cart = await current_cart.json();
-  console.log("THIS IS CURRENT CART THUNK", current_cart)
+  // console.log("THIS IS CURRENT CART THUNK", current_cart)
   dispatch(getShoppingCartAction(current_cart));
   return current_cart
 }
@@ -46,7 +46,7 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_SHOPPING_CART: {
       newState = { ...state };
-      console.log("this is the cart in the reducer", action.cart)
+      // console.log("this is the cart in the reducer", action.cart)
       //below is action.<the payload insert here from above>
       action.cart.Shopping_Cart.forEach(
         (product) => (newState.userCart[product.id] = { ...product })
