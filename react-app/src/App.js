@@ -9,7 +9,7 @@ import ReviewsCurr from "./components/Reviews/ReviewsCurr";
 import HomePage from "./components/HomePage";
 import Categories from "./components/Categories";
 import ProductIdPage from "./components/Products/ProductIdPage";
-
+import FavoritesPage from "./components/FavoritesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,8 +59,11 @@ function App() {
           <Route path="/products/:id">
             <ProductIdPage />
           </Route>
+          <Route exact path="/favorites/current">
+            <FavoritesPage />
+          </Route>
           <Route path="/">
-            <h2>404 not found</h2>
+            <HomePage />
           </Route>
         </Switch>
       )}

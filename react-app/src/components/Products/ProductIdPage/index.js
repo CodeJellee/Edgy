@@ -1,15 +1,18 @@
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+
 import * as reviewsActions from '../../../store/reviews'
 import * as productsActions from '../../../store/products'
+
 import { useSelector, useDispatch } from "react-redux";
-import ReviewForm from "../../Reviews/ReviewForm"
+import ReviewForm from "../../Reviews/ReviewForm";
 import ReviewCard from "../../Reviews/ReviewCard";
 import './ProductIdPage.css'
 
 
 
 function ProductIdPage() {
+
     const { id } = useParams()
 
 
@@ -73,9 +76,9 @@ function ProductIdPage() {
                     <div className='PID-product'>
                         <div className='PID-all-Images'>
                             <div className='PID-images-div'>
-                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/9b902f/4473276055/il_794xN.4473276055_fcxk.jpg" alt="filler image 2"></img>
-                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/2f8cab/4425918302/il_794xN.4425918302_1x8r.jpg" alt="filler image 3"></img>
-                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/401a30/4473276305/il_794xN.4473276305_qrxw.jpg" alt="filler image 4"></img>
+                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/9b902f/4473276055/il_794xN.4473276055_fcxk.jpg" alt="filler 2"></img>
+                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/2f8cab/4425918302/il_794xN.4425918302_1x8r.jpg" alt="filler 3"></img>
+                                <img className='PID-small-img' onClick={changeMainImage} src="https://i.etsystatic.com/31560168/r/il/401a30/4473276305/il_794xN.4473276305_qrxw.jpg" alt="filler 4"></img>
                             </div>
                             <div className='PID-main-image-div'>
                                 <img className='PID-main-image' onClick={changeMainImage} src={mainImage} alt="filler image"></img>
@@ -132,8 +135,13 @@ function ProductIdPage() {
 
                 </div>
             </div>
+
         </>
-    );
+      ))}
+
+      <h1>hi</h1>
+    </>
+  );
 }
 
 export default ProductIdPage;
