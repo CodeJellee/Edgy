@@ -11,7 +11,7 @@
 
     .sections {
         display: flex;
-        margin: 30px;
+        margin: 25px;
         background-color: white;
         max-width: 60%;
         max-height: auto;
@@ -31,10 +31,12 @@
     }
 
     .epTitle {
-        width: 48%;
+        width: 49%;
         margin-left: 1px;
-        line-height: 15px;
-        margin-top: 5%;
+    }
+
+    .epTitle > h2 {
+        line-height: 25px;
     }
 
     .imgOne > img {
@@ -52,6 +54,9 @@
     .sec1, .sec2 {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        margin-left: 8px;
+        margin-right: 8px;
     }
 
     .sec2 {
@@ -59,7 +64,8 @@
     }
 
     .epTitle > h3 {
-        font-size: 15px;
+        font-size: 13px;
+        color: gray;
     }
 
     .epTitle > h2 {
@@ -68,6 +74,13 @@
 
     .epTitle > a {
         text-decoration: none;
-        color: grey;
-        font-size: 20px;
+        color: black;
+        font-size: 18px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .epTitle > a > i {
+        font-size: 14px;
     }
