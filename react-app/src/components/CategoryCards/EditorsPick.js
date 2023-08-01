@@ -27,7 +27,7 @@ function EditorsPickCard(){
                 <div className='epTitle'>
                 <h3>Editors' Picks</h3>
                  <h2>Best Tech Items For Gaming Setup</h2>
-                 <Link to='/categories/computer'>See more</Link>
+                 <Link to='/categories/computer'>See more<i class="fa-solid fa-arrow-right"></i></Link>
                 </div>
                 <div className='imgOne'>
                     <img src={eachProduct[0]?.preview_imageURL} alt="meaningful text"></img>

@@ -28,7 +28,7 @@ function EditorsPickTwoCard(){
             <div className="epTwoTitle">
             <h3>Editors' Picks</h3>
                  <h2>Personalized Gifts</h2>
-                 <Link to='/categories/computer'>See more</Link>
+                 <Link to='/categories/computer'>Shop these unique finds <i class="fa-solid fa-arrow-right"></i></Link>
             </div>
             <div className='imgTwo1'>
                     <img src={eachProduct[0]?.preview_imageURL} alt="meaningfult text"></img>

@@ -12,7 +12,10 @@ function Navigation({ isLoaded }){
 		<div className="navigations">
 		<div className="edgy">
 		<h1>Edgy</h1>
-		<input type="search" placeholder='Search for anything'></input>
+		<div className="s">
+		<input type="text" placeholder='Search for anything'></input>
+		<i id="searchI" class="fa-solid fa-magnifying-glass"></i>
+		</div>
 		{isLoaded && (
 				<div className="user">
 					<ProfileButton user={sessionUser} />
@@ -24,14 +27,14 @@ function Navigation({ isLoaded }){
 		<div className="navigation">
 			<li className='nav'>
 				<NavLink exact to="/">Home</NavLink>
-				<NavLink exact to="/categories/clothing">Clothing</NavLink>
+				<NavLink exact to="/categories/clothing">Clothing & Shoes</NavLink>
 				<NavLink exact to="/categories/home_decor">Home Decor</NavLink>
 				<NavLink exact to="/categories/accessories">Jewlery & Accessories</NavLink>
 				<NavLink exact to="/categories/computer">Computer & Tech</NavLink>
 				<NavLink exact to="/categories/waifu_body_pillows">Waifu Body Pillows</NavLink>
 				<NavLink exact to="/categories/books">Manga</NavLink>
 				<NavLink exact to="/categories/music">Music & Entertainment</NavLink>
-				<NavLink exact to="/categories/figurines">Figurines</NavLink>
+				<NavLink exact to="/categories/figurines">Art & Figurines</NavLink>
 			</li>
 		</div>
 		</div>
