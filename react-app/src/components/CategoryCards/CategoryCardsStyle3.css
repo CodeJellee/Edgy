@@ -49,12 +49,15 @@
 }
 
 .epTwoTitle {
-    margin-top: 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
 .epDescription {
-    margin-top: 10%;
+    display: flex;
+    align-items: center;
 }
 
 .epDescription > h3 {
