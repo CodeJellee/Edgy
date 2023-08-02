@@ -72,7 +72,7 @@ export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
   });
   product = await product.json();
   // await dispatch(postItemInCartAction(product))
-  // await dispatch(thunkGetShoppingCart())
+  await dispatch(thunkGetShoppingCart())
   return product
 }
 
