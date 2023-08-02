@@ -68,6 +68,7 @@ export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
       productId,
       userId,
     }),
+    // console.log('THIS IS PRODUCT', product)
   });
   product = await product.json();
   dispatch(postItemInCartAction(product))
@@ -103,7 +104,7 @@ export default function reducer(state = initialState, action) {
     case POST_ITEM_IN_CART: {
       newState = { ...state };
       newState.userCart = { ...newState.userCart };
-      newState.userCart[action.Product.id] = { ...action.product };
+      newState.userCart[action.productId] = { ...action.product };
       return newState
     }
     default:

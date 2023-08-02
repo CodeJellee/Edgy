@@ -191,6 +191,8 @@ def post_cart_items(productId):
         )
         db.session.add(add_to_cart)
         db.session.commit()
-        return {"message": "You've successfully added this item to cart."}
+        #UPDATE API FOR THE RETURN, NO MSG
+        print('ADD TO CART', add_to_cart.to_dict())
+        return add_to_cart.to_dict()
     else:
         return {"message": "Item couldn't be found"}
