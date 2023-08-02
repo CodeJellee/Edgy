@@ -75,7 +75,7 @@ export const thunkDeleteFavorite = (productId) => async (dispatch) => {
 
 //? ================== reducer================================//
 
-/**
+/** State:
  favorites: {
       user: {
         userData
@@ -83,6 +83,7 @@ export const thunkDeleteFavorite = (productId) => async (dispatch) => {
       userFavorites: {
         [productId]: {
             productData
+            seller: { sellerInfo }
         }
       }
     }
@@ -95,10 +96,11 @@ export default function reducer(state = initialState, action) {
     case GET_USER_FAVORITES_ACTION: {
       newState = { ...state };
       // console.log("this is the favs in the reducer =======>", action.favs);
-      action.favs.Favorites.Products.forEach(
-        (product) => (newState.userFavorites[product.id] = { ...product })
-      );
-      newState.user = { ...action.favs.Favorites.User };
+      // action.favs.Favorites.Products.forEach(
+      //   (product) => (newState.userFavorites[product.id] = { ...product })
+      // );
+      newState.userFavorites = { ...action.favs.Favorites };
+      newState.user = { ...action.favs.User };
       return newState;
     }
     case POST_FAVORITE_PRODUCT_ACTION: {

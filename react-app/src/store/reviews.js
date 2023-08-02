@@ -44,6 +44,8 @@ export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
   if (response.ok) {
 
     const productReviewsData = await response.json();
+
+    
     if (productReviewsData.errors) {
       return;
     }

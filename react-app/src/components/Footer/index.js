@@ -32,11 +32,14 @@ function Footer(){
                 </div>
             <div className="footer4">
                 <p>Yes! Send me exclusive offers, unique gift ideas, and personalized tips for shopping and selling on Edgy.</p>
+                <div className="e">
                 <input type="email" placeholder="Enter your email"></input>
+                <span>Subscribe</span>
+                </div>
             </div>
             </div>
             <div className="footer5">
-            <i>icon</i>
+            <i class="fa-solid fa-globe"></i>
             <p>Edgy is powered by 100% renewable electricity.</p>
             </div>
         </div>
@@ -71,31 +74,32 @@ function Footer(){
             <h3>Help</h3>
             <p>Help Center</p>
             <p>Privacy settings</p>
-            <div>Download the Edgy App</div>
+            <div className="app"><i class="fa-solid fa-e"></i>Download the Edgy App</div>
             <div className="iconFoot">
-                <i>icon 1</i>
-                <i>icon 2</i>
-                <i>icon 3</i>
-                <i>icon 4</i>
-                <i>icon 5</i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-pinterest"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-youtube"></i>
             </div>
         </div>
     </div>
     <div className="footer1">
         <div className="foot1">
+        <img src="https://m.media-amazon.com/images/I/51froJYdRmL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="meaningful text"></img>
         <p>United States</p>
         <p>|</p>
-        <p>English</p>
+        <p>English (US)</p>
         <p>|</p>
         <p>$ (USD)</p>
         </div>
         <div className="foot2">
-        <p>© 2023 Edgy, Inc.</p>
-        <p>Terms of use</p>
-        <p>Privacy</p>
-        <p>Interest-based ads</p>
-        <p>Local Shops</p>
-        <p>Regions</p>
+        <p >© 2023 Edgy, Inc.</p>
+        <p className="line">Terms of use</p>
+        <p className="line">Privacy</p>
+        <p className="line">Interest-based ads</p>
+        <p className="line">Local Shops</p>
+        <p className="line">Regions</p>
         </div>
     </div>
     </div>

@@ -1,12 +1,35 @@
 
 .products {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 25% 25% 25% 24%;
+    margin-left: 35px;
+    margin-right: 55px;
+    gap: 15px;
+    row-gap: 30px;
 }
 
 .p > img {
-    height: 200px;
-    width: 200px
+    height: 270px;
+    width: 100%
 }
 
+.p > .itemName {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 
+.page {
+    width: 100%;
+    height: 200px;
+    background-color: #BC6FF1;
+    position: absolute;
+    left: 0;
+}
+
+.pageT {
+    margin-top: 250px;
+    margin-left: 35px;
+}
+
+.hi {}
