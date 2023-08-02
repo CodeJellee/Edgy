@@ -136,12 +136,14 @@ export default function reducer(state = initialState, action) {
     }
     case GET_USER_PRODUCTS_ACTION: {
       newState = { ...state };
+      console.log("this is newState before in reducer", newState);
       console.log("this is state BEFORE the forEach loop", state);
       console.log("this is action.products", action.products);
-      // newState.userProducts = {};
-      action.products.Products.forEach(
-        (product) => (newState.userProducts[product.id] = product)
-      );
+      newState.userProducts = {};
+      action.products.Products.forEach((product) => {
+        console.log("inside foreach");
+        newState.userProducts[product.id] = product;
+      });
       return newState;
     }
     case CREATE_PRODUCT_ACTION: {
