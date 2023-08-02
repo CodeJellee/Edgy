@@ -83,7 +83,7 @@ function ProductIdPage() {
 
         if (Object.values(user).length > 0) {
 
-            console.log("user check:", user)
+            // console.log("user check:", user)
             noUserReviewExist = products.every(review => review.userId !== user.id)
             notSeller = user.id !== product.Seller.id
 
@@ -93,7 +93,7 @@ function ProductIdPage() {
     }
 
     // should start false
-    console.log(noUserReviewExist)
+    // console.log(noUserReviewExist)
     // setHasReview(userReviewExist)
 
 

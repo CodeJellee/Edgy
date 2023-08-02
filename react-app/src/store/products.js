@@ -50,9 +50,6 @@ export const thunkGetAllProducts = () => async (dispatch) => {
     },
   });
 
-
-
-
   // console.log(response)
   if (response.ok) {
     const data = await response.json();
@@ -139,9 +136,9 @@ export default function reducer(state = initialState, action) {
     }
     case GET_USER_PRODUCTS_ACTION: {
       newState = { ...state };
-      // console.log("this is state", state);
-      // console.log("this is action.products", action.products);
-      newState.userProducts = {};
+      console.log("this is state BEFORE the forEach loop", state);
+      console.log("this is action.products", action.products);
+      // newState.userProducts = {};
       action.products.Products.forEach(
         (product) => (newState.userProducts[product.id] = product)
       );

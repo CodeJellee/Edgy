@@ -13,15 +13,15 @@ function Categories({ category, name }) {
     dispatch(productActions.thunkGetAllProducts())
   }, [dispatch])
 
-  console.log(name)
+  // console.log(name)
 
   let eachProduct = Object.values(products)
 
   if (!eachProduct || eachProduct.length === 0) return <h1>Loading</h1>
 
-  console.log(Array.isArray(eachProduct))
+  // console.log(Array.isArray(eachProduct))
   eachProduct = eachProduct.filter((p) => p.category == category)
-  console.log("products category:", eachProduct[0].Reviews)
+  // console.log("products category:", eachProduct[0].Reviews)
 
   return (
     <>
