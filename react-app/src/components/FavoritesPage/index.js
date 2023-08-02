@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { thunkGetUserFavorites } from "../../store/favorites";
 import "./FavoritesPage.css";
+import { useState } from "react";
 
 function FavoritesPage() {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ function FavoritesPage() {
   const userFavorites = useSelector((state) =>
     Object.values(state.favorites.userFavorites)
   );
+  const [heart, setHeart] = useState("fa-regular fa-heart");
 
   useEffect(() => {
     // insert thunk query to grab user's favorite items
@@ -17,6 +19,14 @@ function FavoritesPage() {
   }, [user.id, dispatch]);
 
   if (!user || userFavorites.length === 0) return null;
+
+  const handleHeartClick = () => {
+    setHeart((prevHeart) =>
+      prevHeart === "fa-regular fa-heart"
+        ? "fa-solid fa-heart"
+        : "fa-regular fa-heart"
+    );
+  };
 
   return (
     <div id="favorites__main-container">
@@ -52,11 +62,9 @@ function FavoritesPage() {
       {/* Can be one component for user-search-bar */}
       <div id="user-search-favorites__container">
         <div>
-          <div>
-            Favorite items <span>{userFavorites.length} items</span>
-          </div>
-          <div>Insert Search Bar Here</div>
+          Favorite items <span>{userFavorites.length} items</span>
         </div>
+        <div>Insert Search Bar Here</div>
       </div>
 
       {/* Can be all of user's favorited items component */}
@@ -70,6 +78,7 @@ function FavoritesPage() {
                   src={fav.preview_imageURL}
                   alt={`productId-${fav.productId}`}
                 />
+                <i class={heart} onClick={handleHeartClick} id={fav.id}></i>
               </div>
               <div>{fav.item_name}</div>
               <div>{fav.Seller.username}</div>
