@@ -30,7 +30,7 @@ function Categories({ category, name }) {
         <p>description</p>
       </div>
       <h1 className="pageT">Find something you love</h1>
-      <div classname="filter1">
+      <div className="filter1">
         <button>Estimated Arrival<span>Anytime</span></button>
         <button>All Filters</button>
       </div>
