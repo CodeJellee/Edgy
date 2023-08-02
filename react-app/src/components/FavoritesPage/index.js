@@ -61,10 +61,19 @@ function FavoritesPage() {
 
       {/* Can be one component for user-search-bar */}
       <div id="user-search-favorites__container">
-        <div>
+        <div id="user-favorites__count">
           Favorite items <span>{userFavorites.length} items</span>
         </div>
-        <div>Insert Search Bar Here</div>
+        <div id="user-favorites__search">
+          <input
+            type="search"
+            placeholder="Search Your Favorites"
+            id="search-favorites"
+          ></input>
+          <button id="search-button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
       </div>
 
       {/* Can be all of user's favorited items component */}
