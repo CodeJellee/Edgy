@@ -405,7 +405,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/6168e+KeTFL._AC_SY879_.jpg",
             "sellerId": 6,
         },
-         {
+        {
             "id": 41,
             "item_name": "Cool color changing headsets",
             "price": 19.99,
@@ -415,7 +415,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/71ca3Dw2YvS.jpg",
             "sellerId": 7,
         },
-          {
+        {
             "id": 42,
             "item_name": "Kawaii keyboard",
             "price": 29.99,
@@ -425,7 +425,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/61E9TUWewfL._AC_UF894,1000_QL80_.jpg",
             "sellerId": 7,
         },
-         {
+        {
             "id": 43,
             "item_name": "Gaming mouse",
             "price": 50.99,
@@ -445,7 +445,7 @@ def seed_products(users):
             "preview_imageURL": "https://i.etsystatic.com/11663546/r/il/a16b27/2610455987/il_570xN.2610455987_ldki.jpg",
             "sellerId": 7,
         },
-         {
+        {
             "id": 45,
             "item_name": "Cute Zero Two Anime",
             "price": 27.77,
@@ -455,7 +455,7 @@ def seed_products(users):
             "preview_imageURL": "https://ih1.redbubble.net/image.950233661.7889/pd,x500,macbook_air_13-pad,750x1000,f8f8f8.jpg",
             "sellerId": 1,
         },
-         {
+        {
             "id": 46,
             "item_name": "Black Cargo pants",
             "price": 15.99,
@@ -463,9 +463,9 @@ def seed_products(users):
             "description": "Own your inner darkness in these black baggy pants! Hot n' loaded with metal hardware, these stylish street goth pants feature silver O-rings, buckles, and zipper details. Complete with removable bondage straps and metal eyelets along the waistline. Adjust the accent straps around your legs for the sinfully perfect fit. Zip up the pant legs for a change in style!",
             "quantity": 43,
             "preview_imageURL": "https://i.pinimg.com/564x/1f/2f/17/1f2f173c65c43599390ce5ed5437386c.jpg",
-            "sellerId": 1,
+            "sellerId": 6,
         },
-         {
+        {
             "id": 47,
             "item_name": "EDGY MULTI POCKETS LOW WAIST GRAY PANTS",
             "price": 52.90,
@@ -485,7 +485,7 @@ def seed_products(users):
             "preview_imageURL": "https://img.joomcdn.net/358773d6ce397492a16a3d16ef817b780ff4936a_original.jpeg",
             "sellerId": 3,
         },
-         {
+        {
             "id": 49,
             "item_name": "Japanese demon art face Skull devil oni harajuku aesthetic T-Shirt",
             "price": 15.95,
@@ -505,7 +505,7 @@ def seed_products(users):
             "preview_imageURL": "https://i5.walmartimages.com/asr/b6c1c2d8-1c3b-43d6-8a09-a91edd89a61c.e744f72f2247a34a96558e2e4282fd6f.jpeg?odnHeight=2000&odnWidth=2000&odnBg=ffffff",
             "sellerId": 5,
         },
-         {
+        {
             "id": 51,
             "item_name": "OP Pirate Anime Wanted Posters",
             "price": 10.99,
@@ -525,7 +525,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/81aj17oH5fL.__AC_SY445_SX342_QL70_FMwebp_.jpg",
             "sellerId": 5,
         },
-         {
+        {
             "id": 53,
             "item_name": "Black skull lamp",
             "price": 39.99,
@@ -535,7 +535,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/717IYaih2PL.jpg",
             "sellerId": 1,
         },
-         {
+        {
             "id": 54,
             "item_name": "Pink Sakura Plush Pillow",
             "price": 28.99,
@@ -545,7 +545,7 @@ def seed_products(users):
             "preview_imageURL": "https://i.etsystatic.com/43642340/r/il/bedfac/5019666540/il_1588xN.5019666540_9g3o.jpg",
             "sellerId": 2,
         },
-         {
+        {
             "id": 55,
             "item_name": "Led Gamer Neon Sign Lights Game Controller Neon Sign for Gamer Room Decor Dimmable Neon Lights Gaming Boy Gifts Room Decor",
             "price": 31.49,
@@ -555,7 +555,7 @@ def seed_products(users):
             "preview_imageURL": "https://ae01.alicdn.com/kf/Sc1c1de4b33fd44c0826345b981b46524C/Led-Gamer-Neon-Sign-Lights-Game-Controller-Neon-Sign-for-Gamer-Room-Decor-Dimmable-Neon-Lights.jpg",
             "sellerId": 2,
         },
-         {
+        {
             "id": 56,
             "item_name": "Faux Leather Spike Rivet Choker Punk Necklace Jewelry",
             "price": 2.48,
@@ -575,7 +575,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/61FuwABGQxL._AC_UX679_.jpg",
             "sellerId": 6,
         },
-         {
+        {
             "id": 58,
             "item_name": "Egirl Aesthetic Skull Chokers",
             "price": 3.26,
@@ -585,7 +585,7 @@ def seed_products(users):
             "preview_imageURL": "https://ae01.alicdn.com/kf/Sd572d22180334eb9956d00392906cc98q.jpg_640x640Q90.jpg_.webp",
             "sellerId": 7,
         },
-         {
+        {
             "id": 59,
             "item_name": "Fairy Grunge Aesthetic Belt",
             "price": 13.99,
@@ -595,7 +595,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/61UcZLIGnkL._AC_UY1000_.jpg",
             "sellerId": 7,
         },
-         {
+        {
             "id": 60,
             "item_name": "Black Skull and Awl Earring 925 Sterling Silver",
             "price": 61.95,
@@ -615,7 +615,7 @@ def seed_products(users):
             "preview_imageURL": "https://i5.walmartimages.com/asr/f326f93f-546c-4941-a53b-3bb16b0a239d.fb52e6385c267667c95098e926f86526.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
             "sellerId": 5,
         },
-         {
+        {
             "id": 62,
             "item_name": "Genshin Impact Body Pillow - Dakimakura Mona Sorceress And Bunny Girl ",
             "price": 48.99,
@@ -625,7 +625,7 @@ def seed_products(users):
             "preview_imageURL": "https://k-minded.com/cdn/shop/products/9366b51a1f7c174fab9f1d03662bdba3_d53c9ee7-6823-4b76-8354-971f0c7a6b91.png?v=1658824036&width=1445",
             "sellerId": 5,
         },
-         {
+        {
             "id": 63,
             "item_name": "The Quintessential Quintuplets Nakano Nino Body Pillow Cover Zipper Anime Body Pillow Cover",
             "price": 40.00,
@@ -635,7 +635,7 @@ def seed_products(users):
             "preview_imageURL": "https://i.ebayimg.com/images/g/iqIAAOSwcX9j6z2G/s-l1200.jpg",
             "sellerId": 5,
         },
-         {
+        {
             "id": 64,
             "item_name": "Genshin Impact Anime Dakimakura Hugging Body Pillow Case Beelzebul Keqing 150cm Hentai Dakis",
             "price": 6.63,
@@ -645,7 +645,7 @@ def seed_products(users):
             "preview_imageURL": "https://ae01.alicdn.com/kf/Sc14c3129b81246dc850d6776594ab768w.jpg_640x640Q90.jpg_.webp",
             "sellerId": 5,
         },
-         {
+        {
             "id": 65,
             "item_name": "Acolor Zero Two Body Pillow Case Darling in The FRANXX Pillowcase Blanket Hugs Pillow Cover Manga Anime Cosplay Long Hugging Body Peach Skin",
             "price": 28.00,
@@ -655,7 +655,7 @@ def seed_products(users):
             "preview_imageURL": "https://images-cdn.ubuy.co.in/633b0cfbab8332772a08f4e6-zero-two-body-pillow-case-darling-in-the.jpg",
             "sellerId": 5,
         },
-         {
+        {
             "id": 66,
             "item_name": "Jujutsu Kaisen: Jujutsu Kaisen, Vol. 1",
             "price": 7.94,
@@ -665,7 +665,7 @@ def seed_products(users):
             "preview_imageURL": "https://i5.walmartimages.com/seo/Jujutsu-Kaisen-Jujutsu-Kaisen-Vol-1-Series-1-Paperback-9781974710027_6bee7e19-3dd4-44d5-bb89-6a6c8b38bf6b.8c40c502af450f9d46bb38f8b65510f5.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
             "sellerId": 2,
         },
-         {
+        {
             "id": 67,
             "item_name": "Zombie Makeout Club Vol 1: DeathWish",
             "price": 10.99,
@@ -675,7 +675,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/51umfKp7ekL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg",
             "sellerId": 2,
         },
-         {
+        {
             "id": 68,
             "item_name": "Black Butler, Vol. 1 (Black Butler, 1)",
             "price": 13.00,
@@ -685,7 +685,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/51Wip-j7MlL._SX498_BO1,204,203,200_.jpg",
             "sellerId": 4,
         },
-         {
+        {
             "id": 69,
             "item_name": "ETERNAL: ILya Kuvshinov Illustration Works",
             "price": 23.06,
@@ -695,7 +695,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/41Rz0ZNjFBL._SX398_BO1,204,203,200_.jpg",
             "sellerId": 2,
         },
-         {
+        {
             "id": 70,
             "item_name": "Kaiju Girl Caramelise, Vol. 1 (Kaiju Girl Caramelise, 1)",
             "price": 13.00,
@@ -725,7 +725,7 @@ def seed_products(users):
             "preview_imageURL": "https://upload.wikimedia.org/wikipedia/en/9/94/Christian_Death_-_Only_Theatre_Of_Pain.jpg",
             "sellerId": 3,
         },
-         {
+        {
             "id": 73,
             "item_name": "Kessoku Band",
             "price": 22.99,
@@ -735,7 +735,7 @@ def seed_products(users):
             "preview_imageURL": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3e/Kessoku_Band_album_cover.jpg/220px-Kessoku_Band_album_cover.jpg",
             "sellerId": 3,
         },
-           {
+        {
             "id": 74,
             "item_name": "μ's Best Album Best Live! collection II",
             "price": 12.99,
@@ -755,7 +755,7 @@ def seed_products(users):
             "preview_imageURL": "https://static.wikia.nocookie.net/shingekinokyojin/images/2/20/Season_2_Original_Soundtrack_Cover.jpg/revision/latest?cb=20170610005221",
             "sellerId": 3,
         },
-          {
+        {
             "id": 76,
             "item_name": "CALEMBOU Anime Figure Yae Miko Figure 1/7 PVC Home Decoration Collectible Figurines for Fans",
             "price": 59.99,
@@ -765,7 +765,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/61gaX5cG5aL.jpg",
             "sellerId": 5,
         },
-         {
+        {
             "id": 77,
             "item_name": "Honkai Impact 3Rd Series Anime Figure Raiden Mei Herrscher of Thunder 1/8 PVC Models Standard and Extended Versions Periphery Models Xmas Gift 25cm",
             "price": 85.98,
@@ -785,7 +785,7 @@ def seed_products(users):
             "preview_imageURL": "https://m.media-amazon.com/images/I/41bRjDAzxtL._AC_UF1000,1000_QL80_.jpg",
             "sellerId": 7,
         },
-         {
+        {
             "id": 79,
             "item_name": "TAMASHII NATIONS Son Goku Dragon Ball Z, Bandai Imagination Works , Black",
             "price": 54.98,
@@ -805,9 +805,6 @@ def seed_products(users):
             "preview_imageURL": "https://cdn.media.amplience.net/s/hottopic/19311492_hi",
             "sellerId": 4,
         },
-
-
-
     ]
 
     for product in products:
