@@ -49,13 +49,15 @@ export const thunkGetAllProducts = () => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
+
   // console.log(response)
   if (response.ok) {
     const data = await response.json();
-    // console.log(data);
+
     dispatch(getAllProducts(data));
     return data;
   }
+
   return "error";
 };
 
@@ -135,6 +137,7 @@ export default function reducer(state = initialState, action) {
     case GET_USER_PRODUCTS_ACTION: {
       newState = { ...state };
       // console.log("this is state", state);
+      // console.log("this is action.products", action.products);
       newState.userProducts = {};
       action.products.Products.forEach(
         (product) => (newState.userProducts[product.id] = product)

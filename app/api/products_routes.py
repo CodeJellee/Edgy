@@ -13,9 +13,22 @@ products_routes = Blueprint("products", __name__)
 
 @products_routes.route("/")
 def get_products():
+
+
+    dictToPass = {}
     products = Product.query.all()
     products = [p.to_dict() for p in products]
-    return {"Products": products}
+    # pprint(products[0])
+    dictToPass["Products"] = products
+
+    for product in products:
+        # print("product id", product["id"])
+        reviews = Review.query.filter(Review.productId == product["id"])
+        reviews = [review.to_dict() for review in reviews ]
+        print("length", len(reviews))
+        product["Reviews"] = reviews
+
+    return dictToPass
 
 
 # @login.user_loader
@@ -191,6 +204,8 @@ def post_cart_items(productId):
         )
         db.session.add(add_to_cart)
         db.session.commit()
-        return {"message": "You've successfully added this item to cart."}
+        #UPDATE API FOR THE RETURN, NO MSG
+        print('ADD TO CART', add_to_cart.to_dict())
+        return add_to_cart.to_dict()
     else:
         return {"message": "Item couldn't be found"}
