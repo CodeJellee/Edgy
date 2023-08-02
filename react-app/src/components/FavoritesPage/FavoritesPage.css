@@ -43,7 +43,7 @@ img {
     flex-basis: 25%;
     margin: 10px 10px;
 }
-
+/** SEARCH BAR  */
 #search-favorites {
     width: 82%;
     height: 48px;
@@ -51,7 +51,6 @@ img {
     border: 2px solid black;
     padding-left: 20px;
     font-size: 16px;
-    border-color: black;
     background-color: rgba(0,0,0,0);
   }
 
@@ -59,8 +58,6 @@ img {
     flex-basis: 49%;
 }
 
-
-/** SEARCH BAR  */
 #user-favorites__search {
     display: flex;
     flex-basis: 49%;
@@ -79,8 +76,4 @@ img {
     background-color: transparent;
     border: none;
     cursor: pointer;
-}
-
-#search-favorites {
-    padding-right: 100px;
 }

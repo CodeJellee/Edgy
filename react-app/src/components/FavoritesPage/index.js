@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { thunkGetUserFavorites } from "../../store/favorites";
-import "./FavoritesPage.css";
 import { useState } from "react";
 import FavoriteButton from "./FavoritesButton";
 import * as favoriteActions from "../../store/favorites";
+import "../Navigation/Navigation.css";
+import "./FavoritesPage.css";
 
 function FavoritesPage() {
   const dispatch = useDispatch();
