@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-function FavoriteButton({ productId, handleUnfavoriteClick }) {
-  const [solid, setSolid] = useState(true);
+function FavoriteButton({ productId, handleUnfavoriteClick, initialState }) {
+  const [solid, setSolid] = useState(initialState);
   //   console.log("this is solid value", solid);
   //   console.log("this is the product id", productId);
 
