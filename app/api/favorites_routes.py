@@ -39,18 +39,28 @@ def get_current_favorites():
 
         # dictionary each vendor by userId: user_data in order to grab their info
         vendor = {user.id: user.to_dict() for user in vendor_user_info}
-
+        # print(user.to_dict())
         # group the products by sellerId into a dictionary
         grouped_products = {}
         for product in user_favorites:
             seller_id = product.get("sellerId")
+            # print(isinstance(seller_id, int))
             if seller_id in vendor:
                 grouped_products.setdefault(seller_id, []).append(product)
 
         # pprint(grouped_products)
 
+        # !! FORMATTING OF THE DATA
         # this will be our return data and we will formulate how it will look
-        user_favorites_and_seller_data = {}
+        user_favorites_and_seller_data = {
+            # "User": {
+            #     "id": user.id,
+            #     "first_name": user.first_name,
+            #     "last_name": user.last_name,
+            #     "username": user.username,
+            #     "email": user.email,
+            # }
+        }
 
         # grouped_products is a dictionary of key: value pairs
         # seller_id: products
@@ -73,7 +83,7 @@ def get_current_favorites():
                         "username": user_data["username"],
                     },
                 }
-        return {"Favorites": user_favorites_and_seller_data}
+        return {"Favorites": user_favorites_and_seller_data, "User": user.to_dict()}
     return {"message": "Favorites couldn't be found"}
 
 

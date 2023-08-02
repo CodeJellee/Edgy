@@ -20,3 +20,12 @@
 .column {
     width: 900px;
 }
+
+
+.error-text {
+    color: red
+}
+
+.pStars {
+    color: #52057B
+}

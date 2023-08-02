@@ -49,13 +49,18 @@ export const thunkGetAllProducts = () => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
+
+
+
+
   // console.log(response)
   if (response.ok) {
     const data = await response.json();
-    // console.log(data);
+
     dispatch(getAllProducts(data));
     return data;
   }
+
   return "error";
 };
 

@@ -6,8 +6,7 @@ function ReviewCard({ userFirstName, review, from }) {
     if (from === "userReviews") {
         loadProductName = true
     }
-    // console.log(from)
-    // console.log(loadProductName)
+
 
     let numOfStars = review.stars
     let star = []
@@ -30,20 +29,20 @@ function ReviewCard({ userFirstName, review, from }) {
                         </Link>
                     }
 
-                    {star.map(() => (
-                        <i className="fas fa-star PID-stars RC-stars" />
+                    {star.map((star, idx) => (
+                        <i key={idx} className="fas fa-star PID-stars RC-stars" />
                     ))}
 
 
                 </div>
-                <p>
+                <p className='Rc-review'>
                     {review.review}
                 </p>
                 {/* <div className="Rc-name-date"> */}
-                <p><span className='Rc-username-span'>{userFirstName}  </span>               {review.createdAt}  </p>
+                <p className='Rc-name-date-p'> <span className='Rc-username-span'>{userFirstName}  </span> -  {review.createdAt}  </p>
 
                 {/* </div> */}
-                <hr className='Rc-hr'></hr>
+                <hr className='Rc-hr Rc-hr-bottom'></hr>
             </div>
 
 

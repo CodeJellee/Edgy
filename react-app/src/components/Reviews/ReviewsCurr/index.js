@@ -13,11 +13,11 @@ function ReviewsCurr() {
 
   useEffect(() => {
     dispatch(reviewsActions.thunkGetReviewsById(currentUser.id));
-  }, [dispatch]);
+  }, [dispatch, currentUser.id]);
 
   if (!userReviews.User) return <h1>...loading</h1>;
 
-  // console.log(userReviews)
+
   return (
     <>
       {userReviews.Reviews.map((review) => (

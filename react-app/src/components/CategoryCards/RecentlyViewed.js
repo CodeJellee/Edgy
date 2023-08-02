@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as productActions from "../../store/products"
 import './CategoryCardsStyle4.css'
+import Stars from './Stars'
+
 
 
 
@@ -21,7 +23,12 @@ function RecentlyReviewedCard(){
 
         eachProduct = eachProduct.filter((p) => p.category === "Music")
 
-        console.log(eachProduct)
+        console.log("each product:", eachProduct)
+
+
+
+
+
 
     return (
         <div className="popular">
@@ -31,6 +38,9 @@ function RecentlyReviewedCard(){
                 <div className="popP">
                 <img src={p.preview_imageURL} alt="meaningfult text"></img>
                 <p className="popTitle">{p.item_name}</p>
+
+                <Stars reviews={p.Reviews}></Stars>
+              
                 <p>${p.price}</p>
                 </div>
             )}

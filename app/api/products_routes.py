@@ -13,9 +13,22 @@ products_routes = Blueprint("products", __name__)
 
 @products_routes.route("/")
 def get_products():
+
+
+    dictToPass = {}
     products = Product.query.all()
     products = [p.to_dict() for p in products]
-    return {"Products": products}
+    # pprint(products[0])
+    dictToPass["Products"] = products
+
+    for product in products:
+        # print("product id", product["id"])
+        reviews = Review.query.filter(Review.productId == product["id"])
+        reviews = [review.to_dict() for review in reviews ]
+        print("length", len(reviews))
+        product["Reviews"] = reviews
+
+    return dictToPass
 
 
 # @login.user_loader
