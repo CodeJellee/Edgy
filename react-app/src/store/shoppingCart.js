@@ -4,6 +4,7 @@
 
 const GET_SHOPPING_CART= "shoppingCart/GET_SHOPPING_CART"
 const DELETE_CART_ITEM= "shoppingCart/DELETE_CART_ITEM"
+const POST_ITEM_IN_CART="shoppingCart/POST_ITEM_IN_CART"
 
 //?  ===================end of types ===================//
 
@@ -23,6 +24,12 @@ const deleteShoppingCartAction = (productId) => {
   }
 }
 
+const postItemInCartAction = (productId) => {
+  return{
+    type:POST_ITEM_IN_CART,
+    productId
+  }
+}
 //*  ======================= end of actions ===================//
 
 //*  =====================  thunks ===========================//
@@ -51,6 +58,23 @@ export const thunkDeleteCartItem = (productId) => async (dispatch) => {
   return product
 }
 
+export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
+  let product = await fetch(`/api/products/${productId}/add_to_cart`, {
+    method: "POST",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      productId,
+      userId,
+    }),
+    // console.log('THIS IS PRODUCT', product)
+  });
+  product = await product.json();
+  dispatch(postItemInCartAction(product))
+  return product
+}
+
 //*  ======================= end of thunks ===================//
 
 
@@ -76,6 +100,12 @@ export default function reducer(state = initialState, action) {
       // console.log('NEWSTATE.USERCART', newState.userCart)
       delete newState.userCart[action.productId];
       return newState;
+    }
+    case POST_ITEM_IN_CART: {
+      newState = { ...state };
+      newState.userCart = { ...newState.userCart };
+      newState.userCart[action.productId] = { ...action.product };
+      return newState
     }
     default:
       return state;
