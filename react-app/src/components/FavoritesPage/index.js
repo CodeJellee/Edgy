@@ -83,6 +83,7 @@ function FavoritesPage() {
                   productId={fav.id}
                   handleUnfavoriteClick={handleUnfavoriteClick}
                   handleFavoriteClick={handleFavoriteClick}
+                  initialState={true}
                 />
               </div>
               <div>{fav.item_name}</div>
