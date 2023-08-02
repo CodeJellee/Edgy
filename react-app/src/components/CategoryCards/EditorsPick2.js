@@ -37,7 +37,7 @@ function EditorsPickTwoCard(){
                     <img src={eachProduct[1]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgTwo3'>
-                    <img src={eachProduct[2]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[3]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
             </div>
             <div className='sec4'>
@@ -45,10 +45,10 @@ function EditorsPickTwoCard(){
                     <img src={eachProduct[3]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgTwo5'>
-                    <img src={eachProduct[4]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[8]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgTwo6'>
-                    <img src={eachProduct[0]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[6]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='epDescription'>
                 <h3>Thoughtful gifts galore at affordable prices you’ll adore</h3>

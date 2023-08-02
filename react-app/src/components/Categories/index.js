@@ -2,14 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as productActions from "../../store/products";
 import "./Categories.css";
+import FooterTwo from "../Footer/index2";
 
-function Categories({ category }) {
+function Categories({ category, name }) {
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(productActions.thunkGetAllProducts())
-}, [dispatch])
+    }, [dispatch])
+
+    console.log(name)
 
    let eachProduct = Object.values(products)
 
@@ -19,20 +22,28 @@ function Categories({ category }) {
 
     return (
         <>
-        <h2>{category}</h2>
-        <h1>Find something you love</h1>
+        <div className="page">
+            {name}
+            <p>description</p>
+        </div>
+        <h1 className="pageT">Find something you love</h1>
+        <div classname="filter1">
+            <button>Estimated Arrival<span>Anytime</span></button>
+            <button>All Filters</button>
+        </div>
+        <div className="filter2">
+        <button><span>Sort by:</span>Revelancy</button>
+        </div>
         <div className="products">
         {eachProduct.map((p) =>
-            <div className="p">
+          <div className="p">
             <img src={p.preview_imageURL}></img>
-            <p>{p.item_name}</p>
-            <p>{p.price}</p>
-            <p>{p.quantity}</p>
-            <p>{p.description}</p>
-            <p>{p.category}</p>
+            <p className="itemName">{p.item_name}</p>
+            <p>${p.price}</p>
           </div>
         )}
       </div>
+      <FooterTwo />
     </>
   );
 }

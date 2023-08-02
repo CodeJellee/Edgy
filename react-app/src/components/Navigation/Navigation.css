@@ -8,7 +8,8 @@
 
 .nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  gap: 65px;
   width: 100%
 }
 
@@ -21,7 +22,7 @@
 .edgy {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   height: 55px;
   margin-bottom: 14px
 }
@@ -48,6 +49,7 @@
   position: absolute;
   width: 100%;
   height: 2px;
+  z-index: 2;
 }
 
 .user, .edgy > i {
@@ -56,6 +58,7 @@
 
 .edgy > i {
   cursor: pointer;
+  font-size: 20px;
 }
 
 .edgy > h1 {
@@ -67,13 +70,14 @@
   text-decoration: none;
   color: black;
   font-size: 13px;
-  height: 15px;
+  max-height: 60px;
 }
 
 .signIn {
   width: 45px;
   font-size: 14px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 #searchI {
@@ -85,7 +89,7 @@
 }
 
 .s {
-  width: 82%;
+  width: 88%;
   display: flex;
   justify-content: flex-end;
 }

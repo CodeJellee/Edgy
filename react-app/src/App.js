@@ -42,28 +42,28 @@ function App() {
             <ShoppingCart />
           </Route>
           <Route exact path="/categories/clothing">
-            <Categories category="Clothing" />
+            <Categories category="Clothing" name="Clothing & Shoes" />
           </Route>
           <Route exact path="/categories/home_decor">
-            <Categories category="Home Decor" />
+            <Categories category="Home Decor" name="Home Decor" />
           </Route>
           <Route exact path="/categories/accessories">
-            <Categories category="Accessories" />
+            <Categories category="Accessories" name="Jewlery & Accessories" />
           </Route>
           <Route exact path="/categories/computer">
-            <Categories category="Computer" />
+            <Categories category="Computer" name="Computer & Tech" />
           </Route>
           <Route exact path="/categories/waifu_body_pillows">
-            <Categories category="Waifu Body Pillows" />
+            <Categories category="Waifu Body Pillows" name="Waifu Body Pillows" />
           </Route>
           <Route exact path="/categories/books">
-            <Categories category="Books" />
+            <Categories category="Books" name="Manga" />
           </Route>
           <Route exact path="/categories/music">
-            <Categories category="Music" />
+            <Categories category="Music" name="Music & Entertainment" />
           </Route>
           <Route exact path="/categories/figurines">
-            <Categories category="Figurines" />
+            <Categories category="Figurines" name="Art & Figurines" />
           </Route>
           <Route path="/products/:id">
             <ProductIdPage />
@@ -76,7 +76,6 @@ function App() {
           </Route>
         </Switch>
       )}
-      <Footer />
     </>
   );
 }

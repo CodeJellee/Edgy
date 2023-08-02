@@ -23,12 +23,17 @@ function RecentlyReviewedCard(){
 
         eachProduct = eachProduct.filter((p) => p.category === "Music")
 
+<<<<<<< HEAD
         console.log("each product:", eachProduct)
 
 
 
 
 
+=======
+        eachProduct = eachProduct.slice(0, 5)
+        console.log(eachProduct)
+>>>>>>> products_routes
 
     return (
         <div className="popular">
