@@ -9,6 +9,8 @@ import ReviewForm from "../../Reviews/ReviewForm";
 import ReviewCard from "../../Reviews/ReviewCard";
 import './ProductIdPage.css'
 
+import PutCartIemToCart from "./PutItemToCart";
+
 
 
 function ProductIdPage() {
@@ -144,6 +146,7 @@ function ProductIdPage() {
                             <div className='PID-buttons'>
                                 <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>
                                 <button className='PID-cartButt PID-P-button'>Add to cart</button>
+                                <PutCartIemToCart productId={product.id}/>
                                 <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button>
                             </div>
 
