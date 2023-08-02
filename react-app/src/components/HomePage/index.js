@@ -8,6 +8,9 @@ import ShopLookCard from "../CategoryCards/ShopTheLook";
 import EditorsPickTwoCard from "../CategoryCards/EditorsPick2";
 import RecentlyReviewedCard from "../CategoryCards/RecentlyViewed";
 import ShopSelectionCard from "../CategoryCards/ShopSelection";
+import FreshArticlesCard from "../CategoryCards/FreshArticles";
+import Footer from "../Footer";
+
 
 function HomePage(){
     const { products } = useSelector((state) => state.products)
@@ -57,6 +60,8 @@ function HomePage(){
             <ShopLookCard />
             <EditorsPickCard/>
             <ShopSelectionCard />
+            <FreshArticlesCard />
+            <Footer />
             </>
             )
 

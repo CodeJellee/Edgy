@@ -27,7 +27,7 @@ function EditorsPickCard(){
                 <div className='epTitle'>
                 <h3>Editors' Picks</h3>
                  <h2>Best Tech Items For Gaming Setup</h2>
-                 <Link to='/categories/computer'>See more</Link>
+                 <Link to='/categories/computer'>See more<i class="fa-solid fa-arrow-right"></i></Link>
                 </div>
                 <div className='imgOne'>
                     <img src={eachProduct[0]?.preview_imageURL} alt="meaningful text"></img>
@@ -38,16 +38,16 @@ function EditorsPickCard(){
                 </div>
                 <div className="sec2">
                 <div className='imgOne'>
-                    <img src={eachProduct[2]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[7]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgOne'>
-                    <img src={eachProduct[3]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[6]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgOne'>
                     <img src={eachProduct[4]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgOne'>
-                    <img src={eachProduct[0]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[5]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 </div>
                 </div>

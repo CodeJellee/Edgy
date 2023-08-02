@@ -28,7 +28,7 @@ function EditorsPickTwoCard(){
             <div className="epTwoTitle">
             <h3>Editors' Picks</h3>
                  <h2>Personalized Gifts</h2>
-                 <Link to='/categories/computer'>See more</Link>
+                 <Link to='/categories/computer'>Shop these unique finds <i class="fa-solid fa-arrow-right"></i></Link>
             </div>
             <div className='imgTwo1'>
                     <img src={eachProduct[0]?.preview_imageURL} alt="meaningfult text"></img>
@@ -37,7 +37,7 @@ function EditorsPickTwoCard(){
                     <img src={eachProduct[1]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgTwo3'>
-                    <img src={eachProduct[2]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[3]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
             </div>
             <div className='sec4'>
@@ -45,10 +45,10 @@ function EditorsPickTwoCard(){
                     <img src={eachProduct[3]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgTwo5'>
-                    <img src={eachProduct[4]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[8]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgTwo6'>
-                    <img src={eachProduct[0]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[6]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='epDescription'>
                 <h3>Thoughtful gifts galore at affordable prices you’ll adore</h3>
