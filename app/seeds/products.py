@@ -460,7 +460,8 @@ def seed_products(users):
             "item_name": "Black Cargo pants",
             "price": 15.99,
             "category": "Clothing",
-            "description": "Own your inner darkness in these black baggy pants! Hot n' loaded with metal hardware, these stylish street goth pants feature silver O-rings, buckles, and zipper details. Complete with removable bondage straps and metal eyelets along the waistline. Adjust the accent straps around your legs for the sinfully perfect fit. Zip up the pant legs for a change in style!",
+            "description": "Own your inner darkness in these black baggy pants!",
+            # Hot n' loaded with metal hardware, these stylish street goth pants feature silver O-rings, buckles, and zipper details. Complete with removable bondage straps and metal eyelets along the waistline. Adjust the accent straps around your legs for the sinfully perfect fit. Zip up the pant legs for a change in style!
             "quantity": 43,
             "preview_imageURL": "https://i.pinimg.com/564x/1f/2f/17/1f2f173c65c43599390ce5ed5437386c.jpg",
             "sellerId": 6,
