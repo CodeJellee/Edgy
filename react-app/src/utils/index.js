@@ -1,6 +1,6 @@
 
 
- const makeStars = (reviewsArray) => {
+const makeStars = (reviewsArray) => {
 
     let sum = 0
     // let count = product.Reviews.length
@@ -22,7 +22,10 @@
         stars.push("filler")
     }
 
-    return stars
+    return {
+        "stars": stars,
+        "count": count
+    }
 }
 
 export default makeStars
