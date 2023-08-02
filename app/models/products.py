@@ -27,9 +27,9 @@ class Product(db.Model):
     item_name = db.Column(db.String(255))
     price = db.Column(db.Integer, nullable=False)
     category = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    preview_imageURL = db.Column(db.String, nullable=False)
+    preview_imageURL = db.Column(db.Text, nullable=False)
     sellerId = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
     )
@@ -85,7 +85,7 @@ class ProductImage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # other columns
     productId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")))
-    product_imageURL = db.Column(db.String(255), nullable=True)
+    product_imageURL = db.Column(db.Text, nullable=True)
 
     # One-to-Many Relationship with Product and ProductImage
     # This relationship states that ProductImage will be listening to the class Product

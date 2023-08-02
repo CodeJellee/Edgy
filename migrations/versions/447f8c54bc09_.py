@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 240e44c88b40
+Revision ID: 447f8c54bc09
 Revises:
-Create Date: 2023-08-02 13:05:17.079323
+Create Date: 2023-08-02 13:22:23.406824
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = "c9f396aa631b"
+revision = "447f8c54bc09"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,9 +41,9 @@ def upgrade():
         sa.Column("item_name", sa.String(length=255), nullable=True),
         sa.Column("price", sa.Integer(), nullable=False),
         sa.Column("category", sa.String(length=255), nullable=False),
-        sa.Column("description", sa.String(length=255), nullable=False),
+        sa.Column("description", sa.Text(), nullable=False),
         sa.Column("quantity", sa.Integer(), nullable=False),
-        sa.Column("preview_imageURL", sa.String(), nullable=False),
+        sa.Column("preview_imageURL", sa.Text(), nullable=False),
         sa.Column("sellerId", sa.Integer(), nullable=False),
         sa.Column("createdAt", sa.DateTime(), nullable=True),
         sa.Column("updatedAt", sa.DateTime(), nullable=True),
@@ -92,7 +92,7 @@ def upgrade():
         "product_images",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("productId", sa.Integer(), nullable=True),
-        sa.Column("product_imageURL", sa.String(length=255), nullable=True),
+        sa.Column("product_imageURL", sa.Text(), nullable=True),
         sa.ForeignKeyConstraint(
             ["productId"],
             ["products.id"],
@@ -101,12 +101,11 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE product_images SET SCHEMA {SCHEMA};")
-
     op.create_table(
         "reviews",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("stars", sa.Integer(), nullable=False),
-        sa.Column("review", sa.String(length=255), nullable=False),
+        sa.Column("review", sa.Text(), nullable=False),
         sa.Column("userId", sa.Integer(), nullable=False),
         sa.Column("productId", sa.Integer(), nullable=False),
         sa.Column("createdAt", sa.DateTime(), nullable=True),
