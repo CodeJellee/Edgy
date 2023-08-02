@@ -13,7 +13,6 @@ favorites = db.Table(
         "productId", db.ForeignKey(add_prefix_for_prod("products.id")), primary_key=True
     ),
 )
-
 if environment == "production":
     favorites.schema = SCHEMA
 
@@ -47,13 +46,20 @@ class Product(db.Model):
     user = db.relationship("User", secondary=favorites, back_populates="products")
 
     # one to many, many side
-    review = db.relationship("Review", back_populates="product", cascade="all, delete-orphan")
+    review = db.relationship(
+        "Review", back_populates="product", cascade="all, delete-orphan"
+    )
     seller = db.relationship("User", back_populates="product")
 
     # one to many, one side
     item = db.relationship(
         "CartItem", back_populates="product", cascade="all, delete-orphan"
     )
+
+    # this is for the favorites = db.Table()
+    # user_favorites = db.relationship(
+    #     "User", secondary="favorites", back_populates="product_favorites"
+    # )
 
     def to_dict(self):
         return {
@@ -109,3 +115,10 @@ class CartItem(db.Model):
 
     product = db.relationship("Product", back_populates="item")
     user = db.relationship("User", back_populates="item")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "productId": self.productId,
+            "userId": self.userId,
+        }

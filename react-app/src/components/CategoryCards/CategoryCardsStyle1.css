@@ -1,0 +1,73 @@
+
+    .home {
+        display: flex;
+        flex: 1;
+        height: auto;
+        background-image: url('https://i.redd.it/couqud3cfc971.jpg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+
+    }
+
+    .sections {
+        display: flex;
+        margin: 30px;
+        background-color: white;
+        max-width: 60%;
+        max-height: auto;
+        height: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .ep {
+        display: flex;
+        border: 1px solid lightgray;
+        border-radius: 8px;
+        margin: 40px;
+        max-width: 1400px;
+        margin-bottom: 100px;
+        overflow: hidden;
+    }
+
+    .epTitle {
+        width: 48%;
+        margin-left: 1px;
+        line-height: 15px;
+        margin-top: 5%;
+    }
+
+    .imgOne > img {
+        max-width: 100%;
+        height: 100%;
+        border-radius: 5px;
+    }
+
+    .imgOne {
+        margin-top: 10px;
+        max-width: 23.5%;
+        height: auto;
+    }
+
+    .sec1, .sec2 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sec2 {
+        margin-top: 15px;
+    }
+
+    .epTitle > h3 {
+        font-size: 15px;
+    }
+
+    .epTitle > h2 {
+        font-size: x-large;
+    }
+
+    .epTitle > a {
+        text-decoration: none;
+        color: grey;
+        font-size: 20px;
+    }

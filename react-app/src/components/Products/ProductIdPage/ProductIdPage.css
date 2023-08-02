@@ -1,0 +1,161 @@
+.PID-product {
+    display: flex;
+    height: fit-content;
+    min-height: 340px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    gap: 8px;
+}
+
+
+.PID-images-div {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    gap: 15px
+}
+
+.PID-all-Images {
+    display: flex;
+    width: 70%;
+
+    gap: 12px;
+}
+
+
+.PID-small-img {
+    border-radius: 15px;
+    /* width: 100px;
+    height: 100px; */
+    /* aspect-ratio: 1/1 */
+}
+
+
+/* TODO MEDIA QUERY SO small screens the images and product info also shrink so the main image doesn't shrink to disappearing */
+.PID-main-image-div {
+    width: 100%;
+    height: fit-content
+        /* object-fit: contain; */
+        /* display: flex; */
+        /* justify-content: center; */
+        /* max-height: 200px; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.PID-main-image {
+    max-width: 100%;
+    /* max-height: 700px; */
+    width: 98%;
+    /* or any custom size */
+    /* height: 100%; */
+    object-fit: contain;
+
+}
+
+
+
+
+.PID-price {
+    font-size: 2.8vh;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.PID-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.PID-about-buttons-div {
+    width: 400px;
+}
+
+.PID-P-button {
+    margin-top: 10px;
+}
+
+.PID-count {
+    margin-right: 8px;
+}
+
+
+/* transparent button */
+.PID-Transp-butt {
+    background-color: transparent;
+    border-radius: 28px;
+    border: 1px solid #52057B;
+    display: inline-block;
+    cursor: pointer;
+    color: #52057B;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 10px 15px;
+    text-decoration: none;
+
+}
+
+.PID-Transp-butt:hover {
+    background-color: #892CDC;
+    color: white;
+
+    .PID-heart {
+        color: white
+    }
+}
+
+.PID-Transp-butt:active {
+    position: relative;
+    top: 1px;
+
+}
+
+.PID-heart {
+    color: #52057B;
+}
+
+/* purple button */
+.PID-cartButt {
+    background-color: #52057B;
+    border-radius: 28px;
+    border: 1px solid #52057B;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 10px 15px;
+    text-decoration: none;
+
+}
+
+.PID-cartButt:hover {
+    background-color: #892CDC;
+
+
+}
+
+.PID-cartButt:active {
+    position: relative;
+    top: 1px;
+}
+
+
+.PID-count {
+    font-size: 3vh;
+    ;
+}
+
+
+.PID-stars {
+    color: #52057B
+}
