@@ -9,13 +9,7 @@ function ShoppingCartPage() {
 
   const dispatch = useDispatch();
 
-  const sessionUser = useSelector((state) => state.session.user);
-  const userCart = useSelector((state) =>
-    Object.values(state.shoppingCart.userCart)
-  );
-  // console.log('THIS IS USERCART', Object.values(userCart))
-  //had to insert Object.values to const userCart because item was not rendering properly, bc of that no need to Object.values in the return at the bottom/html section for userCart
-  //wasn't working with Object.values and chaining it with .map
+
     const sessionUser = useSelector((state) => state.session.user);
     const userCart = useSelector((state) => Object.values(state.shoppingCart.userCart));
     // console.log('THIS IS USERCART', Object.values(userCart))
