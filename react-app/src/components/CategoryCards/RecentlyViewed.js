@@ -32,7 +32,7 @@ function RecentlyReviewedCard() {
             <img src={p.preview_imageURL} alt="meaningfult text"></img>
             <p className="popTitle">{p.item_name}</p>
 
-            <Stars reviews={p.Reviews}></Stars>
+            <p><Stars reviews={p.Reviews}></Stars>({p.Reviews.length})</p>
 
             <p>${p.price}</p>
           </div>

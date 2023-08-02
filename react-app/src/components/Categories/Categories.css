@@ -6,6 +6,7 @@
     margin-right: 55px;
     gap: 15px;
     row-gap: 30px;
+    cursor: pointer;
 }
 
 .p > img {
@@ -21,15 +22,86 @@
 
 .page {
     width: 100%;
-    height: 200px;
+    height: 215px;
     background-color: #BC6FF1;
     position: absolute;
     left: 0;
 }
 
 .pageT {
-    margin-top: 250px;
+    margin-top: 270px;
     margin-left: 35px;
+    line-height: 15px;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 35px;
+    margin-right: 35px;
+    margin-bottom: 10px;
+}
+
+.filter1 {
+    display: flex;
+    gap: 10px
+}
+
+.filter1 > button, .filter2 > button {
+    max-width: 230px;
+    height: 36px;
+    border-radius: 40px;
+    font-size: 14px;
+    background-color: white;
+    border: 2px solid black;
+    padding-left: 18px;
+    padding-right: 18px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+}
+
+.pageInfo {
+    margin-left: 40px;
+    margin-right: 35px;
+    margin-top: 14px;
+    line-height: 15px;
+}
+
+.pageInfo {
+    display: flex;
+    gap: 20px
+}
+
+
+.filter1 > button > span, .filter2 > button > span {
+    font-weight: 100;
+}
+
+.pInfo1 > p {
+    max-width: 300px;
+}
+
+.pInfo1 > h1 {
+    white-space: nowrap;
+}
+
+.filter1 > button > i, .filter2 > button > i {
+    font-size: 10px;
+}
+
+.filter1 > button, .filter2 > button {
+    cursor: pointer;
+}
+
+.numberR {
+    font-size: 14px;
+}
+
+.des {
+    font-size: 15px;
+    color: rgb(50, 50, 50);
 }
 
 .hi {}

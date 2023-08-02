@@ -3,15 +3,17 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import { useHistory } from 'react-router-dom/'
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const history = useHistory()
 
 	return (
 		<>
 		<div className="navigations">
 		<div className="edgy">
-		<h1>Edgy</h1>
+		<h1 onClick={((e)=> history.push('/'))}>Edgy</h1>
 		<div className="s">
 		<input type="text" placeholder='Search for anything'></input>
 		<i id="searchI" class="fa-solid fa-magnifying-glass"></i>

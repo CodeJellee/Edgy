@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import ReviewForm from "../../Reviews/ReviewForm";
 import ReviewCard from "../../Reviews/ReviewCard";
 import "./ProductIdPage.css";
+import FooterTwo from "../../Footer/index2";
+
 
 import PutCartIemToCart from "./PutItemToCart";
 
@@ -152,33 +154,16 @@ function ProductIdPage() {
                 </div>
               )}
             </div>
-          </div>
+            </div>
+            </div>
+            <FooterTwo />
 
-          <p className="Pid-ave-stars">
-            <span className="PID-count">
-              {count}
-              {count === 1 ? " review" : " reviews"}
-            </span>
-            {stars.map((star, idx) => (
-              <i key={idx} className="fas fa-star PID-count pStars" />
-            ))}
-          </p>
-          {user && noUserReviewExist && notSeller && <ReviewForm></ReviewForm>}
+        </>
 
-          {productReviews.Reviews?.map((review) => (
-            <>
-              <ReviewCard
-                key={review.id}
-                userFirstName={review.User.first_name}
-                review={review}
-                from="productPage"
-              ></ReviewCard>
-            </>
-          ))}
-        </div>
-      </div>
-    </>
-  );
+
+    )
+
 }
+
 
 export default ProductIdPage;

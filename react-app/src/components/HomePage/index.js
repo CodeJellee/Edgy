@@ -10,6 +10,7 @@ import RecentlyReviewedCard from "../CategoryCards/RecentlyViewed";
 import ShopSelectionCard from "../CategoryCards/ShopSelection";
 import FreshArticlesCard from "../CategoryCards/FreshArticles";
 import Footer from "../Footer";
+import ImageCarousel from "./Carousel";
 
 
 function HomePage(){
@@ -26,7 +27,7 @@ function HomePage(){
 
         return (
              <>
-             {/* <img className="slideshow" src="https://womeninendo.org/wp-content/uploads/2021/11/no-image.png"></img> */}
+             <ImageCarousel />
              <h2 className="cap">Discrover fresh summer finds from creative sellers!</h2>
              <div className="searchResults">
                 <div className="result">
