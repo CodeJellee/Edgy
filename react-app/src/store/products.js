@@ -50,9 +50,6 @@ export const thunkGetAllProducts = () => async (dispatch) => {
     },
   });
 
-
-
-
   // console.log(response)
   if (response.ok) {
     const data = await response.json();
