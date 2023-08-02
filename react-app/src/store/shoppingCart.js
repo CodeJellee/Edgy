@@ -71,9 +71,12 @@ export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
     // console.log('THIS IS PRODUCT', product)
   });
   product = await product.json();
-  dispatch(postItemInCartAction(product))
+  // await dispatch(postItemInCartAction(product))
+  // await dispatch(thunkGetShoppingCart())
   return product
 }
+
+
 
 //*  ======================= end of thunks ===================//
 
@@ -101,12 +104,13 @@ export default function reducer(state = initialState, action) {
       delete newState.userCart[action.productId];
       return newState;
     }
-    case POST_ITEM_IN_CART: {
-      newState = { ...state };
-      newState.userCart = { ...newState.userCart };
-      newState.userCart[action.productId] = { ...action.product };
-      return newState
-    }
+    // case POST_ITEM_IN_CART: {
+    //   newState = { ...state };
+    //   newState.userCart = { ...newState.userCart };
+    //   console.log('THIS IS ACTION BEFORE PRODUCT', action.product)
+    //   newState.userCart[action.productId] = { ...action.product };
+    //   return newState
+    // }
     default:
       return state;
   }

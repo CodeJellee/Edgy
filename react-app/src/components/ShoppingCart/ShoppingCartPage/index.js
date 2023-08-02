@@ -3,19 +3,20 @@ import { useEffect } from "react";
 import * as CartActions from "../../../store/shoppingCart"; //this will be grabbing all of our thunks/reducer from the store file
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import DeleteCartIem from "../DeleteCartItem";
 
 function ShoppingCartPage() {
   const { id } = useParams();
 
   const dispatch = useDispatch();
 
-
-    const sessionUser = useSelector((state) => state.session.user);
-    const userCart = useSelector((state) => Object.values(state.shoppingCart.userCart));
-    // console.log('THIS IS USERCART', Object.values(userCart))
-    //had to insert Object.values to const userCart because item was not rendering properly, bc of that no need to Object.values in the return at the bottom/html section for userCart
-    //wasn't working with Object.values and chaining it with .map
-
+  const sessionUser = useSelector((state) => state.session.user);
+  const userCart = useSelector((state) =>
+    Object.values(state.shoppingCart.userCart)
+  );
+  // console.log('THIS IS USERCART', Object.values(userCart))
+  //had to insert Object.values to const userCart because item was not rendering properly, bc of that no need to Object.values in the return at the bottom/html section for userCart
+  //wasn't working with Object.values and chaining it with .map
 
   const itemLength = userCart.length;
   // console.log('length of cart here', itemLength)
@@ -46,14 +47,12 @@ function ShoppingCartPage() {
 
     // console.log('THIS IS ID', item)
 
-    console.log('THIS IS THE USERCART', userCart[0].Product.id)
 
   return (
     <>
+
       <h1>{itemLength} items in your cart</h1>
       <div>
-        {userCart?.map((item) => (
-          <div className="cart_item_container">
             <div>
               {userCart?.map((item) => (
                 <div className="cart_item_container">
@@ -68,17 +67,11 @@ function ShoppingCartPage() {
                       <div>${item.Product.price}</div>
                     </div>
                   </div>
-                  <button>Delete</button>
+                <DeleteCartIem cartItemId={item.id}/>
                 </div>
               ))}
               <button>Proceed To Checkout</button>
-
             </div>
-
-
-          </div>
-        ))}
-        <button>Proceed To Checkout</button>
       </div>
     </>
   );
