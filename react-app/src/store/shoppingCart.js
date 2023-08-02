@@ -4,6 +4,7 @@
 
 const GET_SHOPPING_CART= "shoppingCart/GET_SHOPPING_CART"
 const DELETE_CART_ITEM= "shoppingCart/DELETE_CART_ITEM"
+const POST_ITEM_IN_CART="shoppingCart/POST_ITEM_IN_CART"
 
 //?  ===================end of types ===================//
 
@@ -23,6 +24,12 @@ const deleteShoppingCartAction = (productId) => {
   }
 }
 
+const postItemInCartAction = (productId) => {
+  return{
+    type:POST_ITEM_IN_CART,
+    productId
+  }
+}
 //*  ======================= end of actions ===================//
 
 //*  =====================  thunks ===========================//
@@ -46,10 +53,30 @@ export const thunkDeleteCartItem = (productId) => async (dispatch) => {
     method:"DELETE",
   });
   product = await product.json();
-  console.log('THIS IS DELETE THUNK', product, productId)
+  // console.log('THIS IS DELETE THUNK', product, productId)
   await dispatch(deleteShoppingCartAction(productId))
   return product
 }
+
+export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
+  let product = await fetch(`/api/products/${productId}/add_to_cart`, {
+    method: "POST",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      productId,
+      userId,
+    }),
+    // console.log('THIS IS PRODUCT', product)
+  });
+  product = await product.json();
+  // await dispatch(postItemInCartAction(product))
+  await dispatch(thunkGetShoppingCart())
+  return product
+}
+
+
 
 //*  ======================= end of thunks ===================//
 
@@ -73,10 +100,19 @@ export default function reducer(state = initialState, action) {
     case DELETE_CART_ITEM: {
       newState = { ...state };
       newState.userCart = { ...newState.userCart }
-      // console.log('NEWSTATE.USERCART', newState.userCart)
       delete newState.userCart[action.productId];
+      // console.log('NEWSTATE.USERCART', newState.userCart)
+      // const productId = action.productId
+      // delete newState.userCart[productId]
       return newState;
     }
+    // case POST_ITEM_IN_CART: {
+    //   newState = { ...state };
+    //   newState.userCart = { ...newState.userCart };
+    //   console.log('THIS IS ACTION BEFORE PRODUCT', action.product)
+    //   newState.userCart[action.productId] = { ...action.product };
+    //   return newState
+    // }
     default:
       return state;
   }

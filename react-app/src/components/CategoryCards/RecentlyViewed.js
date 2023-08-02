@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as productActions from "../../store/products";
 import "./CategoryCardsStyle4.css";
-import Stars from "./Stars";
+import Stars from "../Reviews/Stars/Stars";
 
 function RecentlyReviewedCard() {
   const { products } = useSelector((state) => state.products);
@@ -21,7 +21,7 @@ function RecentlyReviewedCard() {
   eachProduct = eachProduct.filter((p) => p.category === "Music");
 
   eachProduct = eachProduct.slice(0, 5);
-  console.log(eachProduct);
+  // console.log(eachProduct);
 
   return (
     <div className="popular">
