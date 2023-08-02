@@ -20,7 +20,6 @@
 
 #user-options {
     display: flex;
-    flex-direction: column;
     margin: 10px;
 }
 
@@ -32,8 +31,7 @@
 
 #user-search-favorites__container {
     display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
+    justify-content: space-between;
     margin: 10px;
 }
 

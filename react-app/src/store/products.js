@@ -56,6 +56,7 @@ export const thunkGetAllProducts = () => async (dispatch) => {
     dispatch(getAllProducts(data));
     return data;
   }
+
   return "error";
 };
 

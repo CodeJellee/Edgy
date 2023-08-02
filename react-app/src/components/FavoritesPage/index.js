@@ -3,19 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { thunkGetUserFavorites } from "../../store/favorites";
 import "./FavoritesPage.css";
+import { useState } from "react";
+import FavoriteButton from "./FavoritesButton";
 
 function FavoritesPage() {
-  // A single page of the user's favorite items
-  // Each item will 'link'/'redirect' to the item when clicked on
-  // User needs to be logged in
   const dispatch = useDispatch();
-  // I need to grab the userId
   const user = useSelector((state) => state.session.user);
   const userFavorites = useSelector((state) =>
     Object.values(state.favorites.userFavorites)
-  ); // figure out the state first
-  // console.log("userId ===>", userId);
-  console.log("user favorites ===>", userFavorites);
+  );
+  const [heart, setHeart] = useState("fa-regular fa-heart");
 
   useEffect(() => {
     // insert thunk query to grab user's favorite items
@@ -24,13 +21,21 @@ function FavoritesPage() {
 
   if (!user || userFavorites.length === 0) return null;
 
+  const handleHeartClick = () => {
+    setHeart((prevHeart) =>
+      prevHeart === "fa-regular fa-heart"
+        ? "fa-solid fa-heart"
+        : "fa-regular fa-heart"
+    );
+  };
+
   return (
     <div id="favorites__main-container">
       {/* Can be one component for user-options-sales */}
       <div id="user-details__container">
         {/* image is a span so it can be on the left of the div containing the user options and user sales */}
         <div id="user-options">
-          <div>
+          <div id="user-options-pfp">
             <img
               src="https://images.all-free-download.com/images/graphiclarge/testing_with_magnifier_185604.jpg"
               alt="user pfp or they can have the option to choose a pfp by clicking this"
@@ -38,12 +43,12 @@ function FavoritesPage() {
             ></img>
           </div>
           {/* Name should be a modal button to open up popup that allows the user to click on an edit public profile button to redirect them to their edit profile page */}
-          <div>{user.first_name}</div>
-          <div>
-            <span>
+          <div id="user-options__name-profile">
+            <div>{user.first_name}</div>
+            <div>
               <NavLink to="">Edit public profile</NavLink>
               <NavLink to="">About</NavLink>
-            </span>
+            </div>
           </div>
         </div>
 
@@ -58,11 +63,9 @@ function FavoritesPage() {
       {/* Can be one component for user-search-bar */}
       <div id="user-search-favorites__container">
         <div>
-          <div>
-            Favorite items <span>{userFavorites.length} items</span>
-          </div>
-          <div>Insert Search Bar Here</div>
+          Favorite items <span>{userFavorites.length} items</span>
         </div>
+        <div>Insert Search Bar Here</div>
       </div>
 
       {/* Can be all of user's favorited items component */}
@@ -76,6 +79,7 @@ function FavoritesPage() {
                   src={fav.preview_imageURL}
                   alt={`productId-${fav.productId}`}
                 />
+                <FavoriteButton />
               </div>
               <div>{fav.item_name}</div>
               <div>{fav.Seller.username}</div>
