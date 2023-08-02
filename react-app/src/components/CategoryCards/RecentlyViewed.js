@@ -2,56 +2,44 @@
 // categories but in a line instead of a grid too see more
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import * as productActions from "../../store/products"
-import './CategoryCardsStyle4.css'
-import Stars from './Stars'
+import * as productActions from "../../store/products";
+import "./CategoryCardsStyle4.css";
+import Stars from "./Stars";
 
+function RecentlyReviewedCard() {
+  const { products } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(productActions.thunkGetAllProducts());
+  }, [dispatch]);
 
+  let eachProduct = Object.values(products);
 
-function RecentlyReviewedCard(){
-    const { products } = useSelector((state) => state.products)
-    const dispatch = useDispatch()
+  if (!eachProduct) return <h1>Loading</h1>;
 
-    useEffect(() => {
-        dispatch(productActions.thunkGetAllProducts())
-    }, [dispatch])
+  eachProduct = eachProduct.filter((p) => p.category === "Music");
 
-       let eachProduct = Object.values(products)
+  eachProduct = eachProduct.slice(0, 5);
+  console.log(eachProduct);
 
-        if (!eachProduct) return <h1>Loading</h1>
+  return (
+    <div className="popular">
+      <h2>Popular gifts right now</h2>
+      <div className="data">
+        {eachProduct.map((p) => (
+          <div className="popP">
+            <img src={p.preview_imageURL} alt="meaningfult text"></img>
+            <p className="popTitle">{p.item_name}</p>
 
-        eachProduct = eachProduct.filter((p) => p.category === "Music")
+            <Stars reviews={p.Reviews}></Stars>
 
-<<<<<<< HEAD
-        console.log("each product:", eachProduct)
-
-
-
-
-
-=======
-        eachProduct = eachProduct.slice(0, 5)
-        console.log(eachProduct)
->>>>>>> products_routes
-
-    return (
-        <div className="popular">
-            <h2>Popular gifts right now</h2>
-            <div className="data">
-            {eachProduct.map((p) =>
-                <div className="popP">
-                <img src={p.preview_imageURL} alt="meaningfult text"></img>
-                <p className="popTitle">{p.item_name}</p>
-
-                <Stars reviews={p.Reviews}></Stars>
-              
-                <p>${p.price}</p>
-                </div>
-            )}
-             </div>
-        </div>
-    )
+            <p>${p.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default RecentlyReviewedCard
+export default RecentlyReviewedCard;
