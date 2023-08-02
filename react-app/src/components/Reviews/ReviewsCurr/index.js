@@ -13,8 +13,9 @@ function ReviewsCurr() {
 
   useEffect(() => {
     dispatch(reviewsActions.thunkGetReviewsById(currentUser.id));
-  }, [dispatch, currentUser.id]);
+  }, [dispatch]);
 
+  
   if (!userReviews.User) return <h1>...loading</h1>;
 
 
@@ -27,6 +28,7 @@ function ReviewsCurr() {
             userFirstName={userReviews.User.firstName}
             review={review}
             from="userReviews"
+            user={currentUser}
           ></ReviewCard>
         </>
       ))}

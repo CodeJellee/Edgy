@@ -45,7 +45,7 @@ export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
 
     const productReviewsData = await response.json();
 
-    
+
     if (productReviewsData.errors) {
       return;
     }
@@ -99,6 +99,16 @@ export const thunkSubmitReview = (stars, review, id) => async (dispatch) => {
 }
 
 
+export const thunkDeleteReview = (reviewId) => async (dispatch) => {
+  let response = await fetch(`/api/products/${reviewId}`, {
+    method: "DELETE",
+  });
+  response = await response.json();
+
+  // await dispatch(deleteReview())
+
+}
+
 
 
 //*  ======================= end of thunks ===================//
@@ -113,6 +123,7 @@ export const thunkSubmitReview = (stars, review, id) => async (dispatch) => {
 const GET_USER_REVIEWS = "REVIEWS/GetUserReviews";
 const GET_PRODUCT_REVIEWS = "REVIEWS/GetProductReviews";
 const POST_REVIEW = "REVIEWS/PostReview"
+const DELETE_REVIEW = "REVIEWS/delete"
 
 //?  ===================end of types ===================//
 
@@ -158,6 +169,7 @@ let initialState = { userReviews: {}, productReviews: {} };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_USER_REVIEWS:
+
       return { ...state, userReviews: action.userReviewsData };
 
     case GET_PRODUCT_REVIEWS:
@@ -166,6 +178,9 @@ export default function reducer(state = initialState, action) {
     case POST_REVIEW:
       state.productReviews?.Reviews.push(action.newReview)
       return { ...state };
+
+    // case DELETE_REVIEW:
+    //   newState =
 
     default:
       return state;

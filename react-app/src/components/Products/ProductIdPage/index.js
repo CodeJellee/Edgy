@@ -25,9 +25,6 @@ function ProductIdPage() {
     const productReviews = useSelector(state => state.reviews.productReviews)
     const product = useSelector(state => state.products.singleProduct)
 
-    // !!! default should be set to preview img
-    // !   product.previewImage
-
 
     const [mainImage, setMainImage] = useState()
 
@@ -51,7 +48,7 @@ function ProductIdPage() {
 
     }, [dispatch, id])
 
-    if (!productReviews.Reviews || !product.Reviews) return <h1>...loading</h1>
+    if (!product.Reviews) return <h1>...loading</h1>
 
 
     let sum = 0
@@ -78,7 +75,13 @@ function ProductIdPage() {
 
     let noUserReviewExist = true
     let notSeller = true
-
+    console.log("user check", user)
+    if (user) {
+        console.log("hi")
+    } else {
+        console.log(user)
+        console.log("bye")
+    }
     if (user?.id) {
 
         if (Object.values(user).length > 0) {
@@ -146,7 +149,7 @@ function ProductIdPage() {
                             <div className='PID-buttons'>
                                 <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>
                                 {/* <button className='PID-cartButt PID-P-button'>Add to cart</button> */}
-                                <PutCartIemToCart productId={product.id} className='PID-cartButt PID-P-button'/>
+                                <PutCartIemToCart productId={product.id} className='PID-cartButt PID-P-button' />
                                 <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button>
                             </div>
 
@@ -172,7 +175,7 @@ function ProductIdPage() {
 
                     {productReviews.Reviews?.map((review) => (
                         <>
-                            <ReviewCard key={review.id} userFirstName={review.User.first_name} review={review} from="productPage" ></ReviewCard>
+                            <ReviewCard key={review.id} userFirstName={review.User.first_name} review={review} from="productPage" user={user}></ReviewCard>
                         </>
                     ))}
 
