@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { thunkGetUserFavorites } from "../../store/favorites";
 import "./FavoritesPage.css";
 import { useState } from "react";
+import FavoriteButton from "./FavoritesButton";
 
 function FavoritesPage() {
   const dispatch = useDispatch();
@@ -78,7 +79,7 @@ function FavoritesPage() {
                   src={fav.preview_imageURL}
                   alt={`productId-${fav.productId}`}
                 />
-                <i class={heart} onClick={handleHeartClick} id={fav.id}></i>
+                <FavoriteButton />
               </div>
               <div>{fav.item_name}</div>
               <div>{fav.Seller.username}</div>
