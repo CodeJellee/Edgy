@@ -77,7 +77,7 @@ function ProductIdPage() {
     let noUserReviewExist = true
     let notSeller = true
 
-    if(user?.id) {
+    if (user?.id) {
 
         if (Object.values(user).length > 0) {
 
@@ -160,7 +160,7 @@ function ProductIdPage() {
                         </span>
                         {stars.map((star, idx) =>
 
-                            <i key={idx} className="fas fa-star PID-count PID-stars" />
+                            <i key={idx} className="fas fa-star PID-count pStars" />
 
                         )}
 

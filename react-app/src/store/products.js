@@ -57,16 +57,6 @@ export const thunkGetAllProducts = () => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
 
-
-
-
-    console.log("DATA::", data);
-      // fetch for each to append Reviews
-
-      
-
-
-
     dispatch(getAllProducts(data));
     return data;
   }

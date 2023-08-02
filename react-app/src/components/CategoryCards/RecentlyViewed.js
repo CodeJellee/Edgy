@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import * as productActions from "../../store/products"
 import './CategoryCardsStyle4.css'
-import makeStars from "../../utils";
+import Stars from './Stars'
+
 
 
 
@@ -37,6 +38,9 @@ function RecentlyReviewedCard(){
                 <div className="popP">
                 <img src={p.preview_imageURL} alt="meaningfult text"></img>
                 <p className="popTitle">{p.item_name}</p>
+
+                <Stars reviews={p.Reviews}></Stars>
+              
                 <p>${p.price}</p>
                 </div>
             )}

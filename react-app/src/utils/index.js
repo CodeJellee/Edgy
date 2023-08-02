@@ -18,6 +18,9 @@
     for (let i = 0; i < starAvg; i++) {
         stars.push("hi")
     }
+    if (stars.length === 0) {
+        stars.push("filler")
+    }
 
     return stars
 }
