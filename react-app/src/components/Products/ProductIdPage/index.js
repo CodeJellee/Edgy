@@ -152,7 +152,7 @@ function ProductIdPage() {
                             </div>
                             ) : (
                                 // <button className='PID-cartButt PID-P-button'>Sign up to purchase!</button>
-                                <div lassName='PID-about-product-div'>Please log in or sign up to view or purchase the items!</div>
+                                <div lassName='PID-about-product-div'>Please log in or sign up to favorite or purchase the items!</div>
 
                             )}
                         </div>
