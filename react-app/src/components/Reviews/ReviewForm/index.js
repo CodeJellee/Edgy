@@ -15,12 +15,12 @@ function ReviewForm() {
     const dispatch = useDispatch();
 
     // const sessionUser = useSelector((state) => state.session.user);
-    const [stars, setStars] = useState(1);
+    // const [stars, setStars] = useState(1);
     const [review, setReview] = useState("");
     const [errors, setErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false)
     const [submittedSuc, setSubmittedSuc] = useState(false);
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(1);
     const [vaErrors, setVaErrors] = useState({})
 
 
@@ -29,7 +29,7 @@ function ReviewForm() {
 
     const resetState = () => {
         setReview("");
-        setStars(1);
+        setRating(1);
     };
 
     const handleSubmit = async (e) => {

@@ -74,12 +74,28 @@ function ProductIdPage() {
     // let userReviewExistCheck = products.include(product => product.userId === user.id)
 
 
-    const userReviewExist = products.every(review => review.userId !== user.id)
+    let noUserReviewExist = true
+    let notSeller = true
+
+    if(user?.id) {
+
+        if (Object.values(user).length > 0) {
+
+            console.log("user check:", user)
+            noUserReviewExist = products.every(review => review.userId !== user.id)
+            notSeller = user.id !== product.Seller.id
+
+        }
+
+
+    }
+
+    // should start false
+    console.log(noUserReviewExist)
     // setHasReview(userReviewExist)
 
 
 
-    let isSellerCheck = user.id !== product.Seller.id
 
 
 
@@ -149,7 +165,7 @@ function ProductIdPage() {
                         )}
 
                     </p>
-                    {user && userReviewExist && isSellerCheck && <ReviewForm  ></ReviewForm>}
+                    {user && noUserReviewExist && notSeller && <ReviewForm  ></ReviewForm>}
 
                     {productReviews.Reviews?.map((review) => (
                         <>
