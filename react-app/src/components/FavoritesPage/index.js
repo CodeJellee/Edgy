@@ -5,6 +5,7 @@ import { thunkGetUserFavorites } from "../../store/favorites";
 import "./FavoritesPage.css";
 import { useState } from "react";
 import FavoriteButton from "./FavoritesButton";
+import * as favoriteActions from "../../store/favorites";
 
 function FavoritesPage() {
   const dispatch = useDispatch();
@@ -12,22 +13,20 @@ function FavoritesPage() {
   const userFavorites = useSelector((state) =>
     Object.values(state.favorites.userFavorites)
   );
-  const [heart, setHeart] = useState("fa-regular fa-heart");
+
+  const handleFavoriteClick = (productId) => {
+    dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
+  };
+
+  const handleUnfavoriteClick = (productId) => {
+    dispatch(favoriteActions.thunkDeleteFavorite(productId));
+  };
 
   useEffect(() => {
-    // insert thunk query to grab user's favorite items
     dispatch(thunkGetUserFavorites(user.id));
   }, [user.id, dispatch]);
 
   if (!user || userFavorites.length === 0) return null;
-
-  const handleHeartClick = () => {
-    setHeart((prevHeart) =>
-      prevHeart === "fa-regular fa-heart"
-        ? "fa-solid fa-heart"
-        : "fa-regular fa-heart"
-    );
-  };
 
   return (
     <div id="favorites__main-container">
@@ -73,13 +72,18 @@ function FavoritesPage() {
       <div id="user-favorites__container">
         {userFavorites?.map((fav) => (
           <>
-            <div key={fav?.id} id={`favorite-product`}>
+            <div key={fav?.item_name} id={`favorite-product`}>
               <div>
                 <img
                   src={fav.preview_imageURL}
                   alt={`productId-${fav.productId}`}
                 />
-                <FavoriteButton />
+                <FavoriteButton
+                  onClick={() => handleUnfavoriteClick(fav.id)}
+                  productId={fav.id}
+                  handleUnfavoriteClick={handleUnfavoriteClick}
+                  handleFavoriteClick={handleFavoriteClick}
+                />
               </div>
               <div>{fav.item_name}</div>
               <div>{fav.Seller.username}</div>
