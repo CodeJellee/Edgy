@@ -49,3 +49,17 @@
 body {
     font-family: "Optima", sans-serif;
 }
+
+.car > img {
+    width: 95%;
+    height: 450px
+}
+
+.car {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.slider {
+    margin-bottom: 100px;
+}

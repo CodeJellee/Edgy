@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ReviewForm from "../../Reviews/ReviewForm";
 import ReviewCard from "../../Reviews/ReviewCard";
 import './ProductIdPage.css'
+import FooterTwo from "../../Footer/index2";
 
 
 
@@ -176,6 +177,7 @@ function ProductIdPage() {
 
                 </div>
             </div>
+            <FooterTwo />
 
         </>
 

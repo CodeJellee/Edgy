@@ -65,8 +65,9 @@
 }
 
 .edgy > h1 {
-  font-size: 38px;
-  color: #892CDC
+  font-size: 35px;
+  color: #892CDC;
+  cursor: pointer;
 }
 
 .nav > a {
@@ -89,6 +90,7 @@
   margin-right: 24px;
   align-self: center;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .s {
