@@ -76,7 +76,7 @@
     max-height: 1000px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    margin-top: 250px
+    margin-top: 50px
 }
 
 .footer3 {
@@ -231,4 +231,13 @@
 
 .footer5 {
     margin-bottom: 10px;
+}
+
+
+.background2 {
+    background-image: url("./edgy-background2-cropped.PNG");
+    max-height: 1000px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-top: 50px
 }

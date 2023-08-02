@@ -38,16 +38,16 @@ function EditorsPickCard(){
                 </div>
                 <div className="sec2">
                 <div className='imgOne'>
-                    <img src={eachProduct[2]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[7]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgOne'>
-                    <img src={eachProduct[3]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[6]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgOne'>
                     <img src={eachProduct[4]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 <div className='imgOne'>
-                    <img src={eachProduct[0]?.preview_imageURL} alt="meaningfult text"></img>
+                    <img src={eachProduct[5]?.preview_imageURL} alt="meaningfult text"></img>
                 </div>
                 </div>
                 </div>

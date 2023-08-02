@@ -7,12 +7,15 @@
 
 .popular {
     margin: 40px;
-    margin-top: 75px;
+    margin-top: 70px;
     margin-bottom: 60px;
 }
 
 .popP {
     width: 20%;
+    overflow: hidden;
+    line-height: 1px;
+    text-overflow: ellipsis;
 }
 
 .popP > img {
@@ -24,6 +27,8 @@
 .popTitle {
     font-size: 18px;
     font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .popular > h2 {

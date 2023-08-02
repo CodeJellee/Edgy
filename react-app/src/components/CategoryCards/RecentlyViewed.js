@@ -21,6 +21,7 @@ function RecentlyReviewedCard(){
 
         eachProduct = eachProduct.filter((p) => p.category === "Music")
 
+        eachProduct = eachProduct.slice(0, 5)
         console.log(eachProduct)
 
     return (
