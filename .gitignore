@@ -7,9 +7,5 @@ __pycache__/
 /instance/dev.db
 *dev.db
 .gitignore
-<<<<<<< HEAD
-/react-app/node_modules
-=======
->>>>>>> products_routes
 *node_modules
 node_modules
