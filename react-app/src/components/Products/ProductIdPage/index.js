@@ -36,7 +36,6 @@ function ProductIdPage() {
 
 
 
-
     if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
 
 
@@ -45,7 +44,8 @@ function ProductIdPage() {
     let sum = 0
     let count = Object.values(product.Reviews).length
     let reviews = Object.values(product.Reviews)
-
+    console.log(reviews)
+    console.log("reviews:", product.Reviews)
     for (const review of reviews) {
         sum += review.stars
     }
@@ -153,7 +153,10 @@ function ProductIdPage() {
                         )}
                     </p>
 
+
+
                     {user && noUserReviewExist && notSeller && <ReviewForm  ></ReviewForm>}
+
                     {reviews?.map((review) => (
                         <>
 
@@ -163,7 +166,7 @@ function ProductIdPage() {
 
 
 
-              
+
 
 
 
