@@ -57,7 +57,7 @@ function Categories({ category, name }) {
             </div>
             <p className="numberR">({eachProduct.length} resultes, with Ads)</p>
             </div>
-            <div>
+            <div className="allcats">
             {category === "Clothing" ? <SearchClothes /> : null}
             {category === "Accessories" ? <SearchJewlery /> : null}
             {category === "Home Decor" ? <SearchHome /> : null}
