@@ -11,16 +11,26 @@ function ReviewsCurr() {
   const currentUser = useSelector((state) => state.session.user);
   const userReviews = useSelector((state) => state.reviews.userReviews);
 
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
+
     dispatch(reviewsActions.thunkGetReviewsById(currentUser.id));
   }, [dispatch, currentUser.id]);
 
 
+  useEffect(() => {
+    setReviews(Object.values(userReviews.Reviews))
+  }, [reviews])
+
+
   if (!Object.keys(userReviews).length || !userReviews) return <h1>...loading</h1>;
-  console.log("hiiiiiiii", currentUser)
-  let reviews = Object.values(userReviews.Reviews)
-  console.log("user review:", userReviews.Reviews)
+
+
+
+
+
+//   console.log("user review:", userReviews.Reviews)
 
 
   // console.log(reviews)
