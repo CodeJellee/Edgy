@@ -21,7 +21,7 @@ function ReviewsCurr() {
 
   useEffect(() => {
     setReviews(Object.values(userReviews.Reviews))
-  }, [reviews])
+  }, [userReviews])
 
 
   if (!Object.keys(userReviews).length || !userReviews) return <h1>...loading</h1>;

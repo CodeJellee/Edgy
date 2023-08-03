@@ -186,27 +186,31 @@ export default function reducer(state = initialState, action) {
 
       newState = { ...state };
 
+      newState.userReviews = {...newState.userReviews}
+       newState.userReviews.Reviews = {...newState.userReviews.Reviews}
+       newState.userReviews.User = {...newState.userReviews.User}
+
       // console.log(action.userReviewsData.Reviews)
       let user = action.userReviewsData.User
       newState.userReviews.User = user
       action.userReviewsData.Reviews.forEach(
 
         (review) => (newState.userReviews.Reviews[review.id] = review)
-        );
-        return newState;
+      );
+      return newState;
 
-        //   case GET_USER_REVIEWS:
-        // return { ...state, userReviews: action.userReviewsData };
-
- 
+    //   case GET_USER_REVIEWS:
+    // return { ...state, userReviews: action.userReviewsData };
 
 
 
 
-        case GET_PRODUCT_REVIEWS:
-          newState = { ...state }
 
-          console.log("state store!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", newState)
+
+    case GET_PRODUCT_REVIEWS:
+      newState = { ...state }
+
+      console.log("state store!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", newState)
 
       action.productReviewsData.Reviews.forEach(
         (review) => (newState.productReviews.Reviews[review.id] = review)
