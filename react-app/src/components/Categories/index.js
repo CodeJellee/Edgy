@@ -23,6 +23,7 @@ function Categories({ category, name }) {
   eachProduct = eachProduct.filter((p) => p.category == category)
   console.log("products category:", eachProduct[0].Reviews)
 
+  console.log("hi this right here is the array you want to look at", eachProduct)
   return (
     <>
       <div className="page">

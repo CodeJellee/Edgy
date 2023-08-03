@@ -17,7 +17,8 @@ export const thunkGetReviewsById = () => async (dispatch) => {
 
   if (response.ok) {
     const userReviewsData = await response.json();
-    // console.log("DATA BEFORE PASSING TO ACTION", userReviewsData)
+    console.log("DATA BEFORE PASSING TO ACTION", userReviewsData)
+
     if (userReviewsData.errors) {
       return;
     }
@@ -105,7 +106,8 @@ export const thunkDeleteReview = (reviewId) => async (dispatch) => {
     method: "DELETE",
   });
   response = await response.json();
-
+  dispatch(deleteReview(reviewId));
+  return response
   // await dispatch(deleteReview())
 
 }
@@ -157,10 +159,10 @@ const postReview = (newReview) => {
   }
 }
 
-const deleteReview = () => {
+const deleteReview = (reviewId) => {
   return {
-   type: DELETE_REVIEW,
-   
+    type: DELETE_REVIEW,
+    reviewId
   }
 }
 
@@ -173,7 +175,7 @@ const deleteReview = () => {
 
 //? ================== reducer================================//
 
-let initialState = { userReviews: { Reviews: {}, user: {} }, productReviews: { Reviews: {} } };
+let initialState = { userReviews: { Reviews: {}, User: {} }, productReviews: { Reviews: {} } };
 
 export default function reducer(state = initialState, action) {
   let newState;
@@ -183,18 +185,21 @@ export default function reducer(state = initialState, action) {
       newState = { ...state };
 
       // console.log(action.userReviewsData.Reviews)
-
+      let user = action.userReviewsData.User
+      newState.userReviews.User = user
       action.userReviewsData.Reviews.forEach(
 
         (review) => (newState.userReviews.Reviews[review.id] = review)
       );
       return newState;
 
+    //   case GET_USER_REVIEWS:
+    // return { ...state, userReviews: action.userReviewsData };
 
 
 
 
-      return { ...state, userReviews: action.userReviewsData };
+
 
     case GET_PRODUCT_REVIEWS:
       newState = { ...state }
@@ -209,8 +214,11 @@ export default function reducer(state = initialState, action) {
       state.productReviews?.Reviews.push(action.newReview)
       return { ...state };
 
-    // case DELETE_REVIEW:
-    //   newState =
+    case DELETE_REVIEW:
+      newState = { ...state }
+      newState.userReviews.Reviews = { ...newState.userReviews.Reviews }
+      delete newState.userReviews[action.reviewId];
+      return newState
 
     default:
       return state;

@@ -1,77 +1,113 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+// import { useParams } from "react-router-dom";
+// import { useEffect, useState } from "react";
 
-import * as reviewsActions from '../../../store/reviews'
-import * as productsActions from '../../../store/products'
+// import * as reviewsActions from '../../../store/reviews'
+// import * as productsActions from '../../../store/products'
 
-import { useSelector, useDispatch } from "react-redux";
-import ReviewForm from "../../Reviews/ReviewForm";
-import ReviewCard from "../../Reviews/ReviewCard";
-import './ProductIdPage.css'
+// import { useSelector, useDispatch } from "react-redux";
+// import ReviewForm from "../../Reviews/ReviewForm";
+// import ReviewCard from "../../Reviews/ReviewCard";
+// import './ProductIdPage.css'
 
-import PutCartIemToCart from "./PutItemToCart";
-
-
-
-function ProductIdPage() {
-
-    const { id } = useParams()
-    const dispatch = useDispatch()
-    const user = useSelector(state => state.session.user)
-    const product = useSelector(state => state.products.singleProduct)
-    const [mainImage, setMainImage] = useState()
-
-
-    const changeMainImage = (e) => {
-        setMainImage(e.target.src)
-    }
-
-    const addToFav = (e) => { }
-
-    useEffect(() => {
-        dispatch(productsActions.thunkGetSingleProduct(id))
-    }, [dispatch, id])
-
-
-    // !!
-
-    if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
-
-    console.log("PRODUCT AFTER CHECK:", product)
-
-
-    // create average stars
-    let sum = 0
-    let count = Object.values(product.Reviews).length
-    let reviews = Object.values(product.Reviews)
-
-    for (const review of reviews) {
-        sum += review.stars
-    }
-    let starAvg = Math.round(sum / count)
-    let stars = []
-    for (let i = 0; i < starAvg; i++) {
-        stars.push("hi")
-    }
+// import PutCartIemToCart from "./PutItemToCart";
 
 
 
+// function ProductIdPage() {
 
-    let images = Object.values(product.ProductImages)
-
-    // user and seller checks
-    let noUserReviewExist = true
-    let notSeller = true
-
-    if (user?.id) {
-        if (Object.values(user).length > 0) {
-            console.log("user check:", user)
-            noUserReviewExist = reviews.every(review => review.userId !== user.id)
-            notSeller = user.id !== product.Seller.id
-        }
-    }
+//     const { id } = useParams()
 
 
+//     const dispatch = useDispatch()
+
+//     const user = useSelector(state => state.session.user)
+
+
+
+//     const product = useSelector(state => state.products.singleProduct)
+
+//     const [mainImage, setMainImage] = useState()
+
+
+//     const changeMainImage = (e) => {
+
+//         setMainImage(e.target.src)
+//     }
+
+
+
+//     const addToFav = (e) => { }
+
+//     useEffect(() => {
+
+//         dispatch(productsActions.thunkGetSingleProduct(id))
+
+//     }, [dispatch, id])
+
+
+//     // !!
+
+//     console.log("product info 1", product)
+
+//     if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
+
+//     console.log("product info 2", product)
+
+
+//     let sum = 0
+//     let count = Object.values(product.Reviews)
+
+
+
+//     let products = Object.values(product.Reviews)
+
+//     // console.log(products)
+
+//     for (const singleProduct of products) {
+
+//         sum += singleProduct.stars
+//     }
+
+//     let starAvg = Math.round(sum / count)
+
+//     let stars = []
+//     for (let i = 0; i < starAvg; i++) {
+//         stars.push("hi")
+//     }
+
+//     let images = Object.values(product.ProductImages)
+
+
+//     // let userReviewExistCheck = products.include(product => product.userId === user.id)
+
+
+//     let noUserReviewExist = true
+//     let notSeller = true
+//     // console.log("user check", user)
+
+//     if (user?.id) {
+
+//         if (Object.values(user).length > 0) {
+
+//             console.log("user check:", user)
+//             noUserReviewExist = products.every(review => review.userId !== user.id)
+//             notSeller = user.id !== product.Seller.id
+
+//         }
+
+
+//     }
+
+//     // should start false
+//     // console.log(noUserReviewExist)
+//     // setHasReview(userReviewExist)
+
+
+
+
+//     // console.log("PRODUCT REVIEWS!!!!!!!!!!!!!!!!!!!!", productReviews)
+//     let pReviews = Object.values(productReviews.Reviews)
+//     // console.log(pReviews)
     return (
         <>
             {/* product info */}
@@ -140,10 +176,9 @@ function ProductIdPage() {
                     </p>
                     {user && noUserReviewExist && notSeller && <ReviewForm  ></ReviewForm>}
 
-                    {reviews?.map((review) => (
+                    {pReviews?.map((review) => (
                         <>
-
-                            <ReviewCard key={review.id} userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
+                            <ReviewCard key={review.id} userFirstName={review.User.first_name} review={review} from="productPage" user={user}></ReviewCard>
                         </>
                     ))}
 
@@ -155,6 +190,7 @@ function ProductIdPage() {
 
 
     );
-}
+// }
 
-export default ProductIdPage;
+
+//

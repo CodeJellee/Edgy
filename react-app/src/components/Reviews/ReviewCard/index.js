@@ -22,7 +22,7 @@ function ReviewCard({ userFirstName, review, from, user }) {
     let isReviewOwner = false
 
     if (from === "userReviews") {
-     isReviewOwner = user.id === review.User.id
+         isReviewOwner = true
 
     } else if (from === "productPage"){
           isReviewOwner = user.id === review.userId
@@ -72,7 +72,7 @@ function ReviewCard({ userFirstName, review, from, user }) {
                 </p>
                 {/* <div className="Rc-name-date"> */}
                 <p className='Rc-name-date-p'> <span className='Rc-username-span'>{userFirstName}  </span> -  {review.createdAt}  </p>
-                {/* {isReviewOwner && */}
+                {isReviewOwner &&
                 <>
                     <button onClick={handleEdit}>
                         edit
@@ -81,7 +81,7 @@ function ReviewCard({ userFirstName, review, from, user }) {
                         delete
                     </button>
                 </>
-                {/* } */}
+                }
 
                 {/* </div> */}
                 <hr className='Rc-hr Rc-hr-bottom'></hr>
