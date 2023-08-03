@@ -1,21 +1,21 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import * as reviewsActions from '../../../store/reviews'
-import * as productsActions from '../../../store/products'
+import * as reviewsActions from "../../../store/reviews";
+import * as productsActions from "../../../store/products";
 
 import { useSelector, useDispatch } from "react-redux";
 import ReviewForm from "../../Reviews/ReviewForm";
 import ReviewCard from "../../Reviews/ReviewCard";
-import './ProductIdPage.css'
+import "./ProductIdPage.css";
+import FooterTwo from "../../Footer/index2";
+
 
 import PutCartIemToCart from "./PutItemToCart";
 
-
-
 function ProductIdPage() {
+    const { id } = useParams();
 
-    const { id } = useParams()
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const product = useSelector(state => state.products.singleProduct)
@@ -33,11 +33,12 @@ function ProductIdPage() {
     }, [dispatch, id])
 
 
-    // !!
+
+
+
 
     if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
 
-    console.log("PRODUCT AFTER CHECK:", product)
 
 
     // create average stars
@@ -53,15 +54,16 @@ function ProductIdPage() {
     for (let i = 0; i < starAvg; i++) {
         stars.push("hi")
     }
+    let images = Object.values(product.ProductImages);
 
 
 
+    let noUserReviewExist = true;
+    let notSeller = true;
 
-    let images = Object.values(product.ProductImages)
+
 
     // user and seller checks
-    let noUserReviewExist = true
-    let notSeller = true
 
     if (user?.id) {
         if (Object.values(user).length > 0) {
@@ -70,6 +72,8 @@ function ProductIdPage() {
             notSeller = user.id !== product.Seller.id
         }
     }
+
+
 
 
     return (
@@ -92,13 +96,14 @@ function ProductIdPage() {
                             <div className='PID-main-image-div'>
 
                                 <img className='PID-main-image' onClick={changeMainImage} src={mainImage || product.preview_imageURL} alt="loading"></img>
+
                             </div>
                         </div>
 
 
                         <div>
-                        <i onClick={addToFav} className="fas fa-heart" />
-                    </div>
+                            <i onClick={addToFav} className="fas fa-heart" />
+                        </div>
 
 
                         <div className='PID-about-buttons-div'>
@@ -111,14 +116,26 @@ function ProductIdPage() {
                                 <div className='PID-seller-avg-stars'>
                                     <p className='PID-seller'>Seller: {product.Seller.username}   </p>
 
+
                                 </div>
                             </div>
-                            <div className='PID-buttons'>
-                                <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>
-                                {/* <button className='PID-cartButt PID-P-button'>Add to cart</button> */}
-                                <PutCartIemToCart productId={product.id} className='PID-cartButt PID-P-button' />
-                                <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button>
-                            </div>
+                            {user?.id ? (
+                                <div className='PID-buttons'>
+                                    <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>                                    <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>
+                                    {/* <button className='PID-cartButt PID-P-button'>Add to cart</button> */}                                    {/* <button className='PID-cartButt PID-P-button'>Add to cart</button> */}
+                                    <PutCartIemToCart productId={product.id} className='PID-cartButt PID-P-button' />                                    <PutCartIemToCart productId={product.id} className='PID-cartButt PID-P-button' />
+                                    <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites
+                                    </button>
+                                    <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button>
+                                </div>
+
+                            ) : (
+                                // <button className='PID-cartButt PID-P-button'>Sign up to purchase!</button>
+                                <div lassName='PID-about-product-div'>Please log in or sign up to view or purchase the items!</div>
+
+
+
+                            )}
 
 
                         </div>
@@ -136,10 +153,9 @@ function ProductIdPage() {
                             <i key={idx} className="fas fa-star PID-count pStars" />
 
                         )}
-
                     </p>
-                    {user && noUserReviewExist && notSeller && <ReviewForm  ></ReviewForm>}
 
+                    {user && noUserReviewExist && notSeller && <ReviewForm  ></ReviewForm>}
                     {reviews?.map((review) => (
                         <>
 
@@ -148,13 +164,23 @@ function ProductIdPage() {
                     ))}
 
 
-                </div>
-            </div>
 
+
+                    {user && noUserReviewExist && notSeller && <ReviewForm  ></ReviewForm>}
+
+
+
+
+                </div>
+            </div >
+            <FooterTwo />
         </>
 
 
     );
 }
 
+
+
 export default ProductIdPage;
+

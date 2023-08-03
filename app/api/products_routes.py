@@ -18,15 +18,15 @@ def get_products():
     dictToPass = {}
     products = Product.query.all()
     products = [p.to_dict() for p in products]
-    # pprint(products[0])
     dictToPass["Products"] = products
 
     for product in products:
-        # print("product id", product["id"])
         reviews = Review.query.filter(Review.productId == product["id"])
         reviews = [review.to_dict() for review in reviews ]
-        print("length", len(reviews))
+        seller = User.query.get(product["sellerId"])
+        seller = seller.to_dict()
         product["Reviews"] = reviews
+        product["Seller"] = seller
 
     return dictToPass
 
