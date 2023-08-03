@@ -17,7 +17,7 @@ export const thunkGetReviewsById = () => async (dispatch) => {
 
   if (response.ok) {
     const userReviewsData = await response.json();
-    // console.log(userReviewsData)
+    // console.log("DATA BEFORE PASSING TO ACTION", userReviewsData)
     if (userReviewsData.errors) {
       return;
     }
@@ -56,6 +56,7 @@ export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
     passingObj.Reviews = productReviewsData.Reviews
     // console.log("before passing in", passingObj)
 
+    // console.log(productReviewsData)
     dispatch(setProductReviews(productReviewsData));
   }
 };
@@ -138,6 +139,7 @@ const setUserReviews = (userReviewsData) => {
   return {
     type: GET_USER_REVIEWS,
     userReviewsData
+
   }
 }
 
@@ -155,6 +157,13 @@ const postReview = (newReview) => {
   }
 }
 
+const deleteReview = () => {
+  return {
+   type: DELETE_REVIEW,
+   
+  }
+}
+
 //*  ======================= end of actions ===================//
 
 
@@ -164,16 +173,37 @@ const postReview = (newReview) => {
 
 //? ================== reducer================================//
 
-let initialState = { userReviews: {}, productReviews: {} };
+let initialState = { userReviews: { Reviews: {}, user: {} }, productReviews: { Reviews: {} } };
 
 export default function reducer(state = initialState, action) {
+  let newState;
   switch (action.type) {
     case GET_USER_REVIEWS:
+
+      newState = { ...state };
+
+      // console.log(action.userReviewsData.Reviews)
+
+      action.userReviewsData.Reviews.forEach(
+
+        (review) => (newState.userReviews.Reviews[review.id] = review)
+      );
+      return newState;
+
+
+
+
 
       return { ...state, userReviews: action.userReviewsData };
 
     case GET_PRODUCT_REVIEWS:
-      return { ...state, productReviews: action.productReviewsData };
+      newState = { ...state }
+
+
+      action.productReviewsData.Reviews.forEach(
+        (review) => (newState.productReviews.Reviews[review.id] = review)
+      )
+      return newState;
 
     case POST_REVIEW:
       state.productReviews?.Reviews.push(action.newReview)

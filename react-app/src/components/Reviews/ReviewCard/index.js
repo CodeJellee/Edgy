@@ -17,17 +17,17 @@ function ReviewCard({ userFirstName, review, from, user }) {
         user = {}
         user.id = -1
     }
-    console.log("loggin in user:", user.id)
+    // console.log("loggin in user:", user.id)
 
     let isReviewOwner = false
 
     if (from === "userReviews") {
-     isReviewOwner = user.id === review.id
+     isReviewOwner = user.id === review.User.id
 
     } else if (from === "productPage"){
-          isReviewOwner = user.id === review.User.id
+          isReviewOwner = user.id === review.userId
     }
-    console.log(review)
+    // console.log(review)
 
 
     // let isReviewOwner = user.id === review.User.id

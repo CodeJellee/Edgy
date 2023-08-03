@@ -54,7 +54,9 @@ function ProductIdPage() {
     let sum = 0
     let count = product.Reviews.length
 
+    console.log("reviews check :", Object.values(product.Reviews))
     let products = Object.values(product.Reviews)
+    console.log(products)
     for (const singleProduct of products) {
 
         sum += singleProduct.stars
@@ -102,9 +104,9 @@ function ProductIdPage() {
 
 
 
-
-
-
+    console.log("PRODUCT REVIEWS!!!!!!!!!!!!!!!!!!!!", productReviews)
+    let pReviews = Object.values(productReviews.Reviews)
+    console.log(pReviews)
     return (
         <>
             {/* product info */}
@@ -173,7 +175,7 @@ function ProductIdPage() {
                     </p>
                     {user && noUserReviewExist && notSeller && <ReviewForm  ></ReviewForm>}
 
-                    {productReviews.Reviews?.map((review) => (
+                    {pReviews?.map((review) => (
                         <>
                             <ReviewCard key={review.id} userFirstName={review.User.first_name} review={review} from="productPage" user={user}></ReviewCard>
                         </>

@@ -111,6 +111,7 @@ export default function reducer(state = initialState, action) {
     }
     case DELETE_FAVORITE_ACTION: {
       newState = { ...state };
+      // below line is to get userFavorites to load correctly, odd bug fix
       newState.userFavorites = { ...newState.userFavorites };
       delete newState.userFavorites[action.productId];
       return newState;
