@@ -10,6 +10,7 @@ import Categories from "./components/Categories";
 import ProductIdPage from "./components/Products/ProductIdPage";
 import FavoritesPage from "./components/FavoritesPage";
 import NewProductForm from "./components/Products/CreateNewProduct";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -112,6 +113,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer isLoaded={isLoaded} />
     </>
   );
 }

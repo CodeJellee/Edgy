@@ -37,11 +37,14 @@
 
 #user-favorites__container {
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
 }
 
 #favorite-product {
-    width: 33%;
-    margin: 10px 10px;
+    width: 20%;
+    /* height: 80%; */
+    margin: 10px 20px;
 }
 
 #favorite-product {
@@ -95,8 +98,9 @@
     /* object-fit: cover; */
 }
 
+/*! Adjusting this height will adjust the entire product container height */
 #fav-img__container {
-    height: 200px;
+    height: 140px;
 }
 
 #favorite-icon__container {
@@ -125,4 +129,19 @@
     justify-content: flex-end;
     align-content: flex-start;
     width: 100%;
+}
+
+/** Product Text - Name, Username, and Price  */
+#fav-item__name, #fav-item__username {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#fav-item__username {
+    color: #595959;
+}
+
+#fav-item__currency-value, #fav-item__currency-symbol {
+    font-size: 16px;
+    font-weight: 700;
 }
