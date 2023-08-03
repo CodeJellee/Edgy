@@ -5,10 +5,12 @@ import { useEffect } from "react";
 import * as productActions from "../../store/products";
 import "./CategoryCardsStyle4.css";
 import Stars from "../Reviews/Stars/Stars";
+import { useHistory } from "react-router-dom";
 
 function RecentlyReviewedCard() {
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(productActions.thunkGetAllProducts());
@@ -28,11 +30,11 @@ function RecentlyReviewedCard() {
       <h2>Popular gifts right now</h2>
       <div className="data">
         {eachProduct.map((p) => (
-          <div className="popP">
+          <div onClick={((e) => history.push(`/products/${p.id}`))} className="popP">
             <img src={p.preview_imageURL} alt="meaningfult text"></img>
             <p className="popTitle">{p.item_name}</p>
 
-            <p><Stars reviews={p.Reviews}></Stars>({p.Reviews.length})</p>
+            <p><Stars reviews={p.Reviews}></Stars></p>
 
             <p>${p.price}</p>
           </div>

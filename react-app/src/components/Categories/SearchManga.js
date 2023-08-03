@@ -17,7 +17,7 @@ function SearchManga() {
             </div>
             <div className="searching1">
                 <img src="https://dw9to29mmj727.cloudfront.net/products/1591163595.jpg" alt="meaningful text"></img>
-                <p>Narotu</p>
+                <p>Naruto</p>
             </div>
             <div className="searching1">
                 <img src="https://prodimage.images-bn.com/pimages/9781421520643_p0_v2_s1200x630.jpg" alt="meaningful text"></img>

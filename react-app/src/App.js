@@ -66,8 +66,13 @@ function App() {
           <Route exact path="/categories/figurines">
             <Categories category="Figurines" name="Art & Figurines / Custom artwork, figurines, and totally original paintings and prints to add to your collection" />
           </Route>
+<<<<<<< HEAD
           <Route exact path="/products/new">
             <NewProductForm />
+=======
+          <Route exact path="/categories">
+            <Categories category="All" name="" />
+>>>>>>> products_routes
           </Route>
           <Route path="/products/:id">
             <ProductIdPage />

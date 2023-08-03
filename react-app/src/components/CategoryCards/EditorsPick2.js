@@ -3,10 +3,12 @@ import { useEffect } from "react";
 import * as productActions from "../../store/products";
 import "./CategoryCardsStyle3.css";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function EditorsPickTwoCard() {
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(productActions.thunkGetAllProducts());
@@ -32,18 +34,21 @@ function EditorsPickTwoCard() {
         </div>
         <div className="imgTwo1">
           <img
+            onClick={((e) => history.push(`/products/${eachProduct[0]?.id}`))}
             src={eachProduct[0]?.preview_imageURL}
             alt="meaningfult text"
           ></img>
         </div>
         <div className="imgTwo2">
           <img
+            onClick={((e) => history.push(`/products/${eachProduct[1]?.id}`))}
             src={eachProduct[1]?.preview_imageURL}
             alt="meaningfult text"
           ></img>
         </div>
         <div className="imgTwo3">
           <img
+            onClick={((e) => history.push(`/products/${eachProduct[3]?.id}`))}
             src={eachProduct[3]?.preview_imageURL}
             alt="meaningfult text"
           ></img>
@@ -52,18 +57,21 @@ function EditorsPickTwoCard() {
       <div className="sec4">
         <div className="imgTwo4">
           <img
-            src={eachProduct[3]?.preview_imageURL}
+            onClick={((e) => history.push(`/products/${eachProduct[9]?.id}`))}
+            src={eachProduct[9]?.preview_imageURL}
             alt="meaningfult text"
           ></img>
         </div>
         <div className="imgTwo5">
           <img
+            onClick={((e) => history.push(`/products/${eachProduct[8]?.id}`))}
             src={eachProduct[8]?.preview_imageURL}
             alt="meaningfult text"
           ></img>
         </div>
         <div className="imgTwo6">
           <img
+            onClick={((e) => history.push(`/products/${eachProduct[6]?.id}`))}
             src={eachProduct[6]?.preview_imageURL}
             alt="meaningfult text"
           ></img>
