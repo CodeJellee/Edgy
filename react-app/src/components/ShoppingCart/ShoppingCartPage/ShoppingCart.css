@@ -25,7 +25,7 @@
 .each-cart-item-container{
     height: 480px;
     width: 600px;
-    background-color: rgba(157, 59, 206, 0.254);
+    border: 1px solid #52057B;;
     border-radius: 5px;
 }
 
@@ -38,8 +38,8 @@
 }
 
 .cart-product-image {
-    height: 80%;
-    width: 90%;
+    height: 180px;
+    width: 180px;
     border-radius: 5px;
 }
 

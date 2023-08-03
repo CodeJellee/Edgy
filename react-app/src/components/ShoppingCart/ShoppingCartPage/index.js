@@ -54,6 +54,7 @@ function ShoppingCartPage() {
       <div className="primary-cart-container">
         <h1>{itemLength} items in your cart</h1>
         <div className="products-and-checkout-container">
+
               <div className="products-only-container">
                 {userCart?.map((item) => (
                   <div className="each-cart-item-container">
@@ -115,6 +116,7 @@ function ShoppingCartPage() {
                 ))}
 
               </div>
+
               <div className="checkout-button-container">
                 <button>Proceed To Checkout</button>
               </div>
