@@ -102,10 +102,11 @@ export const thunkSubmitReview = (stars, review, id) => async (dispatch) => {
 
 
 export const thunkDeleteReview = (reviewId) => async (dispatch) => {
-  let response = await fetch(`/api/products/${reviewId}`, {
+  let response = await fetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
   });
   response = await response.json();
+  console.log(response)
   dispatch(deleteReview(reviewId));
   return response
   // await dispatch(deleteReview())
