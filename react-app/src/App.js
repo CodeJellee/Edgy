@@ -12,6 +12,7 @@ import Categories from "./components/Categories";
 import ProductIdPage from "./components/Products/ProductIdPage";
 import FavoritesPage from "./components/FavoritesPage";
 import Footer from "./components/Footer";
+import NewProductForm from "./components/Products/CreateNewProduct"
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
           <Route path="/your_reviews">
             <ReviewsCurr />
           </Route>
-          <Route path="/shopping_cart">
+          <Route exact path="/shopping_cart">
             <ShoppingCart />
           </Route>
           <Route exact path="/categories/clothing">
@@ -64,6 +65,9 @@ function App() {
           </Route>
           <Route exact path="/categories/figurines">
             <Categories category="Figurines" name="Art & Figurines" />
+          </Route>
+          <Route exact path="/products/new">
+            <NewProductForm />
           </Route>
           <Route path="/products/:id">
             <ProductIdPage />
