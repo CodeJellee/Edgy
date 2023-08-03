@@ -1,8 +1,9 @@
 
 .searching1 > img {
-    width: 120px;
-    height: 120px;
+    width: 125px;
+    height: 125px;
     border-radius: 100%;
+    cursor: pointer;
 }
 
 .searching {
@@ -20,4 +21,16 @@
 .searching1 > p {
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.searching1 > p:hover {
+    text-decoration: underline;
+    color: rgb(47, 46, 46);
+}
+
+.searching1:hover {
+    text-decoration: underline;
+    color: rgb(47, 46, 46);
+    opacity: 0.8;
 }

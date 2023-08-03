@@ -18,6 +18,13 @@
     width: 33%;
     border-radius: 15px;
     overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Add a smooth transition for scaling */
+}
+
+.a:hover {
+    transform: scale(1.01); /* Increase the scale to make the box bigger on hover */
+    box-shadow: 0.5px 0.5px 18px 0.5px rgb(210, 209, 209);
 }
 
 .a > p {
@@ -40,8 +47,22 @@
     align-items: center;
     line-height: 20px;
     margin-bottom: 26px;
+    transition: transform 5000000.6s ease;
+    cursor: pointer;
 }
 
 .articles > h1 > i {
     font-size: 18px;
+}
+
+.articles > h1 > i {
+    font-size: 18px;
+}
+
+.articles > h1 > i:hover {
+    transform: translateX(8px); /* Move the element 10 pixels to the right on hover */
+}
+
+.articles > h1:hover :not(h1) {
+    transform: translateX(8px); /* Move the element 10 pixels to the right on hover */
 }
