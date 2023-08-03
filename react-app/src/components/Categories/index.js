@@ -43,6 +43,7 @@ function Categories({ category, name }) {
   if (category !== "All")
     eachProduct = eachProduct.filter((p) => p.category == category);
 
+  console.log("hi this right here is the array you want to look at", eachProduct)
   return (
     <>
       <div className="page">
