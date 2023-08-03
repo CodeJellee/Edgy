@@ -86,7 +86,9 @@ export const thunkGetUserProducts = () => async (dispatch) => {
   return userProducts;
 };
 
+
 export const thunkCreateProduct = (productFormData) => async (dispatch) => {
+  // console.log('PRODUCTFORMDATA', productFormData)
   let newProduct = await fetch(`/api/products/new`, {
     method: "POST",
     headers: {
@@ -98,6 +100,28 @@ export const thunkCreateProduct = (productFormData) => async (dispatch) => {
   dispatch(createProduct(newProduct));
   return newProduct;
 };
+
+
+//below has the try catch to check
+// export const thunkCreateProduct = (productFormData) => async (dispatch) => {
+//   let newProduct;
+
+//   try{
+//     newProduct = await fetch(`/api/products/new`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(productFormData),
+//     });
+//     newProduct = await newProduct.json();
+//     dispatch(createProduct(newProduct));
+//     return newProduct;
+//   } catch (error) {
+//     console.error("Error in thunkCreateProduct:", error)
+//     throw error;
+//   }
+// };
 
 export const thunkDeleteProduct = (productId) => async (dispatch) => {
   let product = await fetch(`/api/products/${productId}`, {
