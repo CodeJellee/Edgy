@@ -84,12 +84,18 @@ function App() {
               name="Art & Figurines / Custom artwork, figurines, and totally original paintings and prints to add to your collection"
             />
           </Route>
+<<<<<<< HEAD
           <Route exact path="/products/new">
             <NewProductForm />
           </Route>
+=======
+>>>>>>> products_routes
           <Route exact path="/categories">
             <Categories category="All" name="" />
           </Route>
+          <Route exact path="/products/new"/>
+            <NewProductForm />
+          <Route />
           <Route path="/products/:id">
             <ProductIdPage />
           </Route>
