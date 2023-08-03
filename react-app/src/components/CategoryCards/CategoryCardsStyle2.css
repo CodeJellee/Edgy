@@ -11,8 +11,8 @@
 
 .look {
     margin: 40px;
-    max-width: 1400px;
-    margin-bottom: 120px
+    /* max-width: 1400px; */
+    margin-bottom: 100px
 }
 
 .shopName {
@@ -25,12 +25,14 @@
 }
 
 .shopImg > div {
-    width: 33%
+    width: 32%
 }
 
 .shopImg > div > p {
     height: 10px;
     text-decoration: underline;
     font-size: 14px;
+    color: gray;
+    cursor: pointer;
 
 }

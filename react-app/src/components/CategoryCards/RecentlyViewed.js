@@ -2,41 +2,46 @@
 // categories but in a line instead of a grid too see more
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import * as productActions from "../../store/products"
-import './CategoryCardsStyle4.css'
+import * as productActions from "../../store/products";
+import "./CategoryCardsStyle4.css";
+import Stars from "../Reviews/Stars/Stars";
+import { useHistory } from "react-router-dom";
 
+function RecentlyReviewedCard() {
+  const { products } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const history = useHistory()
 
+  useEffect(() => {
+    dispatch(productActions.thunkGetAllProducts());
+  }, [dispatch]);
 
-function RecentlyReviewedCard(){
-    const { products } = useSelector((state) => state.products)
-    const dispatch = useDispatch()
+  let eachProduct = Object.values(products);
 
-    useEffect(() => {
-        dispatch(productActions.thunkGetAllProducts())
-    }, [dispatch])
+  if (!eachProduct) return <h1>Loading</h1>;
 
-       let eachProduct = Object.values(products)
+  eachProduct = eachProduct.filter((p) => p.category === "Music");
 
-        if (!eachProduct) return <h1>Loading</h1>
+  eachProduct = eachProduct.slice(0, 5);
+  // console.log(eachProduct);
 
-        eachProduct = eachProduct.filter((p) => p.category === "Music")
+  return (
+    <div className="popular">
+      <h2>Popular gifts right now</h2>
+      <div className="data">
+        {eachProduct.map((p) => (
+          <div onClick={((e) => history.push(`/products/${p.id}`))} className="popP">
+            <img src={p.preview_imageURL} alt="meaningfult text"></img>
+            <p className="popTitle">{p.item_name}</p>
 
-        console.log(eachProduct)
+            <p><Stars reviews={p.Reviews}></Stars></p>
 
-    return (
-        <div className="popular">
-            <h2>Popular gifts right now</h2>
-            <div className="data">
-            {eachProduct.map((p) =>
-                <div className="popP">
-                <img src={p.preview_imageURL} alt="meaningfult text"></img>
-                <p className="popTitle">{p.item_name}</p>
-                <p>${p.price}</p>
-                </div>
-            )}
-             </div>
-        </div>
-    )
+            <p>${p.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default RecentlyReviewedCard
+export default RecentlyReviewedCard;

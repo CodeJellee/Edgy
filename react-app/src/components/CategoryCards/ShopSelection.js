@@ -5,7 +5,7 @@ function ShopSelectionCard() {
     return (
         <div className="shopSelection">
 
-            <h1>Shop our selections</h1>
+            <h1>Shop our selections<i class="fa-solid fa-arrow-right"></i></h1>
             <p>Curated collections hand-picked by Edgy's editors</p>
             <div className='collections'>
                 <div>

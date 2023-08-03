@@ -7,6 +7,5 @@ __pycache__/
 /instance/dev.db
 *dev.db
 .gitignore
-migrations/
-instance/
-/migrations/alembic.ini
+*node_modules
+node_modules

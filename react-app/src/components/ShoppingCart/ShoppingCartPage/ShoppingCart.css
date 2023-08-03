@@ -1,0 +1,22 @@
+.primary_cart_container {
+    padding-left: 40px;
+}
+
+.products_and_checkout_container {
+    display: grid;
+    grid-template-columns: 3fr, 1fr;
+}
+
+.products_only_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 80px;
+
+}
+
+
+.each_cart_item_container{
+    height: 400px;
+    width: 600px;
+    border: 6px red solid;
+}

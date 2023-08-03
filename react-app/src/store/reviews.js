@@ -17,7 +17,8 @@ export const thunkGetReviewsById = () => async (dispatch) => {
 
   if (response.ok) {
     const userReviewsData = await response.json();
-    // console.log(userReviewsData)
+    console.log("DATA BEFORE PASSING TO ACTION", userReviewsData)
+
     if (userReviewsData.errors) {
       return;
     }
@@ -44,6 +45,8 @@ export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
   if (response.ok) {
 
     const productReviewsData = await response.json();
+
+
     if (productReviewsData.errors) {
       return;
     }
@@ -54,6 +57,7 @@ export const thunkGetReviewsByProductId = (productId) => async (dispatch) => {
     passingObj.Reviews = productReviewsData.Reviews
     // console.log("before passing in", passingObj)
 
+    // console.log(productReviewsData)
     dispatch(setProductReviews(productReviewsData));
   }
 };
@@ -97,6 +101,17 @@ export const thunkSubmitReview = (stars, review, id) => async (dispatch) => {
 }
 
 
+export const thunkDeleteReview = (reviewId) => async (dispatch) => {
+  let response = await fetch(`/api/products/${reviewId}`, {
+    method: "DELETE",
+  });
+  response = await response.json();
+  dispatch(deleteReview(reviewId));
+  return response
+  // await dispatch(deleteReview())
+
+}
+
 
 
 //*  ======================= end of thunks ===================//
@@ -111,6 +126,7 @@ export const thunkSubmitReview = (stars, review, id) => async (dispatch) => {
 const GET_USER_REVIEWS = "REVIEWS/GetUserReviews";
 const GET_PRODUCT_REVIEWS = "REVIEWS/GetProductReviews";
 const POST_REVIEW = "REVIEWS/PostReview"
+const DELETE_REVIEW = "REVIEWS/delete"
 
 //?  ===================end of types ===================//
 
@@ -125,6 +141,7 @@ const setUserReviews = (userReviewsData) => {
   return {
     type: GET_USER_REVIEWS,
     userReviewsData
+
   }
 }
 
@@ -142,6 +159,13 @@ const postReview = (newReview) => {
   }
 }
 
+const deleteReview = (reviewId) => {
+  return {
+    type: DELETE_REVIEW,
+    reviewId
+  }
+}
+
 //*  ======================= end of actions ===================//
 
 
@@ -151,19 +175,50 @@ const postReview = (newReview) => {
 
 //? ================== reducer================================//
 
-let initialState = { userReviews: {}, productReviews: {} };
+let initialState = { userReviews: { Reviews: {}, User: {} }, productReviews: { Reviews: {} } };
 
 export default function reducer(state = initialState, action) {
+  let newState;
   switch (action.type) {
     case GET_USER_REVIEWS:
-      return { ...state, userReviews: action.userReviewsData };
+
+      newState = { ...state };
+
+      // console.log(action.userReviewsData.Reviews)
+      let user = action.userReviewsData.User
+      newState.userReviews.User = user
+      action.userReviewsData.Reviews.forEach(
+
+        (review) => (newState.userReviews.Reviews[review.id] = review)
+      );
+      return newState;
+
+    //   case GET_USER_REVIEWS:
+    // return { ...state, userReviews: action.userReviewsData };
+
+
+
+
+
 
     case GET_PRODUCT_REVIEWS:
-      return { ...state, productReviews: action.productReviewsData };
+      newState = { ...state }
+
+
+      action.productReviewsData.Reviews.forEach(
+        (review) => (newState.productReviews.Reviews[review.id] = review)
+      )
+      return newState;
 
     case POST_REVIEW:
       state.productReviews?.Reviews.push(action.newReview)
       return { ...state };
+
+    case DELETE_REVIEW:
+      newState = { ...state }
+      newState.userReviews.Reviews = { ...newState.userReviews.Reviews }
+      delete newState.userReviews[action.reviewId];
+      return newState
 
     default:
       return state;

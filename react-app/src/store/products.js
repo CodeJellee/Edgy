@@ -49,10 +49,11 @@ export const thunkGetAllProducts = () => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
+
   // console.log(response)
   if (response.ok) {
     const data = await response.json();
-    // console.log(data);
+
     dispatch(getAllProducts(data));
     return data;
   }
@@ -68,6 +69,7 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
     },
   });
   product = await product.json();
+
   dispatch(getSingleProduct(product));
   return product;
 };
@@ -85,7 +87,9 @@ export const thunkGetUserProducts = () => async (dispatch) => {
   return userProducts;
 };
 
+
 export const thunkCreateProduct = (productFormData) => async (dispatch) => {
+  // console.log('PRODUCTFORMDATA', productFormData)
   let newProduct = await fetch(`/api/products/new`, {
     method: "POST",
     headers: {
@@ -98,6 +102,28 @@ export const thunkCreateProduct = (productFormData) => async (dispatch) => {
   return newProduct;
 };
 
+
+//below has the try catch to check
+// export const thunkCreateProduct = (productFormData) => async (dispatch) => {
+//   let newProduct;
+
+//   try{
+//     newProduct = await fetch(`/api/products/new`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(productFormData),
+//     });
+//     newProduct = await newProduct.json();
+//     dispatch(createProduct(newProduct));
+//     return newProduct;
+//   } catch (error) {
+//     console.error("Error in thunkCreateProduct:", error)
+//     throw error;
+//   }
+// };
+
 export const thunkDeleteProduct = (productId) => async (dispatch) => {
   let product = await fetch(`/api/products/${productId}`, {
     method: "DELETE",
@@ -108,7 +134,7 @@ export const thunkDeleteProduct = (productId) => async (dispatch) => {
   return product;
 };
 
-let initialState = { products: {}, userProducts: {}, singleProduct: {} };
+let initialState = { products: {}, userProducts: {}, singleProduct: { Reviews: {}, Seller: {}, ProductImages: [] } };
 
 export default function reducer(state = initialState, action) {
   let newState;
@@ -129,14 +155,29 @@ export default function reducer(state = initialState, action) {
       );
       return newState;
     case GET_SINGLE_PRODUCT_ACTION: {
+
       newState = { ...state };
-      newState.singleProduct = action.product;
+      newState.singleProduct = { ...action.product }
+      newState.singleProduct.Seller = { ...action.product.Seller }
+      // ! pushes multiple objects at once to an array
+      newState.singleProduct.ProductImages.push(...action.product.ProductImages)
+
+      action.product.Reviews.forEach(review => newState.singleProduct.Reviews[review.id] = review)
+
+
+
+
+      // state before we touched it
+
+      // newState = { ...state };
+
       return newState;
     }
     case GET_USER_PRODUCTS_ACTION: {
       newState = { ...state };
       // console.log("this is state", state);
       // console.log("this is action.products", action.products);
+
       newState.userProducts = {};
       action.products.Products.forEach(
         (product) => (newState.userProducts[product.id] = product)

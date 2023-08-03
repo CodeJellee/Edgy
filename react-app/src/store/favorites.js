@@ -95,7 +95,7 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_USER_FAVORITES_ACTION: {
       newState = { ...state };
-      console.log("this is the favs in the reducer =======>", action.favs);
+      // console.log("this is the favs in the reducer =======>", action.favs);
       // action.favs.Favorites.Products.forEach(
       //   (product) => (newState.userFavorites[product.id] = { ...product })
       // );
@@ -111,6 +111,7 @@ export default function reducer(state = initialState, action) {
     }
     case DELETE_FAVORITE_ACTION: {
       newState = { ...state };
+      // below line is to get userFavorites to load correctly, odd bug fix
       newState.userFavorites = { ...newState.userFavorites };
       delete newState.userFavorites[action.productId];
       return newState;
