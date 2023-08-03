@@ -154,6 +154,9 @@ def post_favorite_item(productId):
     user_id = current_user.id
     product_exists = Product.query.get(productId)
     user = User.query.get(user_id)
+    seller = User.query.get(product_exists.sellerId)
+
+    print(product_exists.to_dict())
 
     # ! Edge Case for Postman
     existing_favorite = (
@@ -179,6 +182,7 @@ def post_favorite_item(productId):
         return {
             "Product": product_exists.to_dict(),
             "User": user.to_dict(),
+            "Seller": seller.to_dict()
         }
     else:
         return {"message": "Item couldn't be found"}

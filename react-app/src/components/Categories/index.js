@@ -11,29 +11,18 @@ import SearchWaifu from "./SearchWaifu";
 import SearchManga from "./SearchManga";
 import SearchMusic from "./SearchMusic";
 import SearchFigurines from "./SearchFigurines";
-import Stars from "../Reviews/Stars/Stars";
 import { useHistory } from "react-router-dom";
 import SearchAll from "./SearchAll";
-import FavoriteButton from "../FavoritesPage/FavoritesButton";
-import * as favoriteActions from "../../store/favorites"
+import CategoryItem from "./CategoryItem";
 
 function Categories({ category, name }) {
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [ isHidden, setHidden ] = useState(false)
 
   useEffect(() => {
     dispatch(productActions.thunkGetAllProducts());
   }, [dispatch]);
-
-  const handleFavoriteClick = (productId) => {
-    dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
-  };
-
-  const handleUnfavoriteClick = (productId) => {
-    dispatch(favoriteActions.thunkDeleteFavorite(productId));
-  };
 
   let info;
 
@@ -106,22 +95,7 @@ function Categories({ category, name }) {
       </div>
       <div className="products">
         {eachProduct.map((p) => (
-          <div className="p">
-            <FavoriteButton
-                  productId={p.id}
-                  handleUnfavoriteClick={handleUnfavoriteClick}
-                  handleFavoriteClick={handleFavoriteClick}
-                  initialState={true}
-                  hidden={isHidden}
-            />
-            <img onClick={(e) => history.push(`/products/${p.id}`)} src={p.preview_imageURL}></img>
-            <p onClick={(e) => history.push(`/products/${p.id}`)} className="itemName">{p.item_name}</p>
-            <Stars onClick={(e) => history.push(`/products/${p.id}`)} reviews={p.Reviews}></Stars>
-            <p onClick={(e) => history.push(`/products/${p.id}`)} className="price">${p.price}</p>
-            <p onClick={(e) => history.push(`/products/${p.id}`)} className="seller">
-              Ad by {p.Seller.first_name} {p.Seller.last_name}
-            </p>
-          </div>
+            <CategoryItem p={p} />
         ))}
       </div>
       <FooterTwo />
