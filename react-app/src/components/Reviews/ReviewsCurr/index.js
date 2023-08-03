@@ -30,7 +30,7 @@ function ReviewsCurr() {
 
 
 
-//   console.log("user review:", userReviews.Reviews)
+  //   console.log("user review:", userReviews.Reviews)
 
 
   // console.log(reviews)
@@ -48,7 +48,7 @@ function ReviewsCurr() {
             from="userReviews"
             user={currentUser}
           ></ReviewCard>
-          <h1>hi</h1>
+
         </>
       ))}
     </>

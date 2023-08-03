@@ -23,9 +23,7 @@ function Navigation({ isLoaded }){
 					<ProfileButton user={sessionUser} />
 				</div>
 		)}
-		<NavLink exact to="/shopping_cart">
-			<i class="fa-solid fa-cart-shopping"></i>
-		</NavLink>
+			<i onClick={((e) => history.push("/shopping_cart"))} class="fa-solid fa-cart-shopping"></i>
 		</div>
 
 		<div className="navigation">

@@ -83,6 +83,7 @@ export const thunkSubmitReview = (stars, review, id) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+
     dispatch(postReview(data))
     // return null so front side will know there is not an error
     return null;
@@ -102,10 +103,11 @@ export const thunkSubmitReview = (stars, review, id) => async (dispatch) => {
 
 
 export const thunkDeleteReview = (reviewId) => async (dispatch) => {
-  let response = await fetch(`/api/products/${reviewId}`, {
+  let response = await fetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
   });
   response = await response.json();
+  console.log(response)
   dispatch(deleteReview(reviewId));
   return response
   // await dispatch(deleteReview())
@@ -190,20 +192,21 @@ export default function reducer(state = initialState, action) {
       action.userReviewsData.Reviews.forEach(
 
         (review) => (newState.userReviews.Reviews[review.id] = review)
-      );
-      return newState;
+        );
+        return newState;
 
-    //   case GET_USER_REVIEWS:
-    // return { ...state, userReviews: action.userReviewsData };
+        //   case GET_USER_REVIEWS:
+        // return { ...state, userReviews: action.userReviewsData };
 
-
-
-
+ 
 
 
-    case GET_PRODUCT_REVIEWS:
-      newState = { ...state }
 
+
+        case GET_PRODUCT_REVIEWS:
+          newState = { ...state }
+
+          console.log("state store!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", newState)
 
       action.productReviewsData.Reviews.forEach(
         (review) => (newState.productReviews.Reviews[review.id] = review)
@@ -211,8 +214,14 @@ export default function reducer(state = initialState, action) {
       return newState;
 
     case POST_REVIEW:
-      state.productReviews?.Reviews.push(action.newReview)
-      return { ...state };
+      newState = { ...state }
+      newState.productReviews.Reviews = { ...newState.productReviews }
+
+      console.log("newState after spread:", newState)
+      newState.productReviews.Reviews[action.newReview.id] = action.newReview
+      console.log("newState after appending:", newState)
+      // state.productReviews?.Reviews.push(action.newReview)
+      return newState;
 
     case DELETE_REVIEW:
       newState = { ...state }

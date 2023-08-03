@@ -63,8 +63,6 @@ def delete_review(reviewId):
     if review.userId == cur_user["id"]:
         db.session.delete(review)
         db.session.commit()
-        return"successfully deleted"
+        return {"mes":"successfully deleted"}
     else:
         return "Not your review to delete"
-
-

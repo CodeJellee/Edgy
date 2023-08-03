@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import './ReviewCard.css'
 import * as reviewsActions from '../../../store/reviews'
 
@@ -8,10 +10,15 @@ function ReviewCard({ userFirstName, review, from, user }) {
         loadProductName = true
 
     }
+    const userReviews = useSelector((state) => state.reviews.userReviews);
+    const dispatch = useDispatch();
+    // const [review2, setReview] = useState(review)
 
+    const [deleteTrigger, setDeleteTrigger] = useState(false);
+    // useEffect(() => {
 
-
-
+    //     dispatch(reviewsActions.thunkGetReviewsById(user.id));
+    // }, [dispatch, user.id]);
 
     if (!user) {
         user = {}
@@ -22,10 +29,10 @@ function ReviewCard({ userFirstName, review, from, user }) {
     let isReviewOwner = false
 
     if (from === "userReviews") {
-         isReviewOwner = true
+        isReviewOwner = true
 
-    } else if (from === "productPage"){
-          isReviewOwner = user.id === review.userId
+    } else if (from === "productPage") {
+        isReviewOwner = user.id === review.userId
     }
     // console.log(review)
 
@@ -39,13 +46,27 @@ function ReviewCard({ userFirstName, review, from, user }) {
     }
 
     const handleDelete = (e) => {
-        console.log(review.id)
+        console.log(review.id);
 
+        
+        dispatch(reviewsActions.thunkDeleteReview(review.id))
+            .then(() => {
+                // Step 2: Update the state variable after successful deletion
+                setDeleteTrigger(true);
+            })
+            .catch((error) => {
+                // Handle any errors here, if needed
+                console.error(error);
+            });
     }
 
     const handleEdit = (e) => {
 
     }
+    // review.id   is not found return null
+    if (deleteTrigger) return null
+
+
 
     return (
         <>
@@ -73,14 +94,14 @@ function ReviewCard({ userFirstName, review, from, user }) {
                 {/* <div className="Rc-name-date"> */}
                 <p className='Rc-name-date-p'> <span className='Rc-username-span'>{userFirstName}  </span> -  {review.createdAt}  </p>
                 {isReviewOwner &&
-                <>
-                    <button onClick={handleEdit}>
-                        edit
-                    </button>
-                    <button onClick={handleDelete}>
-                        delete
-                    </button>
-                </>
+                    <>
+                        <button onClick={handleEdit}>
+                            edit
+                        </button>
+                        <button onClick={handleDelete}>
+                            delete
+                        </button>
+                    </>
                 }
 
                 {/* </div> */}

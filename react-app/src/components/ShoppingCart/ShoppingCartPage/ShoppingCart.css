@@ -1,22 +1,141 @@
-.primary_cart_container {
+.primary-cart-container {
     padding-left: 40px;
 }
 
-.products_and_checkout_container {
+.products-and-checkout-container {
     display: grid;
     grid-template-columns: 3fr, 1fr;
 }
 
-.products_only_container {
+.sellerId-container{
+    font-size: 18px;
+    font-style: italic;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.products-only-container {
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 80px;
-
 }
 
 
-.each_cart_item_container{
-    height: 400px;
+.each-cart-item-container{
+    height: 480px;
     width: 600px;
-    border: 6px red solid;
+    border: 1px solid #52057B;;
+    border-radius: 5px;
+}
+
+
+.image-title-price-container{
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    height: 200px;
+    padding-left: 20px;
+}
+
+.cart-product-image {
+    height: 180px;
+    width: 180px;
+    border-radius: 5px;
+}
+
+.name-blurb-cost-quantity{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 60px;
+}
+
+.name-description{
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    text-decoration: none;
+}
+
+.items-link{
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.item-description{
+    background-color: rgba(128, 128, 128, 0.2);
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.price-how-many-is-left{
+    text-align: right;
+    padding-right: 20px;
+
+}
+
+.remove-save{
+    display:flex;
+    flex-direction: column;
+    width:100px;
+    height: 50px;
+    row-gap: 30px;
+    text-decoration: none;
+    font-size: 13px;
+
+    padding-left: 50px;
+    text-align: center;
+
+}
+
+.remove-save-button {
+    width: 100px;
+    height:80px;
+}
+
+.remove-save-button:hover {
+    background-color: grey;
+    border-radius: 50%; /* Make it an oval shape */
+    cursor: pointer; /* Change the pointer to a hand cursor */
+}
+
+
+.note-and-delivery{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+.add-note:hover{
+    cursor: pointer; /* Change the pointer to a hand cursor */
+
+}
+
+.est-delivery{
+    font-size: 13px;
+    color: rgb(125, 123, 123);
+}
+
+.gift-coupon{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding-left: 20px;
+
+}
+
+.gift-toggle{
+    display: flex;
+}
+
+.gift-order-blurb{
+    font-size: 13px;
+    color: rgb(125, 123, 123);
+}
+
+.coupon:hover {
+    cursor: pointer; /* Change the pointer to a hand cursor */
 }

@@ -106,7 +106,8 @@ export default function reducer(state = initialState, action) {
     case POST_FAVORITE_PRODUCT_ACTION: {
       newState = { ...state };
       newState.user = action.res.User;
-      newState.userFavorites[action.res.Product.id] = action.res.Product;
+      console.log(action.res)
+      newState.userFavorites[action.res.Product.id] = { "Seller": action.res.Seller, ...action.res.Product };
       return newState;
     }
     case DELETE_FAVORITE_ACTION: {

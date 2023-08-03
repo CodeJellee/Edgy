@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as productActions from "../../store/products";
 import "./Categories.css";
 import FooterTwo from "../Footer/index2";
@@ -11,9 +11,9 @@ import SearchWaifu from "./SearchWaifu";
 import SearchManga from "./SearchManga";
 import SearchMusic from "./SearchMusic";
 import SearchFigurines from "./SearchFigurines";
-import Stars from "../Reviews/Stars/Stars";
 import { useHistory } from "react-router-dom";
 import SearchAll from "./SearchAll";
+import CategoryItem from "./CategoryItem";
 
 function Categories({ category, name }) {
   const { products } = useSelector((state) => state.products);
@@ -32,7 +32,7 @@ function Categories({ category, name }) {
 
   let description;
 
-  if (description) description = info[1];
+  if (info) description = info[1];
 
   let eachProduct = Object.values(products);
 
@@ -95,15 +95,7 @@ function Categories({ category, name }) {
       </div>
       <div className="products">
         {eachProduct.map((p) => (
-          <div onClick={(e) => history.push(`/products/${p.id}`)} className="p">
-            <img src={p.preview_imageURL}></img>
-            <p className="itemName">{p.item_name}</p>
-            <Stars reviews={p.Reviews}></Stars>
-            <p className="price">${p.price}</p>
-            <p className="seller">
-              Ad by {p.Seller.first_name} {p.Seller.last_name}
-            </p>
-          </div>
+            <CategoryItem p={p} />
         ))}
       </div>
       <FooterTwo />
