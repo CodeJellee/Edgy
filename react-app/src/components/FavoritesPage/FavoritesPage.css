@@ -135,7 +135,6 @@
     width: 100%;
 }
 
-<<<<<<< HEAD
 /** Product Text - Name, Username, and Price  */
 #fav-item__name, #fav-item__username {
     font-size: 13px;
@@ -149,12 +148,10 @@
 #fav-item__currency-value, #fav-item__currency-symbol {
     font-size: 16px;
     font-weight: 700;
-=======
 .hidden {
     display: none;
 }
 
 #hidden {
     display: none;
->>>>>>> b910897b753daa5d601a1aacfb5e18509e356240
 }
