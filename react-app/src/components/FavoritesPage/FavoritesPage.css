@@ -148,6 +148,8 @@
 #fav-item__currency-value, #fav-item__currency-symbol {
     font-size: 16px;
     font-weight: 700;
+}
+
 .hidden {
     display: none;
 }
