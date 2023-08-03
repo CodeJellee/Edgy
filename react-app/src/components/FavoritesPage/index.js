@@ -83,11 +83,7 @@ function FavoritesPage() {
         {userFavorites?.map((fav) => (
           <>
             <div key={fav?.item_name} id={`favorite-product`}>
-              <div>
-                <img
-                  src={fav.preview_imageURL}
-                  alt={`productId-${fav.productId}`}
-                />
+              <div id="container-container">
                 <FavoriteButton
                   onClick={() => handleUnfavoriteClick(fav.id)}
                   productId={fav.id}
@@ -96,9 +92,17 @@ function FavoritesPage() {
                   initialState={true}
                 />
               </div>
-              <div>{fav.item_name}</div>
-              <div>{fav.Seller.username}</div>
-              <div>{fav.price}</div>
+              <div id="fav-img__container">
+                <img
+                  src={fav.preview_imageURL}
+                  alt={`productId-${fav.productId}`}
+                  id="product-img"
+                />
+              </div>
+
+              <p>{fav.item_name}</p>
+              <p>{fav.Seller.username}</p>
+              <p>{fav.price}</p>
             </div>
           </>
         ))}
