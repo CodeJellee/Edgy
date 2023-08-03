@@ -121,11 +121,9 @@ function ProductIdPage() {
                             </div>
                             {user?.id ? (
                                 <div className='PID-buttons'>
-                                    <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>                                    <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>
-                                    {/* <button className='PID-cartButt PID-P-button'>Add to cart</button> */}                                    {/* <button className='PID-cartButt PID-P-button'>Add to cart</button> */}
-                                    <PutCartIemToCart productId={product.id} className='PID-cartButt PID-P-button' />                                    <PutCartIemToCart productId={product.id} className='PID-cartButt PID-P-button' />
-                                    <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites
-                                    </button>
+                                    <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>
+                                    {/* <button className='PID-cartButt PID-P-button'>Add to cart</button> */}
+                                    <PutCartIemToCart productId={product.id} className='PID-cartButt PID-P-button' />
                                     <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button>
                                 </div>
 
@@ -183,4 +181,3 @@ function ProductIdPage() {
 
 
 export default ProductIdPage;
-
