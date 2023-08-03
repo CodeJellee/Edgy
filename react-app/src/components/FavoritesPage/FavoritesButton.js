@@ -8,20 +8,20 @@ function FavoriteButton({ productId, handleUnfavoriteClick, initialState }) {
   const handleFavorite = (productId) => {
     if (solid === false) {
       setSolid(!solid);
-      handleUnfavoriteClick(productId);
+      // handleUnfavoriteClick(productId);
     } else {
       setSolid(!solid);
-      handleUnfavoriteClick(productId);
+      // handleUnfavoriteClick(productId);
     }
   };
 
   return (
-    <>
+    <div id="favorite-icon__container">
       <i
         className={solid ? `fa-solid fa-heart` : `fa-regular fa-heart`}
         onClick={() => handleFavorite(productId)}
       ></i>
-    </>
+    </div>
   );
 }
 export default FavoriteButton;

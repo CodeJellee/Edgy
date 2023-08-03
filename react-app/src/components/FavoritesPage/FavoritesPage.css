@@ -40,6 +40,89 @@
 }
 
 #favorite-product {
-    flex-basis: 25%;
+    width: 33%;
     margin: 10px 10px;
+}
+
+#favorite-product {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-end; this also moves the text in the container */
+}
+
+/* #favorite-product :not(p) {
+    align-items: flex-end;
+} */
+/** SEARCH BAR  */
+#search-favorites {
+    width: 82%;
+    height: 48px;
+    border-radius: 24px;
+    border: 2px solid black;
+    padding-left: 20px;
+    font-size: 16px;
+    background-color: rgba(0,0,0,0);
+  }
+
+#user-favorites__count {
+    flex-basis: 49%;
+}
+
+#user-favorites__search {
+    display: flex;
+    flex-basis: 49%;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-magnifying-glass {
+    font-size: 23px;
+}
+
+/* This positions the search-icon over the search bar input */
+#search-button {
+    position: absolute;
+    right: 7%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/** Favorites Button  */
+#product-img {
+    height: 100%;
+    width: 100%;
+    /* object-fit: cover; */
+}
+
+#fav-img__container {
+    height: 200px;
+}
+
+#favorite-icon__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 50%;
+    width: 4%;
+    height: 5%;
+    position: absolute;
+}
+
+#favorite-icon__container > .fa-solid {
+    color: red;
+    cursor: pointer;
+}
+
+#favorite-icon__container > .fa-regular {
+    color: white;
+    cursor: pointer;
+}
+
+#container-container {
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-start;
+    width: 100%;
 }

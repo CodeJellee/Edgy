@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { thunkGetUserFavorites } from "../../store/favorites";
-import "./FavoritesPage.css";
 import { useState } from "react";
 import FavoriteButton from "./FavoritesButton";
 import * as favoriteActions from "../../store/favorites";
+import "../Navigation/Navigation.css";
+import "./FavoritesPage.css";
 
 function FavoritesPage() {
   const dispatch = useDispatch();
@@ -61,10 +62,19 @@ function FavoritesPage() {
 
       {/* Can be one component for user-search-bar */}
       <div id="user-search-favorites__container">
-        <div>
+        <div id="user-favorites__count">
           Favorite items <span>{userFavorites.length} items</span>
         </div>
-        <div>Insert Search Bar Here</div>
+        <div id="user-favorites__search">
+          <input
+            type="search"
+            placeholder="Search Your Favorites"
+            id="search-favorites"
+          ></input>
+          <button id="search-button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
       </div>
 
       {/* Can be all of user's favorited items component */}
@@ -73,11 +83,7 @@ function FavoritesPage() {
         {userFavorites?.map((fav) => (
           <>
             <div key={fav?.item_name} id={`favorite-product`}>
-              <div>
-                <img
-                  src={fav.preview_imageURL}
-                  alt={`productId-${fav.productId}`}
-                />
+              <div id="container-container">
                 <FavoriteButton
                   onClick={() => handleUnfavoriteClick(fav.id)}
                   productId={fav.id}
@@ -86,9 +92,17 @@ function FavoritesPage() {
                   initialState={true}
                 />
               </div>
-              <div>{fav.item_name}</div>
-              <div>{fav.Seller.username}</div>
-              <div>{fav.price}</div>
+              <div id="fav-img__container">
+                <img
+                  src={fav.preview_imageURL}
+                  alt={`productId-${fav.productId}`}
+                  id="product-img"
+                />
+              </div>
+
+              <p>{fav.item_name}</p>
+              <p>{fav.Seller.username}</p>
+              <p>{fav.price}</p>
             </div>
           </>
         ))}
