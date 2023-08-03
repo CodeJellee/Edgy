@@ -807,16 +807,6 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 80,
-            "item_name": "Banpresto BLEACH Solid And Souls Ichigo Kurosaki Figure",
-            "price": 29.90,
-            "category": "Figurines",
-            "description": "Ichigo is ready to defend your figure shelves from hollows! Add your favorite Soul Reaper to your BLEACH collection with this figure of Ichigo Kurosaki, who's depicted with a serious expression and ready to fight!",
-            "quantity": 26,
-            "preview_imageURL": "https://cdn.media.amplience.net/s/hottopic/19311492_hi",
-            "sellerId": 4,
-        },
-        {
             "id": 81,
             "item_name": "Razer DeathAdder V2 Anime Gaming Mouse",
             "price": 49.99,

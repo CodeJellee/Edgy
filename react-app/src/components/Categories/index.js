@@ -12,7 +12,6 @@ import SearchManga from "./SearchManga";
 import SearchMusic from "./SearchMusic";
 import SearchFigurines from "./SearchFigurines";
 import Stars from "../Reviews/Stars/Stars";
-import Stars from "../Reviews/Stars/Stars.js";
 import { useHistory } from "react-router-dom";
 import SearchAll from "./SearchAll";
 
