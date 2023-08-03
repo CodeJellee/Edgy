@@ -100,9 +100,12 @@ function FavoritesPage() {
                 />
               </div>
 
-              <p>{fav.item_name}</p>
-              <p>{fav.Seller.username}</p>
-              <p>{fav.price}</p>
+              <h3 id="fav-item__name">{fav.item_name}</h3>
+              <div id="fav-item__username">{fav.Seller.username}</div>
+              <p id="fav-item__price">
+                <span id="fav-item__currency-symbol">$</span>
+                <span id="fav-item__currency-value">{fav.price}</span>
+              </p>
             </div>
           </>
         ))}
