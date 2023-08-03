@@ -58,6 +58,9 @@ function ShoppingCartPage() {
                 {userCart?.map((item) => (
                   <div className="each-cart-item-container">
                     <div>
+                      <div className="sellerId-container">Purchasing from Seller {item.Product.sellerId}</div>
+                    </div>
+                    <div>
                       <div className="image-title-price-container">
                       <NavLink to={`/products/${item.Product.id}`} className="preview-image">
                         <img className="cart-product-image" src={item.Product.preview_imageURL} alt={item.Product.item_name} />
@@ -68,22 +71,24 @@ function ShoppingCartPage() {
                         <NavLink to={`/products/${item.Product.id}`} className="items-link">
                           <div>{item.Product.item_name}</div>
                         </NavLink>
-                        <div className="item-description">EMPTY SPACE</div>
+                        <div className="item-description">{item.Product.description}</div>
                       </div>
                       <div className="price-how-many-is-left">
                         <div>${item.Product.price}</div>
-                        <div>how many is left</div>
                       </div>
                       </div>
 
 
                       </div>
                     </div>
-                  <DeleteCartIem cartItemId={item.id}/>
-                  <div>Save for Later</div>
+
+                    <div className="remove-save">
+                      <DeleteCartIem cartItemId={item.id} className="remove-save-button"/>
+                      <div className="remove-save-button">Save for Later</div>
+                    </div>
 
                   <div className="note-and-delivery">
-                    <div>+ Add a note to Seller</div>
+                    <div className="add-note">+ Add a note to Seller</div>
                     <div className="delivery-container">
                     <select name="delivery-drop-down">
                         <option value="Shipping Method">Shipping Method</option>
@@ -91,16 +96,19 @@ function ShoppingCartPage() {
                         <option value="Next Day">Next Day</option>
                         <option value="2-3 Day">2-3 Day</option>
                     </select>
-                      <div>Estimated Delivery</div>
+                      <div className="est-delivery">Estimated Delivery</div>
                     </div>
                   </div>
 
                   <div className="gift-coupon">
                     <div>
-                      <div>This order is a gift</div>
-                      <div>Prices will not be shown on the packing slip</div>
+                      <div className="gift-toggle">
+                        <input type="checkbox" class="toggle-input"/>
+                        <div>This order is a gift</div>
+                      </div>
+                      <div className="gift-order-blurb">Prices will not be shown on the packing slip</div>
                     </div>
-                    <div>Apply shop coupon codes</div>
+                    <div className="coupon">Apply shop coupon codes</div>
                   </div>
 
                   </div>

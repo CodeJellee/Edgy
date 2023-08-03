@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import deleteShoppingCartAction, { thunkDeleteCartItem }  from "../../store/shoppingCart"
-
+import "../ShoppingCart/ShoppingCartPage/ShoppingCart.css"
 
 function DeleteCartIem({cartItemId}) {
 
@@ -15,7 +15,7 @@ function DeleteCartIem({cartItemId}) {
 
     return(
         <>
-        <button onClick={onClick}>✕ Remove</button>
+        <div className="remove-save-button" onClick={onClick}>✕ Remove</div>
         </>
     )
 }
