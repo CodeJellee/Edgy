@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function FavoriteButton({ productId, handleUnfavoriteClick, initialState }) {
+function FavoriteButton({ productId, handleUnfavoriteClick, initialState, isHidden}) {
   const [solid, setSolid] = useState(initialState);
   //   console.log("this is solid value", solid);
   //   console.log("this is the product id", productId);
@@ -18,7 +18,7 @@ function FavoriteButton({ productId, handleUnfavoriteClick, initialState }) {
   return (
     <>
       <i
-        className={solid ? `fa-solid fa-heart` : `fa-regular fa-heart`}
+        className={isHidden ? "hidden" : !solid & !isHidden ? `fa-solid fa-heart` : `fa-regular fa-heart`}
         onClick={() => handleFavorite(productId)}
       ></i>
     </>

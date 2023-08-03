@@ -24,11 +24,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-<<<<<<< HEAD
-          <HomePage />
-=======
             <HomePage />
->>>>>>> fce4ae13cb5e582aa94d6d8b2fe18d1a3fb6ebaf
           </Route>
           <Route path="/your_reviews">
             <ReviewsCurr />
@@ -57,7 +53,7 @@ function App() {
           <Route exact path="/categories/computer">
             <Categories
               category="Computer"
-              name="Computer & Tech / Embark on a high-tech adventure with our cutting-edge computer and tech offerings. Explore a world of innovation and possibilities with the latest gadgets, devices, and accessories. "
+              name="Computer & Tech / Embark on our high-tech, cutting-edge computer and tech offerings. Explore a world of innovation with the latest gadgets, devices, and accessories. "
             />
           </Route>
           <Route exact path="/categories/waifu_body_pillows">
@@ -69,7 +65,7 @@ function App() {
           <Route exact path="/categories/books">
             <Categories
               category="Books"
-              name="Manga / Delve into a diverse collection of visually stunning and emotionally engaging stories that span across genres and cultures. From action-packed adventures to heartwarming romances, our selection offers something for every avid reader."
+              name="Manga / A diverse collection of visually stunning and emotionally engaging stories that span across genres and cultures. Our selection offers something for every avid reader."
             />
           </Route>
           <Route exact path="/categories/music">
@@ -84,18 +80,12 @@ function App() {
               name="Art & Figurines / Custom artwork, figurines, and totally original paintings and prints to add to your collection"
             />
           </Route>
-<<<<<<< HEAD
-          <Route exact path="/products/new">
-            <NewProductForm />
-          </Route>
-=======
->>>>>>> products_routes
           <Route exact path="/categories">
             <Categories category="All" name="" />
           </Route>
-          <Route exact path="/products/new"/>
+          <Route exact path="/products/new">
             <NewProductForm />
-          <Route />
+          </Route>
           <Route path="/products/:id">
             <ProductIdPage />
           </Route>
