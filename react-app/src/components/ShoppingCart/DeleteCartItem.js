@@ -15,7 +15,7 @@ function DeleteCartIem({cartItemId}) {
 
     return(
         <>
-        <button onClick={onClick}>Remove</button>
+        <button onClick={onClick}>✕ Remove</button>
         </>
     )
 }
