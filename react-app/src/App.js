@@ -24,11 +24,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-<<<<<<< HEAD
-          <HomePage />
-=======
             <HomePage />
->>>>>>> fce4ae13cb5e582aa94d6d8b2fe18d1a3fb6ebaf
           </Route>
           <Route path="/your_reviews">
             <ReviewsCurr />
@@ -84,12 +80,6 @@ function App() {
               name="Art & Figurines / Custom artwork, figurines, and totally original paintings and prints to add to your collection"
             />
           </Route>
-<<<<<<< HEAD
-          <Route exact path="/products/new">
-            <NewProductForm />
-          </Route>
-=======
->>>>>>> products_routes
           <Route exact path="/categories">
             <Categories category="All" name="" />
           </Route>
