@@ -16,6 +16,7 @@ function ReviewForm() {
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [submittedSuc, setSubmittedSuc] = useState(false);
+  const [preventDoubleSubmit, setPreventDoubleSubmit] = useState(false);
   const [rating, setRating] = useState(1);
   const [vaErrors, setVaErrors] = useState({});
 
@@ -27,9 +28,15 @@ function ReviewForm() {
   };
 
   const handleSubmit = async (e) => {
+    if (submittedSuc) return
+
+
+
     e.preventDefault();
+    console.log("AFTER CLICK SHOULD SEE THIS ONCE")
     setSubmitted(true);
     // console.log(vaErrors)
+    console.log("AFTER submitted check ")
     if (Object.keys(vaErrors).length) {
       return;
     }
@@ -45,9 +52,13 @@ function ReviewForm() {
     if (errors.length === 0) {
       resetState();
     }
+
     setSubmittedSuc(true);
-    dispatch(reviewsActions.thunkGetReviewsByProductId(id));
-    dispatch(productsActions.thunkGetSingleProduct(id));
+
+    await dispatch(reviewsActions.thunkGetReviewsByProductId(id));
+    await dispatch(productsActions.thunkGetSingleProduct(id));
+
+
   };
 
   const handleRatingChange = (number) => {
@@ -78,17 +89,7 @@ function ReviewForm() {
               onChange={handleRatingChange}
               rating={rating}
             />
-            {/* <input className="RF-form-item"
-                            type="number"
-                            id="stars"
-                            min="1"
-                            max="5"
-                            onChange={(e) => {
-                                setStars(e.target.value)
-                            }}
-                            placeholder="Stars"
-                            value={stars}
-                        /> */}
+
             <label htmlFor="review"></label>
 
             <textarea

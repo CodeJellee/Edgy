@@ -56,6 +56,7 @@ def product_details(id):
     product["Reviews"] = reviews
     product["Seller"] = seller
     product["ProductImages"] = product_images
+    pprint(product["Reviews"])
     return product
 
 

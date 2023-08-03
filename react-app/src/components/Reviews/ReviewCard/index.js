@@ -15,10 +15,10 @@ function ReviewCard({ userFirstName, review, from, user }) {
     // const [review2, setReview] = useState(review)
 
     const [deleteTrigger, setDeleteTrigger] = useState(false);
-    useEffect(() => {
+    // useEffect(() => {
 
-        dispatch(reviewsActions.thunkGetReviewsById(user.id));
-    }, [dispatch, user.id]);
+    //     dispatch(reviewsActions.thunkGetReviewsById(user.id));
+    // }, [dispatch, user.id]);
 
     if (!user) {
         user = {}
@@ -47,6 +47,8 @@ function ReviewCard({ userFirstName, review, from, user }) {
 
     const handleDelete = (e) => {
         console.log(review.id);
+
+        
         dispatch(reviewsActions.thunkDeleteReview(review.id))
             .then(() => {
                 // Step 2: Update the state variable after successful deletion
