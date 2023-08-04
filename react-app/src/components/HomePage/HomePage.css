@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&display=swap');
+
 .home > img {
     width: 150px;
     height: 150px
@@ -51,8 +53,16 @@
 
 }
 
-body {
-    font-family: "Optima", sans-serif;
+h1, h2, h3 {
+   /* font-family: 'Bebas Neue', sans-serif; */
+   font-family: 'Permanent Marker', cursive;
+
+}
+
+body, p, button {
+    font-family: 'Bebas Neue', sans-serif;
+
+    /* font-family: 'Permanent Marker', cursive; */
 }
 
 .car > img {

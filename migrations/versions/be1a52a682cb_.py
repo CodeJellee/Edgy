@@ -3,16 +3,16 @@
 <<<<<<< HEAD:migrations/versions/9f89b53c7367_.py
 <<<<<<<< HEAD:migrations/versions/9f89b53c7367_.py
 Revision ID: 9f89b53c7367
-Revises: 
+Revises:
 Create Date: 2023-08-03 12:04:50.742026
 ========
 Revision ID: 0c287c61b0a7
-Revises: 
+Revises:
 Create Date: 2023-08-03 12:11:46.669793
 >>>>>>>> fe_favorites_component:migrations/versions/0c287c61b0a7_.py
 =======
 Revision ID: be1a52a682cb
-Revises: 
+Revises:
 Create Date: 2023-08-03 17:14:38.685845
 >>>>>>> b910897b753daa5d601a1aacfb5e18509e356240:migrations/versions/be1a52a682cb_.py
 
