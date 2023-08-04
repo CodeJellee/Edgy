@@ -53,19 +53,8 @@ function ProfileButton({ user }) {
           <>
             <p>{user.username}</p>
             <p>{user.email}</p>
-<<<<<<< HEAD
-            <div onClick={((e) => history.push('/your_reviews'))} className="yR">
-            <p className="yourReviews">Your Reviews</p>
-            </div>
-            <div onClick={((e) => history.push('/your_products'))} className="yP">
-            <p className="yourProducts"> Your Products</p>
-            </div>
-            <p id="logout">
-              <p onClick={handleLogout}>Log Out</p>
-=======
             <p>
               <button onClick={handleLogout}>Log Out</button>
->>>>>>> dev
             </p>
           </>
         ) : (
