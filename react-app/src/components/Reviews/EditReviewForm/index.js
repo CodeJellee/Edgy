@@ -8,7 +8,7 @@ import * as productsActions from "../../../store/products";
 import StarRating from "./StarRating";
 import cookieParser from "cookie-parser";
 
-function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
+function EditReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
   const dispatch = useDispatch();
 
   // const sessionUser = useSelector((state) => state.session.user);
@@ -23,7 +23,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
   // edit state
-  console.log("review form review obj passed from review curr", reviewObj)
+  // console.log("review form review obj passed from review curr", reviewObj)
   const [reviewEditState, setReviewEditState] = useState(reviewEdit || "");
   const [ratingEdit, setRatingEdit] = useState(starsEdit || 1);
   // console.log(reviewEditState)
@@ -49,9 +49,9 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
     if (from === "post") {
 
 
-      if (Object.keys(vaErrors).length) {
-        return;
-      }
+      // if (Object.keys(vaErrors).length) {
+      //   return;
+      // }
       // console.log("RATING BY STARS =", rating)
       const data = await dispatch(
         reviewsActions.thunkSubmitReview(rating, review, id)
@@ -76,21 +76,20 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
     } else if (from === "edit") {
       console.log("hi")
       console.log(Object.keys(vaErrors))
-      if (Object.keys(vaErrors).length) {
-        return;
-      }
+      // if (Object.keys(vaErrors).length) {
+      //   return;
+      // }
       // console.log("review before passing on", ratingEdit, reviewEditState)
       // console.log("just reviewEdit", e)
-      console.log(reviewObj)
       const data = await dispatch(
         // ! need to change this to edit thunk
         // id is wrong, your_reviews are not on  react link with id param
         // need (stars, review , id
 
-        reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewObj.id)
+        reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewEdit.id)
       );
       if (data) {
-        console.log("EO ERROR ERROR", data)
+        console.log("ERROR ERROR ERROR", data)
         setErrors(data);
       }
 
@@ -115,24 +114,23 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
     }
   };
 
-  useEffect(() => {
-    const err = {};
-    console.log("sdfdsfdsfdsfdsfdsfdsfdsfsdf")
+  // useEffect(() => {
+  //   const err = {};
 
-    if (from === "post") {
-      if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
-      if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
-    } else if (from === "edit") {
-      console.log("in edit of event handler ")
-      if (reviewEditState.length < 10)
-        err["Review"] = "Review needs 10 or more characters";
-      if (reviewEditState.length > 225)
-        err["Review"] = "Review needs to be less than 225 or more characters";
-    }
-    // console.log("err", err)
-    console.log(err)
-    setVaErrors(err);
-  }, [review]);
+
+  //   // if (from === "post") {
+  //   if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
+  //   if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
+  //   // } else if (from === "edit") {
+  //   // if (reviewEditState.length < 10)
+  //   //   err["Review"] = "Review needs 10 or more characters";
+  //   // if (reviewEditState.length > 225)
+  //   //   err["Review"] = "Review needs to be less than 225 or more characters";
+  //   // }
+  //   // console.log("err", err)
+  //   console.log(err)
+  //   setVaErrors(err);
+  // }, [review]);
 
   const test = 3
   if (from === "post") {

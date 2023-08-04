@@ -102,7 +102,7 @@ export const thunkSubmitReview = (stars, review, id) => async (dispatch) => {
 }
 
 export const thunkSubmitReviewEdit = (stars, review, id) => async (dispatch) => {
-  // console.log("stars", stars, "review", review, "id", id)
+  console.log("info being passed to fethc:", "stars", stars, "review", review, "id", id)
 
   const response = await fetch(`/api/reviews/${id}`, {
     method: "PUT",
