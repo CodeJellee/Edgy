@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import './ReviewCard.css'
 import * as reviewsActions from '../../../store/reviews'
+import ReviewForm from "../ReviewForm";
 
 function ReviewCard({ userFirstName, review, from, user }) {
     let loadProductName = false
@@ -15,8 +16,10 @@ function ReviewCard({ userFirstName, review, from, user }) {
     // const [review2, setReview] = useState(review)
 
     const [deleteTrigger, setDeleteTrigger] = useState(false);
-    // useEffect(() => {
+    const [formTrigger, setFormTrigger] = useState(false);
 
+    // useEffect(() => {
+    // console.log(review)
     //     dispatch(reviewsActions.thunkGetReviewsById(user.id));
     // }, [dispatch, user.id]);
 
@@ -46,9 +49,9 @@ function ReviewCard({ userFirstName, review, from, user }) {
     }
 
     const handleDelete = (e) => {
-        console.log(review.id);
+        // console.log(review.id);
 
-        
+
         dispatch(reviewsActions.thunkDeleteReview(review.id))
             .then(() => {
                 // Step 2: Update the state variable after successful deletion
@@ -60,11 +63,24 @@ function ReviewCard({ userFirstName, review, from, user }) {
             });
     }
 
-    const handleEdit = (e) => {
 
+    // handle delete jsut hast setFormTriggler
+    const handleEdit = (e) => {
+        setFormTrigger(true)
     }
     // review.id   is not found return null
+
+    const starsEdit = review.stars
+    const reviewEdit = review.review
+
+    console.log(review.id)
     if (deleteTrigger) return null
+    if (formTrigger)
+        return (
+            <>
+                <ReviewForm from="edit" starsEdit={starsEdit} reviewEdit={reviewEdit} reviewObj={review}></ReviewForm>
+            </>
+        )
 
 
 

@@ -2,6 +2,7 @@ from flask import Blueprint
 from ..models import Review, Product, db
 # from ..forms import ProductForm
 from pprint import pprint
+from app.forms import  NewReview
 
 from flask_login import current_user, login_required
 reviews_routes = Blueprint('reviews', __name__)
@@ -66,3 +67,29 @@ def delete_review(reviewId):
         return {"mes":"successfully deleted"}
     else:
         return "Not your review to delete"
+
+
+
+
+
+@reviews_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_review(id):
+    review = Review.query.get(id)
+    if not review:
+        return {"message": "Review couldn't be found"}
+
+    form = NewReview()
+
+    # !form validation is failing no matter what
+    # if not form.validate_on_submit():
+    #     return {"message": "Invalid data in the request"}
+    print("Hi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    pprint(form)
+    print("BYE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    # Update the review fields with the new data from the form
+    review.stars = form.data["stars"]
+    review.review = form.data["review"]
+
+    db.session.commit()
+    return review.to_dict()

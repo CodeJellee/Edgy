@@ -199,23 +199,7 @@ export default function reducer(state = initialState, action) {
       newState.singleProduct.Reviews = Object.values(uniqueReviews);
 
       return newState;
-      // newState = { ...state };
-      // console.log("single product", newState)
-      // newState.singleProduct = { ...action.product }
-      // newState.singleProduct.Seller = { ...action.product.Seller }
-      // // ! pushes multiple objects at once to an array
-      // newState.singleProduct.ProductImages.push(...action.product.ProductImages)
 
-      // action.product.Reviews.forEach(review => newState.singleProduct.Reviews[review.id] = review)
-
-
-
-
-      // state before we touched it
-
-      // newState = { ...state };
-
-      return newState;
     }
     case GET_USER_PRODUCTS_ACTION: {
       newState = { ...state };

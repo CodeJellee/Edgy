@@ -10,6 +10,7 @@ function ReviewsCurr() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const userReviews = useSelector((state) => state.reviews.userReviews);
+  // const uwu = useSelector(state => state.reviews.userReviews.Reviews)
 
   const [reviews, setReviews] = useState([]);
 
@@ -21,7 +22,7 @@ function ReviewsCurr() {
 
   useEffect(() => {
     setReviews(Object.values(userReviews.Reviews))
-  }, [reviews])
+  }, [userReviews])
 
 
   if (!Object.keys(userReviews).length || !userReviews) return <h1>...loading</h1>;
@@ -36,6 +37,7 @@ function ReviewsCurr() {
   // console.log(reviews)
   // console.log(reviews)
 
+  // console.log("you reviews rendering right before cares:", "first_name:", currentUser.username, "review array of objects:", reviews, "from: userReviews",)
   return (
     <>
 
