@@ -23,7 +23,8 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
   // edit state
-  const [reviewEditState, setReviewEditState] = useState(reviewObj?.rating || "");
+  console.log("review form review obj passed from review curr", reviewObj)
+  const [reviewEditState, setReviewEditState] = useState(reviewEdit || "");
   const [ratingEdit, setRatingEdit] = useState(starsEdit || 1);
   // console.log(reviewEditState)
 
@@ -99,10 +100,12 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
   };
 
   const handleRatingChange = (number) => {
+    console.log("in handleRatingChange")
     if (from === "post") {
 
       setRating(parseInt(number));
-    } else if (from === "edit ") {
+    } else if (from === "edit") {
+      console.log("hi")
       setRatingEdit(parseInt(number))
     }
   };
@@ -111,17 +114,17 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
     const err = {};
 
 
-    if (from === "post") {
-      if (review.length < 10)
-        err["Review"] = "Review needs 10 or more characters";
-      if (review.length > 225)
-        err["Review"] = "Review needs to be less than 225 or more characters";
-    } else if (from === "edit") {
-      if (reviewEditState.length < 10)
-        err["Review"] = "Review needs 10 or more characters";
-      if (reviewEditState.length > 225)
-        err["Review"] = "Review needs to be less than 225 or more characters";
-    }
+    // if (from === "post") {
+    if (review.length < 10)
+      err["Review"] = "Review needs 10 or more characters";
+    if (review.length > 225)
+      err["Review"] = "Review needs to be less than 225 or more characters";
+    // } else if (from === "edit") {
+    // if (reviewEditState.length < 10)
+    //   err["Review"] = "Review needs 10 or more characters";
+    // if (reviewEditState.length > 225)
+    //   err["Review"] = "Review needs to be less than 225 or more characters";
+    // }
     // console.log("err", err)
 
     setVaErrors(err);
@@ -181,7 +184,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
         {!submittedSuc && (
           <div className="">
             <h3>Edit your review</h3>
-            <form onSubmit={() => {handleSubmit()}} className="RF-Form">
+            <form onSubmit={() => { handleSubmit() }} className="RF-Form">
               {/* {submitted &&  <displayError>} */}
               <label htmlFor="stars"></label>
               <StarRating
