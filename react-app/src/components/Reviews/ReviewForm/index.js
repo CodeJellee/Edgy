@@ -10,7 +10,6 @@ import cookieParser from "cookie-parser";
 
 function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
   const dispatch = useDispatch();
-
   // const sessionUser = useSelector((state) => state.session.user);
   // const [stars, setStars] = useState(1);
   const [review, setReview] = useState("");
@@ -19,7 +18,9 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
   const [submittedSuc, setSubmittedSuc] = useState(false);
   const [rating, setRating] = useState("reviewObj.rating");
   const [vaErrors, setVaErrors] = useState({});
-  
+
+
+
 
 
 
@@ -44,6 +45,10 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
   const handleSubmit = async (e) => {
+    if (submittedSuc) return
+
+
+
     e.preventDefault();
     console.log("start of handle submit ")
     setSubmitted(true);
