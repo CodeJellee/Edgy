@@ -5,13 +5,14 @@ import "./AllProductsPage.css"
 import FooterTwo from "../../Footer/index2";
 import DeleteProductModal from "./DeleteProduct";
 import { useModal } from '../../../context/Modal'
+import { useHistory } from "react-router-dom";
 
 
 function AllProductsPage() {
     const { userProducts } = useSelector((state) => state.products);
     const dispatch = useDispatch();
     const { setModalContent } = useModal();
-    //const history = useHistory();
+    const history = useHistory();
 
     let products
     if (userProducts) products = Object.values(userProducts)
@@ -38,20 +39,20 @@ function AllProductsPage() {
 
             {products?.map((p) => (
                 <div className="userProduct">
-                    <img src={p.preview_imageURL} alt="meaningful text"></img>
-                    <h4>{p.item_name}</h4>
-                    <p>{p.description}</p>
-                    <div className="product-p">
+                    <img onClick={((e) => history.push(`products/${p.id}`))} src={p.preview_imageURL} alt="meaningful text"></img>
+                    <h4 onClick={((e) => history.push(`products/${p.id}`))}>{p.item_name}</h4>
+                    <p onClick={((e) => history.push(`products/${p.id}`))}>{p.description}</p>
+                    <div onClick={((e) => history.push(`products/${p.id}`))}className="product-p">
                     <p>{p.quantity} In Stock</p>
                     <p>|</p>
                     <p>{p.price}</p>
                     </div>
-                    <p>
-                    {new Date(p.createdAt).toLocaleString('default', {
+                    <p>Created At:
+                    {` ${new Date(p.createdAt).toLocaleString('default', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
-                    })}
+                    })}`}
                     </p>
                     <div className="deleteProduct">
                         <button onClick={(() => setModalContent(<DeleteProductModal productId={p.id} />))}>Delete</button>

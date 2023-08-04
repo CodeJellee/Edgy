@@ -61,10 +61,7 @@ function ProfileButton({ user }) {
             </div>
             <p id="logout">
               <p onClick={handleLogout}>Log Out</p>
-              <p>
-                <button onClick={handleLogout}>Log Out</button>
-              </p>
-            </p> {/* <-- Issue: Change this to </> */}
+            </p>
           </>
         ) : (
           <>
