@@ -13,6 +13,7 @@ function LoginFormModal() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [demoPassword, setPa]
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -22,22 +23,42 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
-        history.push('/')
+      closeModal()
+      history.push('/')
     }
   };
 
-  const handleDemoUserSubmit = () => {
+
+
+  const handleDemoSubmit = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal()
+      history.push('/')
+    }
+  };
+
+
+  const handleDemoUserSubmit = async (e) => {
+    e.preventDefault()
     const demoUser = {
       credential: "demo@aa.io",
       password: "password",
     };
+    console.log("in handle demo submit")
+    const data = await dispatch(login("demo@aa.io", "password"))
+    console.log(data)
 
-    dispatch(sessionActions.login(demoUser))
-      .then(closeModal)
-      .catch((err) => {
-      //add any errors if you want
-      })
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal()
+      history.push('/')
+    }
+
   }
 
   return (
@@ -68,10 +89,12 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+
       </form>
-      <NavLink id="demo-user-link" to="/" className="demo-user-button" onClick={handleDemoUserSubmit}>
-        Demo User
-      </NavLink>
+      <form onSubmit={handleDemoSubmit}>
+        <button type="submit">DemoUser</button>
+      </form>
+
     </>
   );
 }
