@@ -13,7 +13,6 @@ function LoginFormModal() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [demoPassword, setPa]
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -42,24 +41,7 @@ function LoginFormModal() {
   };
 
 
-  const handleDemoUserSubmit = async (e) => {
-    e.preventDefault()
-    const demoUser = {
-      credential: "demo@aa.io",
-      password: "password",
-    };
-    console.log("in handle demo submit")
-    const data = await dispatch(login("demo@aa.io", "password"))
-    console.log(data)
 
-    if (data) {
-      setErrors(data);
-    } else {
-      closeModal()
-      history.push('/')
-    }
-
-  }
 
   return (
     <>
