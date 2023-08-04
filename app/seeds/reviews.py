@@ -38,7 +38,7 @@ def seed_reviews(user, product):
         {
         "id": 6,
         "stars": 5,
-        "userId": 8,
+        "userId": 7,
         "productId": 2,
         "review": "Awesome, exceeded my expectations!"
         },
@@ -52,17 +52,17 @@ def seed_reviews(user, product):
         {
         "id": 8,
         "stars": 9,
-        "userId": 9,
+        "userId": 1,
         "productId": 5,
         "review": "Outstanding service and product quality!"
         },
-          {
-    "id":9,
-    "stars": 5,
-    "userId": 6,
-    "productId": 80,
-    "review": "Incredible find! This product has exceeded my expectations and my wildest dreams."
-  },
+        {
+        "id":9,
+        "stars": 5,
+        "userId": 6,
+        "productId": 80,
+        "review": "Incredible find! This product has exceeded my expectations and my wildest dreams."
+        },
         {
         "id": 10,
         "stars": 4,
