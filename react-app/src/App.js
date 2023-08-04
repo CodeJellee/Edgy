@@ -30,16 +30,11 @@ function App() {
             <HomePage />
           </Route>
 
-
-
           <Route exact path="/your_reviews">
             <ProtectedRoute>
               <ReviewsCurr />
             </ProtectedRoute>
           </Route>
-
-
-
 
           <Route exact path="/categories/clothing">
             <Categories
@@ -106,7 +101,9 @@ function App() {
           </Route>
 
           <Route exact path="/products/new">
-            <NewProductForm />
+            <ProtectedRoute>
+              <NewProductForm />
+            </ProtectedRoute>
           </Route>
 
           <Route path="/products/:id">
@@ -114,15 +111,21 @@ function App() {
           </Route>
 
           <Route exact path="/favorites/current">
-            <FavoritesPage />
+            <ProtectedRoute>
+              <FavoritesPage />
+            </ProtectedRoute>
           </Route>
 
           <Route exact path="/shopping_cart">
-            <ShoppingCart />
+            <ProtectedRoute>
+              <ShoppingCart />
+            </ProtectedRoute>
           </Route>
 
           <Route exact path="/your_products">
-            <AllProductsPage />
+            <ProtectedRoute>
+              <AllProductsPage />
+            </ProtectedRoute>
           </Route>
 
           <Route path="/">
