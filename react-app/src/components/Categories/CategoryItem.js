@@ -29,7 +29,7 @@ function CategoryItem({ p, page }) {
   // console.log("favorites state:", userFavorites)
 
   useEffect(() => {
-    dispatch(thunkGetUserFavorites(user?.id));
+    if (user) dispatch(thunkGetUserFavorites(user?.id));
   }, [user?.id, dispatch]);
 
   let favs = userFavorites?.filter((f) => f.id === p.id);
