@@ -113,6 +113,11 @@
     margin-right: 8px;
 }
 
+.popP > div > #favorite-icon__container {
+    width: 10.2%;
+    height: 8.5%;
+}
+
 
 #favorite-icon__container > .fa-solid {
     color: purple;
@@ -129,6 +134,7 @@
     justify-content: flex-end;
     align-content: flex-start;
     width: 100%;
+    z-index: 4;
 }
 
 .hidden {

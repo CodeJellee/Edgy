@@ -28,7 +28,7 @@ function HomePage(){
         return (
              <>
              <ImageCarousel />
-             <h2 className="cap">Discrover fresh summer finds from creative sellers!</h2>
+             <h1 className="cap">Discrover fresh summer finds from creative sellers!</h1>
              <div className="searchResults">
                 <div className="result">
                     <img src="https://www.brides.com/thmb/w00iMSdT5TI9CAijgKl_sqAvGJs=/fit-in/1500x640/filters:no_upscale():max_bytes(150000):strip_icc()/daily-calendar-slide-1-db9bf2bfd4d041a9828d6c563adce0eb.jpg" alt="meaningfult text"></img>

@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Stars from '../Reviews/Stars/Stars';
 import * as favoriteActions from "../../store/favorites"
 import { thunkGetUserFavorites } from "../../store/favorites";
+import "../FavoritesPage/FavoritesPage.css"
 
-
-function CategoryItem({ p }) {
+function CategoryItem({ p, page }) {
     const [ isHidden, setHidden ] = useState(true)
     const history = useHistory()
     const dispatch = useDispatch()
@@ -25,7 +25,6 @@ function CategoryItem({ p }) {
     const handleUnfavoriteClick = (productId) => {
         dispatch(favoriteActions.thunkDeleteFavorite(productId));
     };
-    console.log("favorites state:", userFavorites)
 
     useEffect(() => {
         dispatch(thunkGetUserFavorites(user.id));
@@ -49,6 +48,8 @@ function CategoryItem({ p }) {
       };
 
     return (
+        <>
+        {page !== "recent" ?
         <div
         onMouseLeave={handleTouchStart}
         onMouseEnter={handleTouchEnd}
@@ -69,6 +70,28 @@ function CategoryItem({ p }) {
             Ad by {p.Seller.first_name} {p.Seller.last_name}
           </p>
         </div>
+        :
+        <div
+        onMouseLeave={handleTouchStart}
+        onMouseEnter={handleTouchEnd}
+        className="popP">
+          <div id={isHidden ? "hidden" : "container-container"}>
+          <FavoriteButton
+                productId={p.id}
+                handleUnfavoriteClick={handleUnfavoriteClick}
+                handleFavoriteClick={handleFavoriteClick}
+                initialState={itemState}
+            />
+          </div>
+            <img onClick={((e) => history.push(`/products/${p.id}`))} src={p.preview_imageURL} alt="meaningfult text"></img>
+            <p onClick={((e) => history.push(`/products/${p.id}`))} className="popTitle">{p.item_name}</p>
+
+            <p onClick={((e) => history.push(`/products/${p.id}`))} ><Stars reviews={p.Reviews}></Stars></p>
+
+            <p onClick={((e) => history.push(`/products/${p.id}`))} >${p.price}</p>
+          </div>
+        }
+        </>
     )
 }
 
