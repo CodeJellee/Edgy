@@ -94,42 +94,6 @@ function CategoryItem({ p, page }) {
         }
         </>
     )
-//   return (
-//     <div
-//       onMouseLeave={handleTouchStart}
-//       onMouseEnter={handleTouchEnd}
-//       className="p"
-//     >
-//       <div id={isHidden ? "hidden" : "container-container"}>
-//         <FavoriteButton
-//           productId={p.id}
-//           handleUnfavoriteClick={handleUnfavoriteClick}
-//           handleFavoriteClick={handleFavoriteClick}
-//           initialState={itemState}
-//         />
-//       </div>
-//       <img
-//         onClick={(e) => history.push(`/products/${p.id}`)}
-//         src={p.preview_imageURL}
-//       ></img>
-//       <p
-//         onClick={(e) => history.push(`/products/${p.id}`)}
-//         className="itemName"
-//       >
-//         {p.item_name}
-//       </p>
-//       <Stars
-//         onClick={(e) => history.push(`/products/${p.id}`)}
-//         reviews={p.Reviews}
-//       ></Stars>
-//       <p onClick={(e) => history.push(`/products/${p.id}`)} className="price">
-//         ${p.price}
-//       </p>
-//       <p onClick={(e) => history.push(`/products/${p.id}`)} className="seller">
-//         Ad by {p.Seller.first_name} {p.Seller.last_name}
-//       </p>
-//     </div>
-//   );
 }
 
 export default CategoryItem;
