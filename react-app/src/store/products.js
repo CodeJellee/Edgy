@@ -17,7 +17,7 @@ const GET_SINGLE_PRODUCT_ACTION = "products/GET_SINGLE_PRODUCT_ACTION";
 const GET_USER_PRODUCTS_ACTION = "products/GET_USER_PRODUCTS_ACTION";
 const DELETE_PRODUCT_ACTION = "products/DELETE_PRODUCT_ACTION";
 const CREATE_PRODUCT_ACTION = "products/CREATE_PRODUCT_ACTION";
-const SEARCH_PRODUCT_ACTION ="products/SEARCH_SINGLE_ACTION"
+const SEARCH_PRODUCT_ACTION = "products/SEARCH_SINGLE_ACTION";
 
 const getAllProducts = (products) => ({
   type: GET_ALL_PRODUCTS_ACTION,
@@ -77,15 +77,13 @@ export const thunkSearchAllProducts = (query) => async (dispatch) => {
   // console.log(response)
   if (response.ok) {
     const data = await response.json();
-    console.log(data)
+    // console.log(data);
     dispatch(getFilteredProducts(data));
     return data;
   }
 
   return "error";
 };
-
-
 
 export const thunkGetSingleProduct = (productId) => async (dispatch) => {
   let product = await fetch(`/api/products/${productId}`, {
@@ -95,7 +93,7 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
     },
   });
   product = await product.json();
-  console.log("after thetch", product)
+  // console.log("after thetch", product);
   dispatch(getSingleProduct(product));
   return product;
 };
@@ -113,7 +111,6 @@ export const thunkGetUserProducts = () => async (dispatch) => {
   return userProducts;
 };
 
-
 export const thunkCreateProduct = (productFormData) => async (dispatch) => {
   // console.log('PRODUCTFORMDATA', productFormData)
   let newProduct = await fetch(`/api/products/new`, {
@@ -127,7 +124,6 @@ export const thunkCreateProduct = (productFormData) => async (dispatch) => {
   dispatch(createProduct(newProduct));
   return newProduct;
 };
-
 
 //below has the try catch to check
 // export const thunkCreateProduct = (productFormData) => async (dispatch) => {
@@ -160,30 +156,23 @@ export const thunkDeleteProduct = (productId) => async (dispatch) => {
   return product;
 };
 
-let initialState = { products: {}, userProducts: {}, singleProduct: { Reviews: {}, Seller: {}, ProductImages: [] }, search: {} };
+let initialState = {
+  products: {},
+  userProducts: {},
+  singleProduct: { Reviews: {}, Seller: {}, ProductImages: [] },
+  search: {},
+};
 
 export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case GET_ALL_PRODUCTS_ACTION:
-      // previous code that solved render issue
-      // console.log(action.products, newState)
-      // return  {
-      //   ...state,
-      //   products: action.products
-      // }
-
-      // minh's code normalizing the data
       newState = { ...state };
-      // console.log('this is action.products', action.products.Products)
       action.products.Products.forEach(
         (product) => (newState.products[product.id] = product)
       );
       return state;
     case GET_SINGLE_PRODUCT_ACTION: {
-
-
-
       newState = { ...state };
       const product = action.product;
       newState.singleProduct = { ...product };
@@ -199,7 +188,6 @@ export default function reducer(state = initialState, action) {
       newState.singleProduct.Reviews = Object.values(uniqueReviews);
 
       return newState;
-
     }
     case GET_USER_PRODUCTS_ACTION: {
       newState = { ...state };
@@ -233,6 +221,7 @@ export default function reducer(state = initialState, action) {
       // minh's code normalizing the data
       newState = { ...state };
       // console.log('this is action.products', action.products.Products)
+      newState.search = {};
       action.products.Products.forEach(
         (product) => (newState.search[product.id] = product)
       );

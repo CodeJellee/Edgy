@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 import "./ReviewForm.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as reviewsActions from "../../../store/reviews";
 import * as productsActions from "../../../store/products";
 import StarRating from "./StarRating";
-<<<<<<< HEAD
-=======
+import cookieParser from "cookie-parser";
 
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
-
-
-function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, setReviewRender }) {
+function EditReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
   const dispatch = useDispatch();
 
-  // const uwu = useSelector(state => Object.values(state.reviews.userReviews.Reviews))
+  // const sessionUser = useSelector((state) => state.session.user);
+  // const [stars, setStars] = useState(1);
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
@@ -25,14 +22,11 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
 
 
 
-
-
-
   // edit state
-
+  // console.log("review form review obj passed from review curr", reviewObj)
   const [reviewEditState, setReviewEditState] = useState(reviewEdit || "");
   const [ratingEdit, setRatingEdit] = useState(starsEdit || 1);
-
+  // console.log(reviewEditState)
 
 
   const { id } = useParams();
@@ -42,32 +36,23 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
       setReview("");
       setRating(1);
     } else {
-      setReviewEditState(reviewEdit)
-      setRatingEdit(starsEdit)
+
     }
 
   };
 
 
   const handleSubmit = async (e) => {
-    if (submittedSuc) return
-
-
-
     e.preventDefault();
-<<<<<<< HEAD
-
-=======
     // console.log("start of handle submit ")
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
     setSubmitted(true);
     if (from === "post") {
 
 
-      if (Object.keys(vaErrors).length) {
-        return;
-      }
-
+      // if (Object.keys(vaErrors).length) {
+      //   return;
+      // }
+      // console.log("RATING BY STARS =", rating)
       const data = await dispatch(
         reviewsActions.thunkSubmitReview(rating, review, id)
       );
@@ -89,62 +74,30 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
 
 
     } else if (from === "edit") {
-<<<<<<< HEAD
-
-      if (Object.keys(vaErrors).length) {
-        return;
-      }
-
-=======
       // console.log("hi")
       // console.log(Object.keys(vaErrors))
-      if (Object.keys(vaErrors).length) {
-        return;
-      }
+      // if (Object.keys(vaErrors).length) {
+      //   return;
+      // }
       // console.log("review before passing on", ratingEdit, reviewEditState)
       // console.log("just reviewEdit", e)
-      // console.log(reviewObj)
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
       const data = await dispatch(
+        // ! need to change this to edit thunk
+        // id is wrong, your_reviews are not on  react link with id param
+        // need (stars, review , id
 
-        reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewObj.id)
+        reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewEdit.id)
       );
-<<<<<<< HEAD
-
-
-      // i dont think this should be there should see if there is an error prop or something
-      // if (data) {
-
-      //   setErrors(data);
-      // }
-=======
       if (data) {
-        // console.log("EO ERROR ERROR", data)
+        // console.log("ERROR ERROR ERROR", data)
         setErrors(data);
       }
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
 
       // not sure i need this for
       if (errors.length === 0) {
         resetState();
       }
-      // pass setFormTrigger
-      // grab setFrmTrigger to false
-      setFormTrigger(false)
-      // let newReviewObj = {...reviewObj}
-      // newReviewObj.stars = ratingEdit
-      //  newReviewObj
 
-      // !!!
-
-      setReviewRender(data)
-      ///To do
-
-
-      // reviewEdit
-      // starsEdit
-      // se
-      // hit something here to make react rerender current page / product review page
     }
 
 
@@ -161,40 +114,23 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
     }
   };
 
-  useEffect(() => {
-    const err = {};
-    // console.log("should be an empty err:", err)
+  // useEffect(() => {
+  //   const err = {};
 
-    if (from === "post") {
-<<<<<<< HEAD
 
-=======
-      // console.log("in edit of event handler, reviewEditStat:", reviewEditState, "reviewEditState.length", reviewEditState.length)
-      // console.log(review)
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
-      if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
-      if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
-    } else if (from === "edit") {
-
-      if (reviewEditState.length < 10) {
-        err["Review"] = "Review needs 10 or more characters";
-
-      }
-      if (reviewEditState.length > 225) {
-
-        err["Review"] = "Review needs to be less than 225 or more characters";
-      }
-    }
-<<<<<<< HEAD
-
-    console.log(err)
-=======
-    // console.log("err", err)
-    // console.log(" err handling", err)
-    // console.log(err)
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
-    setVaErrors(err);
-  }, [review, reviewEditState]);
+  //   // if (from === "post") {
+  //   if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
+  //   if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
+  //   // } else if (from === "edit") {
+  //   // if (reviewEditState.length < 10)
+  //   //   err["Review"] = "Review needs 10 or more characters";
+  //   // if (reviewEditState.length > 225)
+  //   //   err["Review"] = "Review needs to be less than 225 or more characters";
+  //   // }
+  //   // console.log("err", err)
+  //   console.log(err)
+  //   setVaErrors(err);
+  // }, [review]);
 
   const test = 3
   if (from === "post") {

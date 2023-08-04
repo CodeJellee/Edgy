@@ -72,10 +72,14 @@ function ReviewCard({ userFirstName, review, from, user }) {
     }
 
 
+<<<<<<< HEAD
     const starsEdit = reviewRender.stars
     const reviewEdit = reviewRender.review
 
     // (review.id)
+=======
+    // console.log(review.id)
+>>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
     if (deleteTrigger) return null
     if (formTrigger)
         return (

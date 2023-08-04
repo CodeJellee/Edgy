@@ -22,9 +22,16 @@ function CategoryItem({ p, page }) {
     dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
   };
 
+<<<<<<< HEAD
   const handleUnfavoriteClick = (productId) => {
     dispatch(favoriteActions.thunkDeleteFavorite(productId));
   };
+=======
+    const handleUnfavoriteClick = (productId) => {
+        dispatch(favoriteActions.thunkDeleteFavorite(productId));
+    };
+    // console.log("favorites state:", userFavorites)
+>>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
 
   // console.log("favorites state:", userFavorites)
 
