@@ -11,6 +11,7 @@ import ProductIdPage from "./components/Products/ProductIdPage";
 import FavoritesPage from "./components/FavoritesPage";
 import NewProductForm from "./components/Products/CreateNewProduct";
 import Footer from "./components/Footer";
+import AllProductsPage from "./components/Products/AllProductsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -110,6 +111,10 @@ function App() {
 
           <Route exact path="/shopping_cart">
             <ShoppingCart />
+          </Route>
+
+          <Route exact path="/your_products">
+            <AllProductsPage />
           </Route>
 
           <Route path="/">

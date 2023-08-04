@@ -24,6 +24,7 @@ function Navigation({ isLoaded }){
 		<input type="text" onKeyDown={handleInputChange} placeholder='Search for anything'></input>
 		<i id="searchI" class="fa-solid fa-magnifying-glass"></i>
 		</div>
+		<i onClick={(e) => history.push("/favorites/current/")} class="fa-regular fa-heart"></i>
 		{isLoaded && (
 				<div className="user">
 					<ProfileButton user={sessionUser} />
