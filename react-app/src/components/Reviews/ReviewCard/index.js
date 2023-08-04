@@ -16,6 +16,7 @@ function ReviewCard({ userFirstName, review, from, user }) {
     // const [review2, setReview] = useState(review)
 
     const [deleteTrigger, setDeleteTrigger] = useState(false);
+    // TODO   set this back to false after submission
     const [formTrigger, setFormTrigger] = useState(false);
 
     // useEffect(() => {
@@ -78,7 +79,7 @@ function ReviewCard({ userFirstName, review, from, user }) {
     if (formTrigger)
         return (
             <>
-                <ReviewForm from="edit" starsEdit={starsEdit} reviewEdit={reviewEdit} reviewObj={review}></ReviewForm>
+                <ReviewForm from="edit" starsEdit={starsEdit} reviewEdit={reviewEdit} reviewObj={review} setFormTrigger={setFormTrigger}></ReviewForm>
             </>
         )
 

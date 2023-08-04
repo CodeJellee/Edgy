@@ -8,7 +8,7 @@ import * as productsActions from "../../../store/products";
 import StarRating from "./StarRating";
 import cookieParser from "cookie-parser";
 
-function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
+function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger }) {
   const dispatch = useDispatch();
   // const sessionUser = useSelector((state) => state.session.user);
   // const [stars, setStars] = useState(1);
@@ -101,7 +101,9 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
       if (errors.length === 0) {
         resetState();
       }
-
+      // pass setFormTrigger
+      // grab setFrmTrigger to false
+      setFormTrigger(false)
     }
 
 
