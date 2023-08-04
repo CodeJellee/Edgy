@@ -1,23 +1,29 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import deleteShoppingCartAction, { thunkDeleteCartItem }  from "../../store/shoppingCart"
-import "../ShoppingCart/ShoppingCartPage/ShoppingCart.css"
+import deleteShoppingCartAction, {
+  thunkDeleteCartItem,
+  thunkGetShoppingCart,
+} from "../../store/shoppingCart";
+import "../ShoppingCart/ShoppingCartPage/ShoppingCart.css";
 
-function DeleteCartIem({cartItemId}) {
+function DeleteCartIem({ cartItemId }) {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
+  const onClick = (e) => {
+    e.preventDefault();
 
-    const onClick = (e) => {
-        e.preventDefault();
-        dispatch(thunkDeleteCartItem(cartItemId))
-    }
+    dispatch(thunkDeleteCartItem(cartItemId));
+    //       .then(() => dispatch(thunkGetShoppingCart()))
+    //       .then(() => console.log("dispatches complete"));
+  };
 
-
-    return(
-        <>
-        <div className="remove-save-button" onClick={onClick}>✕ Remove</div>
-        </>
-    )
+  return (
+    <>
+      <div className="remove-save-button" onClick={onClick}>
+        ✕ Remove
+      </div>
+    </>
+  );
 }
 
 export default DeleteCartIem;

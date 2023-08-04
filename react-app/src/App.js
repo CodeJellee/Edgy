@@ -32,10 +32,6 @@ function App() {
             <ReviewsCurr />
           </Route>
 
-          <Route exact path="/shopping_cart">
-            <ShoppingCart />
-          </Route>
-
           <Route exact path="/categories/clothing">
             <Categories
               category="Clothing"
@@ -108,18 +104,13 @@ function App() {
             <FavoritesPage />
           </Route>
 
-          <Route exact path="/products/new">
-            <NewProductForm />
-          </Route>
-
-          <Route exact path="/products/:id">
-            <ProductIdPage />
+          <Route exact path="/shopping_cart">
+            <ShoppingCart />
           </Route>
 
           <Route path="/">
             <h1>404 not found</h1>
           </Route>
-
         </Switch>
       )}
       <Footer isLoaded={isLoaded} />
