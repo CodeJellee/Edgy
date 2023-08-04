@@ -10,6 +10,7 @@ function ReviewsCurr() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const userReviews = useSelector((state) => state.reviews.userReviews);
+  // const uwu = useSelector(state => state.reviews.userReviews.Reviews)
 
   const [reviews, setReviews] = useState([]);
 
@@ -36,7 +37,7 @@ function ReviewsCurr() {
   // console.log(reviews)
   // console.log(reviews)
 
-// console.log("you reviews rendering right before cares:", "first_name:", currentUser.username, "review array of objects:", reviews, "from: userReviews",)
+  // console.log("you reviews rendering right before cares:", "first_name:", currentUser.username, "review array of objects:", reviews, "from: userReviews",)
   return (
     <>
 
