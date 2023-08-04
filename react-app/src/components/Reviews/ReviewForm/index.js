@@ -23,7 +23,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
   // edit state
-  console.log("review form review obj passed from review curr", reviewObj)
+  // console.log("review form review obj passed from review curr", reviewObj)
   const [reviewEditState, setReviewEditState] = useState(reviewEdit || "");
   const [ratingEdit, setRatingEdit] = useState(starsEdit || 1);
   // console.log(reviewEditState)
@@ -83,9 +83,6 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
       // console.log("just reviewEdit", e)
       console.log(reviewObj)
       const data = await dispatch(
-        // ! need to change this to edit thunk
-        // id is wrong, your_reviews are not on  react link with id param
-        // need (stars, review , id
 
         reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewObj.id)
       );
@@ -117,22 +114,29 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
   useEffect(() => {
     const err = {};
-    console.log("sdfdsfdsfdsfdsfdsfdsfdsfsdf")
+    // console.log("should be an empty err:", err)
 
     if (from === "post") {
+      // console.log("in edit of event handler, reviewEditStat:", reviewEditState, "reviewEditState.length", reviewEditState.length)
+      console.log(review)
       if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
       if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
     } else if (from === "edit") {
-      console.log("in edit of event handler ")
-      if (reviewEditState.length < 10)
+      // console.log("in edit of event handler, reviewEditStat:", reviewEditState, "reviewEditState.length", reviewEditState.length)
+      if (reviewEditState.length < 10) {
         err["Review"] = "Review needs 10 or more characters";
-      if (reviewEditState.length > 225)
+
+      }
+      if (reviewEditState.length > 225) {
+
         err["Review"] = "Review needs to be less than 225 or more characters";
+      }
     }
     // console.log("err", err)
+    // console.log(" err handling", err)
     console.log(err)
     setVaErrors(err);
-  }, [review]);
+  }, [review, reviewEditState]);
 
   const test = 3
   if (from === "post") {
