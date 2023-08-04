@@ -77,7 +77,7 @@ export const thunkSearchAllProducts = (query) => async (dispatch) => {
   // console.log(response)
   if (response.ok) {
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     dispatch(getFilteredProducts(data));
     return data;
   }
@@ -93,7 +93,7 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
     },
   });
   product = await product.json();
-  console.log("after thetch", product);
+  // console.log("after thetch", product);
   dispatch(getSingleProduct(product));
   return product;
 };

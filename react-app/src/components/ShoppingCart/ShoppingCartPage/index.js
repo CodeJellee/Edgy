@@ -48,7 +48,7 @@ function ShoppingCartPage() {
           <div className="products-only-container">
             {userCart?.map((item) => (
               <>
-                {console.log(item)}
+                {/* {console.log(item)} */}
                 <div className="each-cart-item-container">
                   <div>
                     <div className="sellerId-container">
