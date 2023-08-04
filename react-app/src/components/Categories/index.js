@@ -28,7 +28,7 @@ function Categories({ category, name }) {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(productActions.thunkSearchAllProducts(query))
+    if (query) dispatch(productActions.thunkSearchAllProducts(query))
   }, [dispatch, query]);
 
   let info;

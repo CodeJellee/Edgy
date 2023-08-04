@@ -117,7 +117,6 @@ function App() {
           </Route>
         </Switch>
       )}
-      <Footer isLoaded={isLoaded} />
     </>
   );
 }
