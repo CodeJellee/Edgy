@@ -232,23 +232,4 @@ def search_products():
         product["Seller"] = seller
 
     return {"Products": products}
-    # for product in filtered_products:
-    #     product = product.to_dict()
-    #     search = {
-    #         "item_name": product["item_name"],
-    #         # "description": product["description"]
-    #     }
-    #     for word in search.values():
-    #         print(word)
-    #         if searchQuery.lower() in str(word).lower():
-    #             filters.append(product)
 
-    # for product in filters:
-    #     reviews = Review.query.filter(Review.productId == product["id"])
-    #     reviews = [review.to_dict() for review in reviews]
-    #     seller = User.query.get(product["sellerId"])
-    #     seller = seller.to_dict()
-    #     product["Reviews"] = reviews
-    #     product["Seller"] = seller
-
-    # return {"Products": filters}
