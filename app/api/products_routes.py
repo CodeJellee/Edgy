@@ -195,7 +195,7 @@ def post_cart_items(productId):
     cur_user = current_user.to_dict()
     # print("CURRENT USER", cur_user)
     product_exists = Product.query.get(productId)
-    # print("PRODUCT", product_exists.sellerId)
+    print("PRODUCT", product_exists)
 
     # Edge Cases
     if product_exists and cur_user["id"] == product_exists.sellerId:
@@ -205,9 +205,13 @@ def post_cart_items(productId):
         add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
         db.session.add(add_to_cart)
         db.session.commit()
+        product_to_return = {
+            "CartItem": add_to_cart.to_dict(),
+            "Product": product_exists.to_dict(),
+        }
         # UPDATE API FOR THE RETURN, NO MSG
         print("ADD TO CART", add_to_cart.to_dict())
-        return add_to_cart.to_dict()
+        return product_to_return
     else:
         return {"message": "Item couldn't be found"}
 
@@ -232,4 +236,3 @@ def search_products():
         product["Seller"] = seller
 
     return {"Products": products}
-

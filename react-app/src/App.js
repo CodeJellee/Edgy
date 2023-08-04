@@ -10,6 +10,7 @@ import Categories from "./components/Categories";
 import ProductIdPage from "./components/Products/ProductIdPage";
 import FavoritesPage from "./components/FavoritesPage";
 import NewProductForm from "./components/Products/CreateNewProduct";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Footer from "./components/Footer";
 import AllProductsPage from "./components/Products/AllProductsPage";
 
@@ -29,9 +30,16 @@ function App() {
             <HomePage />
           </Route>
 
+
+
           <Route exact path="/your_reviews">
-            <ReviewsCurr />
+            <ProtectedRoute>
+              <ReviewsCurr />
+            </ProtectedRoute>
           </Route>
+
+
+
 
           <Route exact path="/categories/clothing">
             <Categories
@@ -94,7 +102,7 @@ function App() {
           </Route>
 
           <Route exact path="/categories/search/:query">
-            <Categories name="query"/>
+            <Categories name="query" />
           </Route>
 
           <Route exact path="/products/new">

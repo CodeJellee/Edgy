@@ -74,10 +74,10 @@ def delete_cart_item(productId):
     cart_item = CartItem.query.filter_by(
         userId=cur_user["id"], productId=productId
     ).first()
-    print(
-        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        productId,
-    )
+    # print(
+    #     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    #     productId,
+    # )
 
     # pprint('THIS IS ITEM FROM ROUTE', item)
     if not cart_item:

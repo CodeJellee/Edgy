@@ -3,6 +3,7 @@
 const GET_SHOPPING_CART = "shoppingCart/GET_SHOPPING_CART";
 const DELETE_CART_ITEM = "shoppingCart/DELETE_CART_ITEM";
 const POST_ITEM_IN_CART = "shoppingCart/POST_ITEM_IN_CART";
+const CLEAR_USER_CART = "shoppingCart/CLEAR_USER_CART";
 
 //?  ===================end of types ===================//
 
@@ -22,10 +23,16 @@ const deleteShoppingCartAction = (productId) => {
   };
 };
 
-const postItemInCartAction = (productId) => {
+const postItemInCartAction = (product) => {
   return {
     type: POST_ITEM_IN_CART,
-    productId,
+    product,
+  };
+};
+
+export const clearCartAction = () => {
+  return {
+    type: CLEAR_USER_CART,
   };
 };
 //*  ======================= end of actions ===================//
@@ -69,8 +76,8 @@ export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
     // console.log('THIS IS PRODUCT', product)
   });
   product = await product.json();
-  // await dispatch(postItemInCartAction(product))
-  await dispatch(thunkGetShoppingCart());
+  await dispatch(postItemInCartAction(product));
+  // await dispatch(thunkGetShoppingCart());
   return product;
 };
 
@@ -91,12 +98,30 @@ export default function reducer(state = initialState, action) {
       );
       return newState;
     }
+    case POST_ITEM_IN_CART: {
+      newState = { ...state };
+
+      console.log("this is payload", action.product); // Payload
+
+      const productPayload = action.product;
+
+      // newState.userCart[product.id] = Product: {product}, id, productId, userId}
+      newState.userCart[productPayload.CartItem.productId] = {
+        Product: productPayload.Product,
+        ...productPayload.CartItem,
+      }; // payload: cartId, productId, userId
+
+      return newState;
+    }
     case DELETE_CART_ITEM: {
       newState = { ...state };
       newState.userCart = { ...newState.userCart };
       // console.log('WHAT IS THIS', newState.userCart[action.productId])
       delete newState.userCart[action.productId]; // refactor the get route to normalize by product id
       return newState;
+    }
+    case CLEAR_USER_CART: {
+      return { ...state, userCart: {} };
     }
     default:
       return state;
