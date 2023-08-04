@@ -94,7 +94,7 @@ export default function reducer(state = initialState, action) {
     case DELETE_CART_ITEM: {
       newState = { ...state };
       newState.userCart = { ...newState.userCart };
-      console.log('WHAT IS THIS', newState.userCart[action.productId])
+      // console.log('WHAT IS THIS', newState.userCart[action.productId])
       delete newState.userCart[action.productId]; // refactor the get route to normalize by product id
       return newState;
     }

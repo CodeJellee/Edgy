@@ -20,19 +20,15 @@ function Categories({ category, name }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { query } = useParams();
-  console.log(query);
-  console.log(search);
+  // console.log(query);
+  // console.log(search);
 
   useEffect(() => {
     dispatch(productActions.thunkGetAllProducts());
   }, [dispatch]);
 
   useEffect(() => {
-<<<<<<< HEAD
     if (query) dispatch(productActions.thunkSearchAllProducts(query))
-=======
-    dispatch(productActions.thunkSearchAllProducts(query));
->>>>>>> cf4dc22489256453ca5b38264c5d045cd849c5c5
   }, [dispatch, query]);
 
   let info;
@@ -50,17 +46,17 @@ function Categories({ category, name }) {
   if (!query) eachProduct = Object.values(products);
   if (query) eachProduct = Object.values(search);
 
-  console.log(eachProduct);
+  // console.log(eachProduct);
 
   if (!eachProduct) return <h1>Loading</h1>;
 
   if (!query && category !== "All")
     eachProduct = eachProduct.filter((p) => p.category == category);
 
-  console.log(
-    "hi this right here is the array you want to look at",
-    eachProduct
-  );
+  // console.log(
+  //   "hi this right here is the array you want to look at",
+  //   eachProduct
+  // );
   return (
     <>
       {!query ? (

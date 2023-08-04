@@ -50,7 +50,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
     e.preventDefault();
-    console.log("start of handle submit ")
+    // console.log("start of handle submit ")
     setSubmitted(true);
     if (from === "post") {
 
@@ -80,20 +80,20 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
     } else if (from === "edit") {
-      console.log("hi")
-      console.log(Object.keys(vaErrors))
+      // console.log("hi")
+      // console.log(Object.keys(vaErrors))
       if (Object.keys(vaErrors).length) {
         return;
       }
       // console.log("review before passing on", ratingEdit, reviewEditState)
       // console.log("just reviewEdit", e)
-      console.log(reviewObj)
+      // console.log(reviewObj)
       const data = await dispatch(
 
         reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewObj.id)
       );
       if (data) {
-        console.log("EO ERROR ERROR", data)
+        // console.log("EO ERROR ERROR", data)
         setErrors(data);
       }
 
@@ -124,7 +124,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
     if (from === "post") {
       // console.log("in edit of event handler, reviewEditStat:", reviewEditState, "reviewEditState.length", reviewEditState.length)
-      console.log(review)
+      // console.log(review)
       if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
       if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
     } else if (from === "edit") {
@@ -140,7 +140,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
     }
     // console.log("err", err)
     // console.log(" err handling", err)
-    console.log(err)
+    // console.log(err)
     setVaErrors(err);
   }, [review, reviewEditState]);
 

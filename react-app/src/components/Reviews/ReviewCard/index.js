@@ -73,7 +73,7 @@ function ReviewCard({ userFirstName, review, from, user }) {
     const starsEdit = review.stars
     const reviewEdit = review.review
 
-    console.log(review.id)
+    // console.log(review.id)
     if (deleteTrigger) return null
     if (formTrigger)
         return (

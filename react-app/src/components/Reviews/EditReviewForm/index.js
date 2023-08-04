@@ -44,7 +44,7 @@ function EditReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("start of handle submit ")
+    // console.log("start of handle submit ")
     setSubmitted(true);
     if (from === "post") {
 
@@ -74,8 +74,8 @@ function EditReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
     } else if (from === "edit") {
-      console.log("hi")
-      console.log(Object.keys(vaErrors))
+      // console.log("hi")
+      // console.log(Object.keys(vaErrors))
       // if (Object.keys(vaErrors).length) {
       //   return;
       // }
@@ -89,7 +89,7 @@ function EditReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
         reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewEdit.id)
       );
       if (data) {
-        console.log("ERROR ERROR ERROR", data)
+        // console.log("ERROR ERROR ERROR", data)
         setErrors(data);
       }
 

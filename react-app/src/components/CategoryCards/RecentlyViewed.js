@@ -25,7 +25,7 @@ function RecentlyReviewedCard() {
 
   eachProduct = eachProduct.filter((p) => p.Reviews.find((r) => r.stars > 4));
   eachProduct = eachProduct.slice(0, 5);
-  console.log(eachProduct);
+  // console.log(eachProduct);
 
   return (
     <div className="popular">
