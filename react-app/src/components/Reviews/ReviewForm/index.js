@@ -6,10 +6,7 @@ import { useParams } from "react-router-dom";
 import * as reviewsActions from "../../../store/reviews";
 import * as productsActions from "../../../store/products";
 import StarRating from "./StarRating";
-<<<<<<< HEAD
-=======
 
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
 
 
 function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, setReviewRender }) {
@@ -55,11 +52,6 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
 
 
     e.preventDefault();
-<<<<<<< HEAD
-
-=======
-    // console.log("start of handle submit ")
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
     setSubmitted(true);
     if (from === "post") {
 
@@ -89,27 +81,15 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
 
 
     } else if (from === "edit") {
-<<<<<<< HEAD
 
       if (Object.keys(vaErrors).length) {
         return;
       }
 
-=======
-      // console.log("hi")
-      // console.log(Object.keys(vaErrors))
-      if (Object.keys(vaErrors).length) {
-        return;
-      }
-      // console.log("review before passing on", ratingEdit, reviewEditState)
-      // console.log("just reviewEdit", e)
-      // console.log(reviewObj)
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
       const data = await dispatch(
 
         reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewObj.id)
       );
-<<<<<<< HEAD
 
 
       // i dont think this should be there should see if there is an error prop or something
@@ -117,12 +97,6 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
 
       //   setErrors(data);
       // }
-=======
-      if (data) {
-        // console.log("EO ERROR ERROR", data)
-        setErrors(data);
-      }
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
 
       // not sure i need this for
       if (errors.length === 0) {
@@ -166,12 +140,6 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
     // console.log("should be an empty err:", err)
 
     if (from === "post") {
-<<<<<<< HEAD
-
-=======
-      // console.log("in edit of event handler, reviewEditStat:", reviewEditState, "reviewEditState.length", reviewEditState.length)
-      // console.log(review)
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
       if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
       if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
     } else if (from === "edit") {
@@ -185,14 +153,8 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
         err["Review"] = "Review needs to be less than 225 or more characters";
       }
     }
-<<<<<<< HEAD
 
     console.log(err)
-=======
-    // console.log("err", err)
-    // console.log(" err handling", err)
-    // console.log(err)
->>>>>>> 3e470177a495a007d89276a868d9e408e84b4c83
     setVaErrors(err);
   }, [review, reviewEditState]);
 
