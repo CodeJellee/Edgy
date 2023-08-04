@@ -26,28 +26,28 @@ def seed_users():
         last_name="work3",
     )
     chris = User(
-        username="ChrisLovesWaifuPillowsSHOP",
+        username="Chris",
         email="chris@aa.io",
         password="password",
         first_name="Chris",
         last_name="demoT",
     )
     minh = User(
-        username="MinhLovesWaifuPillowsSHOP",
+        username="Minh",
         email="minh@aa.io",
         password="password",
         first_name="Minh",
         last_name="demoT",
     )
     jenny = User(
-        username="JennyLovesWaifuPillowsSHOP",
+        username="Jenny",
         email="jenny@aa.io",
         password="password",
         first_name="Jenny",
         last_name="demoL",
     )
     thandi = User(
-        username="ThandiLovesWaifuPillowsSHOP",
+        username="Thandi",
         email="thandi@aa.io",
         password="password",
         first_name="Thandi",
