@@ -19,16 +19,20 @@ function Categories({ category, name }) {
   const { products, search } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { query } = useParams()
-  console.log(query)
-  console.log(search)
+  const { query } = useParams();
+  console.log(query);
+  console.log(search);
 
   useEffect(() => {
     dispatch(productActions.thunkGetAllProducts());
   }, [dispatch]);
 
   useEffect(() => {
+<<<<<<< HEAD
     if (query) dispatch(productActions.thunkSearchAllProducts(query))
+=======
+    dispatch(productActions.thunkSearchAllProducts(query));
+>>>>>>> cf4dc22489256453ca5b38264c5d045cd849c5c5
   }, [dispatch, query]);
 
   let info;
@@ -41,55 +45,63 @@ function Categories({ category, name }) {
 
   if (info) description = info[1];
 
-  let eachProduct
+  let eachProduct;
 
   if (!query) eachProduct = Object.values(products);
-  if (query) eachProduct = Object.values(search)
+  if (query) eachProduct = Object.values(search);
 
-  console.log(eachProduct)
+  console.log(eachProduct);
 
   if (!eachProduct) return <h1>Loading</h1>;
 
-  if (!query && category !== "All") eachProduct = eachProduct.filter((p) => p.category == category);
+  if (!query && category !== "All")
+    eachProduct = eachProduct.filter((p) => p.category == category);
 
-  console.log("hi this right here is the array you want to look at", eachProduct)
+  console.log(
+    "hi this right here is the array you want to look at",
+    eachProduct
+  );
   return (
     <>
-    {!query ?
-    <>
-      <div className="page">
-        <div className="pageInfo">
-          <div className="pInfo1">
-            <h1>{name ? name : "All Categories"}</h1>
-            <p className="des">{description ? description : null}</p>
-            <div className="pageAll">
-              <p onClick={(e) => history.push("/categories")} className="pAll">
-                All
-              </p>
-              <span>
-                {name ? ">" : null} {name ? name : null}
-              </span>
+      {!query ? (
+        <>
+          <div className="page">
+            <div className="pageInfo">
+              <div className="pInfo1">
+                <h1>{name ? name : "All Categories"}</h1>
+                <p className="des">{description ? description : null}</p>
+                <div className="pageAll">
+                  <p
+                    onClick={(e) => history.push("/categories")}
+                    className="pAll"
+                  >
+                    All
+                  </p>
+                  <span>
+                    {name ? ">" : null} {name ? name : null}
+                  </span>
+                </div>
+                <p className="numberR">
+                  ({eachProduct.length} resultes, with Ads)
+                </p>
+              </div>
+              <div></div>
+              <div className="allcats">
+                {category === "Clothing" ? <SearchClothes /> : null}
+                {category === "Accessories" ? <SearchJewlery /> : null}
+                {category === "Home Decor" ? <SearchHome /> : null}
+                {category === "Computer" ? <SearchComputer /> : null}
+                {category === "Waifu Body Pillows" ? <SearchWaifu /> : null}
+                {category === "Books" ? <SearchManga /> : null}
+                {category === "Music" ? <SearchMusic /> : null}
+                {category === "Figurines" ? <SearchFigurines /> : null}
+                {category === "All" ? <SearchAll /> : null}
+              </div>
             </div>
-            <p className="numberR">({eachProduct.length} resultes, with Ads)</p>
           </div>
-          <div>
-            </div>
-            <div className="allcats">
-            {category === "Clothing" ? <SearchClothes /> : null}
-            {category === "Accessories" ? <SearchJewlery /> : null}
-            {category === "Home Decor" ? <SearchHome /> : null}
-            {category === "Computer" ? <SearchComputer /> : null}
-            {category === "Waifu Body Pillows" ? <SearchWaifu /> : null}
-            {category === "Books" ? <SearchManga /> : null}
-            {category === "Music" ? <SearchMusic /> : null}
-            {category === "Figurines" ? <SearchFigurines /> : null}
-            {category === "All" ? <SearchAll /> : null}
-          </div>
-        </div>
-      </div>
-      <h1 className="pageT">Find something you love</h1>
-      </>
-      : null }
+          <h1 className="pageT">Find something you love</h1>
+        </>
+      ) : null}
       <div className="filters">
         <div className="filter1">
           <button>
@@ -108,7 +120,7 @@ function Categories({ category, name }) {
       </div>
       <div className="products">
         {eachProduct.map((p) => (
-            <CategoryItem p={p} />
+          <CategoryItem p={p} />
         ))}
       </div>
       <FooterTwo />

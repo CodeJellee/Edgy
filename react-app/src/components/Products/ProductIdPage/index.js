@@ -44,8 +44,8 @@ function ProductIdPage() {
     let sum = 0
     let count = Object.values(product.Reviews).length
     let reviews = Object.values(product.Reviews)
-    console.log(reviews)
-    console.log("reviews:", product.Reviews)
+    // console.log(reviews)
+    // console.log("reviews:", product.Reviews)
     for (const review of reviews) {
         sum += review.stars
     }
@@ -67,7 +67,7 @@ function ProductIdPage() {
 
     if (user?.id) {
         if (Object.values(user).length > 0) {
-            console.log("user check:", user)
+            // console.log("user check:", user)
             noUserReviewExist = reviews.every(review => review.userId !== user.id)
             notSeller = user.id !== product.Seller.id
         }
@@ -155,7 +155,8 @@ function ProductIdPage() {
 
 
 
-                    {user && noUserReviewExist && notSeller && <ReviewForm  ></ReviewForm>}
+                    {user && noUserReviewExist && notSeller &&
+                     <ReviewForm from="post"></ReviewForm>}
 
                     {reviews?.map((review) => (
                         <>

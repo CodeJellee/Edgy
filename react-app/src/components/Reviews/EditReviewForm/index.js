@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 import "./ReviewForm.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as reviewsActions from "../../../store/reviews";
 import * as productsActions from "../../../store/products";
 import StarRating from "./StarRating";
+import cookieParser from "cookie-parser";
 
-
-function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
+function EditReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
   const dispatch = useDispatch();
+
   // const sessionUser = useSelector((state) => state.session.user);
   // const [stars, setStars] = useState(1);
   const [review, setReview] = useState("");
@@ -18,9 +19,6 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
   const [submittedSuc, setSubmittedSuc] = useState(false);
   const [rating, setRating] = useState("reviewObj.rating");
   const [vaErrors, setVaErrors] = useState({});
-
-
-
 
 
 
@@ -45,19 +43,15 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
   const handleSubmit = async (e) => {
-    if (submittedSuc) return
-
-
-
     e.preventDefault();
     console.log("start of handle submit ")
     setSubmitted(true);
     if (from === "post") {
 
 
-      if (Object.keys(vaErrors).length) {
-        return;
-      }
+      // if (Object.keys(vaErrors).length) {
+      //   return;
+      // }
       // console.log("RATING BY STARS =", rating)
       const data = await dispatch(
         reviewsActions.thunkSubmitReview(rating, review, id)
@@ -82,18 +76,20 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
     } else if (from === "edit") {
       console.log("hi")
       console.log(Object.keys(vaErrors))
-      if (Object.keys(vaErrors).length) {
-        return;
-      }
+      // if (Object.keys(vaErrors).length) {
+      //   return;
+      // }
       // console.log("review before passing on", ratingEdit, reviewEditState)
       // console.log("just reviewEdit", e)
-      console.log(reviewObj)
       const data = await dispatch(
+        // ! need to change this to edit thunk
+        // id is wrong, your_reviews are not on  react link with id param
+        // need (stars, review , id
 
-        reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewObj.id)
+        reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewEdit.id)
       );
       if (data) {
-        console.log("EO ERROR ERROR", data)
+        console.log("ERROR ERROR ERROR", data)
         setErrors(data);
       }
 
@@ -118,31 +114,23 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
     }
   };
 
-  useEffect(() => {
-    const err = {};
-    // console.log("should be an empty err:", err)
+  // useEffect(() => {
+  //   const err = {};
 
-    if (from === "post") {
-      // console.log("in edit of event handler, reviewEditStat:", reviewEditState, "reviewEditState.length", reviewEditState.length)
-      console.log(review)
-      if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
-      if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
-    } else if (from === "edit") {
-      // console.log("in edit of event handler, reviewEditStat:", reviewEditState, "reviewEditState.length", reviewEditState.length)
-      if (reviewEditState.length < 10) {
-        err["Review"] = "Review needs 10 or more characters";
 
-      }
-      if (reviewEditState.length > 225) {
-
-        err["Review"] = "Review needs to be less than 225 or more characters";
-      }
-    }
-    // console.log("err", err)
-    // console.log(" err handling", err)
-    console.log(err)
-    setVaErrors(err);
-  }, [review, reviewEditState]);
+  //   // if (from === "post") {
+  //   if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
+  //   if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
+  //   // } else if (from === "edit") {
+  //   // if (reviewEditState.length < 10)
+  //   //   err["Review"] = "Review needs 10 or more characters";
+  //   // if (reviewEditState.length > 225)
+  //   //   err["Review"] = "Review needs to be less than 225 or more characters";
+  //   // }
+  //   // console.log("err", err)
+  //   console.log(err)
+  //   setVaErrors(err);
+  // }, [review]);
 
   const test = 3
   if (from === "post") {
