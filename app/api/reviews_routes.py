@@ -50,7 +50,7 @@ def delete_review(reviewId):
     cur_user = current_user.to_dict()
 
     # review = review.to_dict()
-    # pprint(review)
+
 
     review = Review.query.filter(Review.id == reviewId).first()
     if not review:
@@ -58,9 +58,7 @@ def delete_review(reviewId):
             "message": "Product couldn't be found"
         }
 
-    print(review.userId)
-    print(cur_user["id"])
-    print(cur_user["id"] == review.userId)
+
     if review.userId == cur_user["id"]:
         db.session.delete(review)
         db.session.commit()
@@ -84,12 +82,12 @@ def update_review(id):
     # !form validation is failing no matter what
     # if not form.validate_on_submit():
     #     return {"message": "Invalid data in the request"}
-    print("Hi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    pprint(form)
-    print("BYE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+
     # Update the review fields with the new data from the form
     review.stars = form.data["stars"]
     review.review = form.data["review"]
 
     db.session.commit()
+
     return review.to_dict()

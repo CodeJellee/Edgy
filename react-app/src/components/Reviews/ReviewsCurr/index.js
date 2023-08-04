@@ -10,9 +10,7 @@ function ReviewsCurr() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const userReviews = useSelector((state) => state.reviews.userReviews);
-  // const uwu = useSelector(state => Object.values(state.reviews.userReviews.Reviews)
-  // )
-  // Object.values( tate.reviews.userReviews.Reviews)
+
 
   const [reviews, setReviews] = useState([]);
 
