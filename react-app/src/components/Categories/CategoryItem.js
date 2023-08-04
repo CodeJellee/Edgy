@@ -1,52 +1,68 @@
-import './Categories.css'
-import { useState, useEffect } from 'react';
-import FavoriteButton from '../FavoritesPage/FavoritesButton';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { useDispatch, useSelector } from 'react-redux';
-import Stars from '../Reviews/Stars/Stars';
-import * as favoriteActions from "../../store/favorites"
+import "./Categories.css";
+import { useState, useEffect } from "react";
+import FavoriteButton from "../FavoritesPage/FavoritesButton";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useDispatch, useSelector } from "react-redux";
+import Stars from "../Reviews/Stars/Stars";
+import * as favoriteActions from "../../store/favorites";
 import { thunkGetUserFavorites } from "../../store/favorites";
 import "../FavoritesPage/FavoritesPage.css"
 
+<<<<<<< HEAD
 function CategoryItem({ p, page }) {
     const [ isHidden, setHidden ] = useState(true)
     const history = useHistory()
     const dispatch = useDispatch()
     const user = useSelector((state) => state.session.user);
     const userFavorites = useSelector((state) =>
+=======
+function CategoryItem({ p }) {
+  const [isHidden, setHidden] = useState(true);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
+  const userFavorites = useSelector((state) =>
+>>>>>>> 9375b1f16b07d289d61d388ee4a55653fe63eaa5
     Object.values(state.favorites.userFavorites)
-    );
-    const [itemState, setItemState ] = useState(false)
+  );
+  const [itemState, setItemState] = useState(false);
 
-    const handleFavoriteClick = (productId) => {
-        dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
-    };
-
+<<<<<<< HEAD
     const handleUnfavoriteClick = (productId) => {
         dispatch(favoriteActions.thunkDeleteFavorite(productId));
     };
+=======
+  const handleFavoriteClick = (productId) => {
+    dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
+  };
+>>>>>>> 9375b1f16b07d289d61d388ee4a55653fe63eaa5
 
-    useEffect(() => {
-        dispatch(thunkGetUserFavorites(user.id));
-    }, [user.id, dispatch]);
+  const handleUnfavoriteClick = (productId) => {
+    dispatch(favoriteActions.thunkDeleteFavorite(productId));
+  };
+  // console.log("favorites state:", userFavorites)
 
-    let favs = userFavorites?.filter((f) => f.id === p.id)
+  useEffect(() => {
+    dispatch(thunkGetUserFavorites(user.id));
+  }, [user.id, dispatch]);
 
-    if (favs.length > 0) {
-        if (itemState === false) setItemState(true)
-    }
+  let favs = userFavorites?.filter((f) => f.id === p.id);
 
-    console.log("my favorites: ", favs)
+  if (favs.length > 0) {
+    if (itemState === false) setItemState(true);
+  }
 
-    const handleTouchStart = () => {
-        setHidden(true)
-      };
+  // console.log("my favorites: ", favs)
 
+  const handleTouchStart = () => {
+    setHidden(true);
+  };
 
-      const handleTouchEnd = () => {
-        setHidden(false)
-      };
+  const handleTouchEnd = () => {
+    setHidden(false);
+  };
 
+<<<<<<< HEAD
     return (
         <>
         {page !== "recent" ?
@@ -93,6 +109,44 @@ function CategoryItem({ p, page }) {
         }
         </>
     )
+=======
+  return (
+    <div
+      onMouseLeave={handleTouchStart}
+      onMouseEnter={handleTouchEnd}
+      className="p"
+    >
+      <div id={isHidden ? "hidden" : "container-container"}>
+        <FavoriteButton
+          productId={p.id}
+          handleUnfavoriteClick={handleUnfavoriteClick}
+          handleFavoriteClick={handleFavoriteClick}
+          initialState={itemState}
+        />
+      </div>
+      <img
+        onClick={(e) => history.push(`/products/${p.id}`)}
+        src={p.preview_imageURL}
+      ></img>
+      <p
+        onClick={(e) => history.push(`/products/${p.id}`)}
+        className="itemName"
+      >
+        {p.item_name}
+      </p>
+      <Stars
+        onClick={(e) => history.push(`/products/${p.id}`)}
+        reviews={p.Reviews}
+      ></Stars>
+      <p onClick={(e) => history.push(`/products/${p.id}`)} className="price">
+        ${p.price}
+      </p>
+      <p onClick={(e) => history.push(`/products/${p.id}`)} className="seller">
+        Ad by {p.Seller.first_name} {p.Seller.last_name}
+      </p>
+    </div>
+  );
+>>>>>>> 9375b1f16b07d289d61d388ee4a55653fe63eaa5
 }
 
-export default CategoryItem
+export default CategoryItem;
