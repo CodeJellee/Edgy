@@ -8,7 +8,6 @@ import * as favoriteActions from "../../store/favorites";
 import { thunkGetUserFavorites } from "../../store/favorites";
 import "../FavoritesPage/FavoritesPage.css"
 
-<<<<<<< HEAD
 function CategoryItem({ p, page }) {
     const [ isHidden, setHidden ] = useState(true)
     const history = useHistory()
@@ -26,15 +25,7 @@ function CategoryItem({ p, page }) {
     const handleUnfavoriteClick = (productId) => {
         dispatch(favoriteActions.thunkDeleteFavorite(productId));
     };
-=======
-  const handleFavoriteClick = (productId) => {
-    dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
-  };
->>>>>>> 9375b1f16b07d289d61d388ee4a55653fe63eaa5
 
-  const handleUnfavoriteClick = (productId) => {
-    dispatch(favoriteActions.thunkDeleteFavorite(productId));
-  };
   // console.log("favorites state:", userFavorites)
 
   useEffect(() => {
@@ -57,7 +48,6 @@ function CategoryItem({ p, page }) {
     setHidden(false);
   };
 
-<<<<<<< HEAD
     return (
         <>
         {page !== "recent" ?
@@ -104,44 +94,42 @@ function CategoryItem({ p, page }) {
         }
         </>
     )
-=======
-  return (
-    <div
-      onMouseLeave={handleTouchStart}
-      onMouseEnter={handleTouchEnd}
-      className="p"
-    >
-      <div id={isHidden ? "hidden" : "container-container"}>
-        <FavoriteButton
-          productId={p.id}
-          handleUnfavoriteClick={handleUnfavoriteClick}
-          handleFavoriteClick={handleFavoriteClick}
-          initialState={itemState}
-        />
-      </div>
-      <img
-        onClick={(e) => history.push(`/products/${p.id}`)}
-        src={p.preview_imageURL}
-      ></img>
-      <p
-        onClick={(e) => history.push(`/products/${p.id}`)}
-        className="itemName"
-      >
-        {p.item_name}
-      </p>
-      <Stars
-        onClick={(e) => history.push(`/products/${p.id}`)}
-        reviews={p.Reviews}
-      ></Stars>
-      <p onClick={(e) => history.push(`/products/${p.id}`)} className="price">
-        ${p.price}
-      </p>
-      <p onClick={(e) => history.push(`/products/${p.id}`)} className="seller">
-        Ad by {p.Seller.first_name} {p.Seller.last_name}
-      </p>
-    </div>
-  );
->>>>>>> 9375b1f16b07d289d61d388ee4a55653fe63eaa5
+//   return (
+//     <div
+//       onMouseLeave={handleTouchStart}
+//       onMouseEnter={handleTouchEnd}
+//       className="p"
+//     >
+//       <div id={isHidden ? "hidden" : "container-container"}>
+//         <FavoriteButton
+//           productId={p.id}
+//           handleUnfavoriteClick={handleUnfavoriteClick}
+//           handleFavoriteClick={handleFavoriteClick}
+//           initialState={itemState}
+//         />
+//       </div>
+//       <img
+//         onClick={(e) => history.push(`/products/${p.id}`)}
+//         src={p.preview_imageURL}
+//       ></img>
+//       <p
+//         onClick={(e) => history.push(`/products/${p.id}`)}
+//         className="itemName"
+//       >
+//         {p.item_name}
+//       </p>
+//       <Stars
+//         onClick={(e) => history.push(`/products/${p.id}`)}
+//         reviews={p.Reviews}
+//       ></Stars>
+//       <p onClick={(e) => history.push(`/products/${p.id}`)} className="price">
+//         ${p.price}
+//       </p>
+//       <p onClick={(e) => history.push(`/products/${p.id}`)} className="seller">
+//         Ad by {p.Seller.first_name} {p.Seller.last_name}
+//       </p>
+//     </div>
+//   );
 }
 
 export default CategoryItem;
