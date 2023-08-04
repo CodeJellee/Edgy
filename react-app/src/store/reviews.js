@@ -170,7 +170,7 @@ const GET_USER_REVIEWS = "REVIEWS/GetUserReviews";
 const GET_PRODUCT_REVIEWS = "REVIEWS/GetProductReviews";
 const POST_REVIEW = "REVIEWS/PostReview"
 const DELETE_REVIEW = "REVIEWS/delete"
-const EDIT_REVIEW = "REVIEWS/delete"
+const EDIT_REVIEW = "REVIEWS/Edit"
 //?  ===================end of types ===================//
 
 
@@ -267,7 +267,9 @@ export default function reducer(state = initialState, action) {
 
     case POST_REVIEW:
       newState = { ...state }
-      newState.productReviews.Reviews = { ...newState.productReviews }
+      newState.productReviews = { ...newState.productReviews }
+      newState.productReviews.Reviews = { ...newState.productReviews.Reviews }
+
 
       // console.log("newState after spread:", newState)
       newState.productReviews.Reviews[action.newReview.id] = action.newReview

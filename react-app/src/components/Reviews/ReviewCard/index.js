@@ -19,7 +19,7 @@ function ReviewCard({ userFirstName, review, from, user }) {
     const [formTrigger, setFormTrigger] = useState(false);
 
     // useEffect(() => {
-    console.log(review)
+    // console.log(review)
     //     dispatch(reviewsActions.thunkGetReviewsById(user.id));
     // }, [dispatch, user.id]);
 
@@ -63,6 +63,8 @@ function ReviewCard({ userFirstName, review, from, user }) {
             });
     }
 
+
+    // handle delete jsut hast setFormTriggler
     const handleEdit = (e) => {
         setFormTrigger(true)
     }
