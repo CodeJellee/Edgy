@@ -6,12 +6,13 @@ import { useParams } from "react-router-dom";
 import * as reviewsActions from "../../../store/reviews";
 import * as productsActions from "../../../store/products";
 import StarRating from "./StarRating";
-import cookieParser from "cookie-parser";
+
 
 function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger }) {
   const dispatch = useDispatch();
   // const sessionUser = useSelector((state) => state.session.user);
   // const [stars, setStars] = useState(1);
+  const uwu = useSelector(state => Object.values(state.reviews.userReviews.Reviews))
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
@@ -38,7 +39,8 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger }) 
       setReview("");
       setRating(1);
     } else {
-
+      setReviewEditState(reviewEdit)
+      setRatingEdit(starsEdit)
     }
 
   };
@@ -104,6 +106,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger }) 
       // pass setFormTrigger
       // grab setFrmTrigger to false
       setFormTrigger(false)
+      // hit something here to make react rerender current page / product review page
     }
 
 

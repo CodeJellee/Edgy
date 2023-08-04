@@ -6,12 +6,17 @@ import * as reviewsActions from '../../../store/reviews'
 import ReviewForm from "../ReviewForm";
 
 function ReviewCard({ userFirstName, review, from, user }) {
+
+ const uwu = useSelector(state => Object.values(state.reviews.userReviews.Reviews))
+
+    // const [reveiwRender, setReviewRender]
+    console.log("review", review)
     let loadProductName = false
     if (from === "userReviews") {
         loadProductName = true
 
     }
-    const userReviews = useSelector((state) => state.reviews.userReviews);
+     // const uwu = useSelector(state => Object.values(state.reviews.userReviews.Reviews)
     const dispatch = useDispatch();
     // const [review2, setReview] = useState(review)
 

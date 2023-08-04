@@ -227,7 +227,11 @@ export default function reducer(state = initialState, action) {
 
     case EDIT_REVIEW:
       newState = { ...state }
+      newState.userReviews = { ...newState.userReviews }
+      newState.userReviews.Reviews = { ...newState.userReviews.Reviews }
+      newState.userReviews.User = { ...newState.userReviews.User }
       newState.productReviews.Reviews = { ...newState.productReviews }
+      newState.productReviews.Reviews = { ...newState.productReviews.Reviews }
       // console.log(action.reviewEdit)
       newState.productReviews.Reviews[action.reviewEdit.id] = action.reviewEdit
       // state.productReviews?.Reviews.push(action.newReview)
