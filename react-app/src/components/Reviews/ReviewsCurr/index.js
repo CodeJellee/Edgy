@@ -10,7 +10,7 @@ function ReviewsCurr() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const userReviews = useSelector((state) => state.reviews.userReviews);
-  // const uwu = useSelector(state => state.reviews.userReviews.Reviews)
+
 
   const [reviews, setReviews] = useState([]);
 
@@ -49,6 +49,7 @@ function ReviewsCurr() {
             review={review}
             from="userReviews"
             user={currentUser}
+
           ></ReviewCard>
 
         </>

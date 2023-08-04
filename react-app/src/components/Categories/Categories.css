@@ -10,7 +10,8 @@
 
 .p > img {
     height: 270px;
-    width: 100%
+    width: 100%;
+    object-fit: fill;
 }
 
 .p > .itemName {
@@ -50,6 +51,12 @@
     margin-right: 35px;
     margin-bottom: 14px;
     margin: 30px
+}
+
+.noResult {
+    display: flex;
+    justify-content: center;
+
 }
 
 .filter1 {

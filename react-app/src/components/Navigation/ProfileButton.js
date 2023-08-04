@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
+import { clearCartAction } from "../../store/shoppingCart"
 
 import './Navigation.css'
 
@@ -36,6 +37,7 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    dispatch(clearCartAction());
     closeMenu();
     history.push('/')
   };
@@ -51,8 +53,14 @@ function ProfileButton({ user }) {
           <>
             <p>{user.username}</p>
             <p>{user.email}</p>
-            <p>
-              <button onClick={handleLogout}>Log Out</button>
+            <div onClick={(e) => history.push('/your_reviews')} className="yR">
+              <p className="yourReviews">Your Reviews</p>
+            </div>
+            <div onClick={(e) => history.push('/your_products')} className="yP">
+              <p className="yourProducts">Your Products</p>
+            </div>
+            <p id="logout">
+              <p onClick={handleLogout}>Log Out</p>
             </p>
           </>
         ) : (

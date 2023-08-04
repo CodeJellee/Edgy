@@ -95,10 +95,11 @@ export const thunkSubmitReviewEdit = (stars, review, id) => async (dispatch) => 
   // console.log("hi")
   if (response.ok) {
     const data = await response.json();
-    // console.log(data)
+    console.log("new object in reducer store", data)
     dispatch(editReview(data))
     // return null so front side will know there is not an error
-    return null;
+    // was origin return null but want the new obj
+    return data;
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
@@ -193,15 +194,13 @@ export default function reducer(state = initialState, action) {
       newState.userReviews = { ...newState.userReviews }
       newState.userReviews.Reviews = { ...newState.userReviews.Reviews }
       newState.userReviews.User = { ...newState.userReviews.User }
-      // console.log(action.userReviewsData.Reviews)
+
       let user = action.userReviewsData.User
       newState.userReviews.User = user
       action.userReviewsData.Reviews.forEach(
         (review) => (newState.userReviews.Reviews[review.id] = review)
       );
       return newState;
-    //   case GET_USER_REVIEWS:
-    // return { ...state, userReviews: action.userReviewsData };
 
 
 
@@ -219,18 +218,21 @@ export default function reducer(state = initialState, action) {
       newState.productReviews = { ...newState.productReviews }
       newState.productReviews.Reviews = { ...newState.productReviews.Reviews }
 
-      // console.log("newState after spread:", newState)
+
       newState.productReviews.Reviews[action.newReview.id] = action.newReview
-      // console.log("newState after appending:", newState)
-      // state.productReviews?.Reviews.push(action.newReview)
+
       return newState;
 
     case EDIT_REVIEW:
       newState = { ...state }
+      newState.userReviews = { ...newState.userReviews }
+      newState.userReviews.Reviews = { ...newState.userReviews.Reviews }
+      newState.userReviews.User = { ...newState.userReviews.User }
       newState.productReviews.Reviews = { ...newState.productReviews }
-      // console.log(action.reviewEdit)
+      newState.productReviews.Reviews = { ...newState.productReviews.Reviews }
+
       newState.productReviews.Reviews[action.reviewEdit.id] = action.reviewEdit
-      // state.productReviews?.Reviews.push(action.newReview)
+
       return newState;
 
     case DELETE_REVIEW:

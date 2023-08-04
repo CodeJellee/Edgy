@@ -8,10 +8,11 @@ import * as productsActions from "../../../store/products";
 import StarRating from "./StarRating";
 
 
-function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
+
+function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, setReviewRender }) {
   const dispatch = useDispatch();
-  // const sessionUser = useSelector((state) => state.session.user);
-  // const [stars, setStars] = useState(1);
+
+  // const uwu = useSelector(state => Object.values(state.reviews.userReviews.Reviews))
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
@@ -25,10 +26,10 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
   // edit state
-  // console.log("review form review obj passed from review curr", reviewObj)
+
   const [reviewEditState, setReviewEditState] = useState(reviewEdit || "");
   const [ratingEdit, setRatingEdit] = useState(starsEdit || 1);
-  // console.log(reviewEditState)
+
 
 
   const { id } = useParams();
@@ -38,7 +39,8 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
       setReview("");
       setRating(1);
     } else {
-
+      setReviewEditState(reviewEdit)
+      setRatingEdit(starsEdit)
     }
 
   };
@@ -50,7 +52,6 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
     e.preventDefault();
-    // console.log("start of handle submit ")
     setSubmitted(true);
     if (from === "post") {
 
@@ -58,7 +59,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
       if (Object.keys(vaErrors).length) {
         return;
       }
-      // console.log("RATING BY STARS =", rating)
+
       const data = await dispatch(
         reviewsActions.thunkSubmitReview(rating, review, id)
       );
@@ -80,28 +81,44 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
     } else if (from === "edit") {
-      // console.log("hi")
-      // console.log(Object.keys(vaErrors))
+
       if (Object.keys(vaErrors).length) {
         return;
       }
-      // console.log("review before passing on", ratingEdit, reviewEditState)
-      // console.log("just reviewEdit", e)
-      // console.log(reviewObj)
+
       const data = await dispatch(
 
         reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewObj.id)
       );
-      if (data) {
-        // console.log("EO ERROR ERROR", data)
-        setErrors(data);
-      }
+
+
+      // i dont think this should be there should see if there is an error prop or something
+      // if (data) {
+
+      //   setErrors(data);
+      // }
 
       // not sure i need this for
       if (errors.length === 0) {
         resetState();
       }
+      // pass setFormTrigger
+      // grab setFrmTrigger to false
+      setFormTrigger(false)
+      // let newReviewObj = {...reviewObj}
+      // newReviewObj.stars = ratingEdit
+      //  newReviewObj
 
+      // !!!
+
+      setReviewRender(data)
+      ///To do
+
+
+      // reviewEdit
+      // starsEdit
+      // se
+      // hit something here to make react rerender current page / product review page
     }
 
 
@@ -123,12 +140,10 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
     // console.log("should be an empty err:", err)
 
     if (from === "post") {
-      // console.log("in edit of event handler, reviewEditStat:", reviewEditState, "reviewEditState.length", reviewEditState.length)
-      // console.log(review)
       if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
       if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
     } else if (from === "edit") {
-      // console.log("in edit of event handler, reviewEditStat:", reviewEditState, "reviewEditState.length", reviewEditState.length)
+
       if (reviewEditState.length < 10) {
         err["Review"] = "Review needs 10 or more characters";
 
@@ -138,9 +153,8 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
         err["Review"] = "Review needs to be less than 225 or more characters";
       }
     }
-    // console.log("err", err)
-    // console.log(" err handling", err)
-    // console.log(err)
+
+    console.log(err)
     setVaErrors(err);
   }, [review, reviewEditState]);
 

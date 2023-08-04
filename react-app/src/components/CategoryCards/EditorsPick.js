@@ -24,9 +24,9 @@ function EditorsPickCard() {
   const [itemState, setItemState ] = useState(false)
 
 
-  useEffect(() => {
-    dispatch(productActions.thunkGetAllProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(productActions.thunkGetAllProducts());
+  // }, [dispatch]);
 
   const handleFavoriteClick = (productId) => {
     dispatch(favoriteActions.thunkPostFavoriteProduct(productId));

@@ -23,12 +23,12 @@ function Categories({ category, name }) {
   // console.log(query);
   // console.log(search);
 
-  useEffect(() => {
-    dispatch(productActions.thunkGetAllProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(productActions.thunkGetAllProducts());
+  // }, [dispatch]);
 
   useEffect(() => {
-    if (query) dispatch(productActions.thunkSearchAllProducts(query))
+    if (query) dispatch(productActions.thunkSearchAllProducts(query));
   }, [dispatch, query]);
 
   let info;
@@ -46,9 +46,9 @@ function Categories({ category, name }) {
   if (!query) eachProduct = Object.values(products);
   if (query) eachProduct = Object.values(search);
 
-  // console.log(eachProduct);
+   console.log(eachProduct);
 
-  if (!eachProduct) return <h1>Loading</h1>;
+  if (!eachProduct.length) return <h1>Loading</h1>;
 
   if (!query && category !== "All")
     eachProduct = eachProduct.filter((p) => p.category == category);
@@ -110,7 +110,7 @@ function Categories({ category, name }) {
         </div>
         <div className="filter2">
           <button>
-            <span>Sort by:</span>Revelancy<i class="fa-solid fa-caret-down"></i>
+            <span>Sort by:</span>Relevancy<i class="fa-solid fa-caret-down"></i>
           </button>
         </div>
       </div>
@@ -119,6 +119,9 @@ function Categories({ category, name }) {
           <CategoryItem p={p} />
         ))}
       </div>
+      {query && eachProduct.length === 0 ? (
+        <div className="noResult">Could not find results for '{query}'</div>
+      ) : null}
       <FooterTwo />
     </>
   );

@@ -6,28 +6,31 @@ import * as reviewsActions from '../../../store/reviews'
 import ReviewForm from "../ReviewForm";
 
 function ReviewCard({ userFirstName, review, from, user }) {
+
+
+
+    const [reviewRender, setReviewRender] = useState(review)
+
     let loadProductName = false
     if (from === "userReviews") {
         loadProductName = true
 
     }
-    const userReviews = useSelector((state) => state.reviews.userReviews);
+
     const dispatch = useDispatch();
-    // const [review2, setReview] = useState(review)
+
 
     const [deleteTrigger, setDeleteTrigger] = useState(false);
+    // TODO   set this back to false after submission
     const [formTrigger, setFormTrigger] = useState(false);
 
-    // useEffect(() => {
-    // console.log(review)
-    //     dispatch(reviewsActions.thunkGetReviewsById(user.id));
-    // }, [dispatch, user.id]);
+
 
     if (!user) {
         user = {}
         user.id = -1
     }
-    // console.log("loggin in user:", user.id)
+
 
     let isReviewOwner = false
 
@@ -35,24 +38,23 @@ function ReviewCard({ userFirstName, review, from, user }) {
         isReviewOwner = true
 
     } else if (from === "productPage") {
-        isReviewOwner = user.id === review.userId
+        isReviewOwner = user.id === reviewRender.userId
     }
-    // console.log(review)
 
 
-    // let isReviewOwner = user.id === review.User.id
-    // console.log(isReviewOwner)
-    let numOfStars = review.stars
+
+
+    let numOfStars = reviewRender.stars
     let star = []
     for (var i = 0; i < numOfStars; i++) {
         star.push("uwu star")
     }
 
     const handleDelete = (e) => {
-        // console.log(review.id);
 
 
-        dispatch(reviewsActions.thunkDeleteReview(review.id))
+
+        dispatch(reviewsActions.thunkDeleteReview(reviewRender.id))
             .then(() => {
                 // Step 2: Update the state variable after successful deletion
                 setDeleteTrigger(true);
@@ -64,21 +66,22 @@ function ReviewCard({ userFirstName, review, from, user }) {
     }
 
 
-    // handle delete jsut hast setFormTriggler
+    // handle delete just hast setFormTrigger
     const handleEdit = (e) => {
         setFormTrigger(true)
     }
-    // review.id   is not found return null
 
-    const starsEdit = review.stars
-    const reviewEdit = review.review
 
+    const starsEdit = reviewRender.stars
+    const reviewEdit = reviewRender.review
+
+    // (review.id)
     // console.log(review.id)
     if (deleteTrigger) return null
     if (formTrigger)
         return (
             <>
-                <ReviewForm from="edit" starsEdit={starsEdit} reviewEdit={reviewEdit} reviewObj={review}></ReviewForm>
+                <ReviewForm from="edit" starsEdit={starsEdit} reviewEdit={reviewEdit} reviewObj={reviewRender} setReviewRender={setReviewRender} setFormTrigger={setFormTrigger}></ReviewForm>
             </>
         )
 
@@ -105,10 +108,10 @@ function ReviewCard({ userFirstName, review, from, user }) {
 
                 </div>
                 <p className='Rc-review'>
-                    {review.review}
+                    {reviewRender.review}
                 </p>
                 {/* <div className="Rc-name-date"> */}
-                <p className='Rc-name-date-p'> <span className='Rc-username-span'>{userFirstName}  </span> -  {review.createdAt}  </p>
+                <p className='Rc-name-date-p'> <span className='Rc-username-span'>{userFirstName}  </span> -  {reviewRender.createdAt}  </p>
                 {isReviewOwner &&
                     <>
                         <button onClick={handleEdit}>

@@ -5,9 +5,12 @@ import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import * as sessionActions from "../../store/session";
+import { useHistory } from "react-router-dom";
+
 
 function LoginFormModal() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -19,22 +22,26 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
+
     }
   };
 
-  const handleDemoUserSubmit = () => {
-    const demoUser = {
-      credential: "Demo@aa.io",
-      password: "password",
-    };
 
-    dispatch(sessionActions.login(demoUser))
-      .then(closeModal)
-      .catch((err) => {
-      //add any errors if you want
-      })
-  }
+
+  const handleDemoSubmit = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal()
+
+    }
+  };
+
+
+
 
   return (
     <>
@@ -64,10 +71,12 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+
       </form>
-      <NavLink id="demo-user-link" to="/" className="demo-user-button" onClick={handleDemoUserSubmit}>
-        Demo User
-      </NavLink>
+      <form onSubmit={handleDemoSubmit}>
+        <button type="submit">DemoUser</button>
+      </form>
+
     </>
   );
 }

@@ -25,9 +25,9 @@ function EditorsPickTwoCard() {
   const [ isHidden6, setHidden6 ] = useState(true)
 
 
-  useEffect(() => {
-    dispatch(productActions.thunkGetAllProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(productActions.thunkGetAllProducts());
+  // }, [dispatch]);
 
   const handleFavoriteClick = (productId) => {
     dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
