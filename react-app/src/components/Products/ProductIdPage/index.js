@@ -67,7 +67,7 @@ function ProductIdPage() {
 
     if (user?.id) {
         if (Object.values(user).length > 0) {
-            console.log("user check:", user)
+            // console.log("user check:", user)
             noUserReviewExist = reviews.every(review => review.userId !== user.id)
             notSeller = user.id !== product.Seller.id
         }

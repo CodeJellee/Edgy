@@ -36,7 +36,7 @@ function ReviewsCurr() {
   // console.log(reviews)
   // console.log(reviews)
 
-console.log("you reviews rendering right before cares:", "first_name:", currentUser.username, "review array of objects:", reviews, "from: userReviews",)
+// console.log("you reviews rendering right before cares:", "first_name:", currentUser.username, "review array of objects:", reviews, "from: userReviews",)
   return (
     <>
 

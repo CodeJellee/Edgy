@@ -23,7 +23,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
 
 
   // edit state
-  console.log("review form review obj passed from review curr", reviewObj)
+  // console.log("review form review obj passed from review curr", reviewObj)
   const [reviewEditState, setReviewEditState] = useState(reviewEdit || "");
   const [ratingEdit, setRatingEdit] = useState(starsEdit || 1);
   // console.log(reviewEditState)
@@ -82,6 +82,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
         // ! need to change this to edit thunk
         // id is wrong, your_reviews are not on  react link with id param
         // need (stars, review , id
+
         reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewEdit.id)
       );
       // if (data) {
@@ -100,12 +101,12 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
   };
 
   const handleRatingChange = (number) => {
-    console.log("in handleRatingChange")
+    // console.log("in handleRatingChange")
     if (from === "post") {
 
       setRating(parseInt(number));
     } else if (from === "edit") {
-      console.log("hi")
+      // console.log("hi")
       setRatingEdit(parseInt(number))
     }
   };
