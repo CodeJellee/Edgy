@@ -25,10 +25,7 @@ function CategoryItem({ p, page }) {
     const handleUnfavoriteClick = (productId) => {
         dispatch(favoriteActions.thunkDeleteFavorite(productId));
     };
-<<<<<<< .merge_file_8o4LYL
-=======
     // console.log("favorites state:", userFavorites)
->>>>>>> .merge_file_hEeLD0
 
   // console.log("favorites state:", userFavorites)
 

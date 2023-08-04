@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import * as reviewsActions from "../../../store/reviews";
 import * as productsActions from "../../../store/products";
 import StarRating from "./StarRating";
-import cookieParser from "cookie-parser";
+
 
 function ReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
   const dispatch = useDispatch();
