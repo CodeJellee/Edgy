@@ -28,11 +28,7 @@ function Categories({ category, name }) {
   }, [dispatch]);
 
   useEffect(() => {
-<<<<<<< HEAD
     if (query) dispatch(productActions.thunkSearchAllProducts(query))
-=======
-    dispatch(productActions.thunkSearchAllProducts(query));
->>>>>>> cf4dc22489256453ca5b38264c5d045cd849c5c5
   }, [dispatch, query]);
 
   let info;
