@@ -101,9 +101,15 @@ export default function reducer(state = initialState, action) {
     case POST_ITEM_IN_CART: {
       newState = { ...state };
 
-      console.log("this is payload", action.product);
-      const product = action.product;
-      newState.userCart[product.productId] = product; // payload: cartId, productId, userId
+      console.log("this is payload", action.product); // Payload
+
+      const productPayload = action.product;
+
+      // newState.userCart[product.id] = Product: {product}, id, productId, userId}
+      newState.userCart[productPayload.CartItem.productId] = {
+        Product: productPayload.Product,
+        ...productPayload.CartItem,
+      }; // payload: cartId, productId, userId
 
       return newState;
     }
