@@ -69,7 +69,7 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
     },
   });
   product = await product.json();
-
+  console.log("after thetch", product)
   dispatch(getSingleProduct(product));
   return product;
 };
@@ -156,22 +156,24 @@ export default function reducer(state = initialState, action) {
       return newState;
     case GET_SINGLE_PRODUCT_ACTION: {
 
+
+
       newState = { ...state };
-      newState.singleProduct = { ...action.product }
-      newState.singleProduct.Seller = { ...action.product.Seller }
-      // ! pushes multiple objects at once to an array
-      newState.singleProduct.ProductImages.push(...action.product.ProductImages)
+      const product = action.product;
+      newState.singleProduct = { ...product };
+      newState.singleProduct.Seller = { ...product.Seller };
+      newState.singleProduct.ProductImages.push(...product.ProductImages);
 
-      action.product.Reviews.forEach(review => newState.singleProduct.Reviews[review.id] = review)
+      // Accumulate reviews into an object with unique review IDs as keys
+      const uniqueReviews = product.Reviews.reduce((acc, review) => {
+        acc[review.id] = review;
+        return acc;
+      }, {});
 
-
-
-
-      // state before we touched it
-
-      // newState = { ...state };
+      newState.singleProduct.Reviews = Object.values(uniqueReviews);
 
       return newState;
+
     }
     case GET_USER_PRODUCTS_ACTION: {
       newState = { ...state };

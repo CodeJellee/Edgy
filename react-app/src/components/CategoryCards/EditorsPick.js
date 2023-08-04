@@ -20,7 +20,7 @@ function EditorsPickCard() {
 
   eachProduct = eachProduct.filter((p) => p.category === "Computer");
 
-  console.log(eachProduct)
+  // console.log(eachProduct)
 
   return (
     <div className="ep">

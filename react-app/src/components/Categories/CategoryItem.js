@@ -25,7 +25,7 @@ function CategoryItem({ p }) {
     const handleUnfavoriteClick = (productId) => {
         dispatch(favoriteActions.thunkDeleteFavorite(productId));
     };
-    console.log("favorites state:", userFavorites)
+    // console.log("favorites state:", userFavorites)
 
     useEffect(() => {
         dispatch(thunkGetUserFavorites(user.id));
@@ -37,7 +37,7 @@ function CategoryItem({ p }) {
         if (itemState === false) setItemState(true)
     }
 
-    console.log("my favorites: ", favs)
+    // console.log("my favorites: ", favs)
 
     const handleTouchStart = () => {
         setHidden(true)
