@@ -3,15 +3,16 @@ import { useEffect, useState } from "react";
 
 import * as reviewsActions from "../../../store/reviews";
 import * as productsActions from "../../../store/products";
+import * as favoriteActions from "../../../store/favorites"
 
 import { useSelector, useDispatch } from "react-redux";
 import ReviewForm from "../../Reviews/ReviewForm";
 import ReviewCard from "../../Reviews/ReviewCard";
 import "./ProductIdPage.css";
 import FooterTwo from "../../Footer/index2";
-
-
+import '../../FavoritesPage/FavoritesPage.css'
 import PutCartIemToCart from "./PutItemToCart";
+import FavoriteButton from "../../FavoritesPage/FavoritesButton";
 
 function ProductIdPage() {
     const { id } = useParams();
@@ -20,6 +21,15 @@ function ProductIdPage() {
     const user = useSelector(state => state.session.user)
     const product = useSelector(state => state.products.singleProduct)
     const [mainImage, setMainImage] = useState()
+    const [itemState, setItemState ] = useState(false)
+
+    const handleFavoriteClick = (productId) => {
+        dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
+    };
+
+    const handleUnfavoriteClick = (productId) => {
+        dispatch(favoriteActions.thunkDeleteFavorite(productId));
+    };
 
 
     const changeMainImage = (e) => {
@@ -96,22 +106,29 @@ function ProductIdPage() {
                             <div className='PID-main-image-div'>
 
                                 <img className='PID-main-image' onClick={changeMainImage} src={mainImage || product.preview_imageURL} alt="loading"></img>
+                                <div className="containerFavs">
 
+                                <FavoriteButton
+                                 productId={id}
+                                handleUnfavoriteClick={handleUnfavoriteClick}
+                                handleFavoriteClick={handleFavoriteClick}
+                                initialState={itemState}
+                                />
+                            </div>
                             </div>
                         </div>
 
 
-                        <div>
+                        {/* <div>
                             <i onClick={addToFav} className="fas fa-heart" />
-                        </div>
-
+                        </div> */}
 
                         <div className='PID-about-buttons-div'>
 
 
                             <div className='PID-about-product-div'>
                                 <p className="PID-price">${product.price}</p>
-                                <p> {product.description}</p>
+                                <p> {product.item_name}</p>
 
                                 <div className='PID-seller-avg-stars'>
                                     <p className='PID-seller'>Seller: {product.Seller.username}   </p>
@@ -134,12 +151,19 @@ function ProductIdPage() {
 
 
                             )}
+                            <div>
+                            <p>Description</p>
+                            <p className="productDescription"> {product.description}</p>
+                            </div>
+
 
 
                         </div>
 
 
                     </div>
+                    <div className="productReview">
+
 
                     <p className='Pid-ave-stars'>
                         <span className='PID-count'>{count}
@@ -148,9 +172,9 @@ function ProductIdPage() {
                         </span>
                         {stars.map((star, idx) =>
 
-                            <i key={idx} className="fas fa-star PID-count pStars" />
+<i key={idx} className="fas fa-star PID-count pStars" />
 
-                        )}
+)}
                     </p>
 
 
@@ -167,6 +191,7 @@ function ProductIdPage() {
 
 
 
+                    </div>
 
 
 
