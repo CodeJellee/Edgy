@@ -119,6 +119,7 @@ function Categories({ category, name }) {
           <CategoryItem p={p} />
         ))}
       </div>
+      {query && eachProduct.length === 0 ? <div className="noResult">Could not find results for '{query}'</div> : null}
       <FooterTwo />
     </>
   );
