@@ -37,9 +37,129 @@
 
 #user-favorites__container {
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
 }
 
 #favorite-product {
-    flex-basis: 25%;
-    margin: 10px 10px;
+    width: 20%;
+    /* height: 80%; */
+    margin: 10px 20px;
+}
+
+#favorite-product {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-end; this also moves the text in the container */
+}
+
+/* #favorite-product :not(p) {
+    align-items: flex-end;
+} */
+/** SEARCH BAR  */
+#search-favorites {
+    width: 82%;
+    height: 48px;
+    border-radius: 24px;
+    border: 2px solid black;
+    padding-left: 20px;
+    font-size: 16px;
+    background-color: rgba(0,0,0,0);
+  }
+
+#user-favorites__count {
+    flex-basis: 49%;
+}
+
+#user-favorites__search {
+    display: flex;
+    flex-basis: 49%;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-magnifying-glass {
+    font-size: 23px;
+}
+
+/* This positions the search-icon over the search bar input */
+#search-button {
+    position: absolute;
+    right: 7%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/** Favorites Button  */
+#product-img {
+    height: 100%;
+    width: 100%;
+    /* object-fit: cover; */
+}
+
+/*! Adjusting this height will adjust the entire product container height */
+#fav-img__container {
+    height: 140px;
+}
+
+#favorite-icon__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 50%;
+    width: 2.2%;
+    height: 3.5%;
+    position: absolute;
+    z-index: 5;
+    margin-top: 8px;
+    margin-right: 8px;
+}
+
+.popP > div > #favorite-icon__container {
+    width: 10.2%;
+    height: 8.5%;
+}
+
+
+#favorite-icon__container > .fa-solid {
+    color: purple;
+    cursor: pointer;
+}
+
+#favorite-icon__container > .fa-regular {
+    color: purple;
+    cursor: pointer;
+}
+
+#container-container {
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-start;
+    width: 100%;
+    z-index: 4;
+}
+
+/** Product Text - Name, Username, and Price  */
+#fav-item__name, #fav-item__username {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#fav-item__username {
+    color: #595959;
+}
+
+#fav-item__currency-value, #fav-item__currency-symbol {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.hidden {
+    display: none;
+}
+
+#hidden {
+    display: none;
 }

@@ -30,6 +30,13 @@
     width: 100%;
     height: 100%;
     border-radius: 8px;
+    transition: transform 0.3s ease;
+    cursor: pointer; /* Add a smooth transition for scaling */
+}
+
+.sec3 > div > img:hover, .sec4 > div > img:hover {
+    transform: scale(1.01); /* Increase the scale to make the box bigger on hover */
+    box-shadow: 0.5px 0.5px 18px 0.5px rgb(210, 209, 209);
 }
 
 .epTwoTitle, .imgTwo4 {
@@ -49,12 +56,15 @@
 }
 
 .epTwoTitle {
-    margin-top: 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
 .epDescription {
-    margin-top: 10%;
+    display: flex;
+    align-items: center;
 }
 
 .epDescription > h3 {
@@ -77,6 +87,8 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    transition: transform 50.6s ease-in; /* Add a smooth transition on hover */
+
 }
 
 .epTwoTitle > a > i {
@@ -85,4 +97,12 @@
 
 .epTwoTitle > h2 {
     font-size: 30px;
+}
+
+.epTwoTitle > a > i:hover {
+    transform: translateX(8px); /* Move the element 10 pixels to the right on hover */
+}
+
+.epTwoTitle > a:hover :not(a) {
+    transform: translateX(8px); /* Move the element 10 pixels to the right on hover */
 }

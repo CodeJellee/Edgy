@@ -5,10 +5,15 @@ import { useEffect } from "react";
 import * as productActions from "../../store/products";
 import "./CategoryCardsStyle4.css";
 import Stars from "../Reviews/Stars/Stars";
+import { useHistory } from "react-router-dom";
+import CategoryItem from "../Categories/CategoryItem";
+import '../Categories/Categories.css'
+import "../FavoritesPage/FavoritesPage.css"
 
 function RecentlyReviewedCard() {
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(productActions.thunkGetAllProducts());
@@ -18,24 +23,16 @@ function RecentlyReviewedCard() {
 
   if (!eachProduct) return <h1>Loading</h1>;
 
-  eachProduct = eachProduct.filter((p) => p.category === "Music");
-
+  eachProduct = eachProduct.filter((p) => p.Reviews.find((r) => r.stars > 4));
   eachProduct = eachProduct.slice(0, 5);
-  // console.log(eachProduct);
+  console.log(eachProduct);
 
   return (
     <div className="popular">
-      <h2>Popular gifts right now</h2>
+      <h1>Popular gifts right now</h1>
       <div className="data">
         {eachProduct.map((p) => (
-          <div className="popP">
-            <img src={p.preview_imageURL} alt="meaningfult text"></img>
-            <p className="popTitle">{p.item_name}</p>
-
-            <Stars reviews={p.Reviews}></Stars>
-
-            <p>${p.price}</p>
-          </div>
+            <CategoryItem p={p} page="recent"/>
         ))}
       </div>
     </div>

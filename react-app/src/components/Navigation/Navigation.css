@@ -8,21 +8,20 @@
 
 .nav {
   display: flex;
-  justify-content: space-evenly;
-  gap: 65px;
+  justify-content: space-between;
   width: 100%
 }
 
 .navigation {
   display: flex;
-  margin-bottom: 10px
+  margin-bottom: 12px
 
 }
 
 .edgy {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   height: 55px;
   margin-bottom: 14px
 }
@@ -44,7 +43,7 @@
 }
 
 .border {
-  background-color: lightgrey;
+  background-color: rgb(230, 229, 229);
   left: 0;
   position: absolute;
   width: 100%;
@@ -56,20 +55,25 @@
   margin-left: 25px;
 }
 
+.popP > i {
+  font-size: 12px;
+}
+
 .edgy > i {
   cursor: pointer;
   font-size: 20px;
 }
 
 .edgy > h1 {
-  font-size: 40px;
-  color: #892CDC
+  font-size: 35px;
+  color: #892CDC;
+  cursor: pointer;
 }
 
 .nav > a {
   text-decoration: none;
   color: black;
-  font-size: 13px;
+  font-size: 13.5px;
   max-height: 60px;
 }
 
@@ -86,10 +90,33 @@
   margin-right: 24px;
   align-self: center;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .s {
-  width: 88%;
+  width: 95%;
   display: flex;
   justify-content: flex-end;
+  margin-left: 8px;
+}
+
+.profile-dropdown {
+  position: absolute;
+  background-color: white;
+  border: 0.5px solid #999999;
+  margin-top: 25px;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px rgb(158, 158, 150);
+  z-index: 4;
+  flex-direction: column;
+  right: 60px;
+  margin: 10px;
+  padding: 10px
+}
+
+.user > i {
+  cursor: pointer;
 }

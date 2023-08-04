@@ -10,6 +10,7 @@ import RecentlyReviewedCard from "../CategoryCards/RecentlyViewed";
 import ShopSelectionCard from "../CategoryCards/ShopSelection";
 import FreshArticlesCard from "../CategoryCards/FreshArticles";
 import Footer from "../Footer";
+import ImageCarousel from "./Carousel";
 
 
 function HomePage(){
@@ -26,8 +27,8 @@ function HomePage(){
 
         return (
              <>
-             {/* <img className="slideshow" src="https://womeninendo.org/wp-content/uploads/2021/11/no-image.png"></img> */}
-             <h2 className="cap">Discrover fresh summer finds from creative sellers!</h2>
+             <ImageCarousel />
+             <h1 className="cap">Discrover fresh summer finds from creative sellers!</h1>
              <div className="searchResults">
                 <div className="result">
                     <img src="https://www.brides.com/thmb/w00iMSdT5TI9CAijgKl_sqAvGJs=/fit-in/1500x640/filters:no_upscale():max_bytes(150000):strip_icc()/daily-calendar-slide-1-db9bf2bfd4d041a9828d6c563adce0eb.jpg" alt="meaningfult text"></img>

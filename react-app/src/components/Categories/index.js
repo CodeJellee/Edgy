@@ -1,54 +1,126 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as productActions from "../../store/products";
 import "./Categories.css";
 import FooterTwo from "../Footer/index2";
-import Stars from "../Reviews/Stars/Stars";
+import SearchClothes from "./SearchClothes";
+import SearchJewlery from "./SearchJewlery";
+import SearchHome from "./SearchHome";
+import SearchComputer from "./SearchComputer";
+import SearchWaifu from "./SearchWaifu";
+import SearchManga from "./SearchManga";
+import SearchMusic from "./SearchMusic";
+import SearchFigurines from "./SearchFigurines";
+import { useHistory, useParams } from "react-router-dom";
+import SearchAll from "./SearchAll";
+import CategoryItem from "./CategoryItem";
 
 function Categories({ category, name }) {
-  const { products } = useSelector((state) => state.products);
+  const { products, search } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { query } = useParams();
+  console.log(query);
+  console.log(search);
 
   useEffect(() => {
     dispatch(productActions.thunkGetAllProducts());
   }, [dispatch]);
 
-  // console.log(name)
+  useEffect(() => {
+<<<<<<< HEAD
+    if (query) dispatch(productActions.thunkSearchAllProducts(query))
+=======
+    dispatch(productActions.thunkSearchAllProducts(query));
+>>>>>>> cf4dc22489256453ca5b38264c5d045cd849c5c5
+  }, [dispatch, query]);
 
-  let eachProduct = Object.values(products);
+  let info;
 
-  if (!eachProduct || eachProduct.length === 0) return <h1>Loading</h1>;
+  if (name) info = name.split(" / ");
 
-  // console.log(Array.isArray(eachProduct));
-  eachProduct = eachProduct.filter((p) => p.category == category);
-  // console.log("products category:", eachProduct[0].Reviews);
+  if (name) name = info[0];
 
+  let description;
+
+  if (info) description = info[1];
+
+  let eachProduct;
+
+  if (!query) eachProduct = Object.values(products);
+  if (query) eachProduct = Object.values(search);
+
+  console.log(eachProduct);
+
+  if (!eachProduct) return <h1>Loading</h1>;
+
+  if (!query && category !== "All")
+    eachProduct = eachProduct.filter((p) => p.category == category);
+
+  console.log(
+    "hi this right here is the array you want to look at",
+    eachProduct
+  );
   return (
     <>
-      <div className="page">
-        {name}
-        <p>description</p>
-      </div>
-      <h1 className="pageT">Find something you love</h1>
-      <div className="filter1">
-        <button>
-          Estimated Arrival<span>Anytime</span>
-        </button>
-        <button>All Filters</button>
-      </div>
-      <div className="filter2">
-        <button>
-          <span>Sort by:</span>Revelancy
-        </button>
+      {!query ? (
+        <>
+          <div className="page">
+            <div className="pageInfo">
+              <div className="pInfo1">
+                <h1>{name ? name : "All Categories"}</h1>
+                <p className="des">{description ? description : null}</p>
+                <div className="pageAll">
+                  <p
+                    onClick={(e) => history.push("/categories")}
+                    className="pAll"
+                  >
+                    All
+                  </p>
+                  <span>
+                    {name ? ">" : null} {name ? name : null}
+                  </span>
+                </div>
+                <p className="numberR">
+                  ({eachProduct.length} resultes, with Ads)
+                </p>
+              </div>
+              <div></div>
+              <div className="allcats">
+                {category === "Clothing" ? <SearchClothes /> : null}
+                {category === "Accessories" ? <SearchJewlery /> : null}
+                {category === "Home Decor" ? <SearchHome /> : null}
+                {category === "Computer" ? <SearchComputer /> : null}
+                {category === "Waifu Body Pillows" ? <SearchWaifu /> : null}
+                {category === "Books" ? <SearchManga /> : null}
+                {category === "Music" ? <SearchMusic /> : null}
+                {category === "Figurines" ? <SearchFigurines /> : null}
+                {category === "All" ? <SearchAll /> : null}
+              </div>
+            </div>
+          </div>
+          <h1 className="pageT">Find something you love</h1>
+        </>
+      ) : null}
+      <div className="filters">
+        <div className="filter1">
+          <button>
+            Estimated Arrival<span>Anytime</span>
+            <i class="fa-solid fa-caret-down"></i>
+          </button>
+          <button>
+            <i class="fa-solid fa-filter"></i>All Filters
+          </button>
+        </div>
+        <div className="filter2">
+          <button>
+            <span>Sort by:</span>Revelancy<i class="fa-solid fa-caret-down"></i>
+          </button>
+        </div>
       </div>
       <div className="products">
         {eachProduct.map((p) => (
-          <div className="p">
-            <img src={p.preview_imageURL}></img>
-            <p className="itemName">{p.item_name}</p>
-            <Stars reviews={p.Reviews}></Stars>
-            <p>${p.price}</p>
-          </div>
+          <CategoryItem p={p} />
         ))}
       </div>
       <FooterTwo />

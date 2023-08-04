@@ -9,24 +9,23 @@ from pprint import pprint
 products_routes = Blueprint("products", __name__)
 
 
-#prefix /products
+# prefix /products
+
 
 @products_routes.route("/")
 def get_products():
-
-
     dictToPass = {}
     products = Product.query.all()
     products = [p.to_dict() for p in products]
-    # pprint(products[0])
     dictToPass["Products"] = products
 
     for product in products:
-        # print("product id", product["id"])
         reviews = Review.query.filter(Review.productId == product["id"])
-        reviews = [review.to_dict() for review in reviews ]
-        print("length", len(reviews))
+        reviews = [review.to_dict() for review in reviews]
+        seller = User.query.get(product["sellerId"])
+        seller = seller.to_dict()
         product["Reviews"] = reviews
+        product["Seller"] = seller
 
     return dictToPass
 
@@ -56,6 +55,7 @@ def product_details(id):
     product["Reviews"] = reviews
     product["Seller"] = seller
     product["ProductImages"] = product_images
+    pprint(product["Reviews"])
     return product
 
 
@@ -154,6 +154,9 @@ def post_favorite_item(productId):
     user_id = current_user.id
     product_exists = Product.query.get(productId)
     user = User.query.get(user_id)
+    seller = User.query.get(product_exists.sellerId)
+
+    print(product_exists.to_dict())
 
     # ! Edge Case for Postman
     existing_favorite = (
@@ -179,13 +182,14 @@ def post_favorite_item(productId):
         return {
             "Product": product_exists.to_dict(),
             "User": user.to_dict(),
+            "Seller": seller.to_dict(),
         }
     else:
         return {"message": "Item couldn't be found"}
 
 
-#POST: add item to cart
-@products_routes.route('/<int:productId>/add_to_cart', methods=["POST"])
+# POST: add item to cart
+@products_routes.route("/<int:productId>/add_to_cart", methods=["POST"])
 @login_required
 def post_cart_items(productId):
     cur_user = current_user.to_dict()
@@ -193,19 +197,58 @@ def post_cart_items(productId):
     product_exists = Product.query.get(productId)
     # print("PRODUCT", product_exists.sellerId)
 
-    #Edge Cases
+    # Edge Cases
     if product_exists and cur_user["id"] == product_exists.sellerId:
         return {"message": "You may not add your own product to your cart."}
 
     if product_exists and product_exists.sellerId != cur_user["id"]:
-        add_to_cart = CartItem(
-            userId=cur_user["id"],
-            productId=productId
-        )
+        add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
         db.session.add(add_to_cart)
         db.session.commit()
-        #UPDATE API FOR THE RETURN, NO MSG
-        print('ADD TO CART', add_to_cart.to_dict())
+        # UPDATE API FOR THE RETURN, NO MSG
+        print("ADD TO CART", add_to_cart.to_dict())
         return add_to_cart.to_dict()
     else:
         return {"message": "Item couldn't be found"}
+
+
+@products_routes.route("/search", methods=["GET"])
+def search_products():
+    # grabs user input from search bar
+    searchQuery = request.args.get("result")
+    # query those products
+    filtered_products = Product.query.filter(
+        Product.item_name.like(f"%{str(searchQuery)}%")
+    ).all()
+
+    products = [product.to_dict() for product in filtered_products]
+    # pprint(products)
+    for product in products:
+        reviews = Review.query.filter(Review.productId == product["id"])
+        reviews = [review.to_dict() for review in reviews]
+        seller = User.query.get(product["sellerId"])
+        seller = seller.to_dict()
+        product["Reviews"] = reviews
+        product["Seller"] = seller
+
+    return {"Products": products}
+    # for product in filtered_products:
+    #     product = product.to_dict()
+    #     search = {
+    #         "item_name": product["item_name"],
+    #         # "description": product["description"]
+    #     }
+    #     for word in search.values():
+    #         print(word)
+    #         if searchQuery.lower() in str(word).lower():
+    #             filters.append(product)
+
+    # for product in filters:
+    #     reviews = Review.query.filter(Review.productId == product["id"])
+    #     reviews = [review.to_dict() for review in reviews]
+    #     seller = User.query.get(product["sellerId"])
+    #     seller = seller.to_dict()
+    #     product["Reviews"] = reviews
+    #     product["Seller"] = seller
+
+    # return {"Products": filters}

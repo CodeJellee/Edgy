@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import postItemInCartAction, { thunkPostItemInCart }  from "../../../store/shoppingCart"
+import postItemInCartAction, { thunkGetShoppingCart, thunkPostItemInCart }  from "../../../store/shoppingCart"
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
@@ -17,7 +17,8 @@ function PutCartIemToCart({productId}) {
         if (productBelongsToUser()) {
             alert("You cannot add your own product to the cart.");
         } else {
-            dispatch(thunkPostItemInCart(productId))
+            dispatch(thunkPostItemInCart(productId)).then(()=>
+                dispatch(thunkGetShoppingCart()))
             history.push("/shopping_cart")
 
         }

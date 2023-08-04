@@ -3,17 +3,25 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import { useHistory } from 'react-router-dom/'
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const history = useHistory()
+
+
+	const handleInputChange = (event) => {
+		event.stopPropagation()
+		if (event.key == "Enter") history.push(`/categories/search/${event.target.value}`)
+	  };
 
 	return (
 		<>
 		<div className="navigations">
 		<div className="edgy">
-		<h1>Edgy</h1>
+		<h1 onClick={((e)=> history.push('/'))}>Edgy</h1>
 		<div className="s">
-		<input type="text" placeholder='Search for anything'></input>
+		<input type="text" onKeyDown={handleInputChange} placeholder='Search for anything'></input>
 		<i id="searchI" class="fa-solid fa-magnifying-glass"></i>
 		</div>
 		{isLoaded && (
@@ -21,7 +29,7 @@ function Navigation({ isLoaded }){
 					<ProfileButton user={sessionUser} />
 				</div>
 		)}
-		<i class="fa-solid fa-cart-shopping"></i>
+			<i onClick={((e) => history.push("/shopping_cart"))} class="fa-solid fa-cart-shopping"></i>
 		</div>
 
 		<div className="navigation">
