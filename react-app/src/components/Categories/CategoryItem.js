@@ -29,8 +29,8 @@ function CategoryItem({ p, page }) {
   // console.log("favorites state:", userFavorites)
 
   useEffect(() => {
-    dispatch(thunkGetUserFavorites(user.id));
-  }, [user.id, dispatch]);
+    dispatch(thunkGetUserFavorites(user?.id));
+  }, [user?.id, dispatch]);
 
   let favs = userFavorites?.filter((f) => f.id === p.id);
 
@@ -108,7 +108,7 @@ function CategoryItem({ p, page }) {
           <img
             onClick={(e) => history.push(`/products/${p.id}`)}
             src={p.preview_imageURL}
-            alt="meaningfult text"
+            alt="meaningful text"
           ></img>
           <p
             onClick={(e) => history.push(`/products/${p.id}`)}

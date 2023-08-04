@@ -110,7 +110,7 @@ function Categories({ category, name }) {
         </div>
         <div className="filter2">
           <button>
-            <span>Sort by:</span>Revelancy<i class="fa-solid fa-caret-down"></i>
+            <span>Sort by:</span>Relevancy<i class="fa-solid fa-caret-down"></i>
           </button>
         </div>
       </div>
