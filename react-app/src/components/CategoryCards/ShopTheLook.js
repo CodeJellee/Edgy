@@ -7,9 +7,9 @@ function ShopLookCard(){
     const { products } = useSelector((state) => state.products)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(productActions.thunkGetAllProducts())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(productActions.thunkGetAllProducts())
+    // }, [dispatch])
 
        let eachProduct = Object.values(products)
 
