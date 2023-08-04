@@ -23,7 +23,7 @@ function LoginFormModal() {
       setErrors(data);
     } else {
       closeModal()
-      history.push('/')
+
     }
   };
 
@@ -36,7 +36,7 @@ function LoginFormModal() {
       setErrors(data);
     } else {
       closeModal()
-      history.push('/')
+
     }
   };
 
