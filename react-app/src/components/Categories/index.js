@@ -23,12 +23,12 @@ function Categories({ category, name }) {
   // console.log(query);
   // console.log(search);
 
-  useEffect(() => {
-    dispatch(productActions.thunkGetAllProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(productActions.thunkGetAllProducts());
+  // }, [dispatch]);
 
   useEffect(() => {
-    if (query) dispatch(productActions.thunkSearchAllProducts(query))
+    if (query) dispatch(productActions.thunkSearchAllProducts(query));
   }, [dispatch, query]);
 
   let info;
@@ -119,7 +119,9 @@ function Categories({ category, name }) {
           <CategoryItem p={p} />
         ))}
       </div>
-      {query && eachProduct.length === 0 ? <div className="noResult">Could not find results for '{query}'</div> : null}
+      {query && eachProduct.length === 0 ? (
+        <div className="noResult">Could not find results for '{query}'</div>
+      ) : null}
       <FooterTwo />
     </>
   );

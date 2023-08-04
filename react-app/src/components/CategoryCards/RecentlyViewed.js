@@ -7,17 +7,17 @@ import "./CategoryCardsStyle4.css";
 import Stars from "../Reviews/Stars/Stars";
 import { useHistory } from "react-router-dom";
 import CategoryItem from "../Categories/CategoryItem";
-import '../Categories/Categories.css'
-import "../FavoritesPage/FavoritesPage.css"
+import "../Categories/Categories.css";
+import "../FavoritesPage/FavoritesPage.css";
 
 function RecentlyReviewedCard() {
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
 
-  useEffect(() => {
-    dispatch(productActions.thunkGetAllProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(productActions.thunkGetAllProducts());
+  // }, [dispatch]);
 
   let eachProduct = Object.values(products);
 
@@ -32,7 +32,7 @@ function RecentlyReviewedCard() {
       <h1>Popular gifts right now</h1>
       <div className="data">
         {eachProduct.map((p) => (
-            <CategoryItem p={p} page="recent"/>
+          <CategoryItem p={p} page="recent" />
         ))}
       </div>
     </div>

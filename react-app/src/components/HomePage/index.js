@@ -19,9 +19,9 @@ function HomePage(){
     const dispatch = useDispatch()
     const history = useHistory()
 
-    useEffect(() => {
-        dispatch(productActions.thunkGetAllProducts())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(productActions.thunkGetAllProducts())
+    // }, [dispatch])
 
        let eachProduct = Object.values(products)
 

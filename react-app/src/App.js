@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
@@ -13,13 +13,28 @@ import NewProductForm from "./components/Products/CreateNewProduct";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Footer from "./components/Footer";
 import AllProductsPage from "./components/Products/AllProductsPage";
+import { thunkGetAllProducts } from "./store/products";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(authenticate())
+      .then(() => setIsLoaded(true))
+      .then(() => dispatch(thunkGetAllProducts())); // This thunk hydrates the store ON MOUNT (when first loading the site) based on the variable isLoaded
+    // 1. On first load: isLoaded is false, and won't load anything until the state of isLoaded is set to True.
+    // 2. useEffect is then run which authenticates the user (gives a csrf token), then sets isLoaded state to True, then runs the thunk to grab all products
+    // 3. This thunk is here so all products is loaded globally once instead of having each category run the thunk on mount.
   }, [dispatch]);
+
+  // This is an alternative example using the async/await approach
+  // useEffect(() => {
+  //   async function name () {
+  //     await dispatch(authenticate())
+  //     await dispatch(thunk())
+  //   }
+  //   name()
+  // })
 
   return (
     <>
