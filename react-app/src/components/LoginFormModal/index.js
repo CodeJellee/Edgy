@@ -5,9 +5,12 @@ import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import * as sessionActions from "../../store/session";
+import { useHistory } from "react-router-dom";
+
 
 function LoginFormModal() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -20,6 +23,7 @@ function LoginFormModal() {
       setErrors(data);
     } else {
         closeModal()
+        history.push('/')
     }
   };
 
