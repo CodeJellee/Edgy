@@ -92,6 +92,10 @@ function App() {
             <Categories category="All" name="" />
           </Route>
 
+          <Route exact path="/categories/search/:query">
+            <Categories name="query"/>
+          </Route>
+
           <Route exact path="/products/new">
             <NewProductForm />
           </Route>

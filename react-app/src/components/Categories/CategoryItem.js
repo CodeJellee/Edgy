@@ -15,19 +15,14 @@ function CategoryItem({ p, page }) {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.session.user);
     const userFavorites = useSelector((state) =>
-=======
-function CategoryItem({ p }) {
-  const [isHidden, setHidden] = useState(true);
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
-  const userFavorites = useSelector((state) =>
->>>>>>> 9375b1f16b07d289d61d388ee4a55653fe63eaa5
     Object.values(state.favorites.userFavorites)
-  );
-  const [itemState, setItemState] = useState(false);
+    );
+    const [itemState, setItemState ] = useState(false)
 
-<<<<<<< HEAD
+    const handleFavoriteClick = (productId) => {
+        dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
+    };
+
     const handleUnfavoriteClick = (productId) => {
         dispatch(favoriteActions.thunkDeleteFavorite(productId));
     };
@@ -52,11 +47,11 @@ function CategoryItem({ p }) {
     if (itemState === false) setItemState(true);
   }
 
-  // console.log("my favorites: ", favs)
+    console.log("my favorites: ", favs)
 
-  const handleTouchStart = () => {
-    setHidden(true);
-  };
+    const handleTouchStart = () => {
+        setHidden(true)
+      };
 
   const handleTouchEnd = () => {
     setHidden(false);

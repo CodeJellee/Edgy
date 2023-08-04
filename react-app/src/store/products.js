@@ -17,9 +17,15 @@ const GET_SINGLE_PRODUCT_ACTION = "products/GET_SINGLE_PRODUCT_ACTION";
 const GET_USER_PRODUCTS_ACTION = "products/GET_USER_PRODUCTS_ACTION";
 const DELETE_PRODUCT_ACTION = "products/DELETE_PRODUCT_ACTION";
 const CREATE_PRODUCT_ACTION = "products/CREATE_PRODUCT_ACTION";
+const SEARCH_PRODUCT_ACTION ="products/SEARCH_SINGLE_ACTION"
 
 const getAllProducts = (products) => ({
   type: GET_ALL_PRODUCTS_ACTION,
+  products,
+});
+
+const getFilteredProducts = (products) => ({
+  type: SEARCH_PRODUCT_ACTION,
   products,
 });
 
@@ -60,6 +66,26 @@ export const thunkGetAllProducts = () => async (dispatch) => {
 
   return "error";
 };
+
+export const thunkSearchAllProducts = (query) => async (dispatch) => {
+  const response = await fetch(`/api/products/search?result=${query}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  // console.log(response)
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data)
+    dispatch(getFilteredProducts(data));
+    return data;
+  }
+
+  return "error";
+};
+
+
 
 export const thunkGetSingleProduct = (productId) => async (dispatch) => {
   let product = await fetch(`/api/products/${productId}`, {
@@ -134,7 +160,7 @@ export const thunkDeleteProduct = (productId) => async (dispatch) => {
   return product;
 };
 
-let initialState = { products: {}, userProducts: {}, singleProduct: { Reviews: {}, Seller: {}, ProductImages: [] } };
+let initialState = { products: {}, userProducts: {}, singleProduct: { Reviews: {}, Seller: {}, ProductImages: [] }, search: {} };
 
 export default function reducer(state = initialState, action) {
   let newState;
@@ -153,7 +179,7 @@ export default function reducer(state = initialState, action) {
       action.products.Products.forEach(
         (product) => (newState.products[product.id] = product)
       );
-      return newState;
+      return state;
     case GET_SINGLE_PRODUCT_ACTION: {
 
 
@@ -219,6 +245,14 @@ export default function reducer(state = initialState, action) {
       delete newState.userProducts[action.productId];
       return newState;
     }
+    case SEARCH_PRODUCT_ACTION:
+      // minh's code normalizing the data
+      newState = { ...state };
+      // console.log('this is action.products', action.products.Products)
+      action.products.Products.forEach(
+        (product) => (newState.search[product.id] = product)
+      );
+      return newState;
     default:
       return state;
   }
