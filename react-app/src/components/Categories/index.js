@@ -11,18 +11,25 @@ import SearchWaifu from "./SearchWaifu";
 import SearchManga from "./SearchManga";
 import SearchMusic from "./SearchMusic";
 import SearchFigurines from "./SearchFigurines";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import SearchAll from "./SearchAll";
 import CategoryItem from "./CategoryItem";
 
 function Categories({ category, name }) {
-  const { products } = useSelector((state) => state.products);
+  const { products, search } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const history = useHistory();
+  const { query } = useParams()
+  console.log(query)
+  console.log(search)
 
   useEffect(() => {
     dispatch(productActions.thunkGetAllProducts());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(productActions.thunkSearchAllProducts(query))
+  }, [dispatch, query]);
 
   let info;
 
@@ -34,17 +41,21 @@ function Categories({ category, name }) {
 
   if (info) description = info[1];
 
-  let eachProduct = Object.values(products);
+  let eachProduct
 
-  // console.log(eachProduct)
+  if (!query) eachProduct = Object.values(products);
+  if (query) eachProduct = Object.values(search)
+
+  console.log(eachProduct)
 
   if (!eachProduct) return <h1>Loading</h1>;
 
-  if (category !== "All")
-    eachProduct = eachProduct.filter((p) => p.category == category);
+  if (!query && category !== "All") eachProduct = eachProduct.filter((p) => p.category == category);
 
   console.log("hi this right here is the array you want to look at", eachProduct)
   return (
+    <>
+    {!query ?
     <>
       <div className="page">
         <div className="pageInfo">
@@ -77,6 +88,8 @@ function Categories({ category, name }) {
         </div>
       </div>
       <h1 className="pageT">Find something you love</h1>
+      </>
+      : null }
       <div className="filters">
         <div className="filter1">
           <button>

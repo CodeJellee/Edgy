@@ -9,13 +9,19 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 	const history = useHistory()
 
+
+	const handleInputChange = (event) => {
+		event.stopPropagation()
+		if (event.key == "Enter") history.push(`/categories/search/${event.target.value}`)
+	  };
+
 	return (
 		<>
 		<div className="navigations">
 		<div className="edgy">
 		<h1 onClick={((e)=> history.push('/'))}>Edgy</h1>
 		<div className="s">
-		<input type="text" placeholder='Search for anything'></input>
+		<input type="text" onKeyDown={handleInputChange} placeholder='Search for anything'></input>
 		<i id="searchI" class="fa-solid fa-magnifying-glass"></i>
 		</div>
 		{isLoaded && (

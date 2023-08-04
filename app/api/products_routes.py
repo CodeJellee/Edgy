@@ -213,3 +213,34 @@ def post_cart_items(productId):
         return add_to_cart.to_dict()
     else:
         return {"message": "Item couldn't be found"}
+
+
+
+@products_routes.route('/search', methods=["GET"])
+def search_products():
+    searchQuery = request.args.get('result')
+    filtered_products = Product.query.all()
+    filters = []
+    print("!!!!!!!!!!", searchQuery)
+    for product in filtered_products:
+        product = product.to_dict()
+        search = {
+            "item_name": product["item_name"],
+            # "description": product["description"]
+        }
+        for word in search.values():
+            print(word)
+            if searchQuery.lower() in str(word).lower():
+               filters.append(product)
+
+    for product in filters:
+        reviews = Review.query.filter(Review.productId == product["id"])
+        reviews = [review.to_dict() for review in reviews]
+        seller = User.query.get(product["sellerId"])
+        seller = seller.to_dict()
+        product["Reviews"] = reviews
+        product["Seller"] = seller
+
+    return {
+        "Products": filters
+    }

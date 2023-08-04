@@ -13,10 +13,9 @@ function CategoryItem({ p, page }) {
     const history = useHistory()
     const dispatch = useDispatch()
     const user = useSelector((state) => state.session.user);
-    const userFavorites = useSelector((state) =>
-    Object.values(state.favorites.userFavorites)
-    );
+    const userFavorites = useSelector((state) => Object.values(state.favorites.userFavorites));
     const [itemState, setItemState ] = useState(false)
+
 
     const handleFavoriteClick = (productId) => {
         dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
@@ -35,8 +34,6 @@ function CategoryItem({ p, page }) {
     if (favs.length > 0) {
         if (itemState === false) setItemState(true)
     }
-
-    console.log("my favorites: ", favs)
 
     const handleTouchStart = () => {
         setHidden(true)
