@@ -241,43 +241,40 @@ def post_favorite_item(productId):
 @products_routes.route("/<int:productId>/add_to_cart", methods=["POST"])
 @login_required
 def post_cart_items(productId):
-    cur_user = current_user.to_dict()
-    # print("CURRENT USER", cur_user)
-    product_exists = Product.query.get(productId).to_dict()
-    product_in_cart = CartItem.query.get(productId)
-    if product_in_cart != None:
-        product_in_cart.to_dict()
-    # print("PRODUCT EXISTS", product_exists)
-    # print("PRODUCT EXISTS IN THE CART", product_in_cart)
+    # print("value going into post_cart_items: productId", productId)
+    print(productId)
+    user_id = current_user.id
+    # print('what is current user id', user_id)
+    product_exists = Product.query.get(productId)
+    # print('what is product exists s/p Product.query.get(productId)', product_exists)
+    user = User.query.get(user_id)
+    # print('what is user s/p User.query.get(user_id)', user)
+    seller = User.query.get(product_exists.sellerId)
+    # print('what is seller s/p User.query.get(product)exists.sellerId', seller)
 
-    # if to_dict() is used, you must key in with bracket notation ['']
-    # else dot notation but it will be an 'instance' class
+    #Edge Cases
+    #1- checking if item is already in our cart
+    existing_cart_item = (
+        db.session.query(CartItem)
+        .filter((CartItem.userId == user_id) & (CartItem.productId == productId))
+        .first()
+    )
 
-    # Edge Cases
-    # make sure product does not belong to the user
-    if product_exists and cur_user["id"] == product_exists["sellerId"]:
-        return {"message": "You may not add your own product to your cart."}
+    if existing_cart_item:
+        return {"message": "You have already added this product to your cart."}
 
-    # make sure product is not already in the cart
-    # if product_exists and product_in_cart["productId"] == product_exists.id:
-    # pprint('PRODUCT EXIST', product_exists)
-    # pprint('PRODUCT IN CART WITH PRODUCTID KEY', product_in_cart["productId"])
-    # pprint('PRODUCT_EXSITS.ID', product_exists.id)
-    # return {"message": "You already added this item to your cart."}
+    # print ("existing_cart_item this is value", existing_cart_item)
 
-    if (
-        product_exists  # if product exists
-        # and product_in_cart  # if product in cart exists
-        # and product_exists["sellerId"] != cur_user["id"]
-        # and product_exists["id"] != product_in_cart["productId"]
-        # current product should not belong to the user => product.sellerId !== user.id
-        # current product id should not be the same as the product in cart id => cannot add the same item
-    ):
-        # print(
-        #     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaawe are in the if statement before instantiating the cart item"
-        # )
-        add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
-        db.session.add(add_to_cart)
+    #2- checking if the user owns the product (userId = sellerId)
+    if product_exists and user_id == product_exists.sellerId:
+        return {"message": "You may not add your own product to cart."}
+
+    #if doesn't fall into any of the edge cases above, add item to cart!
+    if product_exists and product_exists.sellerId != user_id:
+        add_item_to_cart = insert(CartItem).values(
+            userId=user_id, productId=productId
+        )
+        db.session.execute(add_item_to_cart)
         db.session.commit()
         product_to_return = {
             "CartItem": add_to_cart.to_dict(),
@@ -300,7 +297,23 @@ def search_products():
         Product.item_name.ilike(f"%{str(searchQuery)}%")
     ).all()
 
-    products = [product.to_dict() for product in filtered_products]
+    if seachQuery_list:
+       filtered_products = Product.query.filter(
+         Product.item_name.ilike(f"%{str(searchQuery)}%")
+         ).all()
+
+    filtered_products_list = []
+
+    if searchQuery_list:
+        print(seachQuery_list)
+        for s in searchQuery_list:
+          print(s)
+          filtered_products_list.append(Product.item_name.ilike(f"%{s}%"))
+
+    products = []
+
+    if filtered_products:
+      products = [product.to_dict() for product in filtered_products]
     # pprint(products)
     for product in products:
         reviews = Review.query.filter(Review.productId == product["id"])
