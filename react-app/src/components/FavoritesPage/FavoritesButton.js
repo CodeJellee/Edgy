@@ -16,6 +16,11 @@ function FavoriteButton({ productId, handleUnfavoriteClick, handleFavoriteClick,
       return;
     }
 
+    if( !currentUser.id){
+      alert("Need to be logged in to favorite!")
+      return;
+    }
+
     if (solid === false) {
       setSolid(!solid);
       handleFavoriteClick(productId);
