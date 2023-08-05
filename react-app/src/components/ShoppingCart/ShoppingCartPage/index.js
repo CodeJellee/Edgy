@@ -81,7 +81,9 @@ function ShoppingCartPage() {
                           </div>
                         </div>
                         <div className="price-how-many-is-left">
-                          <div>${item.Product.price}</div>
+                          <div>${item.Product.price} Each</div>
+                          <div>Quantity:</div>
+                          <input type="number" className="quantity-input" name="quantity" min="1" defaultValue="1"/>
                         </div>
                       </div>
                     </div>

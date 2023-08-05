@@ -74,6 +74,11 @@
 
 }
 
+
+.quantity-input{
+    width:35px;
+}
+
 .remove-save{
     display:flex;
     flex-direction: column;
