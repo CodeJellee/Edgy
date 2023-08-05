@@ -159,18 +159,16 @@ def create_review(id):
     form = NewReview()
 
     # ! changed this to have wtf forms validations, was working before without it and have front end validations so not suer needed if breaking live site
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        new_review = Review(
+
+    new_review = Review(
             stars=form.data["stars"],
             review=form.data["review"],
             userId=current_user.to_dict()["id"],
             productId=id,
         )
-        db.session.add(new_review)
-        db.session.commit()
-        return new_review.to_dict()
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+    db.session.add(new_review)
+    db.session.commit()
+    return new_review.to_dict()
 
 
 # POST - Favorite a Product
@@ -219,35 +217,50 @@ def post_favorite_item(productId):
 @login_required
 def post_cart_items(productId):
     cur_user = current_user.to_dict()
-    # print("CURRENT USER", cur_user)
-    product_exists = Product.query.get(productId)
-    product_in_cart = CartItem.query.get(productId)
-    # print("PRODUCT", product_exists)
+    print("CURRENT USER", cur_user)
+    product_exists = Product.query.get(productId).to_dict()
+    product_in_cart = CartItem.query.get(productId).to_dict()
+    print("PRODUCT EXISTS", product_exists)
+    print("PRODUCT EXISTS IN THE CART", product_in_cart)
+
+    # if to_dict() is used, you must key in with bracket notation ['']
+    # else dot notation but it will be an 'instance' class
 
     # Edge Cases
-    #make sure product does not belong to the user
-    if product_exists and cur_user["id"] == product_exists.sellerId:
+    # make sure product does not belong to the user
+    if product_exists and cur_user["id"] == product_exists["sellerId"]:
         return {"message": "You may not add your own product to your cart."}
 
-    #make sure product is not already in the cart
-    if product_exists and product_in_cart["productId"] == product_exists.id:
-        # pprint('PRODUCT EXIST', product_exists)
-        # pprint('PRODUCT IN CART WITH PRODUCTID KEY', product_in_cart["productId"])
-        # pprint('PRODUCT_EXSITS.ID', product_exists.id)
-        return {"message": "You already added this item to your cart."}
+    # make sure product is not already in the cart
+    # if product_exists and product_in_cart["productId"] == product_exists.id:
+    # pprint('PRODUCT EXIST', product_exists)
+    # pprint('PRODUCT IN CART WITH PRODUCTID KEY', product_in_cart["productId"])
+    # pprint('PRODUCT_EXSITS.ID', product_exists.id)
+    # return {"message": "You already added this item to your cart."}
 
-    if product_exists and product_exists.sellerId != cur_user["id"] and product_exists.id != product_in_cart["productId"]:
+    if (
+        product_exists  # if product exists
+        # and product_in_cart  # if product in cart exists
+        # and product_exists["sellerId"] != cur_user["id"]
+        # and product_exists["id"] != product_in_cart["productId"]
+        # current product should not belong to the user => product.sellerId !== user.id
+        # current product id should not be the same as the product in cart id => cannot add the same item
+    ):
+        print(
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaawe are in the if statement before instantiating the cart item"
+        )
         add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
         db.session.add(add_to_cart)
         db.session.commit()
         product_to_return = {
             "CartItem": add_to_cart.to_dict(),
-            "Product": product_exists.to_dict(),
+            "Product": product_exists,
         }
         # UPDATE API FOR THE RETURN, NO MSG
         print("ADD TO CART", add_to_cart.to_dict())
         return product_to_return
     else:
+        print("this dont work")
         return {"message": "Item couldn't be found"}
 
 
