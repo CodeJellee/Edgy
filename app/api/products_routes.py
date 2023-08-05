@@ -72,13 +72,18 @@ def product_details(id):
 @products_routes.route("/new", methods=["POST"])
 @login_required
 def create_product():
+    # Implementing try/exception here to get better production errors (remember prints are in the render logs) - also added try/catch block in the thunk to return more detailed/specific console.log errors in dev tools
     try:
         form = NewProduct()
         print("ROUTE IS HIT!!! THIS IS FORM.DATA")
         pprint(form.data)
 
+        # SOLUTION: THIS IS A SOLUTION FOR 'NOT VALID JSON & ERROR 500' on PRODUCTION even though it works on LOCAL
         # Flask-WTF and WTForms by default require a CSRF_TOKEN because these packages are meant to handle CSRF protection therefore your code will break if it does not have these two lines of code: the request csrf token from cookies and validate_on_submit
         # on the other hand, if you remove these two lines of code, it will work locally, just not on production
+        # This create new product route was not autoincrementing primary_key by default, so we added autoincrement=True, also we had to remove 'id' from seed data to let it autoincrement itself in order for us to create a new product and have a new id for that product
+        # TLDR: Using form requires csrf token, the return statement is being handled as html/text on production, so we need to jsonify the return data for the fetch to work
+        #
         form["csrf_token"].data = request.cookies["csrf_token"]
         if form.validate_on_submit():
             new_product = Product(
@@ -277,7 +282,7 @@ def post_favorite_item(productId):
 #         return {"message": "Item couldn't be found"}
 
 
-#POST: Add item to cart- second attempt, CHECKED VIA POSTMAN- IT WORKS(THANDI WITNESSED)
+# POST: Add item to cart- second attempt, CHECKED VIA POSTMAN- IT WORKS(THANDI WITNESSED)
 @products_routes.route("/<int:productId>/add_to_cart", methods=["POST"])
 @login_required
 def post_cart_items(productId):
@@ -291,8 +296,8 @@ def post_cart_items(productId):
     seller = User.query.get(product_exists.sellerId)
     # print('what is seller s/p User.query.get(product)exists.sellerId', seller)
 
-    #Edge Cases
-    #1- checking if item is already in our cart
+    # Edge Cases
+    # 1- checking if item is already in our cart
     existing_cart_item = (
         db.session.query(CartItem)
         .filter((CartItem.userId == user_id) & (CartItem.productId == productId))
@@ -304,18 +309,16 @@ def post_cart_items(productId):
 
     # print ("existing_cart_item this is value", existing_cart_item)
 
-    #2- checking if the user owns the product (userId = sellerId)
+    # 2- checking if the user owns the product (userId = sellerId)
     if product_exists and user_id == product_exists.sellerId:
         return {"message": "You may not add your own product to cart."}
 
-    #if doesn't fall into any of the edge cases above, add item to cart!
+    # if doesn't fall into any of the edge cases above, add item to cart!
     if product_exists and product_exists.sellerId != user_id:
-        add_item_to_cart = insert(CartItem).values(
-            userId=user_id, productId=productId
-        )
+        add_item_to_cart = insert(CartItem).values(userId=user_id, productId=productId)
         db.session.execute(add_item_to_cart)
         db.session.commit()
-        return{
+        return {
             "Product": product_exists.to_dict(),
             "User": user.to_dict(),
             "Seller": seller.to_dict(),
@@ -324,39 +327,38 @@ def post_cart_items(productId):
         return {"message": "Item couldn't be found"}
 
 
-
 @products_routes.route("/search", methods=["GET"])
 def search_products():
     # grabs user input from search bar
     searchQuery = request.args.get("result")
     searchQuery_list = []
-    if ',' in searchQuery:
-        seachQuery_list = searchQuery.split(',')
-        print('yes')
+    if "," in searchQuery:
+        seachQuery_list = searchQuery.split(",")
+        print("yes")
 
     print(seachQuery_list)
     filtered_products = []
 
     if not seachQuery_list:
-       filtered_products = Product.query.filter(
-         Product.item_name.ilike(f"%{str(searchQuery)}%")
-         ).all()
+        filtered_products = Product.query.filter(
+            Product.item_name.ilike(f"%{str(searchQuery)}%")
+        ).all()
 
     filtered_products_list = []
 
     if searchQuery_list:
         print(seachQuery_list)
         for s in searchQuery_list:
-          print(s)
-          filtered_products_list.append(Product.item_name.ilike(f"%{s}%"))
+            print(s)
+            filtered_products_list.append(Product.item_name.ilike(f"%{s}%"))
 
     products = []
 
     if filtered_products:
-      products = [product.to_dict() for product in filtered_products]
+        products = [product.to_dict() for product in filtered_products]
     # pprint(products)
     if filtered_products_list:
-      products = [product.to_dict() for product in filtered_products]
+        products = [product.to_dict() for product in filtered_products]
 
     for product in products:
         reviews = Review.query.filter(Review.productId == product["id"])
