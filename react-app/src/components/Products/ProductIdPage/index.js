@@ -22,7 +22,10 @@ function ProductIdPage() {
     const product = useSelector(state => state.products.singleProduct)
     const [mainImage, setMainImage] = useState()
     const [itemState, setItemState ] = useState(false)
-    // const [noUserReviewExist, setNoUserReveiwExist] = useState(true)
+    const [deletedReview, setDeletedReview] = useState(false)
+
+
+    // if deletedReview is changed to true, cause form to be rendered
 
     const handleFavoriteClick = (productId) => {
         dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
@@ -44,7 +47,7 @@ function ProductIdPage() {
     }, [dispatch, id])
 
 
-
+    console.log(deletedReview)
 
 
     if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
@@ -185,10 +188,12 @@ function ProductIdPage() {
                     {user && noUserReviewExist && notSeller &&
                      <ReviewForm from="post"></ReviewForm>}
 
+                    {deletedReview && <ReviewForm from="post"></ReviewForm>}
+
                     {reviews?.map((review) => (
                         <>
 
-                            <ReviewCard key={review.id} userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
+                            <ReviewCard key={review.id} setDeletedReview={setDeletedReview}  userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
                         </>
                     ))}
 
