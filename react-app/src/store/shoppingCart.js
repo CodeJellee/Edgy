@@ -119,6 +119,7 @@ export default function reducer(state = initialState, action) {
     case GET_SHOPPING_CART: {
       newState = { ...state };
       newState.userCart = {};
+      console.log("REDUCER ACTION.CART", action.cart)
 
       action.cart.Shopping_Cart.forEach(
         (product) => (newState.userCart[product.productId] = { ...product })
