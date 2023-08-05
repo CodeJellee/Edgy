@@ -19,15 +19,11 @@ function AllProductsPage() {
     let products
     if (userProducts) products = Object.values(userProducts)
 
-<<<<<<< HEAD
-    // console.log(products)
-=======
     if (sorting && sorting === "Alphabetical") products.sort((a, b) => a.item_name.localeCompare(b.item_name));
     if (sorting && sorting === "Oldest") products.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
     if (sorting && sorting === "Newest") products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     if (searching) products = products.filter((p) => p.item_name.toLowerCase().includes(searching.toLowerCase()))
->>>>>>> products_routes
 
     useEffect(() => {
     dispatch(productActions.thunkGetUserProducts());
