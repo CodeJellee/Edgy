@@ -234,7 +234,9 @@ def post_cart_items(productId):
     cur_user = current_user.to_dict()
     # print("CURRENT USER", cur_user)
     product_exists = Product.query.get(productId).to_dict()
-    product_in_cart = CartItem.query.get(productId).to_dict()
+    product_in_cart = CartItem.query.get(productId)
+    if product_in_cart != None:
+        product_in_cart.to_dict()
     # print("PRODUCT EXISTS", product_exists)
     # print("PRODUCT EXISTS IN THE CART", product_in_cart)
 
