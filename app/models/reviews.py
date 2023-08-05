@@ -16,8 +16,9 @@ class Review(db.Model):
     productId = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), nullable=False
     )
-    createdAt = db.Column(db.DateTime, default=db.func.now())
-    updatedAt = db.Column(db.DateTime, default=db.func.now())
+    # commenting these out to test 500 error on production for create new product
+    # createdAt = db.Column(db.DateTime, default=db.func.now())
+    # updatedAt = db.Column(db.DateTime, default=db.func.now())
 
     user = db.relationship("User", back_populates="review")
     product = db.relationship("Product", back_populates="review")
@@ -29,8 +30,8 @@ class Review(db.Model):
             "review": self.review,
             "userId": self.userId,
             "productId": self.productId,
-            "updatedAt": self.updatedAt,
-            "createdAt": self.createdAt,
+            # "updatedAt": self.updatedAt,
+            # "createdAt": self.createdAt,
         }
 
     def to_dict_noUpdated(self):
@@ -40,5 +41,5 @@ class Review(db.Model):
             "review": self.review,
             "userId": self.userId,
             "productId": self.productId,
-            "createdAt": self.createdAt,
+            # "createdAt": self.createdAt,
         }

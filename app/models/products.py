@@ -33,8 +33,9 @@ class Product(db.Model):
     sellerId = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
     )
-    createdAt = db.Column(db.DateTime, default=db.func.now())
-    updatedAt = db.Column(db.DateTime, default=db.func.now())
+    # commenting these out to test 500 error on production for create new product
+    # createdAt = db.Column(db.DateTime, default=db.func.now())
+    # updatedAt = db.Column(db.DateTime, default=db.func.now())
 
     # One-to-Many Relationship with Product and ProductImage
     # This relationship states that Product will be listening to the class ProductImage
@@ -71,8 +72,9 @@ class Product(db.Model):
             "quantity": self.quantity,
             "preview_imageURL": self.preview_imageURL,
             "sellerId": self.sellerId,
-            "createdAt": self.createdAt,
-            "updatedAt": self.updatedAt,
+            # commenting these out to test 500 error on production for create new product
+            # "createdAt": self.createdAt,
+            # "updatedAt": self.updatedAt,
         }
 
 

@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, make_response
 from flask_login import login_required, current_user
 from app.models import Product, User, Review, ProductImage, db, CartItem
 from app.models.products import favorites
@@ -6,6 +6,7 @@ from app.forms import NewProduct, NewProductImage, NewReview
 from sqlalchemy import insert
 from pprint import pprint
 import traceback
+import json
 
 products_routes = Blueprint("products", __name__)
 
@@ -77,6 +78,11 @@ def create_product():
         print("ROUTE IS HIT!!! THIS IS FORM.DATA")
         pprint(form.data)
 
+        # this is test data
+        return {
+            "data": "this is a test"
+        }  # this runs the create thunk, has an action and previous state, but errors on next state bc obvi there is no real data to key into
+
         # Flask-WTF and WTForms by default require a CSRF_TOKEN because these packages are meant to handle CSRF protection therefore your code will break if it does not have these two lines of code: the request csrf token from cookies and validate_on_submit
         # on the other hand, if you remove these two lines of code, it will work locally, just not on production
         form["csrf_token"].data = request.cookies["csrf_token"]
@@ -89,6 +95,7 @@ def create_product():
                 quantity=form.data["quantity"],
                 preview_imageURL=form.data["preview_imageURL"],
                 sellerId=current_user.to_dict()["id"],
+                # sellerId=form.data["sellerId"],
             )
             print("THIS IS TO DICT USER ID", current_user.to_dict()["id"])
             print("new_product after validation")
@@ -97,22 +104,38 @@ def create_product():
             db.session.commit()
 
             # Attach Reviews and Seller information to match Chris' getAllProducts reducer - this is to properly create one and attach all necessary information for each single page to load
-            seller = current_user.to_dict()
-            new_product = new_product.to_dict()
-            return_product = jsonify(new_product, seller)
-            print(
-                "this is return jsonified",
-                return_product,
+            seller = current_user
+            # new_product = new_product.to_dict()
+            # return_product = jsonify(New_Product=new_product.to_dict()), jsonify(
+            #     Seller=seller.to_dict()
+            # )
+            # print(
+            #     "this is return jsonified",
+            #     return_product,
+            # )
+            # print("this is the type jsonified", type(return_product))
+            # return return_product
+
+            product_to_return = {
+                "New_Product": new_product.to_dict(),
+                "Seller": seller.to_dict(),
+            }
+            response = make_response(json.dumps(product_to_return))
+            response.headers["Content-Type"] = "application/json"
+            print(response)
+            return response
+            return jsonify(
+                {"New_Product": new_product.to_dict(), "Seller": seller.to_dict()}
             )
-            print("this is the type jsonified", type(return_product))
-            return jsonify({"New_Product": new_product, "Seller": seller})
+
     except Exception as e:
         error_message = str(e)
         traceback_str = traceback.format_exc()
         print("THIS IS THE FORM ERRORS", form.errors)
         print("Error:", error_message)
         print("Traceback:", traceback_str)
-        return jsonify(error=error_message, traceback=traceback_str), 500
+        raise jsonify(error=str(e))
+        return jsonify(error=error_message, traceback=traceback_str)
         return "Bad Data"
 
 
