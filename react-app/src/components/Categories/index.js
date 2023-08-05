@@ -98,11 +98,11 @@ function Categories({ category, name }) {
       ) : null}
       <div className="filters">
         <div className="filter1">
-          <button>
+          <button onClick={((e) => window.alert("Feature coming soon"))}>
             Estimated Arrival<span>Anytime</span>
             <i class="fa-solid fa-caret-down"></i>
           </button>
-          <button>
+          <button onClick={((e) => window.alert("Feature coming soon"))}>
             <i class="fa-solid fa-filter"></i>All Filters
           </button>
         </div>
