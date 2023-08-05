@@ -64,9 +64,10 @@ export const thunkDeleteCartItem = (productId) => async (dispatch) => {
 };
 
 export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
+  console.log("WHAT IS THIS IN thunkPOSTCartItem", productId)
   let product = await fetch(`/api/products/${productId}/add_to_cart`, {
     method: "POST",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -76,6 +77,7 @@ export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
     // console.log('THIS IS PRODUCT', product)
   });
   product = await product.json();
+  console.log('WHAT IS PRODUCT THAT WE ARE RETURNING FROM THUNK', product)
   await dispatch(postItemInCartAction(product));
   // await dispatch(thunkGetShoppingCart());
   return product;
