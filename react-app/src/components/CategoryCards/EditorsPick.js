@@ -28,7 +28,7 @@ function EditorsPickCard() {
   //   dispatch(productActions.thunkGetAllProducts());
   // }, [dispatch]);
 
-  const handleFavoriteClick = (productId) => {
+const handleFavoriteClick = (productId) => {
     dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
 };
 
