@@ -159,18 +159,16 @@ def create_review(id):
     form = NewReview()
 
     # ! changed this to have wtf forms validations, was working before without it and have front end validations so not suer needed if breaking live site
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        new_review = Review(
+
+    new_review = Review(
             stars=form.data["stars"],
             review=form.data["review"],
             userId=current_user.to_dict()["id"],
             productId=id,
         )
-        db.session.add(new_review)
-        db.session.commit()
-        return new_review.to_dict()
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+    db.session.add(new_review)
+    db.session.commit()
+    return new_review.to_dict()
 
 
 # POST - Favorite a Product
