@@ -6,7 +6,7 @@ from sqlalchemy.sql import text
 def seed_products(users):
     products = [
         {
-            "id": 1,
+            # "id": 1,
             "item_name": "Minh's Gundam Mech PC",
             "price": 59999.99,
             "category": "Computer",
@@ -16,7 +16,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 2,
+            # "id": 2,
             "item_name": "Jenny's Magical Mac",
             "price": 0.99,
             "category": "Computer",
@@ -26,7 +26,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 3,
+            # "id": 3,
             "item_name": "Chris' One Piece Sound Package",
             "price": 299.99,
             "category": "Computer",
@@ -36,7 +36,7 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 4,
+            # "id": 4,
             "item_name": "Thandi's Dragon Ball Rage",
             "price": 4.99,
             "category": "Computer",
@@ -46,7 +46,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 5,
+            # "id": 5,
             "item_name": "Luffy's Straw Hat Laptop",
             "price": 32.03,
             "category": "Computer",
@@ -56,7 +56,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 6,
+            # "id": 6,
             "item_name": "Luffy's Pirate Jacket",
             "price": 482.40,
             "category": "Clothing",
@@ -66,7 +66,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 7,
+            # "id": 7,
             "item_name": "Sailor Moon Hat",
             "price": 53.23,
             "category": "Clothing",
@@ -76,7 +76,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 8,
+            # "id": 8,
             "item_name": "Naruto's Hokage Sweater",
             "price": 38.47,
             "category": "Clothing",
@@ -86,7 +86,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 9,
+            # "id": 9,
             "item_name": "My Hero Academia Socks",
             "price": 22.29,
             "category": "Clothing",
@@ -96,7 +96,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 10,
+            # "id": 10,
             "item_name": "Dragon Ball Z Shirt",
             "price": 103.54,
             "category": "Clothing",
@@ -106,7 +106,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 11,
+            # "id": 11,
             "item_name": "Studio Ghibli Wall Art",
             "price": 234.32,
             "category": "Home Decor",
@@ -116,7 +116,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 12,
+            # "id": 12,
             "item_name": "Sailor Moon Cushion",
             "price": 938.23,
             "category": "Home Decor",
@@ -126,7 +126,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 13,
+            # "id": 13,
             "item_name": "Naruto LED Lamp",
             "price": 112.39,
             "category": "Home Decor",
@@ -136,7 +136,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 14,
+            # "id": 14,
             "item_name": "Dragon Ball Z Coasters",
             "price": 523.93,
             "category": "Home Decor",
@@ -146,7 +146,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 15,
+            # "id": 15,
             "item_name": "My Hero Academia Clock",
             "price": 102.49,
             "category": "Home Decor",
@@ -156,7 +156,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 16,
+            # "id": 16,
             "item_name": "Sword Art Online Necklace",
             "price": 934.54,
             "category": "Accessories",
@@ -166,7 +166,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 17,
+            # "id": 17,
             "item_name": "Attack on Titan Keychain",
             "price": 235.38,
             "category": "Accessories",
@@ -176,7 +176,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 18,
+            # "id": 18,
             "item_name": "Tokyo Ghoul Ring",
             "price": 293.45,
             "category": "Accessories",
@@ -186,7 +186,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 19,
+            # "id": 19,
             "item_name": "One Piece Bracelet",
             "price": 309.48,
             "category": "Accessories",
@@ -196,7 +196,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 20,
+            # "id": 20,
             "item_name": "Naruto Headband",
             "price": 382.93,
             "category": "Accessories",
@@ -206,7 +206,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 21,
+            # "id": 21,
             "item_name": "Rem Waifu Body Pillow",
             "price": 381.84,
             "category": "Waifu Body Pillows",
@@ -216,7 +216,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 22,
+            # "id": 22,
             "item_name": "Zero Two Waifu Body Pillow",
             "price": 65.37,
             "category": "Waifu Body Pillows",
@@ -226,7 +226,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 23,
+            # "id": 23,
             "item_name": "Nezuko Waifu Body Pillow",
             "price": 12.90,
             "category": "Waifu Body Pillows",
@@ -236,7 +236,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 24,
+            # "id": 24,
             "item_name": "Asuna Waifu Body Pillow",
             "price": 744.32,
             "category": "Waifu Body Pillows",
@@ -246,7 +246,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 25,
+            # "id": 25,
             "item_name": "Mikasa Waifu Body Pillow",
             "price": 28.40,
             "category": "Waifu Body Pillows",
@@ -256,7 +256,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 26,
+            # "id": 26,
             "item_name": "Naruto Manga Volume 1",
             "price": 123.94,
             "category": "Books",
@@ -266,7 +266,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 27,
+            # "id": 27,
             "item_name": "Attack on Titan Manga Volume 1",
             "price": 887.46,
             "category": "Books",
@@ -276,7 +276,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 28,
+            # "id": 28,
             "item_name": "One Piece Manga Volume 1-2-3",
             "price": 24.99,
             "category": "Books",
@@ -286,7 +286,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 29,
+            # "id": 29,
             "item_name": "My Hero Academia Manga Volume 1",
             "price": 19.99,
             "category": "Books",
@@ -296,7 +296,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 30,
+            # "id": 30,
             "item_name": "Tokyo Ghoul Manga Volume 1",
             "price": 15.49,
             "category": "Books",
@@ -306,7 +306,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 31,
+            # "id": 31,
             "item_name": "Studio Ghibli Soundtrack CD",
             "price": 19.99,
             "category": "Music",
@@ -316,7 +316,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 32,
+            # "id": 32,
             "item_name": "Naruto Soundtrack CD",
             "price": 12.49,
             "category": "Music",
@@ -326,7 +326,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 33,
+            # "id": 33,
             "item_name": "One Piece Single",
             "price": 9.99,
             "category": "Music",
@@ -336,7 +336,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 34,
+            # "id": 34,
             "item_name": "Anime Ending Theme Single",
             "price": 9.99,
             "category": "Music",
@@ -346,7 +346,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 35,
+            # "id": 35,
             "item_name": "YuYu Hakusho Song Album",
             "price": 14.99,
             "category": "Music",
@@ -356,7 +356,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 36,
+            # "id": 36,
             "item_name": "Naruto Uzumaki Figurine",
             "price": 34.99,
             "category": "Figurines",
@@ -366,7 +366,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 37,
+            # "id": 37,
             "item_name": "Sailor Moon Figurine",
             "price": 29.99,
             "category": "Figurines",
@@ -376,7 +376,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 38,
+            # "id": 38,
             "item_name": "Dragon Ball Z Goku Figurine",
             "price": 39.99,
             "category": "Figurines",
@@ -386,7 +386,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 39,
+            # "id": 39,
             "item_name": "My Hero Academia Deku Figurine",
             "price": 26.99,
             "category": "Figurines",
@@ -396,7 +396,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 40,
+            # "id": 40,
             "item_name": "Attack on Titan Levi Figurine",
             "price": 42.99,
             "category": "Figurines",
@@ -406,7 +406,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 41,
+            # "id": 41,
             "item_name": "Cool color changing headsets",
             "price": 19.99,
             "category": "Computer",
@@ -416,7 +416,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 42,
+            # "id": 42,
             "item_name": "Kawaii keyboard",
             "price": 29.99,
             "category": "Computer",
@@ -426,7 +426,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 43,
+            # "id": 43,
             "item_name": "Gaming mouse",
             "price": 50.99,
             "category": "Computer",
@@ -436,7 +436,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 44,
+            # "id": 44,
             "item_name": "Kawaii Frog Mouse pad",
             "price": 16.08,
             "category": "Computer",
@@ -446,7 +446,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 45,
+            # "id": 45,
             "item_name": "Cute Zero Two Anime",
             "price": 27.77,
             "category": "Computer",
@@ -456,7 +456,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 46,
+            # "id": 46,
             "item_name": "Black Cargo pants",
             "price": 15.99,
             "category": "Clothing",
@@ -467,7 +467,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 47,
+            # "id": 47,
             "item_name": "EDGY MULTI POCKETS LOW WAIST GRAY PANTS",
             "price": 52.90,
             "category": "Clothing",
@@ -477,7 +477,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 48,
+            # "id": 48,
             "item_name": "CHEAP GRUNGE T-SHIRT",
             "price": 6.97,
             "category": "Clothing",
@@ -487,7 +487,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 49,
+            # "id": 49,
             "item_name": "Japanese demon art face Skull devil oni harajuku aesthetic T-Shirt",
             "price": 15.95,
             "category": "Clothing",
@@ -497,7 +497,7 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 50,
+            # "id": 50,
             "item_name": "Trippy Square Pants Long Sleeve Graphic Sweatshirt | Unisex, Up to 4XL",
             "price": 23.99,
             "category": "Clothing",
@@ -507,7 +507,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 51,
+            # "id": 51,
             "item_name": "OP Pirate Anime Wanted Posters",
             "price": 10.99,
             "category": "Home Decor",
@@ -517,7 +517,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 52,
+            # "id": 52,
             "item_name": "GAVIA Baby Skull Candle Set",
             "price": 5.99,
             "category": "Home Decor",
@@ -527,7 +527,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 53,
+            # "id": 53,
             "item_name": "Black skull lamp",
             "price": 39.99,
             "category": "Home Decor",
@@ -537,7 +537,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 54,
+            # "id": 54,
             "item_name": "Pink Sakura Plush Pillow",
             "price": 28.99,
             "category": "Home Decor",
@@ -547,7 +547,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 55,
+            # "id": 55,
             "item_name": "Led Gamer Neon Sign Lights Game Controller Neon Sign for Gamer Room Decor Dimmable Neon Lights Gaming Boy Gifts Room Decor",
             "price": 31.49,
             "category": "Home Decor",
@@ -557,7 +557,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 56,
+            # "id": 56,
             "item_name": "Faux Leather Spike Rivet Choker Punk Necklace Jewelry",
             "price": 2.48,
             "category": "Accessories",
@@ -567,7 +567,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 57,
+            # "id": 57,
             "item_name": "FAOYUDAWEI Skull Ring For Men",
             "price": 5.45,
             "category": "Accessories",
@@ -577,7 +577,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 58,
+            # "id": 58,
             "item_name": "Egirl Aesthetic Skull Chokers",
             "price": 3.26,
             "category": "Accessories",
@@ -587,7 +587,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 59,
+            # "id": 59,
             "item_name": "Fairy Grunge Aesthetic Belt",
             "price": 13.99,
             "category": "Accessories",
@@ -597,7 +597,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 60,
+            # "id": 60,
             "item_name": "Black Skull and Awl Earring 925 Sterling Silver",
             "price": 61.95,
             "category": "Accessories",
@@ -607,7 +607,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 61,
+            # "id": 61,
             "item_name": "Fate Orders Warrior Girl Armor Anime Body Pillow Cover Extra Large Pillow Case",
             "price": 40.00,
             "category": "Waifu Body Pillows",
@@ -617,7 +617,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 62,
+            # "id": 62,
             "item_name": "Genshin Impact Body Pillow - Dakimakura Mona Sorceress And Bunny Girl ",
             "price": 48.99,
             "category": "Waifu Body Pillows",
@@ -627,7 +627,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 63,
+            # "id": 63,
             "item_name": "The Quintessential Quintuplets Nakano Nino Body Pillow Cover Zipper Anime Body Pillow Cover",
             "price": 40.00,
             "category": "Waifu Body Pillows",
@@ -637,7 +637,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 64,
+            # "id": 64,
             "item_name": "Genshin Impact Anime Dakimakura Hugging Body Pillow Case Beelzebul Keqing 150cm Hentai Dakis",
             "price": 6.63,
             "category": "Waifu Body Pillows",
@@ -647,7 +647,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 65,
+            # "id": 65,
             "item_name": "Acolor Zero Two Body Pillow Case Darling in The FRANXX Pillowcase Blanket Hugs Pillow Cover Manga Anime Cosplay Long Hugging Body Peach Skin",
             "price": 28.00,
             "category": "Waifu Body Pillows",
@@ -657,7 +657,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 66,
+            # "id": 66,
             "item_name": "Jujutsu Kaisen: Jujutsu Kaisen, Vol. 1",
             "price": 7.94,
             "category": "Books",
@@ -667,7 +667,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 67,
+            # "id": 67,
             "item_name": "Zombie Makeout Club Vol 1: DeathWish",
             "price": 10.99,
             "category": "Books",
@@ -677,7 +677,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 68,
+            # "id": 68,
             "item_name": "Black Butler, Vol. 1 (Black Butler, 1)",
             "price": 13.00,
             "category": "Books",
@@ -687,7 +687,7 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 69,
+            # "id": 69,
             "item_name": "ETERNAL: ILya Kuvshinov Illustration Works",
             "price": 23.06,
             "category": "Books",
@@ -697,7 +697,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 70,
+            # "id": 70,
             "item_name": "Kaiju Girl Caramelise, Vol. 1 (Kaiju Girl Caramelise, 1)",
             "price": 13.00,
             "category": "Books",
@@ -707,7 +707,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 71,
+            # "id": 71,
             "item_name": "Floodland",
             "price": 19.99,
             "category": "Music",
@@ -717,7 +717,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 72,
+            # "id": 72,
             "item_name": "Only Theatre of Pain",
             "price": 29.99,
             "category": "Music",
@@ -727,7 +727,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 73,
+            # "id": 73,
             "item_name": "Kessoku Band",
             "price": 22.99,
             "category": "Music",
@@ -737,7 +737,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 74,
+            # "id": 74,
             "item_name": "μ's Best Album Best Live! collection II",
             "price": 12.99,
             "category": "Music",
@@ -747,7 +747,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 75,
+            # "id": 75,
             "item_name": "TV Anime 'Attack on Titan Season 2' (Original Soundtrack)",
             "price": 13.99,
             "category": "Music",
@@ -757,7 +757,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 76,
+            # "id": 76,
             "item_name": "CALEMBOU Anime Figure Yae Miko Figure 1/7 PVC Home Decoration Collectible Figurines for Fans",
             "price": 59.99,
             "category": "Figurines",
@@ -767,7 +767,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 77,
+            # "id": 77,
             "item_name": "Honkai Impact 3Rd Series Anime Figure Raiden Mei Herrscher of Thunder 1/8 PVC Models Standard and Extended Versions Periphery Models Xmas Gift 25cm",
             "price": 85.98,
             "category": "Figurines",
@@ -777,7 +777,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 78,
+            # "id": 78,
             "item_name": "25cm Japanese Anime One Piece Anime Figure Action Figure Doll Fight Roronoa Zoro Action Figure model Toy",
             "price": 15.98,
             "category": "Figurines",
@@ -787,7 +787,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 79,
+            # "id": 79,
             "item_name": "TAMASHII NATIONS Son Goku Dragon Ball Z, Bandai Imagination Works , Black",
             "price": 54.98,
             "category": "Figurines",
@@ -797,7 +797,7 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 80,
+            # "id": 80,
             "item_name": "Banpresto BLEACH Solid And Souls Ichigo Kurosaki Figure",
             "price": 29.90,
             "category": "Figurines",
@@ -807,7 +807,7 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 81,
+            # "id": 81,
             "item_name": "Razer DeathAdder V2 Anime Gaming Mouse",
             "price": 49.99,
             "category": "Computer",
@@ -817,7 +817,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 82,
+            # "id": 82,
             "item_name": "Attack on Titan Survey Corps Hoodie",
             "price": 34.95,
             "category": "Clothing",
@@ -827,7 +827,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 83,
+            # "id": 83,
             "item_name": "Studio Ghibli Spirited Away No-Face Lamp",
             "price": 27.50,
             "category": "Home Decor",
@@ -837,7 +837,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 84,
+            # "id": 84,
             "item_name": "My Hero Academia All Might Keychain",
             "price": 9.99,
             "category": "Accessories",
@@ -847,7 +847,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 85,
+            # "id": 85,
             "item_name": "Kawaii Waifu Body Pillow",
             "price": 39.95,
             "category": "Waifu Body Pillows",
@@ -857,7 +857,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 86,
+            # "id": 86,
             "item_name": "One Piece Manga Volume 1",
             "price": 12.99,
             "category": "Books",
@@ -867,7 +867,7 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 87,
+            # "id": 87,
             "item_name": "Naruto Shippuden Original Soundtrack",
             "price": 19.95,
             "category": "Music",
@@ -877,7 +877,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 88,
+            # "id": 88,
             "item_name": "Demon Slayer Tanjiro Kamado Figure",
             "price": 32.50,
             "category": "Figurines",
@@ -887,7 +887,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 89,
+            # "id": 89,
             "item_name": "RGB Anime Gaming Keyboard",
             "price": 69.99,
             "category": "Computer",
@@ -897,7 +897,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 90,
+            # "id": 90,
             "item_name": "Sailor Moon Luna Cat Ears Headband",
             "price": 14.95,
             "category": "Clothing",
@@ -907,7 +907,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 91,
+            # "id": 91,
             "item_name": "My Neighbor Totoro Plush Cushion",
             "price": 24.99,
             "category": "Home Decor",
@@ -917,7 +917,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 92,
+            # "id": 92,
             "item_name": "Dragon Ball Z Goku Power Pole Keychain",
             "price": 8.95,
             "category": "Accessories",
@@ -927,7 +927,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 93,
+            # "id": 93,
             "item_name": "Neon Genesis Evangelion Asuka Langley Body Pillow",
             "price": 45.50,
             "category": "Waifu Body Pillows",
@@ -937,7 +937,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 94,
+            # "id": 94,
             "item_name": "Attack on Titan Manga Box Set",
             "price": 89.95,
             "category": "Books",
@@ -947,7 +947,7 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 95,
+            # "id": 95,
             "item_name": "Cowboy Bebop OST Vinyl Collection",
             "price": 56.75,
             "category": "Music",
@@ -957,7 +957,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 96,
+            # "id": 96,
             "item_name": "Naruto Uzumaki Kurama Nine-Tails Chakra Mode Figure",
             "price": 39.99,
             "category": "Figurines",
@@ -967,7 +967,7 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 97,
+            # "id": 97,
             "item_name": "Gundam RX-78-2 Model Kit",
             "price": 32.49,
             "category": "Figurines",
@@ -977,7 +977,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 98,
+            # "id": 98,
             "item_name": "Sword Art Online Alicization VR Game",
             "price": 69.95,
             "category": "Computer",
@@ -987,7 +987,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 99,
+            # "id": 99,
             "item_name": "Tokyo Ghoul Ken Kaneki Mask",
             "price": 24.50,
             "category": "Clothing",
@@ -997,7 +997,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 100,
+            # "id": 100,
             "item_name": "My Neighbor Totoro Ceramic Mug",
             "price": 12.95,
             "category": "Home Decor",
@@ -1007,7 +1007,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 101,
+            # "id": 101,
             "item_name": "Neon Genesis Evangelion Rei Ayanami Keychain",
             "price": 9.95,
             "category": "Accessories",
@@ -1017,7 +1017,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 102,
+            # "id": 102,
             "item_name": "K-On! Azusa Nakano Figurine",
             "price": 28.99,
             "category": "Figurines",
@@ -1027,7 +1027,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 103,
+            # "id": 103,
             "item_name": "Fullmetal Alchemist Pocket Watch",
             "price": 19.99,
             "category": "Accessories",
@@ -1037,7 +1037,7 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 104,
+            # "id": 104,
             "item_name": "Sailor Moon Crystal Art Book",
             "price": 32.95,
             "category": "Books",
@@ -1047,7 +1047,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 105,
+            # "id": 105,
             "item_name": "Demon Slayer Zenitsu Agatsuma Keychain",
             "price": 8.95,
             "category": "Accessories",
@@ -1057,7 +1057,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 106,
+            # "id": 106,
             "item_name": "Re:Zero Rem and Ram Wall Scroll",
             "price": 22.99,
             "category": "Home Decor",
@@ -1067,7 +1067,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 107,
+            # "id": 107,
             "item_name": "Haikyuu!! Karasuno Volleyball Jersey",
             "price": 34.95,
             "category": "Clothing",
@@ -1077,7 +1077,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 108,
+            # "id": 108,
             "item_name": "My Hero Academia Deku Nendoroid",
             "price": 44.99,
             "category": "Figurines",
@@ -1087,7 +1087,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 109,
+            # "id": 109,
             "item_name": "Spirited Away Chihiro Music Box",
             "price": 28.50,
             "category": "Home Decor",
@@ -1097,7 +1097,7 @@ def seed_products(users):
             "sellerId": 3,
         },
         {
-            "id": 110,
+            # "id": 110,
             "item_name": "Tokyo Ghoul Kaneki Ken Action Figure",
             "price": 34.95,
             "category": "Figurines",
@@ -1107,7 +1107,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 111,
+            # "id": 111,
             "item_name": "Naruto Shippuden Rasengan Mousepad",
             "price": 14.95,
             "category": "Computer",
@@ -1117,7 +1117,7 @@ def seed_products(users):
             "sellerId": 4,
         },
         {
-            "id": 112,
+            # "id": 112,
             "item_name": "One Piece Luffy Straw Hat",
             "price": 18.99,
             "category": "Clothing",
@@ -1127,7 +1127,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 113,
+            # "id": 113,
             "item_name": "Dragon Ball Z Goku Spirit Bomb Lamp",
             "price": 29.50,
             "category": "Home Decor",
@@ -1137,7 +1137,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 114,
+            # "id": 114,
             "item_name": "Demon Slayer Water Hashira Giyu Tomioka Statue",
             "price": 39.50,
             "category": "Figurines",
@@ -1147,7 +1147,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 115,
+            # "id": 115,
             "item_name": "Jujutsu Kaisen Itadori Yuji Plushie",
             "price": 18.75,
             "category": "Waifu Body Pillows",
@@ -1157,7 +1157,7 @@ def seed_products(users):
             "sellerId": 7,
         },
         {
-            "id": 116,
+            # "id": 116,
             "item_name": "Attack on Titan Scout Regiment Backpack",
             "price": 39.95,
             "category": "Clothing",
@@ -1167,7 +1167,7 @@ def seed_products(users):
             "sellerId": 5,
         },
         {
-            "id": 117,
+            # "id": 117,
             "item_name": "My Hero Academia Deku Nendoroid",
             "price": 44.99,
             "category": "Figurines",
@@ -1177,7 +1177,7 @@ def seed_products(users):
             "sellerId": 1,
         },
         {
-            "id": 118,
+            # "id": 118,
             "item_name": "Tokyo Ghoul Kaneki Ken Waifu Pillow",
             "price": 49.95,
             "category": "Waifu Body Pillows",
@@ -1187,7 +1187,7 @@ def seed_products(users):
             "sellerId": 6,
         },
         {
-            "id": 119,
+            # "id": 119,
             "item_name": "Attack on Titan Survey Corps Blanket",
             "price": 29.99,
             "category": "Home Decor",
@@ -1197,7 +1197,7 @@ def seed_products(users):
             "sellerId": 2,
         },
         {
-            "id": 120,
+            # "id": 120,
             "item_name": "One Punch Man Saitama Oppai Hoodie",
             "price": 36.95,
             "category": "Clothing",

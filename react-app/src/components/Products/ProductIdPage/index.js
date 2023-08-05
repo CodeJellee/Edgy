@@ -11,7 +11,7 @@ import ReviewCard from "../../Reviews/ReviewCard";
 import "./ProductIdPage.css";
 import FooterTwo from "../../Footer/index2";
 import '../../FavoritesPage/FavoritesPage.css'
-import PutCartIemToCart from "./PutItemToCart";
+import PutCartItemToCart from "./PutItemToCart";
 import FavoriteButton from "../../FavoritesPage/FavoritesButton";
 
 function ProductIdPage() {
@@ -84,6 +84,8 @@ function ProductIdPage() {
         }
     }
 
+    console.log('WHAT IS THIS IN PRODUCTIDPAGE', product, product.id)
+
 
 
 
@@ -141,7 +143,7 @@ function ProductIdPage() {
                                 <div className='PID-buttons'>
                                     <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>
                                     {/* <button className='PID-cartButt PID-P-button'>Add to cart</button> */}
-                                    <PutCartIemToCart productId={product.id} className='PID-cartButt PID-P-button' />
+                                    <PutCartItemToCart productId={product.id} className='PID-cartButt PID-P-button' />
                                     <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button>
                                 </div>
 

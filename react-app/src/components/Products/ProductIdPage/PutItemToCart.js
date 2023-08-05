@@ -4,29 +4,82 @@ import postItemInCartAction, { thunkGetShoppingCart, thunkPostItemInCart }  from
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
-function PutCartIemToCart({productId}) {
+function PutCartItemToCart({productId}) {
 
     const dispatch = useDispatch()
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user)
     const product = useSelector(state => state.products.singleProduct)
-    // console.log('WHAT IS PRODUCT', product)
+    const cartItems = useSelector(state => state.shoppingCart.userCart)
+    console.log('WHAT IS PUTITEMTOTHCART', product)
+
+    const productBelongsToUser = () => {
+        return product.sellerId === currentUser.id;
+    };
+
+    // const productAlreadyInCart = () => {
+    //     console.log('what is plural cartItems', cartItems)
+    //     for (const cartItem of cartItems){
+    //         console.log('this is cartItem', cartItem)
+    //         console.log('what is cartItem.productId', cartItem.productId)
+    //         if (cartItem.productId === product.id){
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+
 
     const onClick = (e) => {
         e.preventDefault();
         if (productBelongsToUser()) {
             alert("You cannot add your own product to the cart.");
-        } else {
-            dispatch(thunkPostItemInCart(productId)).then(()=>
-                dispatch(thunkGetShoppingCart()))
+            return;
+        }
+
+        // if (productAlreadyInCart()) {
+        //     alert("You already added the item to the cart.");
+        //     return;
+        // }
+        else {
+            console.log('THUNKPOSTITEMINCART', product.id, productId)
+            dispatch(thunkPostItemInCart(product.id, currentUser.id))
             history.push("/shopping_cart")
 
         }
     }
 
-    const productBelongsToUser = () => {
-        return product.sellerId === currentUser.id;
-    };
+    // const onClick = (e) => {
+    //     e.preventDefault();
+    //     if (productBelongsToUser()) {
+    //         alert("You cannot add your own product to the cart.");
+    //     } else {
+    //         console.log('THUNKPOSTITEMINCART', product.id, productId)
+    //         dispatch(thunkPostItemInCart(product.id)).then(()=>
+    //             dispatch(thunkGetShoppingCart()))
+    //         history.push("/shopping_cart")
+
+    //     }
+    // }
+
+
+    // const onClick = async (e) => {
+    //     e.preventDefault();
+    //     if (productBelongsToUser()) {
+    //         alert("You cannot add your own product to the cart.");
+    //     } else {
+    //         try {
+    //             console.log("WHAT IS THIS PRODUCTIDxxxxxxxxxxx", productId, product.id);
+    //             await dispatch(thunkPostItemInCart(product.id));
+    //             await dispatch(dispatch(thunkGetShoppingCart()));
+    //             history.push("/shopping_cart")
+    //         } catch (error) {
+    //             console.error("Error adding item to cart:", error.message)
+    //         }
+
+    //     }
+    // }
+
 
 
     return(
@@ -36,4 +89,4 @@ function PutCartIemToCart({productId}) {
     )
 }
 
-export default PutCartIemToCart;
+export default PutCartItemToCart;

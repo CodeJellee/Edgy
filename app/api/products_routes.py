@@ -1,10 +1,11 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Product, User, Review, ProductImage, db, CartItem
 from app.models.products import favorites
 from app.forms import NewProduct, NewProductImage, NewReview
 from sqlalchemy import insert
 from pprint import pprint
+import traceback
 
 products_routes = Blueprint("products", __name__)
 
@@ -64,42 +65,54 @@ def product_details(id):
     product["Reviews"] = reviews
     product["Seller"] = seller
     product["ProductImages"] = product_images
-    pprint(product["Reviews"])
+    # pprint(product["Reviews"])
     return product
 
 
 @products_routes.route("/new", methods=["POST"])
 @login_required
 def create_product():
-    form = NewProduct()
-    print(
-        "THIS IS THE FORM DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        form.data,
-    )
+    try:
+        form = NewProduct()
+        print("ROUTE IS HIT!!! THIS IS FORM.DATA")
+        pprint(form.data)
 
-    # Flask-WTF and WTForms by default require a CSRF_TOKEN because these packages are meant to handle CSRF protection therefore your code will break if it does not have these two lines of code: the request csrf token from cookies and validate_on_submit
-    # on the other hand, if you remove these two lines of code, it will work locally, just not on production
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        new_product = Product(
-            item_name=form.data["item_name"],
-            price=form.data["price"],
-            category=form.data["category"],
-            description=form.data["description"],
-            quantity=form.data["quantity"],
-            preview_imageURL=form.data["preview_imageURL"],
-            sellerId=current_user.to_dict()["id"],
-        )
-        db.session.add(new_product)
-        db.session.commit()
+        # Flask-WTF and WTForms by default require a CSRF_TOKEN because these packages are meant to handle CSRF protection therefore your code will break if it does not have these two lines of code: the request csrf token from cookies and validate_on_submit
+        # on the other hand, if you remove these two lines of code, it will work locally, just not on production
+        form["csrf_token"].data = request.cookies["csrf_token"]
+        if form.validate_on_submit():
+            new_product = Product(
+                item_name=form.data["item_name"],
+                price=form.data["price"],
+                category=form.data["category"],
+                description=form.data["description"],
+                quantity=form.data["quantity"],
+                preview_imageURL=form.data["preview_imageURL"],
+                sellerId=current_user.to_dict()["id"],
+            )
+            print("THIS IS TO DICT USER ID", current_user.to_dict()["id"])
+            print("new_product after validation")
+            pprint(new_product.to_dict())
+            db.session.add(new_product)
+            db.session.commit()
 
-        # Attach Reviews and Seller information to match Chris' getAllProducts reducer - this is to properly create one and attach all necessary information for each single page to load
-        seller = current_user.to_dict()
-        new_product = new_product.to_dict()
-
-        return {"New_Product": new_product, "Seller": seller}
-    else:
+            # Attach Reviews and Seller information to match Chris' getAllProducts reducer - this is to properly create one and attach all necessary information for each single page to load
+            seller = current_user.to_dict()
+            new_product = new_product.to_dict()
+            return_product = jsonify(new_product, seller)
+            print(
+                "this is return jsonified",
+                return_product,
+            )
+            print("this is the type jsonified", type(return_product))
+            return jsonify({"New_Product": new_product, "Seller": seller})
+    except Exception as e:
+        error_message = str(e)
+        traceback_str = traceback.format_exc()
         print("THIS IS THE FORM ERRORS", form.errors)
+        print("Error:", error_message)
+        print("Traceback:", traceback_str)
+        return jsonify(error=error_message, traceback=traceback_str), 500
         return "Bad Data"
 
 
@@ -159,18 +172,16 @@ def create_review(id):
     form = NewReview()
 
     # ! changed this to have wtf forms validations, was working before without it and have front end validations so not suer needed if breaking live site
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        new_review = Review(
-            stars=form.data["stars"],
-            review=form.data["review"],
-            userId=current_user.to_dict()["id"],
-            productId=id,
-        )
-        db.session.add(new_review)
-        db.session.commit()
-        return new_review.to_dict()
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+    new_review = Review(
+        stars=form.data["stars"],
+        review=form.data["review"],
+        userId=current_user.to_dict()["id"],
+        productId=id,
+    )
+    db.session.add(new_review)
+    db.session.commit()
+    return new_review.to_dict()
 
 
 # POST - Favorite a Product
@@ -182,7 +193,7 @@ def post_favorite_item(productId):
     user = User.query.get(user_id)
     seller = User.query.get(product_exists.sellerId)
 
-    print(product_exists.to_dict())
+    # print(product_exists.to_dict())
 
     # ! Edge Case for Postman
     existing_favorite = (
@@ -197,7 +208,7 @@ def post_favorite_item(productId):
     if product_exists and user_id == product_exists.sellerId:
         return {"message": "You may not favorite your own product."}
 
-    print("this is the product_exists", product_exists)
+    # print("this is the product_exists", product_exists)
     if product_exists and product_exists.sellerId != user_id:
         add_user_favorite = insert(favorites).values(
             userId=user_id, productId=productId
@@ -214,41 +225,104 @@ def post_favorite_item(productId):
         return {"message": "Item couldn't be found"}
 
 
-# POST: add item to cart
+# POST: add item to cart-ORIGINAL
+# @products_routes.route("/<int:productId>/add_to_cart", methods=["POST"])
+# @login_required
+# def post_cart_items(productId):
+#     cur_user = current_user.to_dict()
+#     print("CURRENT USER", cur_user)
+#     product_exists = Product.query.get(productId).to_dict()
+#     product_in_cart = CartItem.query.get(productId).to_dict()
+#     print("PRODUCT EXISTS", product_exists)
+#     print("PRODUCT EXISTS IN THE CART", product_in_cart)
+
+#     # if to_dict() is used, you must key in with bracket notation ['']
+#     # else dot notation but it will be an 'instance' class
+
+#     # Edge Cases
+#     # make sure product does not belong to the user
+#     if product_exists and cur_user["id"] == product_exists["sellerId"]:
+#         return {"message": "You may not add your own product to your cart."}
+
+#     # make sure product is not already in the cart
+#     # if product_exists and product_in_cart["productId"] == product_exists.id:
+#     # pprint('PRODUCT EXIST', product_exists)
+#     # pprint('PRODUCT IN CART WITH PRODUCTID KEY', product_in_cart["productId"])
+#     # pprint('PRODUCT_EXSITS.ID', product_exists.id)
+#     # return {"message": "You already added this item to your cart."}
+
+#     if (
+#         product_exists  # if product exists
+#         # and product_in_cart  # if product in cart exists
+#         # and product_exists["sellerId"] != cur_user["id"]
+#         # and product_exists["id"] != product_in_cart["productId"]
+#         # current product should not belong to the user => product.sellerId !== user.id
+#         # current product id should not be the same as the product in cart id => cannot add the same item
+#     ):
+#         print(
+#             "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaawe are in the if statement before instantiating the cart item"
+#         )
+#         add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
+#         db.session.add(add_to_cart)
+#         db.session.commit()
+#         product_to_return = {
+#             "CartItem": add_to_cart.to_dict(),
+#             "Product": product_exists,
+#         }
+#         # UPDATE API FOR THE RETURN, NO MSG
+#         print("ADD TO CART", add_to_cart.to_dict())
+#         return product_to_return
+#     else:
+#         print("this dont work")
+#         return {"message": "Item couldn't be found"}
+
+
+#POST: Add item to cart- second attempt, CHECKED VIA POSTMAN- IT WORKS(THANDI WITNESSED)
 @products_routes.route("/<int:productId>/add_to_cart", methods=["POST"])
 @login_required
 def post_cart_items(productId):
-    cur_user = current_user.to_dict()
-    # print("CURRENT USER", cur_user)
+    # print("value going into post_cart_items: productId", productId)
+    user_id = current_user.id
+    # print('what is current user id', user_id)
     product_exists = Product.query.get(productId)
-    product_in_cart = CartItem.query.get(productId)
-    # print("PRODUCT", product_exists)
+    # print('what is product exists s/p Product.query.get(productId)', product_exists)
+    user = User.query.get(user_id)
+    # print('what is user s/p User.query.get(user_id)', user)
+    seller = User.query.get(product_exists.sellerId)
+    # print('what is seller s/p User.query.get(product)exists.sellerId', seller)
 
-    # Edge Cases
-    #make sure product does not belong to the user
-    if product_exists and cur_user["id"] == product_exists.sellerId:
-        return {"message": "You may not add your own product to your cart."}
+    #Edge Cases
+    #1- checking if item is already in our cart
+    existing_cart_item = (
+        db.session.query(CartItem)
+        .filter((CartItem.userId == user_id) & (CartItem.productId == productId))
+        .first()
+    )
 
-    #make sure product is not already in the cart
-    if product_exists and product_in_cart["productId"] == product_exists.id:
-        # pprint('PRODUCT EXIST', product_exists)
-        # pprint('PRODUCT IN CART WITH PRODUCTID KEY', product_in_cart["productId"])
-        # pprint('PRODUCT_EXSITS.ID', product_exists.id)
-        return {"message": "You already added this item to your cart."}
+    if existing_cart_item:
+        return {"message": "You have already added this product to your cart."}
+        
+    # print ("existing_cart_item this is value", existing_cart_item)
 
-    if product_exists and product_exists.sellerId != cur_user["id"] and product_exists.id != product_in_cart["productId"]:
-        add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
-        db.session.add(add_to_cart)
+    #2- checking if the user owns the product (userId = sellerId)
+    if product_exists and user_id == product_exists.sellerId:
+        return {"message": "You may not add your own product to cart."}
+
+    #if doesn't fall into any of the edge cases above, add item to cart!
+    if product_exists and product_exists.sellerId != user_id:
+        add_item_to_cart = insert(CartItem).values(
+            userId=user_id, productId=productId
+        )
+        db.session.execute(add_item_to_cart)
         db.session.commit()
-        product_to_return = {
-            "CartItem": add_to_cart.to_dict(),
+        return{
             "Product": product_exists.to_dict(),
+            "User": user.to_dict(),
+            "Seller": seller.to_dict(),
         }
-        # UPDATE API FOR THE RETURN, NO MSG
-        print("ADD TO CART", add_to_cart.to_dict())
-        return product_to_return
     else:
         return {"message": "Item couldn't be found"}
+
 
 
 @products_routes.route("/search", methods=["GET"])
