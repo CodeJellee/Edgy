@@ -100,7 +100,7 @@ def delete_review(reviewId):
 
 #     return review.to_dict()
 
-
+# was working 
 @reviews_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_review(id):
