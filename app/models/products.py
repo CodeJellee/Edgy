@@ -23,7 +23,7 @@ class Product(db.Model):
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String(255))
     price = db.Column(db.Integer, nullable=False)
     category = db.Column(db.String(255), nullable=False)
@@ -82,7 +82,7 @@ class ProductImage(db.Model):
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     # other columns
     productId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")))
     product_imageURL = db.Column(db.Text, nullable=True)
@@ -105,7 +105,7 @@ class CartItem(db.Model):
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     productId = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), nullable=False
     )
