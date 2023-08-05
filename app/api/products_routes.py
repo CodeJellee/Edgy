@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Product, User, Review, ProductImage, db, CartItem
 from app.models.products import favorites
@@ -10,6 +10,15 @@ products_routes = Blueprint("products", __name__)
 
 
 # prefix /products
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f"{field} : {error}")
+    return errorMessages
 
 
 @products_routes.route("/")
@@ -88,7 +97,7 @@ def create_product():
         seller = current_user.to_dict()
         new_product = new_product.to_dict()
 
-        return {"New_Product": new_product, "Seller": seller}
+        return jsonify({"New_Product": new_product, "Seller": seller})
     else:
         print("THIS IS THE FORM ERRORS", form.errors)
         return "Bad Data"
@@ -148,17 +157,20 @@ def create_review(id):
     if not product:
         return {"message": "Product couldn't be found"}
     form = NewReview()
-    print(form)
-    # if form.validate_on_submit():
-    new_review = Review(
-        stars=form.data["stars"],
-        review=form.data["review"],
-        userId=current_user.to_dict()["id"],
-        productId=id,
-    )
-    db.session.add(new_review)
-    db.session.commit()
-    return new_review.to_dict()
+
+    # ! changed this to have wtf forms validations, was working before without it and have front end validations so not suer needed if breaking live site
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        new_review = Review(
+            stars=form.data["stars"],
+            review=form.data["review"],
+            userId=current_user.to_dict()["id"],
+            productId=id,
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
 # POST - Favorite a Product
