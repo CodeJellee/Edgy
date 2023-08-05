@@ -206,7 +206,7 @@ def create_review(id):
             userId=current_user.to_dict()["id"],
             productId=id,
         )
-        print("id in new object ", new_review.id)
+        print("id in new object !!!!!!!!!!!!!!!!! ", new_review.id)
         print("BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 ")
         print("BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 ")
         print("BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 ")
