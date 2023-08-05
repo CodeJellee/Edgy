@@ -6,7 +6,8 @@ import "./LoginForm.css";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import * as sessionActions from "../../store/session";
 import { useHistory } from "react-router-dom";
-
+import OpenModalButton from "../OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -45,7 +46,12 @@ function LoginFormModal() {
 
   return (
     <>
+    <div className="loginStyle">
       <h1>Log In</h1>
+         <OpenModalButton
+               buttonText="Register"
+               modalComponent={<SignupFormModal />}
+             />
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -70,13 +76,13 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button id="SignInButton" type="submit">Sign In</button>
 
       </form>
       <form onSubmit={handleDemoSubmit}>
-        <button type="submit">DemoUser</button>
+        <button id="Demo-user" type="submit">DemoUser</button>
       </form>
-
+    </div>
     </>
   );
 }
