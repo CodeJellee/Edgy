@@ -29,7 +29,7 @@ function AllProductsPage() {
             <h1>Products</h1>
             <div>
             <input placeholder="Search by title"></input>
-            <button>Add a product</button>
+            <button onClick={(e) => history.push('/products/new')}>Add a product</button>
             </div>
         </div>
         <div className="border"> </div>
