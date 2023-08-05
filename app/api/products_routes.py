@@ -211,30 +211,31 @@ def post_cart_items(productId):
     product_exists = Product.query.get(productId)
     product_in_cart = CartItem.query.get(productId)
     # print("PRODUCT", product_exists)
+    # print(product_exists.to_dict(), product_in_cart)
 
     # Edge Cases
     #make sure product does not belong to the user
     if product_exists and cur_user["id"] == product_exists.sellerId:
-        return {"message": "You may not add your own product to your cart."}
+       return {"message": "You may not add your own product to your cart."}
 
-    #make sure product is not already in the cart
+    # #make sure product is not already in the cart
     if product_exists and product_in_cart["productId"] == product_exists.id:
-        # pprint('PRODUCT EXIST', product_exists)
-        # pprint('PRODUCT IN CART WITH PRODUCTID KEY', product_in_cart["productId"])
-        # pprint('PRODUCT_EXSITS.ID', product_exists.id)
-        return {"message": "You already added this item to your cart."}
+    #     # pprint('PRODUCT EXIST', product_exists)
+    #     # pprint('PRODUCT IN CART WITH PRODUCTID KEY', product_in_cart["productId"])
+    #     # pprint('PRODUCT_EXSITS.ID', product_exists.id)
+         return {"message": "You already added this item to your cart."}
 
     if product_exists and product_exists.sellerId != cur_user["id"] and product_exists.id != product_in_cart["productId"]:
-        add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
-        db.session.add(add_to_cart)
-        db.session.commit()
-        product_to_return = {
-            "CartItem": add_to_cart.to_dict(),
-            "Product": product_exists.to_dict(),
+         add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
+         db.session.add(add_to_cart)
+         db.session.commit()
+         product_to_return = {
+             "CartItem": add_to_cart.to_dict(),
+             "Product": product_exists.to_dict(),
         }
-        # UPDATE API FOR THE RETURN, NO MSG
-        print("ADD TO CART", add_to_cart.to_dict())
-        return product_to_return
+         # UPDATE API FOR THE RETURN, NO MSG
+         print("ADD TO CART", add_to_cart.to_dict())
+         return product_to_return
     else:
         return {"message": "Item couldn't be found"}
 
@@ -243,13 +244,35 @@ def post_cart_items(productId):
 def search_products():
     # grabs user input from search bar
     searchQuery = request.args.get("result")
-    # query those products
-    filtered_products = Product.query.filter(
-        Product.item_name.ilike(f"%{str(searchQuery)}%")
-    ).all()
+    searchQuery_list = []
+    if ',' in searchQuery:
+        seachQuery_list = searchQuery.split(',')
+        print('yes')
 
-    products = [product.to_dict() for product in filtered_products]
+    print(seachQuery_list)
+    filtered_products = []
+
+    if not seachQuery_list:
+       filtered_products = Product.query.filter(
+         Product.item_name.ilike(f"%{str(searchQuery)}%")
+         ).all()
+
+    filtered_products_list = []
+
+    if searchQuery_list:
+        print(seachQuery_list)
+        for s in searchQuery_list:
+          print(s)
+          filtered_products_list.append(Product.item_name.ilike(f"%{s}%"))
+
+    products = []
+
+    if filtered_products:
+      products = [product.to_dict() for product in filtered_products]
     # pprint(products)
+    if filtered_products_list:
+      products = [product.to_dict() for product in filtered_products]
+
     for product in products:
         reviews = Review.query.filter(Review.productId == product["id"])
         reviews = [review.to_dict() for review in reviews]
