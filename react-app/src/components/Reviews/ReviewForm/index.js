@@ -17,7 +17,7 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [submittedSuc, setSubmittedSuc] = useState(false);
-  const [rating, setRating] = useState("reviewObj.rating");
+  const [rating, setRating] = useState(1);
   const [vaErrors, setVaErrors] = useState({});
 
 
@@ -93,10 +93,10 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
 
 
       // i dont think this should be there should see if there is an error prop or something
-      // if (data) {
+      if (data) {
 
-      //   setErrors(data);
-      // }
+        setErrors(data);
+      }
 
       // not sure i need this for
       if (errors.length === 0) {
