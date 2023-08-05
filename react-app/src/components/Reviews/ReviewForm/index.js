@@ -22,7 +22,7 @@ function ReviewForm({
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [submittedSuc, setSubmittedSuc] = useState(false);
-  const [rating, setRating] = useState("reviewObj.rating");
+  const [rating, setRating] = useState(1);
   const [vaErrors, setVaErrors] = useState({});
 
   // edit state
