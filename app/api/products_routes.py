@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Product, User, Review, ProductImage, db, CartItem
 from app.models.products import favorites
@@ -97,7 +97,7 @@ def create_product():
         seller = current_user.to_dict()
         new_product = new_product.to_dict()
 
-        return {"New_Product": new_product, "Seller": seller}
+        return jsonify({"New_Product": new_product, "Seller": seller})
     else:
         print("THIS IS THE FORM ERRORS", form.errors)
         return "Bad Data"
