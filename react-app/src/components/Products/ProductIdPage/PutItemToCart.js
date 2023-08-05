@@ -17,17 +17,17 @@ function PutCartItemToCart({productId}) {
         return product.sellerId === currentUser.id;
     };
 
-    const productAlreadyInCart = () => {
-        console.log('what is plural cartItems', cartItems)
-        for (const cartItem of cartItems){
-            console.log('this is cartItem', cartItem)
-            console.log('what is cartItem.productId', cartItem.productId)
-            if (cartItem.productId === product.id){
-                return true;
-            }
-        }
-        return false;
-    }
+    // const productAlreadyInCart = () => {
+    //     console.log('what is plural cartItems', cartItems)
+    //     for (const cartItem of cartItems){
+    //         console.log('this is cartItem', cartItem)
+    //         console.log('what is cartItem.productId', cartItem.productId)
+    //         if (cartItem.productId === product.id){
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
 
     const onClick = (e) => {
@@ -37,10 +37,10 @@ function PutCartItemToCart({productId}) {
             return;
         }
 
-        if (productAlreadyInCart()) {
-            alert("You already added the item to the cart.");
-            return;
-        }
+        // if (productAlreadyInCart()) {
+        //     alert("You already added the item to the cart.");
+        //     return;
+        // }
         else {
             console.log('THUNKPOSTITEMINCART', product.id, productId)
             dispatch(thunkPostItemInCart(product.id, currentUser.id))
