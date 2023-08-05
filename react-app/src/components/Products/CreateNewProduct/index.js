@@ -82,15 +82,17 @@ const NewProductForm = () => {
 
     let fetchResponseFromThunk = await dispatch(thunkCreateProduct(payload));
     // console.log("return from createProduct dispatch", fetchResponseFromThunk);
-    await dispatch(
-      productActions.thunkGetSingleProduct(
-        fetchResponseFromThunk.New_Product.id
-      )
-    );
+    if (fetchResponseFromThunk) {
+      await dispatch(
+        productActions.thunkGetSingleProduct(
+          fetchResponseFromThunk.New_Product.id
+        )
+      );
+      history.push(`/products/${fetchResponseFromThunk.New_Product.id}`);
+    }
     // console.log(
     // "you've made it past the create and get single product dispatches - now redirect"
     // );
-    history.push(`/products/${fetchResponseFromThunk.New_Product.id}`);
   };
 
   return (
