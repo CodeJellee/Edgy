@@ -100,21 +100,23 @@ export const thunkGetUserProducts = () => async (dispatch) => {
 
 export const thunkCreateProduct = (productFormData) => async (dispatch) => {
   try {
-    let newProduct = await fetch(`/api/products/new`, {
+    console.log("productFormData pre-fetch", productFormData);
+    const res = await fetch(`/api/products/new`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      // body: JSON.stringify(productFormData),
       body: JSON.stringify(productFormData),
     });
+    console.log("after fetch");
 
-    if (!newProduct.ok) {
-      const errorResponse = await newProduct.json();
+    if (!res.ok) {
+      console.log("product !.ok");
+      const errorResponse = await res.json();
       throw new Error(errorResponse.error);
     }
-
-    newProduct = await newProduct.json();
+    console.log("product ok");
+    const newProduct = await res.json();
     dispatch(createProduct(newProduct));
     return newProduct;
   } catch (e) {

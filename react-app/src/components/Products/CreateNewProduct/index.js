@@ -7,7 +7,7 @@ import * as productActions from "../../../store/products";
 
 const NewProductForm = () => {
   const user = useSelector((state) => state.session.user);
-
+  // console.log(user);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -17,7 +17,7 @@ const NewProductForm = () => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
   const [previewImageURL, setPreviewImageURL] = useState("");
-  const [sellerId, setSellerId] = useState("");
+  const [sellerId, setSellerId] = useState(user.id);
 
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -70,26 +70,41 @@ const NewProductForm = () => {
     // console.log("Create Component - Err Obj onSubmit", errorsObject);
     if (Object.values(errorsObject).length > 0) return setErrors(errorsObject); // if there are any errors, stop here and return the errors
 
-    let payload = {
-      item_name: itemName,
-      price: price,
-      category: category,
-      description: description,
-      quantity: quantity,
-      preview_imageURL: previewImageURL,
-      sellerId: user.id,
+    // let payload = {
+    //   item_name: itemName,
+    //   price: price,
+    //   category: category,
+    //   description: description,
+    //   quantity: quantity,
+    //   preview_imageURL: previewImageURL,
+    //   sellerId: user.id,
+    // };
+    let payload2 = {
+      itemName,
+      price,
+      category,
+      description,
+      quantity,
+      previewImageURL,
+      sellerId,
     };
-
-    let fetchResponseFromThunk = await dispatch(thunkCreateProduct(payload));
-    // console.log("return from createProduct dispatch", fetchResponseFromThunk);
-    if (fetchResponseFromThunk) {
-      await dispatch(
-        productActions.thunkGetSingleProduct(
-          fetchResponseFromThunk.New_Product.id
-        )
-      );
-      history.push(`/products/${fetchResponseFromThunk.New_Product.id}`);
+    try {
+      let fetchResponseFromThunk = await dispatch(thunkCreateProduct(payload2));
+      console.log("return from createProduct dispatch", fetchResponseFromThunk);
+    } catch (e) {
+      return e.erros;
     }
+    // let fetchResponseFromThunk = await dispatch(thunkCreateProduct(payload));
+    // console.log("return from createProduct dispatch", fetchResponseFromThunk);
+
+    // if (fetchResponseFromThunk) {
+    //   await dispatch(
+    //     productActions.thunkGetSingleProduct(
+    //       fetchResponseFromThunk.New_Product.id
+    //     )
+    //   );
+    //   history.push(`/products/${fetchResponseFromThunk.New_Product.id}`);
+    // }
     // console.log(
     // "you've made it past the create and get single product dispatches - now redirect"
     // );
