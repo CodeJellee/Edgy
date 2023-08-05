@@ -301,7 +301,7 @@ def post_cart_items(productId):
 
     if existing_cart_item:
         return {"message": "You have already added this product to your cart."}
-        
+
     # print ("existing_cart_item this is value", existing_cart_item)
 
     #2- checking if the user owns the product (userId = sellerId)
@@ -329,13 +329,35 @@ def post_cart_items(productId):
 def search_products():
     # grabs user input from search bar
     searchQuery = request.args.get("result")
-    # query those products
-    filtered_products = Product.query.filter(
-        Product.item_name.ilike(f"%{str(searchQuery)}%")
-    ).all()
+    searchQuery_list = []
+    if ',' in searchQuery:
+        seachQuery_list = searchQuery.split(',')
+        print('yes')
 
-    products = [product.to_dict() for product in filtered_products]
+    print(seachQuery_list)
+    filtered_products = []
+
+    if not seachQuery_list:
+       filtered_products = Product.query.filter(
+         Product.item_name.ilike(f"%{str(searchQuery)}%")
+         ).all()
+
+    filtered_products_list = []
+
+    if searchQuery_list:
+        print(seachQuery_list)
+        for s in searchQuery_list:
+          print(s)
+          filtered_products_list.append(Product.item_name.ilike(f"%{s}%"))
+
+    products = []
+
+    if filtered_products:
+      products = [product.to_dict() for product in filtered_products]
     # pprint(products)
+    if filtered_products_list:
+      products = [product.to_dict() for product in filtered_products]
+
     for product in products:
         reviews = Review.query.filter(Review.productId == product["id"])
         reviews = [review.to_dict() for review in reviews]
