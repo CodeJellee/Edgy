@@ -31,7 +31,7 @@ function FavoritesPage() {
 
   if (!user || userFavorites.length === 0) return null;
 
-  console.log(userFavorites)
+  // console.log(userFavorites)
 
   return (
     <>
@@ -66,7 +66,9 @@ function FavoritesPage() {
       </div>
 
       {/* Can be one component for user-search-bar */}
-      <div id="user-search-favorites__container">
+      <>
+      </>
+      {userFavorites.length ? <div id="user-search-favorites__container">
         <div id="user-favorites__count">
           Favorite items <span id="numberFavs">{userFavorites.length} items</span>
         </div>
@@ -80,10 +82,8 @@ function FavoritesPage() {
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
-      </div>
+      </div> : <div></div>}
 
-      {/* Can be all of user's favorited items component */}
-      {/*!!! For the map, sellerId, should be the seller's username */}
       <div id="user-favorites__container">
         {userFavorites?.map((fav) => (
           <>

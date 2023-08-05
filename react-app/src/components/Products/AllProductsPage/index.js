@@ -17,7 +17,7 @@ function AllProductsPage() {
     let products
     if (userProducts) products = Object.values(userProducts)
 
-    console.log(products)
+    // console.log(products)
 
     useEffect(() => {
     dispatch(productActions.thunkGetUserProducts());

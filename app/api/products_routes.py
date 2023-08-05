@@ -76,7 +76,12 @@ def create_product():
     )
     db.session.add(new_product)
     db.session.commit()
-    return new_product.to_dict()
+
+    # Attach Reviews and Seller information to match Chris' getAllProducts reducer - this is to properly create one and attach all necessary information for each single page to load
+    seller = current_user.to_dict()
+    new_product = new_product.to_dict()
+
+    return {"New_Product": new_product, "Seller": seller}
     # return "Bad data"
 
 

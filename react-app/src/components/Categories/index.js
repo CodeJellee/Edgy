@@ -46,7 +46,7 @@ function Categories({ category, name }) {
   if (!query) eachProduct = Object.values(products);
   if (query) eachProduct = Object.values(search);
 
-   console.log(eachProduct);
+  //  console.log(eachProduct);
 
   if (!eachProduct.length) return <h1>Loading</h1>;
 
