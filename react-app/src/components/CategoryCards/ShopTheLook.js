@@ -7,9 +7,9 @@ function ShopLookCard(){
     const { products } = useSelector((state) => state.products)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(productActions.thunkGetAllProducts())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(productActions.thunkGetAllProducts())
+    // }, [dispatch])
 
        let eachProduct = Object.values(products)
 
@@ -20,7 +20,7 @@ function ShopLookCard(){
 
     return (
     <div className="look">
-        <h2>Shop the Look</h2>
+        <h1>Shop the Look</h1>
         <div className="shopImg">
         <div>
         <img src="https://m.media-amazon.com/images/I/91Cq8423E5L._AC_UF894,1000_QL80_.jpg" alt="meaningfult text"></img>

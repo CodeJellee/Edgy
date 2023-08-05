@@ -1,10 +1,9 @@
-
-
 //? =====================  types ===========================//
 
-const GET_SHOPPING_CART= "shoppingCart/GET_SHOPPING_CART"
-const DELETE_CART_ITEM= "shoppingCart/DELETE_CART_ITEM"
-const POST_ITEM_IN_CART="shoppingCart/POST_ITEM_IN_CART"
+const GET_SHOPPING_CART = "shoppingCart/GET_SHOPPING_CART";
+const DELETE_CART_ITEM = "shoppingCart/DELETE_CART_ITEM";
+const POST_ITEM_IN_CART = "shoppingCart/POST_ITEM_IN_CART";
+// const CLEAR_USER_CART = "shoppingCart/CLEAR_USER_CART";
 
 //?  ===================end of types ===================//
 
@@ -18,25 +17,31 @@ const getShoppingCartAction = (cart) => {
 };
 
 const deleteShoppingCartAction = (productId) => {
-  return{
+  return {
     type: DELETE_CART_ITEM,
-    productId
-  }
-}
+    productId,
+  };
+};
 
-const postItemInCartAction = (productId) => {
-  return{
-    type:POST_ITEM_IN_CART,
-    productId
-  }
-}
+const postItemInCartAction = (product) => {
+  return {
+    type: POST_ITEM_IN_CART,
+    product,
+  };
+};
+
+// export const clearCartAction = () => {
+//   return {
+//     type: CLEAR_USER_CART,
+//   };
+// };
 //*  ======================= end of actions ===================//
 
 //*  =====================  thunks ===========================//
 //fetch route needs to match route from route file
 
 export const thunkGetShoppingCart = () => async (dispatch) => {
-  let current_cart = await fetch(`/api/carts/shopping_cart`,  {
+  let current_cart = await fetch(`/api/carts/shopping_cart`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -45,23 +50,24 @@ export const thunkGetShoppingCart = () => async (dispatch) => {
   current_cart = await current_cart.json();
   // console.log("THIS IS CURRENT CART THUNK", current_cart)
   dispatch(getShoppingCartAction(current_cart));
-  return current_cart
-}
+  return current_cart;
+};
 
 export const thunkDeleteCartItem = (productId) => async (dispatch) => {
   let product = await fetch(`/api/carts/shopping_cart/${productId}`, {
-    method:"DELETE",
+    method: "DELETE",
   });
   product = await product.json();
   // console.log('THIS IS DELETE THUNK', product, productId)
-  await dispatch(deleteShoppingCartAction(productId))
-  return product
-}
+  await dispatch(deleteShoppingCartAction(productId));
+  return product;
+};
 
 export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
+  console.log("WHAT IS THIS IN thunkPOSTCartItem", productId)
   let product = await fetch(`/api/products/${productId}/add_to_cart`, {
     method: "POST",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -71,46 +77,53 @@ export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
     // console.log('THIS IS PRODUCT', product)
   });
   product = await product.json();
-  // await dispatch(postItemInCartAction(product))
-  await dispatch(thunkGetShoppingCart())
-  return product
-}
-
-
+  console.log('WHAT IS PRODUCT THAT WE ARE RETURNING FROM THUNK', product)
+  await dispatch(postItemInCartAction(product));
+  // await dispatch(thunkGetShoppingCart());
+  return product;
+};
 
 //*  ======================= end of thunks ===================//
 
-
 //? ================== reducer================================//
 
-let initialState = { userCart: {}};
+let initialState = { userCart: {} };
 
 export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case GET_SHOPPING_CART: {
       newState = { ...state };
-      // console.log("this is the cart in the reducer", action.cart)
-      //below is action.<the payload insert here from above>
+
       action.cart.Shopping_Cart.forEach(
-        (product) => (newState.userCart[product.id] = { ...product })
+        (product) => (newState.userCart[product.productId] = { ...product })
       );
-      return newState
+      return newState;
+    }
+    case POST_ITEM_IN_CART: {
+      newState = { ...state };
+
+      // console.log("this is payload", action.product); // Payload
+
+      const productPayload = action.product;
+
+      // newState.userCart[product.id] = Product: {product}, id, productId, userId}
+      newState.userCart[productPayload.CartItem.productId] = {
+        Product: productPayload.Product,
+        ...productPayload.CartItem,
+      }; // payload: cartId, productId, userId
+
+      return newState;
     }
     case DELETE_CART_ITEM: {
       newState = { ...state };
-      newState.userCart = { ...newState.userCart }
-      delete newState.userCart[action.productId];
-      // console.log('NEWSTATE.USERCART', newState.userCart)
-      // const productId = action.productId
-      // delete newState.userCart[productId]
+      newState.userCart = { ...newState.userCart };
+      // console.log('WHAT IS THIS', newState.userCart[action.productId])
+      delete newState.userCart[action.productId]; // refactor the get route to normalize by product id
       return newState;
     }
-    // case POST_ITEM_IN_CART: {
-    //   newState = { ...state };
-    //   newState.userCart = { ...newState.userCart };
-    //   console.log('THIS IS ACTION BEFORE PRODUCT', action.product)
-    //   newState.userCart[action.productId] = { ...action.product };
+    // case CLEAR_USER_CART: {
+    //   newState = {}
     //   return newState
     // }
     default:

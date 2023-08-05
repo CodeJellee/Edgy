@@ -65,6 +65,11 @@
 
 .sellFoot > p, .aboutFoot > p, .shopFoot > p, .helpFoot > p {
     font-size: 14px;
+    cursor: pointer;
+}
+
+.sellFoot > p:hover, .aboutFoot > p:hover, .shopFoot > p:hover, .helpFoot > p:hover {
+    text-decoration: underline;
 }
 
 .sellFoot > h3, .aboutFoot > h3, .shopFoot > h3, .helpFoot > h3 {
@@ -116,7 +121,7 @@
 .edgyQ > h1 {
     font-size: 44px;
     height: 20px;
-    padding-bottom: 8px;
+    padding-bottom: 20px;
 }
 
 .eC > h3 {
@@ -136,7 +141,16 @@
     border-radius: 40px;
     background-color: #BC6FF1;
     font-size: 17px;
-    border: 2px solid black
+    border: 2px solid black;
+    cursor: pointer;
+    transition: transform 0.1s ease; /* Add a smooth transition for scaling */
+
+}
+
+
+.endFoot3 > button:hover {
+    transform: scale(1.01); /* Increase the scale to make the box bigger on hover */
+    box-shadow: 0.5px 0.5px 5px 0.5px rgb(57, 30, 58);
 }
 
 .endFoot3 {
@@ -177,6 +191,13 @@
     margin-right: 15px;
     font-weight: bold;
     font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition for scaling */
+
+}
+
+.e > span:hover {
+    transition: background-color rgb(157, 137, 165);
 }
 
 .e {
@@ -187,6 +208,7 @@
 
 .line {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .app > i {
@@ -196,7 +218,13 @@
     color: #2b0340;
     text-align: center;
     line-height: 18px;
-    border-radius: 2px;
+    border-radius: 2px; /* Add a smooth transition for scaling */
+
+}
+
+.app:hover {
+    transform: scale(1.01); /* Increasrgb(23, 12, 24)make the box bigger on hover */
+    box-shadow: 0.5px 0.5px 5px 0.5px rgb(57, 30, 58);
 }
 
 .app {
@@ -212,6 +240,8 @@
     font-weight: bold;
     margin-top: 40px;
     margin-bottom: 30px;
+    transition: transform 0.1s ease;
+    cursor: pointer;
 
 }
 

@@ -1,32 +1,41 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Product, User, Review, ProductImage, db, CartItem
 from app.models.products import favorites
 from app.forms import NewProduct, NewProductImage, NewReview
 from sqlalchemy import insert
 from pprint import pprint
+import traceback
 
 products_routes = Blueprint("products", __name__)
 
 
-#prefix /products
+# prefix /products
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f"{field} : {error}")
+    return errorMessages
+
 
 @products_routes.route("/")
 def get_products():
-
-
     dictToPass = {}
     products = Product.query.all()
     products = [p.to_dict() for p in products]
-    # pprint(products[0])
     dictToPass["Products"] = products
 
     for product in products:
-        # print("product id", product["id"])
         reviews = Review.query.filter(Review.productId == product["id"])
-        reviews = [review.to_dict() for review in reviews ]
-        print("length", len(reviews))
+        reviews = [review.to_dict() for review in reviews]
+        seller = User.query.get(product["sellerId"])
+        seller = seller.to_dict()
         product["Reviews"] = reviews
+        product["Seller"] = seller
 
     return dictToPass
 
@@ -56,28 +65,55 @@ def product_details(id):
     product["Reviews"] = reviews
     product["Seller"] = seller
     product["ProductImages"] = product_images
+    # pprint(product["Reviews"])
     return product
 
 
 @products_routes.route("/new", methods=["POST"])
 @login_required
 def create_product():
-    form = NewProduct()
-    print(form.data)
-    # if form.validate_on_submit():
-    new_product = Product(
-        item_name=form.data["item_name"],
-        price=form.data["price"],
-        category=form.data["category"],
-        description=form.data["description"],
-        quantity=form.data["quantity"],
-        preview_imageURL=form.data["preview_imageURL"],
-        sellerId=current_user.to_dict()["id"],
-    )
-    db.session.add(new_product)
-    db.session.commit()
-    return new_product.to_dict()
-    # return "Bad data"
+    try:
+        form = NewProduct()
+        print("ROUTE IS HIT!!! THIS IS FORM.DATA")
+        pprint(form.data)
+
+        # Flask-WTF and WTForms by default require a CSRF_TOKEN because these packages are meant to handle CSRF protection therefore your code will break if it does not have these two lines of code: the request csrf token from cookies and validate_on_submit
+        # on the other hand, if you remove these two lines of code, it will work locally, just not on production
+        form["csrf_token"].data = request.cookies["csrf_token"]
+        if form.validate_on_submit():
+            new_product = Product(
+                item_name=form.data["item_name"],
+                price=form.data["price"],
+                category=form.data["category"],
+                description=form.data["description"],
+                quantity=form.data["quantity"],
+                preview_imageURL=form.data["preview_imageURL"],
+                sellerId=current_user.to_dict()["id"],
+            )
+            print("THIS IS TO DICT USER ID", current_user.to_dict()["id"])
+            print("new_product after validation")
+            pprint(new_product.to_dict())
+            db.session.add(new_product)
+            db.session.commit()
+
+            # Attach Reviews and Seller information to match Chris' getAllProducts reducer - this is to properly create one and attach all necessary information for each single page to load
+            seller = current_user.to_dict()
+            new_product = new_product.to_dict()
+            return_product = jsonify(new_product, seller)
+            print(
+                "this is return jsonified",
+                return_product,
+            )
+            print("this is the type jsonified", type(return_product))
+            return jsonify({"New_Product": new_product, "Seller": seller})
+    except Exception as e:
+        error_message = str(e)
+        traceback_str = traceback.format_exc()
+        print("THIS IS THE FORM ERRORS", form.errors)
+        print("Error:", error_message)
+        print("Traceback:", traceback_str)
+        return jsonify(error=error_message, traceback=traceback_str), 500
+        return "Bad Data"
 
 
 @products_routes.route("/<int:id>/images", methods=["POST"])
@@ -134,8 +170,9 @@ def create_review(id):
     if not product:
         return {"message": "Product couldn't be found"}
     form = NewReview()
-    print(form)
-    # if form.validate_on_submit():
+
+    # ! changed this to have wtf forms validations, was working before without it and have front end validations so not suer needed if breaking live site
+
     new_review = Review(
         stars=form.data["stars"],
         review=form.data["review"],
@@ -154,6 +191,9 @@ def post_favorite_item(productId):
     user_id = current_user.id
     product_exists = Product.query.get(productId)
     user = User.query.get(user_id)
+    seller = User.query.get(product_exists.sellerId)
+
+    # print(product_exists.to_dict())
 
     # ! Edge Case for Postman
     existing_favorite = (
@@ -168,7 +208,7 @@ def post_favorite_item(productId):
     if product_exists and user_id == product_exists.sellerId:
         return {"message": "You may not favorite your own product."}
 
-    print("this is the product_exists", product_exists)
+    # print("this is the product_exists", product_exists)
     if product_exists and product_exists.sellerId != user_id:
         add_user_favorite = insert(favorites).values(
             userId=user_id, productId=productId
@@ -179,33 +219,83 @@ def post_favorite_item(productId):
         return {
             "Product": product_exists.to_dict(),
             "User": user.to_dict(),
+            "Seller": seller.to_dict(),
         }
     else:
         return {"message": "Item couldn't be found"}
 
 
-#POST: add item to cart
-@products_routes.route('/<int:productId>/add_to_cart', methods=["POST"])
+# POST: add item to cart
+@products_routes.route("/<int:productId>/add_to_cart", methods=["POST"])
 @login_required
 def post_cart_items(productId):
     cur_user = current_user.to_dict()
     # print("CURRENT USER", cur_user)
-    product_exists = Product.query.get(productId)
-    # print("PRODUCT", product_exists.sellerId)
+    product_exists = Product.query.get(productId).to_dict()
+    product_in_cart = CartItem.query.get(productId)
+    if product_in_cart != None:
+        product_in_cart.to_dict()
+    # print("PRODUCT EXISTS", product_exists)
+    # print("PRODUCT EXISTS IN THE CART", product_in_cart)
 
-    #Edge Cases
-    if product_exists and cur_user["id"] == product_exists.sellerId:
+    # if to_dict() is used, you must key in with bracket notation ['']
+    # else dot notation but it will be an 'instance' class
+
+    # Edge Cases
+    # make sure product does not belong to the user
+    if product_exists and cur_user["id"] == product_exists["sellerId"]:
         return {"message": "You may not add your own product to your cart."}
 
-    if product_exists and product_exists.sellerId != cur_user["id"]:
-        add_to_cart = CartItem(
-            userId=cur_user["id"],
-            productId=productId
-        )
+    # make sure product is not already in the cart
+    # if product_exists and product_in_cart["productId"] == product_exists.id:
+    # pprint('PRODUCT EXIST', product_exists)
+    # pprint('PRODUCT IN CART WITH PRODUCTID KEY', product_in_cart["productId"])
+    # pprint('PRODUCT_EXSITS.ID', product_exists.id)
+    # return {"message": "You already added this item to your cart."}
+
+    if (
+        product_exists  # if product exists
+        # and product_in_cart  # if product in cart exists
+        # and product_exists["sellerId"] != cur_user["id"]
+        # and product_exists["id"] != product_in_cart["productId"]
+        # current product should not belong to the user => product.sellerId !== user.id
+        # current product id should not be the same as the product in cart id => cannot add the same item
+    ):
+        # print(
+        #     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaawe are in the if statement before instantiating the cart item"
+        # )
+        add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
         db.session.add(add_to_cart)
         db.session.commit()
-        #UPDATE API FOR THE RETURN, NO MSG
-        print('ADD TO CART', add_to_cart.to_dict())
-        return add_to_cart.to_dict()
+        product_to_return = {
+            "CartItem": add_to_cart.to_dict(),
+            "Product": product_exists,
+        }
+        # UPDATE API FOR THE RETURN, NO MSG
+        # print("ADD TO CART", add_to_cart.to_dict())
+        return product_to_return
     else:
+        # print("this dont work")
         return {"message": "Item couldn't be found"}
+
+
+@products_routes.route("/search", methods=["GET"])
+def search_products():
+    # grabs user input from search bar
+    searchQuery = request.args.get("result")
+    # query those products
+    filtered_products = Product.query.filter(
+        Product.item_name.ilike(f"%{str(searchQuery)}%")
+    ).all()
+
+    products = [product.to_dict() for product in filtered_products]
+    # pprint(products)
+    for product in products:
+        reviews = Review.query.filter(Review.productId == product["id"])
+        reviews = [review.to_dict() for review in reviews]
+        seller = User.query.get(product["sellerId"])
+        seller = seller.to_dict()
+        product["Reviews"] = reviews
+        product["Seller"] = seller
+
+    return {"Products": products}

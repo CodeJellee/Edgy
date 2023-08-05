@@ -1,18 +1,97 @@
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import './ReviewCard.css'
+import * as reviewsActions from '../../../store/reviews'
+import ReviewForm from "../ReviewForm";
+import { useHistory } from 'react-router-dom';
 
-function ReviewCard({ userFirstName, review, from }) {
+function ReviewCard({ userFirstName, review, from, user }) {
+    const history = useHistory();
+
+
+    const [reviewRender, setReviewRender] = useState(review)
+
     let loadProductName = false
     if (from === "userReviews") {
         loadProductName = true
+
+    }
+
+    const dispatch = useDispatch();
+
+
+    const [deleteTrigger, setDeleteTrigger] = useState(false);
+    // TODO   set this back to false after submission
+    const [formTrigger, setFormTrigger] = useState(false);
+
+
+
+    if (!user) {
+        user = {}
+        user.id = -1
     }
 
 
-    let numOfStars = review.stars
+    let isReviewOwner = false
+
+    if (from === "userReviews") {
+        isReviewOwner = true
+
+    } else if (from === "productPage") {
+        isReviewOwner = user.id === reviewRender.userId
+    }
+
+
+
+
+    let numOfStars = reviewRender.stars
     let star = []
     for (var i = 0; i < numOfStars; i++) {
-        star.push("this can be whatever")
+        star.push("uwu star")
     }
+
+    const handleDelete = (e) => {
+
+
+
+        dispatch(reviewsActions.thunkDeleteReview(reviewRender.id))
+            .then(() => {
+                // Step 2: Update the state variable after successful deletion
+                setDeleteTrigger(true);
+                if (from === "productPage") {
+                    console.log("in productPage conditional")
+                    // history.push(`/products/${review.id}`)
+                    
+                }
+                console.log(review.id)
+            })
+            .catch((error) => {
+                // Handle any errors here, if needed
+                console.error(error);
+            });
+    }
+
+
+    // handle delete just hast setFormTrigger
+    const handleEdit = (e) => {
+        setFormTrigger(true)
+    }
+
+
+    const starsEdit = reviewRender.stars
+    const reviewEdit = reviewRender.review
+
+    // (review.id)
+    // console.log(review.id)
+    if (deleteTrigger) return null
+    if (formTrigger)
+        return (
+            <>
+                <ReviewForm from="edit" starsEdit={starsEdit} reviewEdit={reviewEdit} reviewObj={reviewRender} setReviewRender={setReviewRender} setFormTrigger={setFormTrigger}></ReviewForm>
+            </>
+        )
+
 
 
     return (
@@ -36,10 +115,20 @@ function ReviewCard({ userFirstName, review, from }) {
 
                 </div>
                 <p className='Rc-review'>
-                    {review.review}
+                    {reviewRender.review}
                 </p>
                 {/* <div className="Rc-name-date"> */}
-                <p className='Rc-name-date-p'> <span className='Rc-username-span'>{userFirstName}  </span> -  {review.createdAt}  </p>
+                <p className='Rc-name-date-p'> <span className='Rc-username-span'>{userFirstName}  </span> -  {reviewRender.createdAt}  </p>
+                {isReviewOwner &&
+                    <>
+                        <button onClick={handleEdit}>
+                            edit
+                        </button>
+                        <button onClick={handleDelete}>
+                            delete
+                        </button>
+                    </>
+                }
 
                 {/* </div> */}
                 <hr className='Rc-hr Rc-hr-bottom'></hr>

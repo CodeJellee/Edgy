@@ -3,7 +3,6 @@ from app.models.products import favorites
 from sqlalchemy.sql import text
 
 
-
 def seed_favorites():
     seed_data = [
         {"userId": 4, "productId": 1},
@@ -12,6 +11,9 @@ def seed_favorites():
         {"userId": 5, "productId": 2},
         {"userId": 5, "productId": 3},
         {"userId": 5, "productId": 4},
+        {"userId": 5, "productId": 19},
+        {"userId": 5, "productId": 30},
+        {"userId": 5, "productId": 33},
         {"userId": 6, "productId": 1},
         {"userId": 6, "productId": 3},
         {"userId": 6, "productId": 4},

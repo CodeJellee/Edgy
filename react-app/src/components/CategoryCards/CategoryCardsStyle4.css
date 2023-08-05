@@ -1,14 +1,14 @@
 .data {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
+    /* justify-content: space-between; */
 }
 
 .popular {
     margin: 40px;
     margin-top: 70px;
     margin-bottom: 60px;
+    transition: transform 0.3s ease;
 }
 
 .popP {
@@ -16,7 +16,16 @@
     overflow: hidden;
     line-height: 1px;
     text-overflow: ellipsis;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
 }
+
+.popP:hover {
+    transform: scale(1.01); /* Increase the scale to make the box bigger on hover */
+    box-shadow: 0.5px 0.5px 18px 0.5px rgb(210, 209, 209);
+}
+
 
 .popP > img {
     border-radius: 5px;
@@ -25,7 +34,7 @@
 }
 
 .popTitle {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     white-space: nowrap;
     text-overflow: ellipsis;

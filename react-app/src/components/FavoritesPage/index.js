@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { thunkGetUserFavorites } from "../../store/favorites";
-import "./FavoritesPage.css";
 import { useState } from "react";
 import FavoriteButton from "./FavoritesButton";
 import * as favoriteActions from "../../store/favorites";
+import "../Navigation/Navigation.css";
+import "./FavoritesPage.css";
+import FooterTwo from "../Footer/index2";
 
 function FavoritesPage() {
   const dispatch = useDispatch();
@@ -13,6 +15,7 @@ function FavoritesPage() {
   const userFavorites = useSelector((state) =>
     Object.values(state.favorites.userFavorites)
   );
+  const history = useHistory()
 
   const handleFavoriteClick = (productId) => {
     dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
@@ -26,9 +29,12 @@ function FavoritesPage() {
     dispatch(thunkGetUserFavorites(user.id));
   }, [user.id, dispatch]);
 
-  if (!user || userFavorites.length === 0) return null;
+  // if (!user || userFavorites.length === 0) return null;
+
+  // console.log(userFavorites)
 
   return (
+    <>
     <div id="favorites__main-container">
       {/* Can be one component for user-options-sales */}
       <div id="user-details__container">
@@ -44,40 +50,44 @@ function FavoritesPage() {
           {/* Name should be a modal button to open up popup that allows the user to click on an edit public profile button to redirect them to their edit profile page */}
           <div id="user-options__name-profile">
             <div>{user.first_name}</div>
-            <div>
+            <div className="editProfile">
               <NavLink to="">Edit public profile</NavLink>
               <NavLink to="">About</NavLink>
             </div>
           </div>
         </div>
 
-        <div id="user-sales">
+        {/* <div id="user-sales">
           {/* Links to the user's listed items page */}
-          <NavLink to="">t3mr4pewz0u1pcee</NavLink>
+          {/* <NavLink to="">t3mr4pewz0u1pcee</NavLink> */}
           {/* Links to # of user sales page */}
-          <NavLink to="">0 Sales</NavLink>
-        </div>
+          {/* <NavLink to="">0 Sales</NavLink> */}
+        {/* </div> */}
       </div>
 
       {/* Can be one component for user-search-bar */}
-      <div id="user-search-favorites__container">
-        <div>
-          Favorite items <span>{userFavorites.length} items</span>
-        </div>
-        <div>Insert Search Bar Here</div>
-      </div>
 
-      {/* Can be all of user's favorited items component */}
-      {/*!!! For the map, sellerId, should be the seller's username */}
+      {userFavorites.length ? <div id="user-search-favorites__container">
+        <div id="user-favorites__count">
+          Favorite items <span id="numberFavs">{userFavorites.length} items</span>
+        </div>
+        <div id="user-favorites__search">
+          <input
+            type="search"
+            placeholder="Search Your Favorites"
+            id="search-favorites"
+          ></input>
+          <button id="search-button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div> : <div></div>}
+
       <div id="user-favorites__container">
         {userFavorites?.map((fav) => (
           <>
             <div key={fav?.item_name} id={`favorite-product`}>
-              <div>
-                <img
-                  src={fav.preview_imageURL}
-                  alt={`productId-${fav.productId}`}
-                />
+              <div id="container-container">
                 <FavoriteButton
                   onClick={() => handleUnfavoriteClick(fav.id)}
                   productId={fav.id}
@@ -86,14 +96,39 @@ function FavoritesPage() {
                   initialState={true}
                 />
               </div>
-              <div>{fav.item_name}</div>
-              <div>{fav.Seller.username}</div>
-              <div>{fav.price}</div>
+              <div id="fav-img__container">
+                <img
+                  onClick={((e) =>history.push(`/products/${fav.id}`))}
+                  src={fav.preview_imageURL}
+                  alt={`productId-${fav.productId}`}
+                  id="product-img"
+                />
+              </div>
+
+              <h3 onClick={((e) =>history.push(`/products/${fav.id}`))} id="fav-item__name">{fav.item_name}</h3>
+              <div onClick={((e) =>history.push(`/products/${fav.id}`))} id="fav-item__username">{fav.Seller.first_name} {fav.Seller.last_name}</div>
+              <p onClick={((e) =>history.push(`/products/${fav.id}`))} id="fav-item__price">
+                <span id="fav-item__currency-symbol">$</span>
+                <span id="fav-item__currency-value">{fav.price}</span>
+              </p>
             </div>
           </>
         ))}
       </div>
+        {!userFavorites.length ?
+        <>
+        <div className="nothingToSee">
+        <div className="clipFavs">
+        <i class="fa-solid fa-clipboard"></i>
+        </div>
+          <h2>Nothing to see here yet</h2>
+          <p>Start favoriting items to compare, shop, and keep track of things you love.</p>
+        </div>
+        </>
+        : null}
     </div>
+    <FooterTwo />
+    </>
   );
 }
 

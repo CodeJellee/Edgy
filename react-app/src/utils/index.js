@@ -6,10 +6,9 @@ const makeStars = (reviewsArray) => {
     // let count = product.Reviews.length
     let count = reviewsArray.length
 
-    let products = Object.values(reviewsArray)
-    for (const singleProduct of products) {
+    for (const review of reviewsArray) {
 
-        sum += singleProduct.stars
+        sum += review.stars
     }
 
     let starAvg = Math.round(sum / count)

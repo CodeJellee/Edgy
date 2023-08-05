@@ -14,12 +14,15 @@
 
 .column-holder {
     display: flex;
-    justify-content: center;
+    /* width: 100%; */
+    margin-left: 40px;
+    margin-right: 40px
 }
 
 .column {
-    width: 900px;
+    width: 100%
 }
+
 
 
 .error-text {
