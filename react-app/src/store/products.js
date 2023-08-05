@@ -1,17 +1,3 @@
-//*  =====================  thunks ===========================//
-
-//*  ======================= end of thunks ===================//
-
-//? =====================  types ===========================//
-
-//?  ===================end of types ===================//
-
-//* =====================  actions ===========================//
-
-//*  ======================= end of actions ===================//
-
-//? ================== reducer================================//
-
 const GET_ALL_PRODUCTS_ACTION = "products/GET_ALL_PRODUCTS_ACTION";
 const GET_SINGLE_PRODUCT_ACTION = "products/GET_SINGLE_PRODUCT_ACTION";
 const GET_USER_PRODUCTS_ACTION = "products/GET_USER_PRODUCTS_ACTION";
@@ -205,6 +191,11 @@ export default function reducer(state = initialState, action) {
       newState = { ...state };
       newState.singleProduct = {};
       newState.singleProduct = action.product;
+      newState.products[action.product.New_Product.id] = {
+        Seller: action.product.Seller,
+        Reviews: [],
+        ...action.product.New_Product,
+      };
       return newState;
     }
     case DELETE_PRODUCT_ACTION: {
