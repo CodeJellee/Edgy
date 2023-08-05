@@ -5,7 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
-import { clearCartAction } from "../../store/shoppingCart"
+// import { clearCartAction } from "../../store/shoppingCart"
 
 import './Navigation.css'
 
@@ -37,7 +37,7 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    dispatch(clearCartAction());
+    // dispatch(clearCartAction());
     closeMenu();
     history.push('/')
   };
