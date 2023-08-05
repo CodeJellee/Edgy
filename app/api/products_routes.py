@@ -161,11 +161,11 @@ def create_review(id):
     # ! changed this to have wtf forms validations, was working before without it and have front end validations so not suer needed if breaking live site
 
     new_review = Review(
-            stars=form.data["stars"],
-            review=form.data["review"],
-            userId=current_user.to_dict()["id"],
-            productId=id,
-        )
+        stars=form.data["stars"],
+        review=form.data["review"],
+        userId=current_user.to_dict()["id"],
+        productId=id,
+    )
     db.session.add(new_review)
     db.session.commit()
     return new_review.to_dict()

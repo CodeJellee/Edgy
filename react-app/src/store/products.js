@@ -98,16 +98,11 @@ export const thunkGetUserProducts = () => async (dispatch) => {
 };
 
 export const thunkCreateProduct = (productFormData) => async (dispatch) => {
-  // console.log("PRODUCTFORMDATA", productFormData);
-  // let test = JSON.stringify(productFormData);
-  // test = await test.json();
-  // console.log("JSONIFY FORMATDATA", test);
   let newProduct = await fetch(`/api/products/new`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    // body: JSON.stringify(productFormData),
     body: JSON.stringify(productFormData),
   });
   newProduct = await newProduct.json();
