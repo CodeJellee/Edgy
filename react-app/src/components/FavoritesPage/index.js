@@ -31,7 +31,7 @@ function FavoritesPage() {
 
   if (!user || userFavorites.length === 0) return null;
 
-  console.log(userFavorites)
+  // console.log(userFavorites)
 
   return (
     <>

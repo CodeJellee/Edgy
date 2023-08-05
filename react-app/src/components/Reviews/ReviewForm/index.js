@@ -7,9 +7,14 @@ import * as reviewsActions from "../../../store/reviews";
 import * as productsActions from "../../../store/products";
 import StarRating from "./StarRating";
 
-
-
-function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, setReviewRender }) {
+function ReviewForm({
+  from,
+  starsEdit,
+  reviewEdit,
+  reviewObj,
+  setFormTrigger,
+  setReviewRender,
+}) {
   const dispatch = useDispatch();
 
   // const uwu = useSelector(state => Object.values(state.reviews.userReviews.Reviews))
@@ -20,17 +25,10 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
   const [rating, setRating] = useState("reviewObj.rating");
   const [vaErrors, setVaErrors] = useState({});
 
-
-
-
-
-
   // edit state
 
   const [reviewEditState, setReviewEditState] = useState(reviewEdit || "");
   const [ratingEdit, setRatingEdit] = useState(starsEdit || 1);
-
-
 
   const { id } = useParams();
 
@@ -39,23 +37,17 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
       setReview("");
       setRating(1);
     } else {
-      setReviewEditState(reviewEdit)
-      setRatingEdit(starsEdit)
+      setReviewEditState(reviewEdit);
+      setRatingEdit(starsEdit);
     }
-
   };
 
-
   const handleSubmit = async (e) => {
-    if (submittedSuc) return
-
-
+    if (submittedSuc) return;
 
     e.preventDefault();
     setSubmitted(true);
     if (from === "post") {
-
-
       if (Object.keys(vaErrors).length) {
         return;
       }
@@ -76,21 +68,18 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
 
       await dispatch(reviewsActions.thunkGetReviewsByProductId(id));
       await dispatch(productsActions.thunkGetSingleProduct(id));
-
-
-
-
     } else if (from === "edit") {
-
       if (Object.keys(vaErrors).length) {
         return;
       }
 
       const data = await dispatch(
-
-        reviewsActions.thunkSubmitReviewEdit(ratingEdit, reviewEditState, reviewObj.id)
+        reviewsActions.thunkSubmitReviewEdit(
+          ratingEdit,
+          reviewEditState,
+          reviewObj.id
+        )
       );
-
 
       // i dont think this should be there should see if there is an error prop or something
       // if (data) {
@@ -104,34 +93,30 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
       }
       // pass setFormTrigger
       // grab setFrmTrigger to false
-      setFormTrigger(false)
+      setFormTrigger(false);
       // let newReviewObj = {...reviewObj}
       // newReviewObj.stars = ratingEdit
       //  newReviewObj
 
       // !!!
 
-      setReviewRender(data)
+      setReviewRender(data);
       ///To do
-
 
       // reviewEdit
       // starsEdit
       // se
       // hit something here to make react rerender current page / product review page
     }
-
-
   };
 
   const handleRatingChange = (number) => {
     // console.log("in handleRatingChange")
     if (from === "post") {
-
       setRating(parseInt(number));
     } else if (from === "edit") {
       // console.log("hi")
-      setRatingEdit(parseInt(number))
+      setRatingEdit(parseInt(number));
     }
   };
 
@@ -140,25 +125,24 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
     // console.log("should be an empty err:", err)
 
     if (from === "post") {
-      if (review.length < 10) err["Review"] = "Review needs 10 or more characters";
-      if (review.length > 225) err["Review"] = "Review needs to be less than 225 or more characters";
+      if (review.length < 10)
+        err["Review"] = "Review needs 10 or more characters";
+      if (review.length > 225)
+        err["Review"] = "Review needs to be less than 225 or more characters";
     } else if (from === "edit") {
-
       if (reviewEditState.length < 10) {
         err["Review"] = "Review needs 10 or more characters";
-
       }
       if (reviewEditState.length > 225) {
-
         err["Review"] = "Review needs to be less than 225 or more characters";
       }
     }
 
-    console.log(err)
+    // console.log(err)
     setVaErrors(err);
   }, [review, reviewEditState]);
 
-  const test = 3
+  const test = 3;
   if (from === "post") {
     return (
       <>
@@ -253,10 +237,6 @@ function ReviewForm({ from, starsEdit, reviewEdit, reviewObj, setFormTrigger, se
         <hr className="Rc-hr"></hr>
       </>
     );
-
-
-
-
   }
 }
 

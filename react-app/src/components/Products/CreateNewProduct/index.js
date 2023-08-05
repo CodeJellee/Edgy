@@ -67,7 +67,7 @@ const NewProductForm = () => {
       errorsObject.previewImageURL =
         "Preview image must end in .png, .jpg, or .jpeg";
     }
-    console.log("Create Component - Err Obj onSubmit", errorsObject);
+    // console.log("Create Component - Err Obj onSubmit", errorsObject);
     if (Object.values(errorsObject).length > 0) return setErrors(errorsObject); // if there are any errors, stop here and return the errors
 
     let payload = {
@@ -81,15 +81,15 @@ const NewProductForm = () => {
     };
 
     let fetchResponseFromThunk = await dispatch(thunkCreateProduct(payload));
-    console.log("return from createProduct dispatch", fetchResponseFromThunk);
+    // console.log("return from createProduct dispatch", fetchResponseFromThunk);
     await dispatch(
       productActions.thunkGetSingleProduct(
         fetchResponseFromThunk.New_Product.id
       )
     );
-    console.log(
-      "you've made it past the create and get single product dispatches - now redirect"
-    );
+    // console.log(
+    // "you've made it past the create and get single product dispatches - now redirect"
+    // );
     history.push(`/products/${fetchResponseFromThunk.New_Product.id}`);
   };
 
