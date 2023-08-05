@@ -216,7 +216,7 @@ def create_review(id):
         print("ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4")
         print("ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4")
 
-        # db.session.add(new_review)
+        db.session.add(new_review)
         db.session.commit()
 
         return new_review.to_dict_noUpdated()
