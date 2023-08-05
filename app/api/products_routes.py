@@ -331,13 +331,30 @@ def search_products():
     # grabs user input from search bar
     searchQuery = request.args.get("result")
 
-    filtered_products = Product.query.filter(Product.item_name.ilike(f"%{str(searchQuery)}%")).all()
+    searchQuery_list = []
+    if "," in searchQuery:
+      searchQuery_list = searchQuery.split(",")
+
+    filtered_products_list = []
+    for s in searchQuery_list:
+        filtered_products_list.extend(Product.query.filter(Product.item_name.ilike(f"%{str(s)}%")).all())
+
+    print("!!!!!!!!!!!!!!!!", filtered_products_list)
+
+    filtered_products = []
+
+    if len(filtered_products_list) == 0:
+      filtered_products = Product.query.filter(Product.item_name.ilike(f"%{str(searchQuery)}%")).all()
 
     products = []
 
-    products = [product.to_dict() for product in filtered_products]
-    # pprint(products)
+    if filtered_products:
+      products = [product.to_dict() for product in filtered_products]
 
+    if filtered_products_list:
+      products = [product.to_dict() for product in filtered_products_list]
+
+    print(products)
     for product in products:
         reviews = Review.query.filter(Review.productId == product["id"])
         reviews = [review.to_dict() for review in reviews]
