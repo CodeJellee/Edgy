@@ -222,7 +222,7 @@ def search_products():
     searchQuery = request.args.get("result")
     # query those products
     filtered_products = Product.query.filter(
-        Product.item_name.like(f"%{str(searchQuery)}%")
+        Product.item_name.ilike(f"%{str(searchQuery)}%")
     ).all()
 
     products = [product.to_dict() for product in filtered_products]

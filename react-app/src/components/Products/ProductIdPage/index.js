@@ -172,7 +172,7 @@ function ProductIdPage() {
                         </span>
                         {stars.map((star, idx) =>
 
-<i key={idx} className="fas fa-star PID-count pStars" />
+                        <i key={idx} className="fas fa-star PID-count pStars" />
 
 )}
                     </p>

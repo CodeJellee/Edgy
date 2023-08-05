@@ -35,13 +35,13 @@
     /* height: fit-content; */
     display: flex;
     /* justify-content: center; */
-    margin-left: 60px;
 }
 
 .PID-main-image {
     width: 86%;
     height: 90%;
     border-radius: 15px;
+    padding-right: 20px
     /* object-fit: contain; */
 }
 
@@ -152,7 +152,7 @@
 }
 
 .containerFavs {
-    margin-left: 30px
+    /* margin-left: 30px */
 }
 
 .containerFavs > #favorite-icon__container {
