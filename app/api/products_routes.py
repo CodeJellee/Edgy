@@ -282,6 +282,7 @@ def post_favorite_item(productId):
 @login_required
 def post_cart_items(productId):
     # print("value going into post_cart_items: productId", productId)
+    print(productId)
     user_id = current_user.id
     # print('what is current user id', user_id)
     product_exists = Product.query.get(productId)
@@ -337,7 +338,7 @@ def search_products():
     print(seachQuery_list)
     filtered_products = []
 
-    if not seachQuery_list:
+    if seachQuery_list:
        filtered_products = Product.query.filter(
          Product.item_name.ilike(f"%{str(searchQuery)}%")
          ).all()
