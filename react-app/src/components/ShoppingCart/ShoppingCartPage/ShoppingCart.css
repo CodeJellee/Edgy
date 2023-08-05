@@ -2,6 +2,10 @@
     padding-left: 40px;
 }
 
+.empty-cart-message{
+    padding-top: 30px;
+}
+
 .products-and-checkout-container {
     display: flex
 
