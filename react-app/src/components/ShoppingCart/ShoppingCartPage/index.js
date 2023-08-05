@@ -4,6 +4,7 @@ import * as CartActions from "../../../store/shoppingCart"; //this will be grabb
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import DeleteCartIem from "../DeleteCartItem";
+import ProceedToCheckout from "../ProceedToCheckout";
 import Footer2 from "../../Footer/index2"
 import "./ShoppingCart.css";
 
@@ -129,7 +130,9 @@ function ShoppingCartPage() {
           </div>
 
           <div className="checkout-button-container">
-            <button className='PID-favFullButt PID-P-button PID-Transp-butt'>Proceed To Checkout</button>
+            <div>
+              <ProceedToCheckout />
+            </div>
           </div>
         </div>
       </div>

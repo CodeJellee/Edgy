@@ -3,7 +3,7 @@
 const GET_SHOPPING_CART = "shoppingCart/GET_SHOPPING_CART";
 const DELETE_CART_ITEM = "shoppingCart/DELETE_CART_ITEM";
 const POST_ITEM_IN_CART = "shoppingCart/POST_ITEM_IN_CART";
-const CLEAR_USER_CART = "shoppingCart/CLEAR_USER_CART";
+// const CLEAR_USER_CART = "shoppingCart/CLEAR_USER_CART";
 
 //?  ===================end of types ===================//
 
@@ -30,11 +30,11 @@ const postItemInCartAction = (product) => {
   };
 };
 
-export const clearCartAction = () => {
-  return {
-    type: CLEAR_USER_CART,
-  };
-};
+// export const clearCartAction = () => {
+//   return {
+//     type: CLEAR_USER_CART,
+//   };
+// };
 //*  ======================= end of actions ===================//
 
 //*  =====================  thunks ===========================//
@@ -120,9 +120,10 @@ export default function reducer(state = initialState, action) {
       delete newState.userCart[action.productId]; // refactor the get route to normalize by product id
       return newState;
     }
-    case CLEAR_USER_CART: {
-      return { ...state, userCart: {} };
-    }
+    // case CLEAR_USER_CART: {
+    //   newState = {}
+    //   return newState
+    // }
     default:
       return state;
   }
