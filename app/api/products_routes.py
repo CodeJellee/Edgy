@@ -301,6 +301,7 @@ def post_cart_items(productId):
 
     if existing_cart_item:
         return {"message": "You have already added this product to your cart."}
+        
     # print ("existing_cart_item this is value", existing_cart_item)
 
     #2- checking if the user owns the product (userId = sellerId)

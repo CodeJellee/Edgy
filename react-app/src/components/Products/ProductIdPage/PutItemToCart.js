@@ -10,18 +10,38 @@ function PutCartItemToCart({productId}) {
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user)
     const product = useSelector(state => state.products.singleProduct)
+    const cartItems = useSelector(state => state.shoppingCart.userCart)
     console.log('WHAT IS PUTITEMTOTHCART', product)
 
     const productBelongsToUser = () => {
         return product.sellerId === currentUser.id;
     };
 
+    const productAlreadyInCart = () => {
+        console.log('what is plural cartItems', cartItems)
+        for (const cartItem of cartItems){
+            console.log('this is cartItem', cartItem)
+            console.log('what is cartItem.productId', cartItem.productId)
+            if (cartItem.productId === product.id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     const onClick = (e) => {
         e.preventDefault();
         if (productBelongsToUser()) {
             alert("You cannot add your own product to the cart.");
             return;
-        } else {
+        }
+
+        if (productAlreadyInCart()) {
+            alert("You already added the item to the cart.");
+            return;
+        }
+        else {
             console.log('THUNKPOSTITEMINCART', product.id, productId)
             dispatch(thunkPostItemInCart(product.id, currentUser.id))
             history.push("/shopping_cart")
