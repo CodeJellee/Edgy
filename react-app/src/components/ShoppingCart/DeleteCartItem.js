@@ -19,7 +19,7 @@ function DeleteCartIem({ cartItemId }) {
 
   return (
     <>
-      <div className="remove-save-button" onClick={onClick}>
+      <div id="remove-save-button" className='PID-favFullButt PID-P-button PID-Transp-butt' onClick={onClick}>
         ✕ Remove
       </div>
     </>
