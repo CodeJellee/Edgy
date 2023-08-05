@@ -225,18 +225,22 @@ def post_cart_items(productId):
     # print("PRODUCT", product_exists)
 
     # Edge Cases
-    #make sure product does not belong to the user
+    # make sure product does not belong to the user
     if product_exists and cur_user["id"] == product_exists.sellerId:
         return {"message": "You may not add your own product to your cart."}
 
-    #make sure product is not already in the cart
+    # make sure product is not already in the cart
     if product_exists and product_in_cart["productId"] == product_exists.id:
         # pprint('PRODUCT EXIST', product_exists)
         # pprint('PRODUCT IN CART WITH PRODUCTID KEY', product_in_cart["productId"])
         # pprint('PRODUCT_EXSITS.ID', product_exists.id)
         return {"message": "You already added this item to your cart."}
 
-    if product_exists and product_exists.sellerId != cur_user["id"] and product_exists.id != product_in_cart["productId"]:
+    if (
+        product_exists
+        and product_exists.sellerId != cur_user["id"]
+        and product_exists.id != product_in_cart["productId"]
+    ):
         add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
         db.session.add(add_to_cart)
         db.session.commit()
