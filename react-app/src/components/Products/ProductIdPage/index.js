@@ -188,6 +188,7 @@ function ProductIdPage() {
                     {user && noUserReviewExist && notSeller &&
                      <ReviewForm from="post"></ReviewForm>}
 
+{/* handles scenario to render form, if the user deletes their review, could not use noUserReviewsExist as it causes rerender cycles */}
                     {deletedReview && <ReviewForm from="post"></ReviewForm>}
 
                     {reviews?.map((review) => (
