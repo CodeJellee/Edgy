@@ -22,6 +22,7 @@ function ProductIdPage() {
     const product = useSelector(state => state.products.singleProduct)
     const [mainImage, setMainImage] = useState()
     const [itemState, setItemState ] = useState(false)
+    // const [noUserReviewExist, setNoUserReveiwExist] = useState(true)
 
     const handleFavoriteClick = (productId) => {
         dispatch(favoriteActions.thunkPostFavoriteProduct(productId));

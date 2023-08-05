@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import './ReviewCard.css'
 import * as reviewsActions from '../../../store/reviews'
 import ReviewForm from "../ReviewForm";
+import { useHistory } from 'react-router-dom';
 
 function ReviewCard({ userFirstName, review, from, user }) {
-
+    const history = useHistory();
 
 
     const [reviewRender, setReviewRender] = useState(review)
@@ -58,6 +59,12 @@ function ReviewCard({ userFirstName, review, from, user }) {
             .then(() => {
                 // Step 2: Update the state variable after successful deletion
                 setDeleteTrigger(true);
+                if (from === "productPage") {
+                    console.log("in productPage conditional")
+                    // history.push(`/products/${review.id}`)
+                    
+                }
+                console.log(review.id)
             })
             .catch((error) => {
                 // Handle any errors here, if needed
