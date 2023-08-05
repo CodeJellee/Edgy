@@ -116,20 +116,20 @@ def create_product():
         return "Bad Data"
 
 
-@products_routes.route("/<int:id>/images", methods=["POST"])
-@login_required
-def add_images(id):
-    form = ProductForm()
-    # if form.validate_on_submit():
-    new_product_image = Product(
-        productId=id,
-        product_imageURL=form.data["product_imageURL"],
-        sellerId=current_user.to_dict()["id"],
-    )
-    db.session.add(new_product_image)
-    db.session.commit()
-    return new_product_image.to_dict()
-    # return "Bad data"
+# @products_routes.route("/<int:id>/images", methods=["POST"])
+# @login_required
+# def add_images(id):
+#     form = ProductForm()
+#     # if form.validate_on_submit():
+#     new_product_image = Product(
+#         productId=id,
+#         product_imageURL=form.data["product_imageURL"],
+#         sellerId=current_user.to_dict()["id"],
+#     )
+#     db.session.add(new_product_image)
+#     db.session.commit()
+#     return new_product_image.to_dict()
+#     # return "Bad data"
 
 
 @products_routes.route("/<int:id>", methods=["DELETE"])
@@ -166,22 +166,60 @@ def get_reviews(id):
 @products_routes.route("/<int:id>/reviews", methods=["POST"])
 @login_required
 def create_review(id):
+    id
+    print("BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1BELOW1 BELOW1 BELOW1")
+    print("BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1BELOW1 BELOW1 BELOW1")
+    print("BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1 BELOW1BELOW1 BELOW1 BELOW1")
+    print("ID FROM PARAM", id)
+    print("ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ")
+    print("ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ")
+    print("ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ABOVE1 ")
     product = Product.query.get(id)
     if not product:
         return {"message": "Product couldn't be found"}
     form = NewReview()
-
+    print("BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2  ")
+    print("BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 ")
+    print("BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2 BELOW2  ")
+    print("new form form", form)
+    pprint(form)
+    print("ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2")
+    print("ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2")
+    print("ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2 ABOVE2")
     # ! changed this to have wtf forms validations, was working before without it and have front end validations so not suer needed if breaking live site
 
-    new_review = Review(
-        stars=form.data["stars"],
-        review=form.data["review"],
-        userId=current_user.to_dict()["id"],
-        productId=id,
-    )
-    db.session.add(new_review)
-    db.session.commit()
-    return new_review.to_dict()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        print("BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW 3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 ")
+        print("BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW 3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 ")
+        print("BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW 3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 BELOW3 ")
+        print("stars:", form.data["stars"])
+        print("review:", form.data["review"])
+        print("userId:", current_user.to_dict()["id"])
+        print("productId:", id)
+        print("ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3")
+        print("ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3")
+        print("ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3 ABOVE3")
+        new_review = Review(
+            stars=form.data["stars"],
+            review=form.data["review"],
+            userId=current_user.to_dict()["id"],
+            productId=id,
+        )
+
+        print("BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 ")
+        print("BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 ")
+        print("BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 BELOW4 ")
+        print("form after inserting fields:", new_review)
+        pprint(new_review.to_dict())
+        print("ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4")
+        print("ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4")
+        print("ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4 ABOVE4")
+
+        db.session.add(new_review)
+        db.session.commit()
+
+        return new_review.to_dict_noUpdated()
 
 
 # POST - Favorite a Product
