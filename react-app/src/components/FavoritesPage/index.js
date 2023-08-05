@@ -29,7 +29,7 @@ function FavoritesPage() {
     dispatch(thunkGetUserFavorites(user.id));
   }, [user.id, dispatch]);
 
-  if (!user || userFavorites.length === 0) return null;
+  // if (!user || userFavorites.length === 0) return null;
 
   console.log(userFavorites)
 
@@ -66,8 +66,7 @@ function FavoritesPage() {
       </div>
 
       {/* Can be one component for user-search-bar */}
-      <>
-      </>
+
       {userFavorites.length ? <div id="user-search-favorites__container">
         <div id="user-favorites__count">
           Favorite items <span id="numberFavs">{userFavorites.length} items</span>
@@ -116,6 +115,17 @@ function FavoritesPage() {
           </>
         ))}
       </div>
+        {!userFavorites.length ?
+        <>
+        <div className="nothingToSee">
+        <div className="clipFavs">
+        <i class="fa-solid fa-clipboard"></i>
+        </div>
+          <h2>Nothing to see here yet</h2>
+          <p>Start favoriting items to compare, shop, and keep track of things you love.</p>
+        </div>
+        </>
+        : null}
     </div>
     <FooterTwo />
     </>
