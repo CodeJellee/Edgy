@@ -1,12 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function FavoriteButton({ productId, handleUnfavoriteClick, handleFavoriteClick, initialState}) {
   const [solid, setSolid] = useState(initialState);
+  const currentUser = useSelector(state => state.session.user)
+  const product = useSelector(state => state.products.singleProduct)
 
   //   console.log("this is solid value", solid);
   //   console.log("this is the product id", productId);
 
   const handleFavorite = (productId) => {
+
+    if( currentUser.id === product.sellerId){
+      alert("Cannot like your own product!")
+      return;
+    }
+
     if (solid === false) {
       setSolid(!solid);
       handleFavoriteClick(productId);
@@ -15,6 +24,7 @@ function FavoriteButton({ productId, handleUnfavoriteClick, handleFavoriteClick,
       handleUnfavoriteClick(productId);
     }
   };
+
 
   return (
     <div
