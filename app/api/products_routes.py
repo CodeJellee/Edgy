@@ -330,34 +330,13 @@ def post_cart_items(productId):
 def search_products():
     # grabs user input from search bar
     searchQuery = request.args.get("result")
-    searchQuery_list = []
-    if ',' in searchQuery:
-        seachQuery_list = searchQuery.split(',')
-        print('yes')
 
-    print(seachQuery_list)
-    filtered_products = []
-
-    if seachQuery_list:
-       filtered_products = Product.query.filter(
-         Product.item_name.ilike(f"%{str(searchQuery)}%")
-         ).all()
-
-    filtered_products_list = []
-
-    if searchQuery_list:
-        print(seachQuery_list)
-        for s in searchQuery_list:
-          print(s)
-          filtered_products_list.append(Product.item_name.ilike(f"%{s}%"))
+    filtered_products = Product.query.filter(Product.item_name.ilike(f"%{str(searchQuery)}%")).all()
 
     products = []
 
-    if filtered_products:
-      products = [product.to_dict() for product in filtered_products]
+    products = [product.to_dict() for product in filtered_products]
     # pprint(products)
-    if filtered_products_list:
-      products = [product.to_dict() for product in filtered_products]
 
     for product in products:
         reviews = Review.query.filter(Review.productId == product["id"])
