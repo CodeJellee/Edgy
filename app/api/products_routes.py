@@ -63,26 +63,35 @@ def product_details(id):
 @login_required
 def create_product():
     form = NewProduct()
-    print(form.data)
-    # if form.validate_on_submit():
-    new_product = Product(
-        item_name=form.data["item_name"],
-        price=form.data["price"],
-        category=form.data["category"],
-        description=form.data["description"],
-        quantity=form.data["quantity"],
-        preview_imageURL=form.data["preview_imageURL"],
-        sellerId=current_user.to_dict()["id"],
+    print(
+        "THIS IS THE FORM DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        form.data,
     )
-    db.session.add(new_product)
-    db.session.commit()
 
-    # Attach Reviews and Seller information to match Chris' getAllProducts reducer - this is to properly create one and attach all necessary information for each single page to load
-    seller = current_user.to_dict()
-    new_product = new_product.to_dict()
+    # Flask-WTF and WTForms by default require a CSRF_TOKEN because these packages are meant to handle CSRF protection therefore your code will break if it does not have these two lines of code: the request csrf token from cookies and validate_on_submit
+    # on the other hand, if you remove these two lines of code, it will work locally, just not on production
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        new_product = Product(
+            item_name=form.data["item_name"],
+            price=form.data["price"],
+            category=form.data["category"],
+            description=form.data["description"],
+            quantity=form.data["quantity"],
+            preview_imageURL=form.data["preview_imageURL"],
+            sellerId=current_user.to_dict()["id"],
+        )
+        db.session.add(new_product)
+        db.session.commit()
 
-    return {"New_Product": new_product, "Seller": seller}
-    # return "Bad data"
+        # Attach Reviews and Seller information to match Chris' getAllProducts reducer - this is to properly create one and attach all necessary information for each single page to load
+        seller = current_user.to_dict()
+        new_product = new_product.to_dict()
+
+        return {"New_Product": new_product, "Seller": seller}
+    else:
+        print("THIS IS THE FORM ERRORS", form.errors)
+        return "Bad Data"
 
 
 @products_routes.route("/<int:id>/images", methods=["POST"])
@@ -200,13 +209,22 @@ def post_cart_items(productId):
     cur_user = current_user.to_dict()
     # print("CURRENT USER", cur_user)
     product_exists = Product.query.get(productId)
-    print("PRODUCT", product_exists)
+    product_in_cart = CartItem.query.get(productId)
+    # print("PRODUCT", product_exists)
 
     # Edge Cases
+    #make sure product does not belong to the user
     if product_exists and cur_user["id"] == product_exists.sellerId:
         return {"message": "You may not add your own product to your cart."}
 
-    if product_exists and product_exists.sellerId != cur_user["id"]:
+    #make sure product is not already in the cart
+    if product_exists and product_in_cart["productId"] == product_exists.id:
+        # pprint('PRODUCT EXIST', product_exists)
+        # pprint('PRODUCT IN CART WITH PRODUCTID KEY', product_in_cart["productId"])
+        # pprint('PRODUCT_EXSITS.ID', product_exists.id)
+        return {"message": "You already added this item to your cart."}
+
+    if product_exists and product_exists.sellerId != cur_user["id"] and product_exists.id != product_in_cart["productId"]:
         add_to_cart = CartItem(userId=cur_user["id"], productId=productId)
         db.session.add(add_to_cart)
         db.session.commit()

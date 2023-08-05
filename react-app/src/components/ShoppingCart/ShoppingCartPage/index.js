@@ -4,6 +4,8 @@ import * as CartActions from "../../../store/shoppingCart"; //this will be grabb
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import DeleteCartIem from "../DeleteCartItem";
+import ProceedToCheckout from "../ProceedToCheckout";
+import Footer2 from "../../Footer/index2"
 import "./ShoppingCart.css";
 
 function ShoppingCartPage() {
@@ -45,6 +47,7 @@ function ShoppingCartPage() {
       <div className="primary-cart-container">
         <h1>{itemLength} items in your cart</h1>
         <div className="products-and-checkout-container">
+
           <div className="products-only-container">
             {userCart?.map((item) => (
               <>
@@ -81,7 +84,9 @@ function ShoppingCartPage() {
                           </div>
                         </div>
                         <div className="price-how-many-is-left">
-                          <div>${item.Product.price}</div>
+                          <div>${item.Product.price} Each</div>
+                          <div>Quantity:</div>
+                          <input type="number" className="quantity-input" name="quantity" min="1" defaultValue="1"/>
                         </div>
                       </div>
                     </div>
@@ -90,9 +95,8 @@ function ShoppingCartPage() {
                   <div className="remove-save">
                     <DeleteCartIem
                       cartItemId={item.Product.id}
-                      className="remove-save-button"
                     />
-                    <div className="remove-save-button">Save for Later</div>
+                    <div id="remove-save-button" className='PID-favFullButt PID-P-button PID-Transp-butt'>Save for Later</div>
                   </div>
 
                   <div className="note-and-delivery">
@@ -126,10 +130,13 @@ function ShoppingCartPage() {
           </div>
 
           <div className="checkout-button-container">
-            <button>Proceed To Checkout</button>
+            <div>
+              <ProceedToCheckout />
+            </div>
           </div>
         </div>
       </div>
+      <Footer2/>
     </>
   );
 }

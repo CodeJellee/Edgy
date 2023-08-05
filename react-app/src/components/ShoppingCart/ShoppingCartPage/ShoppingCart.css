@@ -3,8 +3,8 @@
 }
 
 .products-and-checkout-container {
-    display: grid;
-    grid-template-columns: 3fr, 1fr;
+    display: flex
+
 }
 
 .sellerId-container{
@@ -19,11 +19,12 @@
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 80px;
+    width: fit-content;
 }
 
 
 .each-cart-item-container{
-    height: 480px;
+    height: 550px;
     width: 600px;
     border: 1px solid #52057B;;
     border-radius: 5px;
@@ -38,7 +39,7 @@
 }
 
 .cart-product-image {
-    height: 180px;
+    height: 220px;
     width: 180px;
     border-radius: 5px;
 }
@@ -74,23 +75,29 @@
 
 }
 
+
+.quantity-input{
+    width:35px;
+}
+
 .remove-save{
     display:flex;
     flex-direction: column;
     width:100px;
     height: 50px;
-    row-gap: 30px;
     text-decoration: none;
     font-size: 13px;
+    padding-top: 30px;
 
     padding-left: 50px;
     text-align: center;
 
 }
 
-.remove-save-button {
+#remove-save-button {
     width: 100px;
     height:80px;
+    font-size: 13px;
 }
 
 .remove-save-button:hover {
@@ -103,7 +110,7 @@
 .note-and-delivery{
     display: flex;
     justify-content: space-between;
-    padding-top: 50px;
+    padding-top: 70px;
     padding-left: 20px;
     padding-right: 20px;
 
@@ -139,3 +146,16 @@
 .coupon:hover {
     cursor: pointer; /* Change the pointer to a hand cursor */
 }
+
+
+.checkout-button-container{
+    width: 100%;
+    text-align: center;
+    padding-top: 30%;
+    position: fixed;
+    left: 350px;
+    bottom: 350px;
+}
+
+
+/* actual proceed to checkout button css taken from product page */
