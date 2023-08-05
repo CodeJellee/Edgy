@@ -23,10 +23,10 @@ const deleteShoppingCartAction = (productId) => {
   };
 };
 
-const postItemInCartAction = (product) => {
+const postItemInCartAction = (res) => {
   return {
     type: POST_ITEM_IN_CART,
-    product,
+    res,
   };
 };
 
@@ -48,7 +48,7 @@ export const thunkGetShoppingCart = () => async (dispatch) => {
     },
   });
   current_cart = await current_cart.json();
-  // console.log("THIS IS CURRENT CART THUNK", current_cart)
+  //console.log("THIS IS CURRENT CART THUNK", current_cart)
   dispatch(getShoppingCartAction(current_cart));
   return current_cart;
 };
@@ -63,9 +63,32 @@ export const thunkDeleteCartItem = (productId) => async (dispatch) => {
   return product;
 };
 
+
+//ORIGINAL BELOW
+// export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
+//   console.log("WHAT IS THIS IN thunkPOSTCartItem", productId)
+//   let product = await fetch(`/api/products/${productId}/add_to_cart`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       productId,
+//       userId,
+//     }),
+//     // console.log('THIS IS PRODUCT', product)
+//   });
+//   product = await product.json();
+//   console.log('WHAT IS PRODUCT THAT WE ARE RETURNING FROM THUNK', product)
+//   await dispatch(postItemInCartAction(product));
+//   // await dispatch(thunkGetShoppingCart());
+//   return product;
+// };
+
+//TRY 2 BELOW
 export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
   console.log("WHAT IS THIS IN thunkPOSTCartItem", productId)
-  let product = await fetch(`/api/products/${productId}/add_to_cart`, {
+  let res = await fetch(`/api/products/${productId}/add_to_cart`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -76,12 +99,13 @@ export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
     }),
     // console.log('THIS IS PRODUCT', product)
   });
-  product = await product.json();
-  console.log('WHAT IS PRODUCT THAT WE ARE RETURNING FROM THUNK', product)
-  await dispatch(postItemInCartAction(product));
+  res = await res.json();
+  console.log('WHAT IS PRODUCT THAT WE ARE RETURNING FROM THUNK', res)
+  dispatch(postItemInCartAction(res));
   // await dispatch(thunkGetShoppingCart());
-  return product;
+  return res;
 };
+
 
 //*  ======================= end of thunks ===================//
 
@@ -94,25 +118,37 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_SHOPPING_CART: {
       newState = { ...state };
+      newState.userCart = {};
 
       action.cart.Shopping_Cart.forEach(
         (product) => (newState.userCart[product.productId] = { ...product })
       );
       return newState;
     }
+    // THIS IS THE ORIGINAL BELOW:
+    // case POST_ITEM_IN_CART: {
+    //   newState = { ...state };
+
+    //   // console.log("this is payload", action.product); // Payload
+
+    //   const productPayload = action.product;
+
+    //   // newState.userCart[product.id] = Product: {product}, id, productId, userId}
+    //   newState.userCart[productPayload.CartItem.productId] = {
+    //     Product: productPayload.Product,
+    //     ...productPayload.CartItem,
+    //   }; // payload: cartId, productId, userId
+
+    //   return newState;
+    // }
+
+    //BELOW IS THE SECOND TRY
     case POST_ITEM_IN_CART: {
       newState = { ...state };
-
-      // console.log("this is payload", action.product); // Payload
-
-      const productPayload = action.product;
-
-      // newState.userCart[product.id] = Product: {product}, id, productId, userId}
-      newState.userCart[productPayload.CartItem.productId] = {
-        Product: productPayload.Product,
-        ...productPayload.CartItem,
-      }; // payload: cartId, productId, userId
-
+      // console.log('REDUCER NEWSTATE', newState)
+      const productPayLoad = action.res
+      // console.log('PRODUCTPAYLOAD = action.res IN REDUCER', productPayLoad)
+      newState.userCart[productPayLoad.Product.id] = {"Product": productPayLoad.Product, ...productPayLoad.CartItem }
       return newState;
     }
     case DELETE_CART_ITEM: {

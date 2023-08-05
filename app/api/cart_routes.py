@@ -1,6 +1,9 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import CartItem, Product, User, db
+from app.models.user import User
+from app.models.products import Product
+from app.models.products import CartItem
+from app.models.db import db
 from sqlalchemy import insert
 from pprint import pprint
 

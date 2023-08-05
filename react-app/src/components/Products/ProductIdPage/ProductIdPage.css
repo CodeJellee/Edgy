@@ -38,10 +38,11 @@
 }
 
 .PID-main-image {
-    width: 86%;
+    width: 80%;
     height: 90%;
     border-radius: 15px;
-    padding-right: 20px
+    margin-right: 30px;
+    margin-left: 15px
     /* object-fit: contain; */
 }
 

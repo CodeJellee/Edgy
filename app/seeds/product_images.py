@@ -5,24 +5,24 @@ from sqlalchemy.sql import text
 def seed_product_images(products):
     product_images = [
         {
-            "id": 1,
+            # "id": 1,
             "productId": 1,
-            "product_imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Yellow_theme.svg/1280px-Desktop_computer_clipart_-_Yellow_theme.svg.png"
+            "product_imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Yellow_theme.svg/1280px-Desktop_computer_clipart_-_Yellow_theme.svg.png",
         },
         {
-            "id": 2,
+            # "id": 2,
             "productId": 2,
-            "product_imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/M2_Macbook_Air_Starlight_model.jpg/1024px-M2_Macbook_Air_Starlight_model.jpg"
+            "product_imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/M2_Macbook_Air_Starlight_model.jpg/1024px-M2_Macbook_Air_Starlight_model.jpg",
         },
         {
-            "id": 3,
+            # "id": 3,
             "productId": 3,
-            "product_imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Logitech-usb-speakers.jpg/1024px-Logitech-usb-speakers.jpg"
+            "product_imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Logitech-usb-speakers.jpg/1024px-Logitech-usb-speakers.jpg",
         },
         {
-            "id": 4,
+            # "id": 4,
             "productId": 4,
-            "product_imageURL": "https://upload.wikimedia.org/wikipedia/commons/3/36/Large_bonfire.jpg"
+            "product_imageURL": "https://upload.wikimedia.org/wikipedia/commons/3/36/Large_bonfire.jpg",
         },
     ]
 

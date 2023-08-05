@@ -6,55 +6,55 @@ from sqlalchemy.sql import text
 def seed_cart_items(users, products):
     cart_items = [
         {
-            "id": 1,
+            # "id": 1,
             "productId": 1,
             "userId": 4,
         },
         {
-            "id": 2,
+            # "id": 2,
             "productId": 2,
             "userId": 4,
         },
         {
-            "id": 3,
+            # "id": 3,
             "productId": 3,
             "userId": 5,
         },
         {
-            "id": 4,
+            # "id": 4,
             "productId": 4,
             "userId": 5,
         },
         {
-            "id": 5,
+            # "id": 5,
             "productId": 1,
             "userId": 7,
         },
         {
-            "id": 6,
+            # "id": 6,
             "productId": 2,
             "userId": 7,
         },
         {
-            "id": 7,
+            # "id": 7,
             "productId": 3,
             "userId": 6,
         },
         {
-            "id": 8,
+            # "id": 8,
             "productId": 4,
             "userId": 6,
         },
         {
-            "id": 9,
+            # "id": 9,
             "productId": 1,
             "userId": 6,
         },
         {
-            "id": 10,
+            # "id": 10,
             "productId": 2,
             "userId": 5,
-        }
+        },
     ]
 
     for item in cart_items:

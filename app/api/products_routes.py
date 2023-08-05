@@ -166,22 +166,34 @@ def get_reviews(id):
 @products_routes.route("/<int:id>/reviews", methods=["POST"])
 @login_required
 def create_review(id):
-    product = Product.query.get(id)
-    if not product:
-        return {"message": "Product couldn't be found"}
-    form = NewReview()
+    try:
+        form = NewReview()
+        product = Product.query.get(id)
+        if not product:
+            return {"message": "Product couldn't be found"}
 
-    # ! changed this to have wtf forms validations, was working before without it and have front end validations so not suer needed if breaking live site
+        # ! changed this to have wtf forms validations, was working before without it and have front end validations so not suer needed if breaking live site
 
-    new_review = Review(
-        stars=form.data["stars"],
-        review=form.data["review"],
-        userId=current_user.to_dict()["id"],
-        productId=id,
-    )
-    db.session.add(new_review)
-    db.session.commit()
-    return new_review.to_dict()
+        form["csrf_token"].data = request.cookies["csrf_token"]
+        if form.validate_on_submit():
+            new_review = Review(
+                stars=form.data["stars"],
+                review=form.data["review"],
+                userId=current_user.to_dict()["id"],
+                productId=id,
+            )
+
+            db.session.add(new_review)
+            db.session.commit()
+
+            return new_review.to_dict()
+    except Exception as e:
+        error_message = str(e)
+        traceback_str = traceback.format_exc()
+        print("THIS IS THE FORM ERRORS", form.errors)
+        print("Error:", error_message)
+        print("Traceback:", traceback_str)
+        return jsonify(error=error_message, traceback=traceback_str), 500
 
 
 # POST - Favorite a Product
