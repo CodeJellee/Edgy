@@ -88,6 +88,7 @@
     flex-basis: 49%;
     justify-content: flex-end;
     align-items: center;
+    gap: 10px
 }
 
 .fa-magnifying-glass {
@@ -140,6 +141,7 @@
     margin-top: 8px;
     margin-right: 8px;
 }
+
 
 .popP > div > #favorite-icon__container {
     width: 10.2%;

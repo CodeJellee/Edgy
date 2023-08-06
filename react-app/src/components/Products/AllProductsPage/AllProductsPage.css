@@ -18,7 +18,7 @@
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
     gap: 20px;
-    width: 70%;
+    width: 80%;
 }
 
 .userProduct {
@@ -67,7 +67,7 @@
 }
 
 .sortingProducts {
-    width: 21%;
+    width: 20%;
 }
 
 .product-p {

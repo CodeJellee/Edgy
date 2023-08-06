@@ -8,6 +8,7 @@ import * as favoriteActions from "../../store/favorites"
 import "../Categories/Categories.css"
 import "../FavoritesPage/FavoritesPage.css"
 import FavoriteButton from "../FavoritesPage/FavoritesButton";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 
 
@@ -24,9 +25,10 @@ function EditorsPickCard() {
   const [itemState, setItemState ] = useState(false)
 
 
+
   // useEffect(() => {
-  //   dispatch(productActions.thunkGetAllProducts());
-  // }, [dispatch]);
+  //  // window.location.reload()
+  // }, []);
 
 const handleFavoriteClick = (productId) => {
     dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
@@ -68,8 +70,8 @@ const handleUnfavoriteClick = (productId) => {
             />
             </div>
             <img
-            onClick={((e) => history.push(`/products/${eachProduct[0]?.id}`))}
-            src={eachProduct[0]?.preview_imageURL}
+              onClick={((e) => history.push(`/products/${eachProduct[0]?.id}#TopOfPage`))}
+              src={eachProduct[0]?.preview_imageURL}
               alt="meaningful text"
             ></img>
           </div>
@@ -86,7 +88,9 @@ const handleUnfavoriteClick = (productId) => {
             />
             </div>
             <img
-            onClick={((e) => history.push(`/products/${eachProduct[1]?.id}`))}
+            onClick={((e) => {
+              e.preventDefault()
+              history.push(`/products/${eachProduct[1]?.id}`)})}
             src={eachProduct[1]?.preview_imageURL}
               alt="meaningful text"
             ></img>

@@ -1,10 +1,8 @@
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import * as reviewsActions from "../../../store/reviews";
 import * as productsActions from "../../../store/products";
 import * as favoriteActions from "../../../store/favorites"
-
 import { useSelector, useDispatch } from "react-redux";
 import ReviewForm from "../../Reviews/ReviewForm";
 import ReviewCard from "../../Reviews/ReviewCard";
@@ -16,17 +14,22 @@ import FavoriteButton from "../../FavoritesPage/FavoritesButton";
 
 function ProductIdPage() {
     const { id } = useParams();
-    // useHistory
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const product = useSelector(state => state.products.singleProduct)
     const [mainImage, setMainImage] = useState()
-    const [itemState, setItemState] = useState(false)
-    const [deletedReview, setDeletedReview] = useState(false)
-    const [productExist, setProductExist] = useState(false)
+    const [itemState, setItemState ] = useState(false)
+    const [ deletedReview, setDeletedReview ] = useState(false)
+    let userFavorites = useSelector((state) =>
+    Object.values(state.favorites.userFavorites)
+    );
+    useEffect(() => {
+            window.scrollTo(0, 0); // Scrolls to the top instantly when the page loads
+    }, []);
 
-    const history = useHistory()
+    if (userFavorites.filter(favs => favs.id === id).length) setItemState(true)
 
+    console.log(userFavorites)
     // if deletedReview is changed to true, cause form to be rendered
 
     const handleFavoriteClick = (productId) => {
@@ -104,7 +107,6 @@ function ProductIdPage() {
 
     if (user?.id) {
         if (Object.values(user).length > 0) {
-            // console.log("user check:", user)
             noUserReviewExist = reviews.every(review => review.userId !== user.id)
             notSeller = user.id !== product.Seller.id
         }
@@ -123,8 +125,7 @@ function ProductIdPage() {
 
     return (
         <>
-            {/* product info */}
-            <div className="column-holder">
+            <div id="TopOfPage" className="column-holder">
                 <div className="column">
                     <div className='PID-product'>
                         <div className='PID-all-Images'>
