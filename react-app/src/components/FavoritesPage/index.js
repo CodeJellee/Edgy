@@ -70,6 +70,7 @@ function FavoritesPage() {
       {/* Can be one component for user-search-bar */}
 
       {userFavorites.length || !userFavorites.length && searching ? <div id="user-search-favorites__container">
+
         <div id="user-favorites__count">
           Favorite items <span id="numberFavs">{userFavorites.length} items</span>
         </div>

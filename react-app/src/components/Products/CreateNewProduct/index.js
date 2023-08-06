@@ -36,6 +36,18 @@ const NewProductForm = () => {
       errorsObject.price = "Price is required.";
     }
 
+    if (price.length > 9) {
+      errorsObject.price = "Price is not reasonable or too large";
+    }
+
+    if (isNaN(Number(price)) || isNaN(price)) {
+      errorsObject.price = "Please enter a valid integer price.";
+    }
+
+    if (!price.includes(".") || price.split('.')[1].length !== 2) {
+      errorsObject.price = "Price needs to have 2 decimal places.";
+    }
+
     if (category === "") {
       errorsObject.category = "Category is required.";
     }
@@ -48,8 +60,20 @@ const NewProductForm = () => {
       errorsObject.description = "Description needs 5 or more characters.";
     }
 
+    if (description.length > 255) {
+      errorsObject.description = "Description needs 255 or less characters.";
+    }
+
     if (quantity === "") {
-      errorsObject.quantity = "Quantity name is required.";
+      errorsObject.quantity = "Quantity is required.";
+    }
+
+    if (quantity > 50) {
+      errorsObject.quantity = "You can only sell up to 50 items at once.";
+    }
+
+    if (isNaN(Number(quantity)) || isNaN(quantity)) {
+      errorsObject.quantity = "Quantity needs to be an integer.";
     }
 
     if (previewImageURL === "") {
@@ -70,12 +94,28 @@ const NewProductForm = () => {
     // console.log("Create Component - Err Obj onSubmit", errorsObject);
     if (Object.values(errorsObject).length > 0) return setErrors(errorsObject); // if there are any errors, stop here and return the errors
 
+    // console.log("what is price", price)
+    // console.log("what is type", typeof(price))
+
+    // if (!price.includes(".")){
+    //   console.log('BEFORE SETPRICE', price)
+    //   setPrice(`${price}.00`);
+    // }
+
+    // if (price.includes(".") && price.split('.')[1].length === 1){
+    //   console.log('BEFORE SETPRICE', price)
+    //   setPrice(`${price}0`);
+    //   console.log('AFTER SET PRICE', price)
+    // }
+
+    console.log('what is price here', price)
+
     let payload = {
       item_name: itemName,
-      price: price,
+      price: Number(price),
       category: category,
       description: description,
-      quantity: quantity,
+      quantity: Number(quantity),
       preview_imageURL: previewImageURL,
       sellerId: user.id,
     };
@@ -129,7 +169,7 @@ const NewProductForm = () => {
           </div>
           $
           <input
-            type="text"
+            type="text" //double check this
             name="price"
             placeholder="Price"
             value={price}
