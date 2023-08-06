@@ -139,20 +139,6 @@ const NewProductForm = () => {
 
   return (
     <>
-<<<<<<< HEAD
-      <form className="create-new-spot-form" onSubmit={onSubmit}>
-        <Link to="/your_products">Back to products</Link>
-        <h2>Add a new Product!</h2>
-        <div className="productImages">
-
-          <div className="photoTitle">
-            <h4>Photos</h4>
-            <p>Add as many as you can so buyers can see every detail.</p>
-=======
-    <div className="headerTwo">
-    <i class="fa-solid fa-bars-progress"></i>
-    <p>Create your product</p>
-    </div>
     <div className="pageColor">
 
     <form className="create-new-spot-form" onSubmit={onSubmit}>
@@ -187,34 +173,7 @@ const NewProductForm = () => {
           <li>see all their opuons.</li>
         </ul>
         </div>
-        <div className="imgSide-2">
-        <label>
-          <div className="label-and-error-info">
->>>>>>> products_routes
-          </div>
-          <div className="addPhotos">
-            <div className="imgSide-1">
-              <h4>Photos*</h4>
-              <p>
-                Please add at least one photo to
-                show your item's most
-                important qualities.
-              </p>
-              <h4>Tips:</h4>
-              <ul>
-                <li>Use natural light and no</li>
-                <li>flash.</li>
-                <li>Include a common object</li>
-                <li>for scale.</li>
-                <li>Show the item being</li>
-                <li>held. worn, or used.</li>
-                <li>Shoot against a clean,</li>
-                <li>simple background.</li>
-                <li>Add photos to your</li>
-                <li>variations so buyers can</li>
-                <li>see all their opuons.</li>
-              </ul>
-            </div>
+        {/* <div className="imgSide-2"> */}
             <div className="imgSide-2">
               <label>
                 <div className="label-and-error-info">
@@ -230,8 +189,7 @@ const NewProductForm = () => {
                   onChange={(e) => setPreviewImageURL(e.target.value)}
                 />
               </label>
-              {/* !!! if we want these, we need to implement it in the route, also have a hoot for each value,  they can not all be previewImageURL */}
-              {/* <label>
+              <label>
           <input
             type="text"
             placeholder="Preview Image URL"
@@ -280,31 +238,9 @@ const NewProductForm = () => {
             placeholder="Preview Image URL"
             value={previewImageURL}
           />
-<<<<<<< HEAD
-        </label> */}
+        </label>
             </div>
-          </div>
-          <div>
-          </div>
         </div>
-        <div className="productDetails">
-
-          <div className="productTitle">
-            <p>Product Details</p>
-            <p>Tell the world all about your item and why they'll love it</p>
-          </div>
-          <div className="pDetails">
-
-            <div className="productSide-1">
-=======
-        </label>
-        {submitted && errors.previewImageURL && (
-              <div className="errors">{errors.previewImageURL}</div>
-            )}
-        </div>
-        </div>
-      <div>
-      </div>
       </div>
       <div className="productDetails">
 
@@ -317,7 +253,6 @@ const NewProductForm = () => {
       <div className="productSide-1">
         <div id="pS-1">
 
->>>>>>> products_routes
               <h4>Title*</h4>
               <p>
                 Include keywords that
@@ -345,138 +280,17 @@ const NewProductForm = () => {
         </div>
         <div className="pS-4">
               <h4>Description*</h4>
-<<<<<<< HEAD
-              <p>Start with a brief overview
-=======
              <p>Start with a brief overview
->>>>>>> products_routes
                 that describes your item's
                 finest features. Shoppers will
                 only see the first few lines of
                 your description at first, so
-<<<<<<< HEAD
                 make it count
                 Not sure what else to say?
                 Shoppers also like hearing
                 about your process, and the
                 story behind this item.</p>
             </div>
-            <div className="productSide-2">
-              <label>
-                <div className="label-and-error-info">
-                  Item Name
-                  {submitted && vaErrors.itemName && (
-                    <div className="errors">{vaErrors.itemName}</div>
-                  )}
-                </div>
-                <input
-                  type="text"
-                  name="itemName"
-                  placeholder="Item Name"
-                  value={itemName}
-                  onChange={(e) => setItemName(e.target.value)}
-                />
-              </label>
-              <div className="productAbout">
-
-                <div >
-                  <label>
-                    <div className="label-and-error-info">
-                      Price
-                      {submitted && vaErrors.price && (
-                        <div className="errors">{vaErrors.price}</div>
-                      )}
-                    </div>
-                    <input
-                      type="text" //double check this
-                      name="price"
-                      placeholder="$"
-                      value={price}
-                      onChange={(e) => setPrice(e.target.value)}
-                    />
-                  </label>
-                </div>
-                <div>
-                  <label>
-                    <div className="label-and-error-info">
-                      Quantity
-                      {submitted && vaErrors.quantity && (
-                        <div className="errors">{vaErrors.quantity}</div>
-                      )}
-                    </div>
-                    <input
-                      type="number"
-                      name="quantity"
-                      placeholder="Quantity"
-                      value={quantity}
-                      onChange={(e) => setQuantity(e.target.value)}
-                    />
-                  </label>
-                </div>
-              </div>
-
-
-              <div>
-                <label>
-                  <div className="label-and-error-info">
-                    Category
-                    {submitted && vaErrors.category && (
-                      <div className="errors">{vaErrors.category}</div>
-                    )}
-                  </div>
-                  <select
-                    className="sel"
-                    name="category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  >
-                    <option value="">Select Category</option>
-                    <option value="Clothing">Clothing</option>
-                    <option value="Home Decor">Home Decor</option>
-                    <option value="Accessories">Accessories</option>
-                    <option value="Computer">Computer</option>
-                    <option value="Waifu Body Pillows">Waifu Body Pillows</option>
-                    <option value="Books">Books</option>
-                    <option value="Music">Music</option>
-                    <option value="Figurines">Figurines</option>
-                  </select>
-                </label>
-              </div>
-
-              <div>
-                <label>
-                  <div className="label-and-error-info">
-                    Description
-                    {submitted && vaErrors.description && (
-                      <div className="errors">{vaErrors.description}</div>
-                    )}
-                  </div>
-                  <textarea
-                    className="ta"
-                    type="text"
-                    name="description"
-                    placeholder="Description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
-                </label>
-              </div>
-
-              <div className="subForm">
-                <button type="submit">Create Product</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-      <FooterTwo />
-=======
-                make it countl
-                Not sure what else to say?
-                Shoppers also like hearing
-                about vour process, and the
-                story behind this item.</p>
-        </div>
       </div>
           <div className="productSide-2">
         <label id="pS-1">
@@ -490,8 +304,8 @@ const NewProductForm = () => {
             value={itemName}
             onChange={(e) => setItemName(e.target.value)}
             />
-            {submitted && errors.itemName && (
-              <div className="errors">{errors.itemName}</div>
+            {submitted && vaErrors.itemName && (
+              <div className="errors">{vaErrors.itemName}</div>
             )}
         </label>
         <div id="pS-2" className="productAbout">
@@ -508,8 +322,8 @@ const NewProductForm = () => {
             onChange={(e) => setPrice(e.target.value)}
             />
         </label>
-            {submitted && errors.price && (
-              <div className="errors">{errors.price}</div>
+            {submitted && vaErrors.price && (
+              <div className="errors">{vaErrors.price}</div>
             )}
       </div>
       <div>
@@ -525,8 +339,8 @@ const NewProductForm = () => {
             onChange={(e) => setQuantity(e.target.value)}
             />
         </label>
-            {submitted && errors.quantity && (
-              <div className="errors">{errors.quantity}</div>
+            {submitted && vaErrors.quantity && (
+              <div className="errors">{vaErrors.quantity}</div>
             )}
       </div>
         </div>
@@ -553,8 +367,8 @@ const NewProductForm = () => {
             <option value="Music">Music</option>
             <option value="Figurines">Figurines</option>
           </select>
-            {submitted && errors.category && (
-              <div className="errors">{errors.category}</div>
+            {submitted && vaErrors.category && (
+              <div className="errors">{vaErrors.category}</div>
             )}
         </label>
       </div>
@@ -572,8 +386,8 @@ const NewProductForm = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           />
-          {submitted && errors.description && (
-            <div className="errors">{errors.description}</div>
+          {submitted && vaErrors.description && (
+            <div className="errors">{vaErrors.description}</div>
           )}
         </label>
       </div>
@@ -581,7 +395,6 @@ const NewProductForm = () => {
           </div>
       </div>
       </div>
-
     </form>
     <div className="footerFour">
       <div className="subForm">
@@ -590,7 +403,6 @@ const NewProductForm = () => {
         </div>
     </div>
 
->>>>>>> products_routes
     </>
   );
 };
