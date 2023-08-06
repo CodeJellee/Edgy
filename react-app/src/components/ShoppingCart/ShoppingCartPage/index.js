@@ -17,10 +17,16 @@ function ShoppingCartPage() {
   const userCart = useSelector((state) =>
     Object.values(state.shoppingCart.userCart)
   );
-  console.log(userCart)
+  // console.log(userCart)
   // console.log("THIS IS USERCART", userCart);
   //had to insert Object.values to const userCart because item was not rendering properly, bc of that no need to Object.values in the return at the bottom/html section for userCart
   //wasn't working with Object.values and chaining it with .map
+
+
+  const comingSoonFeature = (e) => {
+    e.preventDefault();
+    alert("Feature coming soon!");
+}
 
   const itemLength = userCart.length;
   // console.log("length of cart here", itemLength);
@@ -196,7 +202,7 @@ function ShoppingCartPage() {
                     <DeleteCartIem
                       cartItemId={item.Product.id}
                     />
-                    <div id="remove-save-button" className='PID-favFullButt PID-P-button PID-Transp-butt'>Save for Later</div>
+                    <div id="remove-save-button" className='PID-favFullButt PID-P-button PID-Transp-butt' onClick={comingSoonFeature}>Save for Later</div>
                   </div>
 
                   <div className="note-and-delivery">
