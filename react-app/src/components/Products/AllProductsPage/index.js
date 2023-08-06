@@ -45,6 +45,8 @@ function AllProductsPage() {
             </div>
         </div>
         <div className="border"> </div>
+        <div className="pageColor">
+
         <div className="productPage">
 
         <div className="userProducts">
@@ -85,7 +87,26 @@ function AllProductsPage() {
         </select>
         </div>
         </div>
-        <FooterTwo />
+        <div className="footerThree-1">
+        <div className="foot1">
+        <img src="https://m.media-amazon.com/images/I/51froJYdRmL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="meaningful text"></img>
+        <p>United States</p>
+        <p>|</p>
+        <p>English (US)</p>
+        <p>|</p>
+        <p>$ (USD)</p>
+        </div>
+        <div className="foot2">
+        <p >© 2023 Edgy, Inc.</p>
+        <p className="line">Terms of use</p>
+        <p className="line">Privacy</p>
+        <p className="line">Interest-based ads</p>
+        <p className="line">Local Shops</p>
+        <p className="line">Regions</p>
+        </div>
+        </div>
+
+        </div>
         </>
 
     )

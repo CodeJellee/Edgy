@@ -17,8 +17,17 @@ function ShoppingCartPage() {
   const userCart = useSelector((state) =>
     Object.values(state.shoppingCart.userCart)
   );
+<<<<<<< HEAD
   console.log("this is sessionUser", sessionUser);
   // console.log(userCart)
+=======
+  console.log(userCart)
+  const paymentMethods = [
+    'https://icons.veryicon.com/png/o/business/third-party-sharing-payment/apple-pay.png' ,
+     'https://icon-library.com/images/visa-master-icon/visa-master-icon-6.jpg' ,
+  'https://www.freeiconspng.com/uploads/paypal-icon-8.png'
+];
+>>>>>>> products_routes
   // console.log("THIS IS USERCART", userCart);
   //had to insert Object.values to const userCart because item was not rendering properly, bc of that no need to Object.values in the return at the bottom/html section for userCart
   //wasn't working with Object.values and chaining it with .map
@@ -146,6 +155,7 @@ function ShoppingCartPage() {
     // </>
 
     <>
+<<<<<<< HEAD
       <div className="primary-cart-container">
         {userCart?.length === 0 || !userCart ? (
           <h1 className="empty-cart-message">
@@ -167,6 +177,46 @@ function ShoppingCartPage() {
                       </div>
                       <div>
                         <div className="image-title-price-container">
+=======
+    <div className="primary-cart-container">
+      {userCart?.length === 0 || !userCart ? (
+        <h1 className="empty-cart-message">Your cart is empty! Time to go shopping!</h1>
+      ) : (
+        <>
+          <h1 id="numItems">{itemLength} items in your cart</h1>
+          <div className="products-and-checkout-container">
+            <div className="products-only-container">
+              {userCart?.map((item) => (
+                <>
+                {/* {console.log(item)} */}
+                <div className="each-cart-item-container">
+                  <div>
+                    <div className="sellerId-container">
+                      Purchasing from Seller {item.Product.sellerId}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="image-title-price-container">
+                      <div
+                        to={`/products/${item.Product.id}`}
+                        className="preview-image"
+                      >
+                        <img
+                          className="cart-product-image"
+                          src={item.Product.preview_imageURL}
+                          alt={item.Product.item_name}
+                        />
+                  <div className="remove-save">
+                    <DeleteCartIem
+                      cartItemId={item.Product.id}
+                    />
+                    <div id="remove-save-button" >Save for Later</div>
+                  </div>
+                      </div>
+
+                      <div className="name-blurb-cost-quantity">
+                        <div className="name-description">
+>>>>>>> products_routes
                           <NavLink
                             to={`/products/${item.Product.id}`}
                             className="preview-image"
@@ -177,6 +227,7 @@ function ShoppingCartPage() {
                               alt={item.Product.item_name}
                             />
                           </NavLink>
+<<<<<<< HEAD
 
                           <div className="name-blurb-cost-quantity">
                             <div className="name-description">
@@ -242,8 +293,42 @@ function ShoppingCartPage() {
                           </div>
                         </div>
                         <div className="coupon">Apply shop coupon codes</div>
+=======
+                          <div className="item-description">
+                            <p id="pDes">{item.Product.description}</p>
+                          <div>Quantity:</div>
+                          <input type="number" className="quantity-input" name="quantity" min="1" defaultValue="1"/>
+                          </div>
+                        </div>
+                        <div className="price-how-many-is-left">
+                          <div>${item.Product.price} Each</div>
+                        </div>
                       </div>
                     </div>
+                  </div>
+
+                  {/* <div className="remove-save">
+                    <DeleteCartIem
+                      cartItemId={item.Product.id}
+                    />
+                    <div id="remove-save-button" >Save for Later</div>
+                  </div> */}
+
+                  <div id="secHalf">
+                  <div className="note-and-delivery">
+                    <div className="add-note">+ Add a note to Seller
+                      <div className="gift-toggle">
+                        <div id="gift">
+                        <input type="checkbox" class="toggle-input" />
+                        <div>This order is a gift</div>
+                        </div>
+                      <div className="gift-order-blurb">
+                        Prices will not be shown on the packing slip
+>>>>>>> products_routes
+                      </div>
+                      </div>
+                    </div>
+<<<<<<< HEAD
                   </>
                 ))}
               </div>
@@ -257,6 +342,83 @@ function ShoppingCartPage() {
         )}
       </div>
       <Footer2 />
+=======
+                    </div>
+                    <div className="delivery-container">
+                      <div className="est-delivery">Estimated Delivery</div>
+                      <div className="coupon">Apply shop coupon codes</div>
+                    </div>
+                  </div>
+                  </div>
+
+                  <div className="gift-coupon">
+                    <div>
+                  </div>
+                </div>
+              </>
+              ))}
+            </div>
+            <div className="checkout-button-container">
+              <div id="payMe">
+            <h2>How you'll pay</h2>
+            <div>
+            <div className="payment-method">
+                {paymentMethods.map((image, index) => (
+                  <div>
+                   <input type="checkbox"></input>
+                   <img id={`imgCard${index}`} src={image} alt={`Payment Method ${index + 1}`} />
+                  </div>
+                ))}
+        </div>
+        </div>
+              </div>
+                      <div id="total">
+                        <p>Total:</p>
+                        {userCart?.reduce((total, c) => total + c.Product.price, 0).toFixed(2)}
+                        </div>
+                        <div id="ship">
+                      <p>Shipping:</p>
+                      <select name="delivery-drop-down">
+                        <option value="Shipping Method">Shipping Method</option>
+                        <option value="Free Shipping">FREE SHIPPING</option>
+                        <option value="Next Day">Next Day</option>
+                        <option value="2-3 Day">2-3 Day</option>
+                      </select>
+                        </div>
+              <div className="checkingOut">
+                <ProceedToCheckout />
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+    <p id="footT">Edgy offsets carbon emissions from every delivery</p>
+    <div className="border"></div>
+    <div id="cartF">
+
+    <div className="footer1">
+        <div className="foot1">
+        <img src="https://m.media-amazon.com/images/I/51froJYdRmL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="meaningful text"></img>
+        <p>United States</p>
+        <p>|</p>
+        <p>English (US)</p>
+        <p>|</p>
+        <p>$ (USD)</p>
+        </div>
+        <div className="foot2">
+        <p >© 2023 Edgy, Inc.</p>
+        <p className="line">Terms of use</p>
+        <p className="line">Privacy</p>
+        <p className="line">Interest-based ads</p>
+        <p className="line">Local Shops</p>
+        <p className="line">Regions</p>
+        </div>
+    </div>
+    <p id="foot2">Merchant is Edgy, Inc. (USA), Edgy Ireland UC (Ireland), or Edgy UK Limited (United Kingdom) depending on the currency and location of the payment instrument issuance. See Edgy Payments Policy.</p>
+    </div>
+
+>>>>>>> products_routes
     </>
   );
 }

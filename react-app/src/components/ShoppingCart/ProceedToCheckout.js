@@ -18,7 +18,7 @@ function ProceedToCheckout() {
 
   return (
     <>
-      <div className='PID-favFullButt PID-P-button PID-Transp-butt'onClick={onClick}>
+      <div className='PID-cartButt'onClick={onClick}>
         Proceed To Checkout
       </div>
       {checkoutMessage && <p>{checkoutMessage}</p>}
@@ -27,6 +27,3 @@ function ProceedToCheckout() {
 }
 
 export default ProceedToCheckout;
-
-
-
