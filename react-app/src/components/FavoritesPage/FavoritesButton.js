@@ -1,26 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import * as favoriteActions from '../../store/favorites'
 
 function FavoriteButton({ productId, handleUnfavoriteClick, handleFavoriteClick, initialState}) {
   const [solid, setSolid] = useState(initialState);
+  const dispatch = useDispatch
   const currentUser = useSelector(state => state.session.user)
-  const product = useSelector(state => state.products.singleProduct)
+  let userFavorites = useSelector((state) =>
+    Object.values(state.favorites.userFavorites)
+  );
+  const { userProducts } = useSelector((state) => state.products);
 
-  //   console.log("this is solid value", solid);
-  //   console.log("this is the product id", productId);
+  let seller = Object.values(userProducts)
 
   const handleFavorite = (productId) => {
-    console.log("WHAT IS CURRENT USER", currentUser, currentUser.id)
-    console.log('WHAT IS PRODUCTID', productId)
 
-    if(currentUser.id === product.sellerId){
-      alert("Cannot like your own product!")
+    for (let favs of userFavorites) {
+      if (favs.id === productId) setSolid(true)
+    }
+
+    if (!currentUser) {
+      alert("Need to be logged in to favorite!")
       return;
     }
 
-    if(!currentUser.id){
-      alert("Need to be logged in to favorite!")
-      return;
+    for (let s of seller) {
+      if (s.id == productId) {
+        alert("Cannot like your own product!")
+        return;
+      }
+
     }
 
     if (solid === false) {
@@ -34,11 +43,10 @@ function FavoriteButton({ productId, handleUnfavoriteClick, handleFavoriteClick,
 
 
   return (
-    <div
+    <div onClick={() => handleFavorite(productId)}
     id="favorite-icon__container">
       <i
-        className={solid ? `fa-solid fa-heart` : `fa-regular fa-heart`}
-        onClick={() => handleFavorite(productId)}
+        className={solid || userFavorites.filter(favs => favs.id === productId).length ? `fa-solid fa-heart` : `fa-regular fa-heart`}
       ></i>
     </div>
 
