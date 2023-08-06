@@ -1,0 +1,132 @@
+.addPhotos {
+    display: flex;
+    width: 100%
+}
+
+.imgSide-1 {
+    width: 30%;
+}
+
+.imgSide-2 {
+    width: 68%;
+    margin-top: 16.3px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.imgSide-2 > label > input {
+    height: 30px;
+    width: 100%
+}
+
+.photoTitle {
+    line-height: 5px;
+}
+
+.productImages {
+    box-shadow: 0.2px 0.2px 2px 0.2px rgb(197, 196, 196);
+    border: 0.8px solid gray;
+    padding: 20px;
+    padding-bottom: 40px;
+
+}
+
+.create-new-spot-form {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.productDetails {
+    margin-top: 20px;
+    box-shadow: 0.2px 0.2px 2px 0.2px rgb(197, 196, 196);
+    border: 0.8px solid gray;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
+.pDetails {
+    display: flex;
+
+}
+
+
+.productSide-1 {
+    width: 30%;
+    margin-right: 20px;
+    padding-right: 40px
+}
+
+.productSide-2 {
+    width: 68%;
+    display: flex;
+    margin-top: 16.3px;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.productAbout {
+    display:flex;
+    flex-direction: row;
+}
+
+.productAbout > div {
+    width: 50%;
+}
+
+.productAbout > div > label > input {
+    width: 90%;
+    height: 20px;
+    margin-bottom: 16px;
+
+}
+
+.productSide-2 > label > input {
+    height: 35px;
+    width: 95%;
+}
+
+.ta {
+    width: 95.5%;
+    height: 165px;
+
+
+}
+
+.sel {
+    width: 96%;
+    height: 35px;
+    margin-bottom: 18px;
+
+
+}
+
+.productSide-1 > p {
+    font-size: 12px
+}
+
+.imgSide-1 > p, .photoTitle > p {
+    font-size: 12px
+}
+
+.photoTitle > h4 {
+    font-size: 24px
+}
+
+.subForm {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 27px;
+}
+
+.errors {
+    color: red
+}
+
+.subForm > button {
+    cursor: pointer;
+}
+
+
