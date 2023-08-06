@@ -18,14 +18,11 @@ function ShoppingCartPage() {
     Object.values(state.shoppingCart.userCart)
   );
   console.log(userCart)
-<<<<<<< HEAD
-=======
   const paymentMethods = [
     'https://icons.veryicon.com/png/o/business/third-party-sharing-payment/apple-pay.png' ,
      'https://icon-library.com/images/visa-master-icon/visa-master-icon-6.jpg' ,
   'https://www.freeiconspng.com/uploads/paypal-icon-8.png'
 ];
->>>>>>> products_routes
   // console.log("THIS IS USERCART", userCart);
   //had to insert Object.values to const userCart because item was not rendering properly, bc of that no need to Object.values in the return at the bottom/html section for userCart
   //wasn't working with Object.values and chaining it with .map
@@ -181,15 +178,6 @@ function ShoppingCartPage() {
 
                       <div className="name-blurb-cost-quantity">
                         <div className="name-description">
-<<<<<<< HEAD
-                          <NavLink
-                            to={`/products/${item.Product.id}`}
-                            className="items-link"
-                          >
-                            <div>{item.Product.item_name}</div>
-                          </NavLink>
-=======
->>>>>>> products_routes
                           <div className="item-description">
                             {item.Product.description}
                           </div>
@@ -211,9 +199,6 @@ function ShoppingCartPage() {
                   </div>
 
                   <div className="note-and-delivery">
-<<<<<<< HEAD
-                    <div className="add-note">+ Add a note to Seller</div>
-=======
                     <div className="add-note">+ Add a note to Seller
                       <div className="gift-toggle">
                         <div id="gift">
@@ -226,7 +211,6 @@ function ShoppingCartPage() {
                       </div>
                     </div>
                     </div>
->>>>>>> products_routes
                     <div className="delivery-container">
                       <select name="delivery-drop-down">
                         <option value="Shipping Method">Shipping Method</option>
@@ -250,8 +234,7 @@ function ShoppingCartPage() {
                     </div>
                     <div className="coupon">Apply shop coupon codes</div>
                   </div>
-                </div>
-              </>
+                </>
               ))}
             </div>
             <div className="checkout-button-container">
@@ -263,9 +246,6 @@ function ShoppingCartPage() {
         </>
       )}
     </div>
-<<<<<<< HEAD
-    <Footer2/>
-=======
     <p id="footT">Edgy offsets carbon emissions from every delivery</p>
     <div className="border"></div>
     <div id="cartF">
@@ -291,7 +271,6 @@ function ShoppingCartPage() {
     <p id="foot2">Merchant is Edgy, Inc. (USA), Edgy Ireland UC (Ireland), or Edgy UK Limited (United Kingdom) depending on the currency and location of the payment instrument issuance. See Edgy Payments Policy.</p>
     </div>
 
->>>>>>> products_routes
     </>
 
   );
