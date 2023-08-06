@@ -34,6 +34,7 @@ function AllProductsPage() {
         <div className="allProductsPage">
             <h1>Products</h1>
             <div className="allProdT">
+            <p>{searching ? `"${searching}"` : null}</p>
             <input onKeyDown={(e) => {
             if (e.key === "Enter") {
             setSearching(e.target.value);
@@ -66,17 +67,18 @@ function AllProductsPage() {
                     })}`}
                     </p>
                     <div className="deleteProduct">
-                        <button onClick={(() => setModalContent(<DeleteProductModal productId={p.id} />))}>Delete</button>
+                        <button className="delProduct"onClick={(() => setModalContent(<DeleteProductModal productId={p.id} />))}>Delete</button>
                     </div>
                 </div>
             ))}
-            {searching && !products.length ? <p>No results for "{searching}"</p> : null}
+            {searching && !products.length ? <p>None</p> : null}
             {!searching && !products.length ? <h2>No listings available</h2> : null}
         </div>
         <div className="sortingProducts">
         <button onClick={((e) => window.alert('Feature coming soon'))} className="qEdit">Quick edit</button>
         <p>Sort</p>
         <select onChange={((e) => setSorting(e.target.value))} id="productSort">
+        <option value="Id">Id</option>
         <option value="Newest">Newest - Oldest</option>
         <option value="Oldest">Oldest - Newest</option>
         <option value="Alphabetical">A - Z</option>

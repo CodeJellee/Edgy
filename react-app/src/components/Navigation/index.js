@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useHistory } from 'react-router-dom/'
+import OpenModalButton from '../OpenModalButton';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -25,11 +26,13 @@ function Navigation({ isLoaded }){
 		<i id="searchI" class="fa-solid fa-magnifying-glass"></i>
 		</div>
 		<i onClick={(e) => history.push("/favorites/current/")} class="fa-regular fa-heart"></i>
-		{isLoaded && (
+		{isLoaded ?
 				<div className="user">
 					<ProfileButton user={sessionUser} />
 				</div>
-		)}
+		:
+			null
+		}
 			<i onClick={((e) => history.push("/shopping_cart"))} class="fa-solid fa-cart-shopping"></i>
 		</div>
 

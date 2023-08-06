@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkCreateProduct } from "../../../store/products";
 import * as productActions from "../../../store/products";
+import "./CreateNewProduct.css"
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import FooterTwo from "../../Footer/index2";
 
 const NewProductForm = () => {
   const user = useSelector((state) => state.session.user);
@@ -36,6 +39,18 @@ const NewProductForm = () => {
       errorsObject.price = "Price is required.";
     }
 
+    if (price.length > 9) {
+      errorsObject.price = "Price is not reasonable or too large";
+    }
+
+    if (isNaN(Number(price)) || isNaN(price)) {
+      errorsObject.price = "Please enter a valid integer price.";
+    }
+
+    if (!price.includes(".") || price.split('.')[1].length !== 2) {
+      errorsObject.price = "Price needs to have 2 decimal places.";
+    }
+
     if (category === "") {
       errorsObject.category = "Category is required.";
     }
@@ -48,8 +63,20 @@ const NewProductForm = () => {
       errorsObject.description = "Description needs 5 or more characters.";
     }
 
+    if (description.length > 255) {
+      errorsObject.description = "Description needs 255 or less characters.";
+    }
+
     if (quantity === "") {
-      errorsObject.quantity = "Quantity name is required.";
+      errorsObject.quantity = "Quantity is required.";
+    }
+
+    if (quantity > 50) {
+      errorsObject.quantity = "You can only sell up to 50 items at once.";
+    }
+
+    if (isNaN(Number(quantity)) || isNaN(quantity)) {
+      errorsObject.quantity = "Quantity needs to be an integer.";
     }
 
     if (previewImageURL === "") {
@@ -70,35 +97,199 @@ const NewProductForm = () => {
     // console.log("Create Component - Err Obj onSubmit", errorsObject);
     if (Object.values(errorsObject).length > 0) return setErrors(errorsObject); // if there are any errors, stop here and return the errors
 
+    // console.log("what is price", price)
+    // console.log("what is type", typeof(price))
+
+    // if (!price.includes(".")){
+    //   console.log('BEFORE SETPRICE', price)
+    //   setPrice(`${price}.00`);
+    // }
+
+    // if (price.includes(".") && price.split('.')[1].length === 1){
+    //   console.log('BEFORE SETPRICE', price)
+    //   setPrice(`${price}0`);
+    //   console.log('AFTER SET PRICE', price)
+    // }
+
+    console.log('what is price here', price)
+
     let payload = {
       item_name: itemName,
-      price: price,
+      price: Number(price),
       category: category,
       description: description,
-      quantity: quantity,
+      quantity: Number(quantity),
       preview_imageURL: previewImageURL,
       sellerId: user.id,
     };
 
     let fetchResponseFromThunk = await dispatch(thunkCreateProduct(payload));
     // console.log("return from createProduct dispatch", fetchResponseFromThunk);
-    await dispatch(
-      productActions.thunkGetSingleProduct(
-        fetchResponseFromThunk.New_Product.id
-      )
-    );
+    if (fetchResponseFromThunk) {
+      await dispatch(
+        productActions.thunkGetSingleProduct(
+          fetchResponseFromThunk.New_Product.id
+        )
+      );
+      history.push(`/products/${fetchResponseFromThunk.New_Product.id}`);
+    }
     // console.log(
     // "you've made it past the create and get single product dispatches - now redirect"
     // );
-    history.push(`/products/${fetchResponseFromThunk.New_Product.id}`);
   };
 
   return (
+    <>
     <form className="create-new-spot-form" onSubmit={onSubmit}>
-      <h2>List Your Product!</h2>
+      <Link to="/your_products">Back to products</Link>
+      <h2>Add a new Product!</h2>
+      <div className="productImages">
 
+      <div className="photoTitle">
+        <h4>Photos</h4>
+        <p>Add as many as you can so buyers can see every detail.</p>
+      </div>
+        <div className="addPhotos">
+      <div className="imgSide-1">
+        <h4>Photos*</h4>
+        <p>
+        Please add atleast one photo to
+        show your item's most
+        important qualities.
+        </p>
+        <h4>Tips:</h4>
+        <ul>
+          <li>Use natural light and no</li>
+          <li>flash.</li>
+          <li>Include a common object</li>
+          <li>for scale.</li>
+          <li>Show the item being</li>
+          <li>held. worn, or used.</li>
+          <li>Shoot against a clean,</li>
+          <li>simple background.</li>
+          <li>Add photos to your</li>
+          <li>variations so buyers can</li>
+          <li>see all their opuons.</li>
+        </ul>
+        </div>
+        <div className="imgSide-2">
+        <label>
+          <div className="label-and-error-info">
+            {submitted && errors.previewImageURL && (
+              <div className="errors">{errors.previewImageURL}</div>
+            )}
+          </div>
+          <input
+            type="text"
+            name="previewImageURL"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        </div>
+        </div>
       <div>
-        <h4>What are you trying to sell?</h4>
+      </div>
+      </div>
+      <div className="productDetails">
+
+      <div className="productTitle">
+        <p>Product Details</p>
+        <p>Tell the world all about your item and why they'll love it</p>
+      </div>
+      <div className="pDetails">
+
+      <div className="productSide-1">
+              <h4>Title*</h4>
+              <p>
+                Include keywords that
+                buyers would use to search
+                or your item.
+              </p>
+              <h4>About this product*</h4>
+              <p>
+                Learn more about what
+                types of items are allowed
+                on Ftsy.
+              </p>
+              <h4>Category*</h4>
+              <p>
+              Type a two- or three-word
+              description of your item to
+              get category suggestions
+              that will help more shoppers
+              find it.
+              </p>
+              <h4>Description*</h4>
+              <p>Start with a brief overview
+that describes your item's
+finest features. Shoppers will
+only see the first few lines of
+your description at first, so
+make it countl
+Not sure what else to say?
+Shoppers also like hearing
+about vour process, and the
+story behind this item.</p>
+      </div>
+          <div className="productSide-2">
         <label>
           <div className="label-and-error-info">
             Item Name
@@ -114,10 +305,9 @@ const NewProductForm = () => {
             onChange={(e) => setItemName(e.target.value)}
           />
         </label>
-      </div>
+        <div className="productAbout">
 
-      <div>
-        <h4>How much do you want to sell it for?</h4>
+      <div >
         <label>
           <div className="label-and-error-info">
             Price
@@ -125,19 +315,36 @@ const NewProductForm = () => {
               <div className="errors">{errors.price}</div>
             )}
           </div>
-          $
           <input
-            type="text"
+            type="text" //double check this
             name="price"
-            placeholder="Price"
+            placeholder="$"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
         </label>
       </div>
+      <div>
+        <label>
+          <div className="label-and-error-info">
+            Quantity
+            {submitted && errors.quantity && (
+              <div className="errors">{errors.quantity}</div>
+            )}
+          </div>
+          <input
+            type="number"
+            name="quantity"
+            placeholder="Quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </label>
+      </div>
+        </div>
+
 
       <div>
-        <h4>What category does it belong to?</h4>
         <label>
           <div className="label-and-error-info">
             Category
@@ -146,6 +353,7 @@ const NewProductForm = () => {
             )}
           </div>
           <select
+          className="sel"
             name="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -164,7 +372,6 @@ const NewProductForm = () => {
       </div>
 
       <div>
-        <h4>Provide a description for your product!</h4>
         <label>
           <div className="label-and-error-info">
             Description
@@ -173,6 +380,7 @@ const NewProductForm = () => {
             )}
           </div>
           <textarea
+          className="ta"
             type="text"
             name="description"
             placeholder="Description"
@@ -182,48 +390,15 @@ const NewProductForm = () => {
         </label>
       </div>
 
-      <div>
-        <h4>How many do you want to sell?</h4>
-        <label>
-          <div className="label-and-error-info">
-            Quantity
-            {submitted && errors.quantity && (
-              <div className="errors">{errors.quantity}</div>
-            )}
-          </div>
-          <input
-            type="text"
-            name="quantity"
-            placeholder="Quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
-        </label>
-      </div>
-
-      <div>
-        <h4>How does your product look like?</h4>
-        <label>
-          <div className="label-and-error-info">
-            Preview Image
-            {submitted && errors.previewImageURL && (
-              <div className="errors">{errors.previewImageURL}</div>
-            )}
-          </div>
-          <input
-            type="text"
-            name="previewImageURL"
-            placeholder="Preview Image URL"
-            value={previewImageURL}
-            onChange={(e) => setPreviewImageURL(e.target.value)}
-          />
-        </label>
-      </div>
-
-      <div>
+      <div className="subForm">
         <button type="submit">Create Product</button>
       </div>
+          </div>
+      </div>
+      </div>
     </form>
+    <FooterTwo />
+    </>
   );
 };
 

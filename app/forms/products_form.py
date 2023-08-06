@@ -7,13 +7,14 @@ from wtforms import (
     BooleanField,
     DateField,
     TextAreaField,
+    FloatField,
 )
 from wtforms.validators import DataRequired
 
 
 class NewProduct(FlaskForm):
     item_name = StringField("Item name", validators=[DataRequired()])
-    price = IntegerField("Price", validators=[DataRequired()])
+    price = FloatField("Price", validators=[DataRequired()])
     category = StringField("Category", validators=[DataRequired()])
     description = TextAreaField("Description", validators=[DataRequired()])
     quantity = IntegerField("Quantity", validators=[DataRequired()])

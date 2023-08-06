@@ -6,7 +6,7 @@ import "./Search.css"
 
 function SearchWaifu() {
     return (
-        <div className="searching">
+        <div onClick={((e) => window.alert("Feature coming soon"))} className="searching">
             <div className="searching1">
                 <img src="https://anime-body-pillow.com/cdn/shop/products/zero-two-kawai-dakimakura.jpg?v=1624580515" alt="meaningful text"></img>
                 <p>Zero Two</p>

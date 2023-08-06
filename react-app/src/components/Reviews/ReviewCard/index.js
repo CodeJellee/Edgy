@@ -6,7 +6,7 @@ import * as reviewsActions from '../../../store/reviews'
 import ReviewForm from "../ReviewForm";
 import { useHistory } from 'react-router-dom';
 
-function ReviewCard({ userFirstName, review, from, user }) {
+function ReviewCard({ userFirstName, review, from, user, setDeletedReview }) {
     const history = useHistory();
 
 
@@ -40,6 +40,7 @@ function ReviewCard({ userFirstName, review, from, user }) {
 
     } else if (from === "productPage") {
         isReviewOwner = user.id === reviewRender.userId
+
     }
 
 
@@ -62,7 +63,8 @@ function ReviewCard({ userFirstName, review, from, user }) {
                 if (from === "productPage") {
                     console.log("in productPage conditional")
                     // history.push(`/products/${review.id}`)
-                    
+                    setDeletedReview(true)
+
                 }
                 console.log(review.id)
             })

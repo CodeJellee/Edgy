@@ -94,3 +94,10 @@ body, p, button {
     transform: scale(1.14); /* Increase the scale to make the box bigger on hover */
     box-shadow: 0.5px 0.5px 8px 0.5px rgb(210, 209, 209);
 }
+
+.user > button {
+    background-color: white;
+    border: 0cm;
+    width: 45px;
+    cursor: pointer;
+}

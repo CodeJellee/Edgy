@@ -6,7 +6,7 @@ import "./Search.css"
 
 function SearchHome() {
     return (
-        <div className="searching">
+        <div onClick={((e) => window.alert("Feature coming soon"))} className="searching">
             <div className="searching1">
                 <img src="https://i.pinimg.com/1200x/ed/dd/1c/eddd1c6f519fcdfdd7db92c84e82b3c5.jpg" alt="meaningful text"></img>
                 <p>Outdoor & Gardening</p>

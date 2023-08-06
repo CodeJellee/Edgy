@@ -6,7 +6,7 @@ import "./Search.css"
 
 function SearchMusic() {
     return (
-        <div className="searching">
+        <div onClick={((e) => window.alert("Feature coming soon"))} className="searching">
             <div className="searching1">
                 <img src="https://i.pinimg.com/736x/c9/07/45/c90745ae7dbe1c4d66f104661d9b33b8--fairy-tail-lucy-anime-fairy-tail.jpg" alt="meaningful text"></img>
                 <p>Theme Songs</p>

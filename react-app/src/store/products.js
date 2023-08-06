@@ -4,6 +4,7 @@ const GET_USER_PRODUCTS_ACTION = "products/GET_USER_PRODUCTS_ACTION";
 const DELETE_PRODUCT_ACTION = "products/DELETE_PRODUCT_ACTION";
 const CREATE_PRODUCT_ACTION = "products/CREATE_PRODUCT_ACTION";
 const SEARCH_PRODUCT_ACTION = "products/SEARCH_SINGLE_ACTION";
+export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE";
 
 const getAllProducts = (products) => ({
   type: GET_ALL_PRODUCTS_ACTION,
@@ -79,9 +80,33 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
     },
   });
   product = await product.json();
-  // console.log("after thetch", product);
-  dispatch(getSingleProduct(product));
-  return product;
+
+
+
+
+
+  if (product.message === "Product couldn't be found") {
+
+    return "Product Id does not exist";
+
+  }
+
+
+  if (product.ProductImages) {
+
+
+
+    dispatch(getSingleProduct(product));
+    return product;
+  }
+
+
+
+
+
+
+
+
 };
 
 export const thunkGetUserProducts = () => async (dispatch) => {
@@ -98,17 +123,28 @@ export const thunkGetUserProducts = () => async (dispatch) => {
 };
 
 export const thunkCreateProduct = (productFormData) => async (dispatch) => {
-  // console.log('PRODUCTFORMDATA', productFormData)
-  let newProduct = await fetch(`/api/products/new`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(productFormData),
-  });
-  newProduct = await newProduct.json();
-  dispatch(createProduct(newProduct));
-  return newProduct;
+  try {
+    let newProduct = await fetch(`/api/products/new`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // body: JSON.stringify(productFormData),
+      body: JSON.stringify(productFormData),
+    });
+
+    if (!newProduct.ok) {
+      const errorResponse = await newProduct.json();
+      throw new Error(errorResponse.error);
+    }
+
+    newProduct = await newProduct.json();
+    dispatch(createProduct(newProduct));
+    return newProduct;
+  } catch (e) {
+
+    return e.message;
+  }
 };
 
 //below has the try catch to check
