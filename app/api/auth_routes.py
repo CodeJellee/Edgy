@@ -29,33 +29,6 @@ def authenticate():
     return {"errors": ["Unauthorized"]}
 
 
-@auth_routes.route("/login", methods=["POST"])
-def login():
-    """
-    Logs a user in
-    """
-
-    form = LoginForm()
-    # Get the csrf_token from the request cookie and put it into the
-    # form manually to validate_on_submit can be used
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data["email"]).first()
-        login_user(user)
-        return user.to_dict()
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
-
-
-@auth_routes.route("/logout")
-def logout():
-    """
-    Logs a user out
-    """
-    logout_user()
-    return {"message": "User logged out"}
-
-
 @auth_routes.route("/signup", methods=["POST"])
 def sign_up():
     """
@@ -64,8 +37,7 @@ def sign_up():
     form = SignUpForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        print("BELOW Below BELOW BelowBELOW BelowBELOW BelowBELOW Below")
-        pprint(form.data)
+       
         # print(first_name=form.data["lastName"])
         user = User(
             username=form.data["username"],
@@ -78,8 +50,20 @@ def sign_up():
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    print("in error statement !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+
+@auth_routes.route("/logout")
+def logout():
+    """
+    Logs a user out
+    """
+    logout_user()
+    return {"message": "User logged out"}
+
+
 
 
 @auth_routes.route("/unauthorized")
