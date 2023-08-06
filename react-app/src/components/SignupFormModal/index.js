@@ -20,20 +20,26 @@ function SignupFormModal() {
     // backend already returns custom ones for email/username
     const errObj = {};
     // cannot be empty - 'required' attribute handles these, so you need to handle edge cases like password length of 1
-    if (first_name === "") errObj.first_name = "First name is required.";
-    if (last_name === "") errObj.last_name = "Last name is required.";
-    if (password === "" || confirmPassword === "")
-      errObj.password = "Password is required.";
-    if (username === "") errObj.username = "Username is required.";
-    if (email === "") errObj.email = "Email is required.";
+    // if (first_name === "") errObj.first_name = "First name is required.";
+    // if (last_name === "") errObj.last_name = "Last name is required.";
+    // if (password === "" || confirmPassword === "")
+    //   errObj.password = "Password is required.";
+    // if (username === "") errObj.username = "Username is required.";
+    // if (email === "") errObj.email = "Email is required.";
 
     // Edge Case Error handlers
-    if (first_name === "") errObj.first_name = "First name is required.";
-    if (last_name === "") errObj.last_name = "Last name is required.";
-    if (password === "" || confirmPassword === "")
-      errObj.password = "Password is required.";
-    if (username === "") errObj.username = "Username is required.";
-    if (email === "") errObj.email = "Email is required.";
+    // if (first_name === "") errObj.first_name = "First name is required.";
+    // if (last_name === "") errObj.last_name = "Last name is required.";
+    if (
+      (password.length < 6 && password !== confirmPassword) ||
+      (confirmPassword.length < 6 && password !== confirmPassword)
+    )
+      errObj.password = "Password requires a minimum of 6 characters.";
+    if (username.length < 6)
+      errObj.username = "Username requires a minimum of 6 characters.";
+    if (email.length < 6)
+      errObj.email = "Email requires a minimum of 6 characters.";
+    if (!email.includes("@")) errObj.email = "Invalid email";
 
     // setErrors if there are any
     if (Object.values(errObj).length > 0) return setErrors(errObj);
