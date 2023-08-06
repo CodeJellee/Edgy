@@ -20,12 +20,30 @@ import { thunkGetUserFavorites } from "./store/favorites";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const userExists = useSelector((s) => s.session.user);
   useEffect(() => {
     dispatch(authenticate())
       .then(() => setIsLoaded(true))
       .then(() => dispatch(thunkGetAllProducts()))
-      .then(() => dispatch(thunkGetShoppingCart()))
-      .then(() => dispatch(thunkGetUserProducts())); // This thunk hydrates the store ON MOUNT (when first loading the site) based on the variable isLoaded
+      .then(() => {
+        if (userExists !== null) {
+          return Promise.all([
+            dispatch(thunkGetShoppingCart()),
+            dispatch(thunkGetUserProducts()),
+          ]);
+        }
+        // If the user doesn't exist, simply resolve the current promise
+        return Promise.resolve();
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error("Error occurred:", error);
+      });
+
+    // chaining a dispatch to grab a user's products/shopping cart if a user doesnt exist returns an error on mount, so we need to add an if conditional
+    // .then(() => dispatch(thunkGetShoppingCart()))
+    // .then(() => dispatch(thunkGetUserProducts())); // This thunk hydrates the store ON MOUNT (when first loading the site) based on the variable isLoaded
+
     // 1. On first load: isLoaded is false, and won't load anything until the state of isLoaded is set to True.
     // 2. useEffect is then run which authenticates the user (gives a csrf token), then sets isLoaded state to True, then runs the thunk to grab all products
     // 3. This thunk is here so all products is loaded globally once instead of having each category run the thunk on mount.
