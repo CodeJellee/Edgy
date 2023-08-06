@@ -72,10 +72,7 @@ def product_details(id):
 @login_required
 def create_product():
     form = NewProduct()
-    print(
-        "THIS IS THE FORM DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        form.data,
-    )
+  
 
     # Flask-WTF and WTForms by default require a CSRF_TOKEN because these packages are meant to handle CSRF protection therefore your code will break if it does not have these two lines of code: the request csrf token from cookies and validate_on_submit
     # on the other hand, if you remove these two lines of code, it will work locally, just not on production
