@@ -14,13 +14,6 @@ function FavoriteButton({ productId, handleUnfavoriteClick, handleFavoriteClick,
   let seller = Object.values(userProducts)
 
   const handleFavorite = (productId) => {
-<<<<<<< HEAD
-
-    
-    console.log("WHAT IS CURRENT USER", currentUser, currentUser.id)
-    console.log('WHAT IS PRODUCTID', productId)
-=======
->>>>>>> products_routes
 
     for (let favs of userFavorites) {
       if (favs.id === productId) setSolid(true)
