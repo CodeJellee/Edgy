@@ -34,6 +34,7 @@ function AllProductsPage() {
         <div className="allProductsPage">
             <h1>Products</h1>
             <div className="allProdT">
+            <p>{searching ? `"${searching}"` : null}</p>
             <input onKeyDown={(e) => {
             if (e.key === "Enter") {
             setSearching(e.target.value);
@@ -66,11 +67,11 @@ function AllProductsPage() {
                     })}`}
                     </p>
                     <div className="deleteProduct">
-                        <button onClick={(() => setModalContent(<DeleteProductModal productId={p.id} />))}>Delete</button>
+                        <button className="delProduct"onClick={(() => setModalContent(<DeleteProductModal productId={p.id} />))}>Delete</button>
                     </div>
                 </div>
             ))}
-            {searching && !products.length ? <p>No results for "{searching}"</p> : null}
+            {searching && !products.length ? <p>None</p> : null}
             {!searching && !products.length ? <h2>No listings available</h2> : null}
         </div>
         <div className="sortingProducts">

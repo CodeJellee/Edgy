@@ -54,11 +54,12 @@ export const thunkGetShoppingCart = () => async (dispatch) => {
 };
 
 export const thunkDeleteCartItem = (productId) => async (dispatch) => {
+  console.log(productId)
   let product = await fetch(`/api/carts/shopping_cart/${productId}`, {
     method: "DELETE",
   });
   product = await product.json();
-  // console.log('THIS IS DELETE THUNK', product, productId)
+  console.log('THIS IS DELETE THUNK', product, productId)
   await dispatch(deleteShoppingCartAction(productId));
   return product;
 };
@@ -87,7 +88,7 @@ export const thunkDeleteCartItem = (productId) => async (dispatch) => {
 
 //TRY 2 BELOW
 export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
-  console.log("WHAT IS THIS IN thunkPOSTCartItem", productId)
+  //console.log("WHAT IS THIS IN thunkPOSTCartItem", productId)
   let res = await fetch(`/api/products/${productId}/add_to_cart`, {
     method: "POST",
     headers: {
@@ -100,7 +101,7 @@ export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
     // console.log('THIS IS PRODUCT', product)
   });
   res = await res.json();
-  console.log('WHAT IS PRODUCT THAT WE ARE RETURNING FROM THUNK', res)
+  //console.log('WHAT IS PRODUCT THAT WE ARE RETURNING FROM THUNK', res)
   dispatch(postItemInCartAction(res));
   // await dispatch(thunkGetShoppingCart());
   return res;
@@ -155,7 +156,7 @@ export default function reducer(state = initialState, action) {
     case DELETE_CART_ITEM: {
       newState = { ...state };
       newState.userCart = { ...newState.userCart };
-      // console.log('WHAT IS THIS', newState.userCart[action.productId])
+      console.log('WHAT IS THIS', newState.userCart[action.productId])
       delete newState.userCart[action.productId]; // refactor the get route to normalize by product id
       return newState;
     }

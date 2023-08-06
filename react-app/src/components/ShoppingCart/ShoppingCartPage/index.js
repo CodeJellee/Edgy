@@ -26,11 +26,10 @@ function ShoppingCartPage() {
   // console.log("length of cart here", itemLength);
 
   useEffect(() => {
-    if (sessionUser) {
+
       //if user is logged in, dispatch thunk
       dispatch(CartActions.thunkGetShoppingCart());
       // dispatch(CartActions.thunkDeleteCartItem(productId));
-    }
   }, [dispatch]);
 
   if (!sessionUser) return null;

@@ -8,8 +8,8 @@ function SearchAll() {
     const history = useHistory()
 
     return (
-        <div onClick={((e) => history.push(`/categories/clothing`))} className="searching">
-            <div className="searching1">
+        <div className="searching">
+            <div onClick={((e) => history.push(`/categories/clothing`))} className="searching1">
                 <img src="https://i.etsystatic.com/33631677/r/il/f31994/3722252879/il_fullxfull.3722252879_dko5.jpg" alt="meaningful text"></img>
                 <p>Clothing & Shoes</p>
             </div>
