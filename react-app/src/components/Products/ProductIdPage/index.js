@@ -19,7 +19,7 @@ function ProductIdPage() {
     const product = useSelector(state => state.products.singleProduct)
     const [mainImage, setMainImage] = useState()
     const [itemState, setItemState ] = useState(false)
-    const [ deletedReview, setDeletedReview ] = useState(false)
+
     const history = useHistory()
     let userFavorites = useSelector((state) =>
     Object.values(state.favorites.userFavorites)
@@ -75,12 +75,13 @@ function ProductIdPage() {
     }, [dispatch, id])
 
 
-    console.log(deletedReview)
+
 
     // if (productExist) {
     //     console.log("in the product no exist")
     //     return ( <>no exist</>)
     // }
+
 
     if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
 
@@ -219,13 +220,12 @@ function ProductIdPage() {
                         {user && noUserReviewExist && notSeller &&
                             <ReviewForm from="post"></ReviewForm>}
 
-                        {/* handles scenario to render form, if the user deletes their review, could not use noUserReviewsExist as it causes rerender cycles */}
-                        {deletedReview && <ReviewForm from="post"></ReviewForm>}
+
 
                         {reviews?.map((review) => (
                             <>
 
-                                <ReviewCard key={review.id} setDeletedReview={setDeletedReview} userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
+                                <ReviewCard key={review.id}  userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
                             </>
                         ))}
 

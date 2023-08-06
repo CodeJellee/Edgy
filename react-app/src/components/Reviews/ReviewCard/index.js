@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import './ReviewCard.css'
 import * as reviewsActions from '../../../store/reviews'
+import * as productsActions from "../../../store/products";
 import ReviewForm from "../ReviewForm";
 import { useHistory } from 'react-router-dom';
 
-function ReviewCard({ userFirstName, review, from, user, setDeletedReview }) {
+function ReviewCard({ userFirstName, review, from, user, }) {
     const history = useHistory();
 
 
@@ -62,8 +63,10 @@ function ReviewCard({ userFirstName, review, from, user, setDeletedReview }) {
                 setDeleteTrigger(true);
                 if (from === "productPage") {
                     console.log("in productPage conditional")
-                    // history.push(`/products/${review.id}`)
-                    setDeletedReview(true)
+
+                    // dispatch(reviewsActions.thunkGetReviewsByProductId(reviewid));
+                    dispatch(productsActions.thunkGetSingleProduct(review.productId));
+                    console.log("REVIEW IN CARD", review.productId)
 
                 }
                 console.log(review.id)
