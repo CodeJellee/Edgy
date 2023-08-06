@@ -19,6 +19,7 @@
 #user-details__container {
     display: flex;
     justify-content: space-between;
+    margin-top: 25px
 }
 
 #user-options {
@@ -66,10 +67,16 @@
     width: 82%;
     height: 42px;
     border-radius: 24px;
-    border: 2px solid black;
-    padding-left: 20px;
+    border: 1px solid rgb(186, 186, 186);
+    box-shadow: 0.1px 0.1px 2px 0.1px rgb(186, 186, 186);
+    padding-left: 25px;
     font-size: 16px;
     background-color: rgba(0,0,0,0);
+    margin-right: 10px;
+  }
+
+  .profileName {
+    font-size: 30px;
   }
 
 #user-favorites__count {
@@ -90,7 +97,7 @@
 /* This positions the search-icon over the search bar input */
 #search-button {
     position: absolute;
-    margin-right: 1%;
+    margin-right: 2%;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -209,7 +216,13 @@
 .pop2 {
     margin-left: 20px;
     margin: 10px;
-    margin-top: 70px;
+    margin-top: 30px;
     margin-bottom: 60px;
+    /* border-top: 1px solid #595959; */
     /* transition: transform 0.3s ease; */
+}
+
+.favsPage {
+    margin-left: 18px;
+    margin-right: 18px
 }

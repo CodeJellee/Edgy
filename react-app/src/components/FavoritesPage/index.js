@@ -36,7 +36,7 @@ function FavoritesPage() {
   // console.log(userFavorites)
 
   return (
-    <>
+    <div className='favsPage'>
     <div id="favorites__main-container">
       {/* Can be one component for user-options-sales */}
       <div id="user-details__container">
@@ -51,7 +51,7 @@ function FavoritesPage() {
           </div>
           {/* Name should be a modal button to open up popup that allows the user to click on an edit public profile button to redirect them to their edit profile page */}
           <div id="user-options__name-profile">
-            <div>{user.first_name}</div>
+            <div className="profileName">{user.first_name}</div>
             <div className="editProfile">
               <NavLink to="">Edit public profile</NavLink>
               <NavLink to="">About</NavLink>
@@ -140,9 +140,10 @@ function FavoritesPage() {
         </>
         : null}
     </div>
+    <div className="border"></div>
     {userFavorites.length ? <SimilarFavoritesCard favs={userFavorites} /> : null }
     <FooterTwo />
-    </>
+    </div>
   );
 }
 
