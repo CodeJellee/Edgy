@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import * as reviewsActions from "../../../store/reviews";
@@ -16,7 +16,7 @@ import FavoriteButton from "../../FavoritesPage/FavoritesButton";
 
 function ProductIdPage() {
     const { id } = useParams();
-
+    // useHistory
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const product = useSelector(state => state.products.singleProduct)
@@ -25,6 +25,7 @@ function ProductIdPage() {
     const [deletedReview, setDeletedReview] = useState(false)
     const [productExist, setProductExist] = useState(false)
 
+    const history = useHistory()
 
     // if deletedReview is changed to true, cause form to be rendered
 
@@ -53,6 +54,7 @@ function ProductIdPage() {
             if (check === "Product Id does not exist") {
                 console.log("in use effect check")
                 // redirect to somewhere
+                history.push(`/categories`)
                 setProductExist(true)
             }
 
