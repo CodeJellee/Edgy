@@ -10,6 +10,8 @@ function FavoriteButton({ productId, handleUnfavoriteClick, handleFavoriteClick,
   //   console.log("this is the product id", productId);
 
   const handleFavorite = (productId) => {
+
+    
     console.log("WHAT IS CURRENT USER", currentUser, currentUser.id)
     console.log('WHAT IS PRODUCTID', productId)
 

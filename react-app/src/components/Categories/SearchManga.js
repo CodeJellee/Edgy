@@ -6,7 +6,7 @@ import "./Search.css"
 
 function SearchManga() {
     return (
-        <div className="searching">
+        <div onClick={((e) => window.alert("Feature coming soon"))} className="searching">
             <div className="searching1">
                 <img src="https://dw9to29mmj727.cloudfront.net/products/1974718131.jpg" alt="meaningful text"></img>
                 <p>One Piece</p>

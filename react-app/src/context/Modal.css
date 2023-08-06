@@ -22,10 +22,11 @@
 
 #modal-content {
   position: absolute;
-  background-color:white;
+  background-color: white;
   border-radius: 20px;
-  height: 600px;
+  height: auto;
   width: 28%;
   padding-left: 25px;
   padding-right: 25px;
+  padding-bottom: 25px;
 }
