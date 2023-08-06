@@ -43,15 +43,18 @@ function Categories({ category, name }) {
 
   let eachProduct;
 
+  let filtering = "filters"
+
   if (!query) eachProduct = Object.values(products);
   if (query) eachProduct = Object.values(search);
+  if (query) filtering = "filtersS"
 
 //   if (!eachProduct.length) return <h1>Loading</h1>;
 
   if (!query && category !== "All")
     eachProduct = eachProduct.filter((p) => p.category == category);
 
-  
+
   return (
     <>
       {!query ? (
@@ -93,7 +96,7 @@ function Categories({ category, name }) {
           <h1 className="pageT">Find something you love</h1>
         </>
       ) : null}
-      <div className="filters">
+      <div className={filtering}>
         <div className="filter1">
           <button onClick={((e) => window.alert("Feature coming soon"))} >
             Estimated Arrival<span>Anytime</span>
