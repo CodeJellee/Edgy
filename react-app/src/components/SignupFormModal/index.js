@@ -11,10 +11,12 @@ function SignupFormModal() {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitted(true);
 
     // error handlers onSubmit
     // backend already returns custom ones for email/username
@@ -30,6 +32,9 @@ function SignupFormModal() {
     // Edge Case Error handlers
     // if (first_name === "") errObj.first_name = "First name is required.";
     // if (last_name === "") errObj.last_name = "Last name is required.";
+    if (password !== confirmPassword)
+      errObj.password =
+        "Confirm Password field must be the same as the Password field";
     if (
       (password.length < 6 && password !== confirmPassword) ||
       (confirmPassword.length < 6 && password !== confirmPassword)
@@ -39,10 +44,27 @@ function SignupFormModal() {
       errObj.username = "Username requires a minimum of 6 characters.";
     if (email.length < 6)
       errObj.email = "Email requires a minimum of 6 characters.";
-    if (!email.includes("@")) errObj.email = "Invalid email";
+    if (!email.includes("@")) errObj.email = "Invalid email.";
+    if (username.includes(" "))
+      errObj.username = "Username cannot have a space.";
+    if (password.includes(" ") || confirmPassword.includes(" "))
+      errObj.password = "Password can contain unique characters but no space.";
+    if (username.length > 32)
+      errObj.username = "Username must be between 6 and 32 characters";
+    if (first_name.length > 32)
+      errObj.first_name = "First name can be up to 32 characters";
+    if (last_name.length > 32)
+      errObj.last_name = "Last name can be up to 32 characters";
+    if (first_name.includes(" "))
+      errObj.first_name = "First name cannot include spaces";
+    if (last_name.includes(" "))
+      errObj.last_name = "Last name cannot include spaces";
 
     // setErrors if there are any
-    if (Object.values(errObj).length > 0) return setErrors(errObj);
+    if (Object.values(errObj).length > 0) {
+      //   setSubmitted(false);
+      return setErrors(errObj);
+    }
 
     if (password === confirmPassword) {
       const data = await dispatch(
@@ -63,13 +85,16 @@ function SignupFormModal() {
     <>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+        {/* <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
-        </ul>
+        </ul> */}
         <label>
           Email
+          {submitted && errors.email && (
+            <div className="errors">{errors.email}</div>
+          )}
           <input
             type="text"
             value={email}
@@ -79,6 +104,9 @@ function SignupFormModal() {
         </label>
         <label>
           Username
+          {submitted && errors.username && (
+            <div className="errors">{errors.username}</div>
+          )}
           <input
             type="text"
             value={username}
@@ -88,6 +116,9 @@ function SignupFormModal() {
         </label>
         <label>
           First Name
+          {submitted && errors.first_name && (
+            <div className="errors">{errors.first_name}</div>
+          )}
           <input
             type="text"
             value={first_name}
@@ -96,7 +127,10 @@ function SignupFormModal() {
           />
         </label>
         <label>
-          last Name
+          Last Name
+          {submitted && errors.last_name && (
+            <div className="errors">{errors.last_name}</div>
+          )}
           <input
             type="text"
             value={last_name}
@@ -106,6 +140,9 @@ function SignupFormModal() {
         </label>
         <label>
           Password
+          {submitted && errors.password && (
+            <div className="errors">{errors.password}</div>
+          )}
           <input
             type="password"
             value={password}
@@ -115,6 +152,9 @@ function SignupFormModal() {
         </label>
         <label>
           Confirm Password
+          {submitted && errors.confirmPassword && (
+            <div className="errors">{errors.confirmPassword}</div>
+          )}
           <input
             type="password"
             value={confirmPassword}

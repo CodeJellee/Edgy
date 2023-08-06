@@ -24,7 +24,10 @@ function App() {
   useEffect(() => {
     dispatch(authenticate())
       .then(() => setIsLoaded(true))
-      .then(() => dispatch(thunkGetAllProducts()))
+      .then(() => dispatch(thunkGetAllProducts())) // This thunk hydrates the store ON MOUNT (when first loading the site) based on the variable isLoaded
+      // .then(() => dispatch(thunkGetShoppingCart()))
+      // .then(() => dispatch(thunkGetUserProducts()));
+      // chaining a dispatch to grab a user's products/shopping cart if a user doesnt exist returns an error on mount, so we need to add an if conditional
       .then(() => {
         if (userExists !== null) {
           return Promise.all([
@@ -39,10 +42,6 @@ function App() {
         // Handle errors here
         console.error("Error occurred:", error);
       });
-
-    // chaining a dispatch to grab a user's products/shopping cart if a user doesnt exist returns an error on mount, so we need to add an if conditional
-    // .then(() => dispatch(thunkGetShoppingCart()))
-    // .then(() => dispatch(thunkGetUserProducts())); // This thunk hydrates the store ON MOUNT (when first loading the site) based on the variable isLoaded
 
     // 1. On first load: isLoaded is false, and won't load anything until the state of isLoaded is set to True.
     // 2. useEffect is then run which authenticates the user (gives a csrf token), then sets isLoaded state to True, then runs the thunk to grab all products
