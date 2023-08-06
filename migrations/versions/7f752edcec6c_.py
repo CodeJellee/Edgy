@@ -1,20 +1,18 @@
 """empty message
 
-Revision ID: a95e2c914743
+Revision ID: 7f752edcec6c
 Revises:
-Create Date: 2023-08-06 00:08:51.531208
+Create Date: 2023-08-06 00:36:39.839825
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-
 # revision identifiers, used by Alembic.
-revision = 'a95e2c914743'
+revision = '7f752edcec6c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,7 +39,7 @@ def upgrade():
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('item_name', sa.String(length=255), nullable=True),
-    sa.Column('price', sa.Integer(), nullable=False),
+    sa.Column('price', sa.Numeric(precision=10, scale=2), nullable=False),
     sa.Column('category', sa.String(length=255), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=False),
@@ -109,6 +107,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+
         
     # ### end Alembic commands ###
 
