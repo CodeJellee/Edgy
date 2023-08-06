@@ -22,7 +22,10 @@ function ProductIdPage() {
     const product = useSelector(state => state.products.singleProduct)
     const [mainImage, setMainImage] = useState()
     const [itemState, setItemState ] = useState(false)
-    // const [noUserReviewExist, setNoUserReveiwExist] = useState(true)
+    const [deletedReview, setDeletedReview] = useState(false)
+
+
+    // if deletedReview is changed to true, cause form to be rendered
 
     const handleFavoriteClick = (productId) => {
         dispatch(favoriteActions.thunkPostFavoriteProduct(productId));
@@ -44,7 +47,7 @@ function ProductIdPage() {
     }, [dispatch, id])
 
 
-
+    console.log(deletedReview)
 
 
     if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
@@ -144,7 +147,7 @@ function ProductIdPage() {
                                     <button className='PID-buyNowButt PID-P-button PID-Transp-butt'> <i class="fa-brands fas fa-cc-visa"></i> Buy it now</button>
                                     {/* <button className='PID-cartButt PID-P-button'>Add to cart</button> */}
                                     <PutCartItemToCart productId={product.id} className='PID-cartButt PID-P-button' />
-                                    <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button>
+                                    {/* <button onClick={addToFav} className='PID-favFullButt PID-P-button PID-Transp-butt'> <i onClick={addToFav} className="fas fa-heart PID-heart" /> Add to Favorites</button> */}
                                 </div>
 
                             ) : (
@@ -185,10 +188,13 @@ function ProductIdPage() {
                     {user && noUserReviewExist && notSeller &&
                      <ReviewForm from="post"></ReviewForm>}
 
+{/* handles scenario to render form, if the user deletes their review, could not use noUserReviewsExist as it causes rerender cycles */}
+                    {deletedReview && <ReviewForm from="post"></ReviewForm>}
+
                     {reviews?.map((review) => (
                         <>
 
-                            <ReviewCard key={review.id} userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
+                            <ReviewCard key={review.id} setDeletedReview={setDeletedReview}  userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
                         </>
                     ))}
 
