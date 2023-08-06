@@ -1,5 +1,8 @@
 .primary-cart-container {
     padding-left: 40px;
+    padding-bottom: 100px;
+    padding-right: 40px;
+
 }
 
 .empty-cart-message{
@@ -14,50 +17,102 @@
 .sellerId-container{
     font-size: 18px;
     font-style: italic;
-    padding-top: 20px;
-    padding-left: 20px;
+     /* padding-top: 20px;
+    padding-left: 20px; */
     padding-bottom: 10px;
 }
 
 .products-only-container {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 80px;
-    width: fit-content;
+    row-gap: 40px;
+    width: 80%;
 }
 
 
 .each-cart-item-container{
-    height: 550px;
-    width: 600px;
-    border: 1px solid #52057B;;
-    border-radius: 5px;
+    height: 100%;
+    width: 90%;
+    border: 0.01px solid rgb(218, 218, 218);
+    box-shadow: 1px 1px 10px 1px rgb(218, 218, 218);
+    border-radius: 10px;
+    padding: 30px
+}
+
+#imgCard1 {
+    width: 160px;
+    height: 65px;
+}
+
+#imgCard2 {
+    width: 55px;
+    height: 50px;
+    margin-left: 4px;
+}
+
+#imgCard0 {
+    width: 60px;
+    height: 55px;
+}
+
+.item-description > input {
+    width: 40px;
+    height: 20px;
+}
+
+.payment-method > div > input[type="checkbox"] {
+    width: 20px;
+    height: 30px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+#payMe > div {
+    height: 200px
+}
+
+.payment-method > div{
+    display: flex;
+    align-items: center;
+}
+
+#pDes {
+    margin-bottom: 30px;
+    line-height: 1px;
+}
+
+#footT {
+    text-align: center;
+}
+
+#numItems {
+    line-height: 90px;
 }
 
 
 .image-title-price-container{
-    display: grid;
-    grid-template-columns: 2fr 4fr;
+    display: flex;
+    /* grid-template-columns: 2fr 4fr; */
     height: 200px;
-    padding-left: 20px;
+    gap: 10px;
 }
 
 .cart-product-image {
     height: 220px;
-    width: 180px;
+    width: 100%;
     border-radius: 5px;
 }
 
 .name-blurb-cost-quantity{
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    column-gap: 60px;
+    display: flex;
+    gap: 10px;
+    width: 70%
+
 }
 
 .name-description{
-    display: grid;
-    grid-template-rows: 1fr 3fr;
     text-decoration: none;
+    width: 60%;
 }
 
 .items-link{
@@ -71,11 +126,13 @@
     border-radius: 5px;
     font-size: 13px;
     padding: 10px;
+    height: 160px;
+
 }
 
 .price-how-many-is-left{
     text-align: right;
-    padding-right: 20px;
+    width: 40%
 
 }
 
@@ -85,23 +142,29 @@
 }
 
 .remove-save{
-    display:flex;
-    flex-direction: column;
-    width:100px;
+    display: flex;
+    width: 100%;
     height: 50px;
     text-decoration: none;
-    font-size: 13px;
-    padding-top: 30px;
-
-    padding-left: 50px;
+    padding-top: 5px;
     text-align: center;
+    justify-content: center;
+    gap: 2px;
+    cursor: pointer;
 
 }
 
+#remove-save-button:hover {
+    color: #52057B;
+}
+
 #remove-save-button {
-    width: 100px;
-    height:80px;
-    font-size: 13px;
+    width: 100%;
+    height: 8px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .remove-save-button:hover {
@@ -114,9 +177,6 @@
 .note-and-delivery{
     display: flex;
     justify-content: space-between;
-    padding-top: 70px;
-    padding-left: 20px;
-    padding-right: 20px;
 
 }
 
@@ -130,21 +190,27 @@
     color: rgb(125, 123, 123);
 }
 
+#secHalf {
+    display: flex;
+    justify-content: space-between;
+    height: 10px;
+    margin-top: 100px;
+}
+
 .gift-coupon{
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
-    padding-left: 20px;
-
 }
 
 .gift-toggle{
     display: flex;
+    flex-direction: column;
 }
 
 .gift-order-blurb{
     font-size: 13px;
     color: rgb(125, 123, 123);
+    margin-left: 20px
 }
 
 .coupon:hover {
@@ -153,13 +219,63 @@
 
 
 .checkout-button-container{
-    width: 100%;
+    width: 40%;
     text-align: center;
-    padding-top: 30%;
-    /* position: fixed; */
-    left: 350px;
-    bottom: 350px;
+    margin-left: 30px;
+
 }
 
+.delivery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px
+}
 
+.add-note {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px
+}
+
+#gift {
+    display: flex;
+}
+
+#cartF > .footer1 {
+  background-color: white;
+  color: black
+}
+
+.checkingOut > div {
+    margin-top: 20px;
+    width: 100%
+}
+
+.checkingOut {
+    display: flex;
+    justify-content: center;
+}
+
+#total, #ship {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-left: 40px;
+    margin-right: 40px; */
+}
+
+#payMe {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid gray;
+    text-align: left;
+}
+
+#foot2 {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 50px;
+}
 /* actual proceed to checkout button css taken from product page */
