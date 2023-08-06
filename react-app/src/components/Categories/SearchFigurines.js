@@ -6,7 +6,7 @@ import "./Search.css"
 
 function SearchFigurines() {
     return (
-        <div className="searching">
+        <div onClick={((e) => window.alert("Feature coming soon"))} className="searching">
             <div className="searching1">
                 <img src="https://m.media-amazon.com/images/I/614b4yZV7+L.jpg" alt="meaningful text"></img>
                 <p>Figurines</p>

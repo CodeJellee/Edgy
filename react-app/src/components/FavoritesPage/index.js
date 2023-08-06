@@ -8,11 +8,13 @@ import * as favoriteActions from "../../store/favorites";
 import "../Navigation/Navigation.css";
 import "./FavoritesPage.css";
 import FooterTwo from "../Footer/index2";
+import SimilarFavoritesCard from "./SimilarFavorites";
 
 function FavoritesPage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const userFavorites = useSelector((state) =>
+  const [ searching, setSearching ] = useState(null)
+  let userFavorites = useSelector((state) =>
     Object.values(state.favorites.userFavorites)
   );
   const history = useHistory()
@@ -29,7 +31,7 @@ function FavoritesPage() {
     dispatch(thunkGetUserFavorites(user.id));
   }, [user.id, dispatch]);
 
-  // if (!user || userFavorites.length === 0) return null;
+  if (searching) userFavorites = userFavorites.filter((p) => p.item_name.toLowerCase().includes(searching.toLowerCase()))
 
   // console.log(userFavorites)
 
@@ -67,13 +69,19 @@ function FavoritesPage() {
 
       {/* Can be one component for user-search-bar */}
 
-      {userFavorites.length ? <div id="user-search-favorites__container">
+      {userFavorites.length || !userFavorites.length && searching ? <div id="user-search-favorites__container">
         <div id="user-favorites__count">
           Favorite items <span id="numberFavs">{userFavorites.length} items</span>
         </div>
         <div id="user-favorites__search">
+          {searching && <p>"{searching}"</p>}
           <input
-            type="search"
+           onKeyDown={(e) => {
+            if (e.key === "Enter") {
+            setSearching(e.target.value);
+             }
+            }}
+            type="type"
             placeholder="Search Your Favorites"
             id="search-favorites"
           ></input>
@@ -115,7 +123,7 @@ function FavoritesPage() {
           </>
         ))}
       </div>
-        {!userFavorites.length ?
+        {!userFavorites.length && !searching?
         <>
         <div className="nothingToSee">
         <div className="clipFavs">
@@ -126,7 +134,13 @@ function FavoritesPage() {
         </div>
         </>
         : null}
+            {!userFavorites.length && searching?
+        <>
+          <h2>None</h2>
+        </>
+        : null}
     </div>
+    {userFavorites.length ? <SimilarFavoritesCard favs={userFavorites} /> : null }
     <FooterTwo />
     </>
   );

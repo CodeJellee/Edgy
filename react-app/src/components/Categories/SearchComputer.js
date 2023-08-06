@@ -6,7 +6,7 @@ import "./Search.css"
 
 function SearchComputer() {
     return (
-        <div className="searching">
+        <div onClick={((e) => window.alert("Feature coming soon"))} className="searching">
             <div className="searching1">
                 <img src="https://i.ebayimg.com/images/g/6CYAAOSwBRdgSxe3/s-l1200.webp" alt="meaningful text"></img>
                 <p>Mouses</p>

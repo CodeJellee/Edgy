@@ -2,7 +2,7 @@ import { useModal } from '../../../context/Modal';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as productActions from '../../../store/products'
-//import "./DeleteEvent.css"
+import "./AllProductsPage.css"
 
 
 function DeleteProductModal({ productId }) {
@@ -17,10 +17,10 @@ function DeleteProductModal({ productId }) {
     }
 
     return (
-        <div className="deleteEvent2">
+        <div className="deleteProduct2">
             <h1 className='deleteTitle'>Confirm Delete</h1>
             <p className='deleteText'>Are you sure you want to remove this item?</p>
-            <div className='deleteEventButton'>
+            <div className='deleteProductButton'>
             <button className='yesButton' onClick={handleClick}>YES (Delete Product)</button>
             <button className='noButton' onClick={(() => closeModal())}>NO (Keep Product)</button>
             </div>

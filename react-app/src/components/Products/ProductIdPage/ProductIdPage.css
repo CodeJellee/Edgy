@@ -60,7 +60,8 @@
 }
 
 .PID-about-buttons-div {
-    width: 38%
+    width: 38%;
+    margin-left: 10px;
 }
 
 .PID-about-product-div {
@@ -157,8 +158,8 @@
 }
 
 .containerFavs > #favorite-icon__container {
-    width: 38px;
-    height: 40px;
+    width: 3%;
+    height: 4.5%;
     box-shadow: 1px 1px 6px 1px rgb(106, 106, 106);
     cursor: pointer;
     transition: transform 0.1s ease-in-out; /* Add smooth transition for a gradual effect */
@@ -170,8 +171,8 @@
 }
 
 .containerFavs > #favorite-icon__container:hover {
-    width: 38px;
-    height: 40px;
+    width: 3%;
+    height: 4.5%;
     box-shadow: 2px 2px 6px 2px rgb(106, 106, 106);
     transform: scale(1.02); /* Increase the size by 10% (adjust as needed) */
     background-color: rgb(34, 34, 34);

@@ -51,10 +51,7 @@ function Categories({ category, name }) {
   if (!query && category !== "All")
     eachProduct = eachProduct.filter((p) => p.category == category);
 
-  // console.log(
-  //   "hi this right here is the array you want to look at",
-  //   eachProduct
-  // );
+  
   return (
     <>
       {!query ? (
@@ -98,11 +95,11 @@ function Categories({ category, name }) {
       ) : null}
       <div className="filters">
         <div className="filter1">
-          <button>
+          <button onClick={((e) => window.alert("Feature coming soon"))} >
             Estimated Arrival<span>Anytime</span>
             <i class="fa-solid fa-caret-down"></i>
           </button>
-          <button>
+          <button onClick={((e) => window.alert("Feature coming soon"))} >
             <i class="fa-solid fa-filter"></i>All Filters
           </button>
         </div>
