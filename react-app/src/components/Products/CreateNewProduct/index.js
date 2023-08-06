@@ -140,6 +140,8 @@ const NewProductForm = () => {
 
   return (
     <>
+    <div className="pageColor">
+
     <form className="create-new-spot-form" onSubmit={onSubmit}>
       <Link to="/your_products">Back to products</Link>
       <h2>Add a new Product!</h2>
@@ -172,13 +174,23 @@ const NewProductForm = () => {
           <li>see all their opuons.</li>
         </ul>
         </div>
-        <div className="imgSide-2">
-        <label>
-          <div className="label-and-error-info">
-            {submitted && errors.previewImageURL && (
-              <div className="errors">{errors.previewImageURL}</div>
-            )}
-          </div>
+        {/* <div className="imgSide-2"> */}
+            <div className="imgSide-2">
+              <label>
+                <div className="label-and-error-info">
+                  {submitted && vaErrors.previewImageURL && (
+                    <div className="errors">{vaErrors.previewImageURL}</div>
+                  )}
+                </div>
+                <input
+                  type="text"
+                  name="previewImageURL"
+                  placeholder="Preview Image URL"
+                  value={previewImageURL}
+                  onChange={(e) => setPreviewImageURL(e.target.value)}
+                />
+              </label>
+              <label>
           <input
             type="text"
             name="previewImageURL"
@@ -243,10 +255,8 @@ const NewProductForm = () => {
             onChange={(e) => setPreviewImageURL(e.target.value)}
           />
         </label>
+            </div>
         </div>
-        </div>
-      <div>
-      </div>
       </div>
       <div className="productDetails">
 
@@ -257,6 +267,8 @@ const NewProductForm = () => {
       <div className="pDetails">
 
       <div className="productSide-1">
+        <div id="pS-1">
+
               <h4>Title*</h4>
               <p>
                 Include keywords that
@@ -278,16 +290,17 @@ const NewProductForm = () => {
               find it.
               </p>
               <h4>Description*</h4>
-              <p>Start with a brief overview
-that describes your item's
-finest features. Shoppers will
-only see the first few lines of
-your description at first, so
-make it countl
-Not sure what else to say?
-Shoppers also like hearing
-about vour process, and the
-story behind this item.</p>
+             <p>Start with a brief overview
+                that describes your item's
+                finest features. Shoppers will
+                only see the first few lines of
+                your description at first, so
+                make it count
+                Not sure what else to say?
+                Shoppers also like hearing
+                about your process, and the
+                story behind this item.</p>
+            </div>
       </div>
           <div className="productSide-2">
         <label>
@@ -303,7 +316,10 @@ story behind this item.</p>
             placeholder="Item Name"
             value={itemName}
             onChange={(e) => setItemName(e.target.value)}
-          />
+            />
+            {submitted && vaErrors.itemName && (
+              <div className="errors">{vaErrors.itemName}</div>
+            )}
         </label>
         <div className="productAbout">
 
@@ -323,6 +339,9 @@ story behind this item.</p>
             onChange={(e) => setPrice(e.target.value)}
           />
         </label>
+            {submitted && vaErrors.price && (
+              <div className="errors">{vaErrors.price}</div>
+            )}
       </div>
       <div>
         <label>
@@ -340,6 +359,9 @@ story behind this item.</p>
             onChange={(e) => setQuantity(e.target.value)}
           />
         </label>
+            {submitted && vaErrors.quantity && (
+              <div className="errors">{vaErrors.quantity}</div>
+            )}
       </div>
         </div>
 
@@ -368,6 +390,9 @@ story behind this item.</p>
             <option value="Music">Music</option>
             <option value="Figurines">Figurines</option>
           </select>
+            {submitted && vaErrors.category && (
+              <div className="errors">{vaErrors.category}</div>
+            )}
         </label>
       </div>
 
@@ -387,6 +412,9 @@ story behind this item.</p>
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+          {submitted && vaErrors.description && (
+            <div className="errors">{vaErrors.description}</div>
+          )}
         </label>
       </div>
 
@@ -397,7 +425,13 @@ story behind this item.</p>
       </div>
       </div>
     </form>
-    <FooterTwo />
+    <div className="footerFour">
+      <div className="subForm">
+        <button onClick={onSubmit} type="submit">Create Product</button>
+      </div>
+        </div>
+    </div>
+
     </>
   );
 };
