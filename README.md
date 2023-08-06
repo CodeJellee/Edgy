@@ -1,5 +1,5 @@
 <!--!!START SILENT -->
-# Group 5 Project
+# EDGY
 <!--!!END -->
 <!--!!ADD -->
 <!-- # `<name of application here>` -->
