@@ -20,6 +20,7 @@ function ProductIdPage() {
     const [mainImage, setMainImage] = useState()
     const [itemState, setItemState ] = useState(false)
     const [ deletedReview, setDeletedReview ] = useState(false)
+    const history = useHistory()
     let userFavorites = useSelector((state) =>
     Object.values(state.favorites.userFavorites)
     );
@@ -58,7 +59,7 @@ function ProductIdPage() {
                 console.log("in use effect check")
                 // redirect to somewhere
                 history.push(`/categories`)
-                setProductExist(true)
+                //setProductExist(true)
             }
 
         }
@@ -117,11 +118,6 @@ function ProductIdPage() {
     //* if product does't exist return jsx of  " no product :("
 
     // ! NEED STYLING HERE and maybe links to catagories
-    if (productExist) return (
-        <>
-
-        <p>Product does not  exist</p></>
-    )
 
     return (
         <>
