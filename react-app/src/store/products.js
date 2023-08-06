@@ -80,9 +80,33 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
     },
   });
   product = await product.json();
-  // console.log("after thetch", product);
-  dispatch(getSingleProduct(product));
-  return product;
+
+
+
+
+
+  if (product.message === "Product couldn't be found") {
+
+    return "Product Id does not exist";
+
+  }
+
+
+  if (product.ProductImages) {
+
+
+
+    dispatch(getSingleProduct(product));
+    return product;
+  }
+
+
+
+
+
+
+
+
 };
 
 export const thunkGetUserProducts = () => async (dispatch) => {
@@ -118,7 +142,7 @@ export const thunkCreateProduct = (productFormData) => async (dispatch) => {
     dispatch(createProduct(newProduct));
     return newProduct;
   } catch (e) {
-    console.log(e.message);
+
     return e.message;
   }
 };

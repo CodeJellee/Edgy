@@ -21,8 +21,9 @@ function ProductIdPage() {
     const user = useSelector(state => state.session.user)
     const product = useSelector(state => state.products.singleProduct)
     const [mainImage, setMainImage] = useState()
-    const [itemState, setItemState ] = useState(false)
+    const [itemState, setItemState] = useState(false)
     const [deletedReview, setDeletedReview] = useState(false)
+    const [productExist, setProductExist] = useState(false)
 
 
     // if deletedReview is changed to true, cause form to be rendered
@@ -43,12 +44,32 @@ function ProductIdPage() {
     const addToFav = (e) => { }
 
     useEffect(() => {
-        dispatch(productsActions.thunkGetSingleProduct(id))
+
+        // if call comes back with "this product does not exist"
+        async function productExistCheck() {
+
+            let check = await dispatch(productsActions.thunkGetSingleProduct(id))
+
+            if (check === "Product Id does not exist") {
+                console.log("in use effect check")
+                // redirect to somewhere
+                setProductExist(true)
+            }
+
+        }
+
+        productExistCheck()
+
+
     }, [dispatch, id])
 
 
     console.log(deletedReview)
 
+    // if (productExist) {
+    //     console.log("in the product no exist")
+    //     return ( <>no exist</>)
+    // }
 
     if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
 
@@ -87,10 +108,16 @@ function ProductIdPage() {
         }
     }
 
-    console.log('WHAT IS THIS IN PRODUCTIDPAGE', product, product.id)
+    // console.log('WHAT IS THIS IN ', product, product.id)
 
+    //* if product does't exist return jsx of  " no product :("
 
+    // ! NEED STYLING HERE and maybe links to catagories
+    if (productExist) return (
+        <>
 
+        <p>Product does not  exist</p></>
+    )
 
     return (
         <>
@@ -114,13 +141,13 @@ function ProductIdPage() {
                                 <img className='PID-main-image' onClick={changeMainImage} src={mainImage || product.preview_imageURL} alt="loading"></img>
                                 <div className="containerFavs">
 
-                                <FavoriteButton
-                                 productId={id}
-                                handleUnfavoriteClick={handleUnfavoriteClick}
-                                handleFavoriteClick={handleFavoriteClick}
-                                initialState={itemState}
-                                />
-                            </div>
+                                    <FavoriteButton
+                                        productId={id}
+                                        handleUnfavoriteClick={handleUnfavoriteClick}
+                                        handleFavoriteClick={handleFavoriteClick}
+                                        initialState={itemState}
+                                    />
+                                </div>
                             </div>
                         </div>
 
@@ -158,8 +185,8 @@ function ProductIdPage() {
 
                             )}
                             <div>
-                            <p>Description</p>
-                            <p className="productDescription"> {product.description}</p>
+                                <p>Description</p>
+                                <p className="productDescription"> {product.description}</p>
                             </div>
 
 
@@ -171,32 +198,32 @@ function ProductIdPage() {
                     <div className="productReview">
 
 
-                    <p className='Pid-ave-stars'>
-                        <span className='PID-count'>{count}
-                            {count === 1 ? " review" : " reviews"}
+                        <p className='Pid-ave-stars'>
+                            <span className='PID-count'>{count}
+                                {count === 1 ? " review" : " reviews"}
 
-                        </span>
-                        {stars.map((star, idx) =>
+                            </span>
+                            {stars.map((star, idx) =>
 
-                        <i key={idx} className="fas fa-star PID-count pStars" />
+                                <i key={idx} className="fas fa-star PID-count pStars" />
 
-)}
-                    </p>
+                            )}
+                        </p>
 
 
 
-                    {user && noUserReviewExist && notSeller &&
-                     <ReviewForm from="post"></ReviewForm>}
+                        {user && noUserReviewExist && notSeller &&
+                            <ReviewForm from="post"></ReviewForm>}
 
-{/* handles scenario to render form, if the user deletes their review, could not use noUserReviewsExist as it causes rerender cycles */}
-                    {deletedReview && <ReviewForm from="post"></ReviewForm>}
+                        {/* handles scenario to render form, if the user deletes their review, could not use noUserReviewsExist as it causes rerender cycles */}
+                        {deletedReview && <ReviewForm from="post"></ReviewForm>}
 
-                    {reviews?.map((review) => (
-                        <>
+                        {reviews?.map((review) => (
+                            <>
 
-                            <ReviewCard key={review.id} setDeletedReview={setDeletedReview}  userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
-                        </>
-                    ))}
+                                <ReviewCard key={review.id} setDeletedReview={setDeletedReview} userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
+                            </>
+                        ))}
 
 
 
