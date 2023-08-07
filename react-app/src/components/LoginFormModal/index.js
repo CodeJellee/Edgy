@@ -23,12 +23,9 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-      closeModal()
-
+      closeModal();
     }
   };
-
-
 
   const handleDemoSubmit = async (e) => {
     e.preventDefault();
@@ -36,53 +33,57 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-      closeModal()
-
+      closeModal();
     }
   };
 
-
-
-
   return (
     <>
-    <div className="loginStyle">
-      <h1>Log In</h1>
-         <OpenModalButton
-               buttonText="Register"
-               modalComponent={<SignupFormModal />}
-             />
+      {/* <div className="loginStyle"> */}
+      <div className="login-signup__buttons">
+        <h1>Log In</h1>
+        <OpenModalButton
+          buttonText="Register"
+          modalComponent={<SignupFormModal />}
+        />
+      </div>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Email
+        <div className="input-group">
           <input
+            className="signup-input"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password
+          <label className="user-label">Email</label>
+        </div>
+
+        <div className="input-group">
           <input
+            className="signup-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <button id="SignInButton" type="submit">Sign In</button>
-
+          <label className="user-label">Password</label>
+        </div>
+        <button id="SignInButton" type="submit">
+          Sign In
+        </button>
       </form>
       <form onSubmit={handleDemoSubmit}>
-        <button id="Demo-user" type="submit">DemoUser</button>
+        <button id="Demo-user" type="submit">
+          DemoUser
+        </button>
       </form>
-    </div>
+      {/* </div> */}
     </>
   );
 }
