@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+
 function SignupFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -40,6 +41,8 @@ function SignupFormModal() {
     if (username.length < 6)
       errObj.username = "Username requires a minimum of 6 characters.";
     if (email.length < 6)
+      errObj.email = "Email requires a minimum of 6 characters.";
+    if (email.length > 32)
       errObj.email = "Email requires a minimum of 6 characters.";
     if (!email.includes("@")) errObj.email = "Invalid email.";
     if (username.includes(" "))
@@ -182,7 +185,15 @@ function SignupFormModal() {
             )}
           </label>
         </div>
-        <button type="submit">Sign Up</button>
+        <div>
+          <button
+            type="submit"
+            id="signup-modal-button"
+            className="PID-cartButt"
+          >
+            Sign Up
+          </button>
+        </div>
       </form>
     </>
   );
