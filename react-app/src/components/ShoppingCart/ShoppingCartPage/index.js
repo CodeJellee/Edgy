@@ -27,6 +27,8 @@ function ShoppingCartPage() {
   //had to insert Object.values to const userCart because item was not rendering properly, bc of that no need to Object.values in the return at the bottom/html section for userCart
   //wasn't working with Object.values and chaining it with .map
 
+  const sum = userCart.reduce((total, c) => total + c.Product.price, 0).toFixed(2)
+
   const itemLength = userCart.length;
   // console.log("length of cart here", itemLength);
 
@@ -174,28 +176,27 @@ function ShoppingCartPage() {
                           src={item.Product.preview_imageURL}
                           alt={item.Product.item_name}
                         />
+                        <div className="remove-save">
+                    <DeleteCartIem
+                      cartItemId={item.Product.id}
+                    />
+                    <div id="remove-save-button" >Save for Later</div>
+                  </div>
                       </NavLink>
 
                       <div className="name-blurb-cost-quantity">
                         <div className="name-description">
                           <div className="item-description">
                             {item.Product.description}
+                            <div className="quantity">Quantity:</div>
+                          <input id="quantity-input" type="number" className="quantity-input" name="quantity" min="1" defaultValue="1"/>
                           </div>
                         </div>
                         <div className="price-how-many-is-left">
-                          <div>${item.Product.price} Each</div>
-                          <div>Quantity:</div>
-                          <input type="number" className="quantity-input" name="quantity" min="1" defaultValue="1"/>
+                          <div>${item.Product.price}</div>
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="remove-save">
-                    <DeleteCartIem
-                      cartItemId={item.Product.id}
-                    />
-                    <div id="remove-save-button" className='PID-favFullButt PID-P-button PID-Transp-butt'>Save for Later</div>
                   </div>
 
                   <div className="note-and-delivery">
@@ -210,35 +211,34 @@ function ShoppingCartPage() {
                       </div>
                       </div>
                     </div>
+                      <div className="est-delivery">Estimated Delivery</div>
                     </div>
-                    <div className="delivery-container">
+                  </div>
+                </>
+              ))}
+            </div>
+            <div className="checkout-button-container">
+              <h2>How you'll pay</h2>
+      <div id="payMe">
+      {paymentMethods.map((image, index) => (
+        <div id="payment-method">
+          <input type="checkbox" />
+          <img id={`imgCard${index}`} src={image} alt={`Image ${index + 1}`} />
+        </div>
+
+      ))}
+      </div>
+      <div id="ship">Total: <span>${sum}</span></div>
+            <div id="ship" className="delivery-container">
+                    <p>Shipping:</p>
                       <select name="delivery-drop-down">
                         <option value="Shipping Method">Shipping Method</option>
                         <option value="Free Shipping">FREE SHIPPING</option>
                         <option value="Next Day">Next Day</option>
                         <option value="2-3 Day">2-3 Day</option>
                       </select>
-                      <div className="est-delivery">Estimated Delivery</div>
                     </div>
-                  </div>
-
-                  <div className="gift-coupon">
-                    <div>
-                      <div className="gift-toggle">
-                        <input type="checkbox" class="toggle-input" />
-                        <div>This order is a gift</div>
-                      </div>
-                      <div className="gift-order-blurb">
-                        Prices will not be shown on the packing slip
-                      </div>
-                    </div>
-                    <div className="coupon">Apply shop coupon codes</div>
-                  </div>
-                </>
-              ))}
-            </div>
-            <div className="checkout-button-container">
-              <div>
+              <div className="but">
                 <ProceedToCheckout />
               </div>
             </div>

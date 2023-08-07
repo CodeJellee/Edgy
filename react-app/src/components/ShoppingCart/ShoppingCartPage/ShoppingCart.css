@@ -31,7 +31,7 @@
 
 
 .each-cart-item-container{
-    height: 100%;
+    height: auto;
     width: 90%;
     border: 0.01px solid rgb(218, 218, 218);
     box-shadow: 1px 1px 10px 1px rgb(218, 218, 218);
@@ -67,13 +67,9 @@
     cursor: pointer;
 }
 
-#payMe > div {
-    height: 200px
-}
-
 .payment-method > div{
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
 }
 
 #pDes {
@@ -136,6 +132,10 @@
 
 }
 
+.quantity {
+    margin-top: 10px
+}
+
 
 .quantity-input{
     width:35px;
@@ -159,12 +159,17 @@
 }
 
 #remove-save-button {
+    color: black;
     width: 100%;
     height: 8px;
     font-size: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.primary-cart-container > h1 {
+    line-height: 80px;
 }
 
 .remove-save-button:hover {
@@ -176,7 +181,9 @@
 
 .note-and-delivery{
     display: flex;
+    align-items: flex-end;
     justify-content: space-between;
+    margin-top: 80px
 
 }
 
@@ -262,6 +269,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
+    margin-top: 20px;
     /* margin-left: 40px;
     margin-right: 40px; */
 }
@@ -273,9 +282,31 @@
     text-align: left;
 }
 
+.checkout-button-container > h2 {
+    text-align: left;
+}
+
+#payment-method {
+    display: flex;
+    align-items: center;
+}
+
+#payMe {
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
 #foot2 {
     font-size: 14px;
     text-align: center;
     margin-bottom: 50px;
+    margin-top: 10px;
 }
+
+.but > .PID-cartButt {
+    margin-top: 20px;
+    width: 90%
+}
+
+
 /* actual proceed to checkout button css taken from product page */
