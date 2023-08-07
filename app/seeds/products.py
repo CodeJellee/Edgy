@@ -207,12 +207,12 @@ def seed_products(users):
         },
         {
             # "id": 21,
-            "item_name": "Narwhal Waifu Body Pillow",
+            "item_name": "Chopper Chopper Waifu Body Pillow",
             "price": 381.84,
             "category": "Waifu Body Pillows",
-            "description": "go swimming with a buddy",
+            "description": "chopper I need healing!",
             "quantity": 1,
-            "preview_imageURL": "https://rlv.zcache.com/rainbow_narwhal_body_pillow-r84205d8f12824cdd85d640584f84cc7f_z6i07_80.jpg?rlvnet=1",
+            "preview_imageURL": "https://ae01.alicdn.com/kf/S893cbd93657145f1b7983ff2fee8af357/Hot-35-70cm-Anime-One-Piece-Tony-Tony-Chopper-Stuffed-Plush-Doll-Toy-Bedroom-Decoration-Sleeping.jpg_220x220xz.jpg_.webp",
             "sellerId": 5,
         },
         {
@@ -1153,7 +1153,7 @@ def seed_products(users):
             "category": "Waifu Body Pillows",
             "description": "Hug the charming Chopper",
             "quantity": 35,
-            "preview_imageURL": "https://m.media-amazon.com/images/I/71xfa64UP3L._AC_UL320_.jpg",
+            "preview_imageURL": "https://ae01.alicdn.com/kf/Hdb594bf3755b4a22a21aff396a6ce565Q/Big-Size-Anime-One-Piece-Chopper-Plush-Stuffed-Doll-Toy-Kawaii-Cute-Lovely-Soft-Plush-Toys.jpg",
             "sellerId": 7,
         },
         {
