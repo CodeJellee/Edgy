@@ -164,6 +164,7 @@ function App() {
             </ProtectedRoute>
           </Route>
           {/* test */}
+          {/* test2 */}
           <Route path="/">
             <h1>404 not found</h1>
           </Route>
