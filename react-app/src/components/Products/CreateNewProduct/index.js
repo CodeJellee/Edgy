@@ -111,7 +111,7 @@ const NewProductForm = () => {
     //   console.log('AFTER SET PRICE', price)
     // }
 
-    console.log('what is price here', price)
+    // console.log('what is price here', price)
 
     let payload = {
       item_name: itemName,

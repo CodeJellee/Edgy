@@ -30,7 +30,7 @@ function ProductIdPage() {
 
     if (userFavorites.filter(favs => favs.id === id).length) setItemState(true)
 
-    console.log(userFavorites)
+    // console.log(userFavorites)
     // if deletedReview is changed to true, cause form to be rendered
 
     const handleFavoriteClick = (productId) => {
@@ -61,7 +61,7 @@ function ProductIdPage() {
             let check = await dispatch(productsActions.thunkGetSingleProduct(id))
 
             if (check === "Product Id does not exist") {
-                console.log("in use effect check")
+                // console.log("in use effect check")
                 // redirect to somewhere
                 history.push(`/categories`)
                 //setProductExist(true)
