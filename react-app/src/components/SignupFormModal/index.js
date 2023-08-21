@@ -1,3 +1,4 @@
+// SignupFormModal/index.js
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -83,7 +84,7 @@ function SignupFormModal() {
   };
   return (
     <>
-      <h1>Sign Up</h1>
+      <h1 id="signup-text">Sign Up</h1>
       <form onSubmit={handleSubmit}>
         {/* <ul>
           {errors.map((error, idx) => (
