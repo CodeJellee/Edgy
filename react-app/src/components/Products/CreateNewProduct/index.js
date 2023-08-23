@@ -180,7 +180,7 @@ const NewProductForm = () => {
                 <input
                   type="text"
                   name="previewImageURL"
-                  placeholder="Preview Image URL"
+                  placeholder="REQUIRED IMAGE URL"
                   value={previewImageURL}
                   onChange={(e) => setPreviewImageURL(e.target.value)}
                 />

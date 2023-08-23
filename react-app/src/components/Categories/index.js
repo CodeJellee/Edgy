@@ -28,6 +28,10 @@ function Categories({ category, name }) {
   // }, [dispatch]);
 
   useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top instantly when the page loads
+}, []);
+
+  useEffect(() => {
     if (query) dispatch(productActions.thunkSearchAllProducts(query));
   }, [dispatch, query]);
 
@@ -107,7 +111,7 @@ function Categories({ category, name }) {
           </button>
         </div>
         <div className="filter2">
-          <button>
+          <button onClick={((e) => window.alert("Feature coming soon"))}>
             <span>Sort by:</span>Relevancy<i class="fa-solid fa-caret-down"></i>
           </button>
         </div>

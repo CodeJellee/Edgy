@@ -206,89 +206,78 @@ function ShoppingCartPage() {
                         </div>
                       </div>
 
-                      <div className="note-and-delivery">
-                        <div className="add-note">
-                          + Add a note to Seller
-                          <div className="gift-toggle">
-                            <div id="gift">
-                              <input type="checkbox" class="toggle-input" />
-                              <div>This order is a gift</div>
-                            </div>
-                            <div className="gift-order-blurb">
-                              Prices will not be shown on the packing slip
-                            </div>
-                          </div>
+                  <div className="note-and-delivery">
+                    <div className="add-note">+ Add a note to Seller
+                      <div className="gift-toggle">
+                        <div id="gift">
+                        <input type="checkbox" class="toggle-input" />
+                        <div>This order is a gift</div>
                         </div>
-                        <div className="est-delivery">Estimated Delivery</div>
+                      <div className="gift-order-blurb">
+                        Prices will not be shown on the packing slip
+                      </div>
                       </div>
                     </div>
-                  </>
-                ))}
-              </div>
-              <div className="checkout-button-container">
-                <h2>How you'll pay</h2>
-                <div id="payMe">
-                  {paymentMethods.map((image, index) => (
-                    <div id="payment-method">
-                      <input type="checkbox" />
-                      <img
-                        id={`imgCard${index}`}
-                        src={image}
-                        alt={`Image ${index + 1}`}
-                      />
+                      <div className="est-delivery">Estimated Delivery</div>
                     </div>
-                  ))}
-                </div>
-                <div id="ship">
-                  Total: <span>${sum}</span>
-                </div>
-                <div id="ship" className="delivery-container">
-                  <p>Shipping:</p>
-                  <select name="delivery-drop-down">
-                    <option value="Shipping Method">Shipping Method</option>
-                    <option value="Free Shipping">FREE SHIPPING</option>
-                    <option value="Next Day">Next Day</option>
-                    <option value="2-3 Day">2-3 Day</option>
-                  </select>
-                </div>
-                <div className="but">
-                  <ProceedToCheckout />
-                </div>
+                  </div>
+                </>
+              ))}
+            </div>
+            <div className="checkout-button-container">
+              <h2>How you'll pay</h2>
+      <div id="payMe">
+      {paymentMethods.map((image, index) => (
+        <div id="payment-method">
+          <input type="checkbox" />
+          <img id={`imgCard${index}`} src={image} alt={`Image ${index + 1}`} />
+        </div>
+
+      ))}
+      </div>
+      <div id="ship">Total: <span>${sum}</span></div>
+            <div id="ship" className="delivery-container">
+                    <p>Shipping:</p>
+                      <select name="delivery-drop-down">
+                        <option value="Shipping Method">Shipping Method</option>
+                        <option value="Free Shipping">FREE SHIPPING</option>
+                        <option value="Next Day">Next Day</option>
+                        <option value="2-3 Day">2-3 Day</option>
+                      </select>
+                    </div>
+              <div className="but">
+                <ProceedToCheckout />
               </div>
             </div>
-          </>
-        )}
-      </div>
-      <p id="footT">Edgy offsets carbon emissions from every delivery</p>
-      <div className="border"></div>
-      <div id="cartF">
-        <div className="footer1">
-          <div className="foot1">
-            <img
-              src="https://m.media-amazon.com/images/I/51froJYdRmL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
-              alt="meaningful text"
-            ></img>
-            <p>United States</p>
-            <p>|</p>
-            <p>English (US)</p>
-            <p>|</p>
-            <p>$ (USD)</p>
           </div>
-          <div className="foot2">
-            <p>© 2023 Edgy, Inc.</p>
-            <p className="line">Terms of use</p>
-            <p className="line">Privacy</p>
-            <p className="line">Interest-based ads</p>
-            <p className="line">Local Shops</p>
-            <p className="line">Regions</p>
-          </div>
+        </>
+      )}
+    </div>
+    <p id="footT">Edgy offsets carbon emissions from every delivery</p>
+    <div className="border"></div>
+    <div id="cartF">
+
+    <div className="footer1">
+        <div className="foot1">
+        <img src="https://m.media-amazon.com/images/I/51froJYdRmL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="meaningful text"></img>
+        <p>United States</p>
+        <p>|</p>
+        <p>English (US)</p>
+        <p>|</p>
+        <p>$ (USD)</p>
         </div>
-        <p id="foot2">
-          Merchant is Edgy, Inc. (USA), Edgy Ireland UC (Ireland), or Edgy UK
-          Limited (United Kingdom) depending on the currency and location of the
-          payment instrument issuance. See Edgy Payments Policy.
-        </p>
-      </div>
+        <div className="foot2">
+        <p >© 2023 Edgy, Inc.</p>
+        <p className="line">Terms of use</p>
+        <p className="line">Privacy</p>
+        <p className="line">Interest-based ads</p>
+        <p className="line">Local Shops</p>
+        <p className="line">Regions</p>
+        </div>
+    </div>
+    <p id="foot2">Merchant is Edgy, Inc. (USA), Edgy Ireland UC (Ireland), or Edgy UK Limited (United Kingdom) depending on the currency and location of the payment instrument issuance. See Edgy Payments Policy.</p>
+    </div>
+
     </>
   );
 }

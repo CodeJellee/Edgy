@@ -11,6 +11,7 @@ function ReviewsCurr() {
   const currentUser = useSelector((state) => state.session.user);
   const userReviews = useSelector((state) => state.reviews.userReviews);
   const [ searching, setSearching ] = useState(null)
+  const [searchQuery, setSearchQuery] = useState(null);
 
 
   const [reviews, setReviews] = useState([]);
@@ -33,7 +34,9 @@ function ReviewsCurr() {
 
   if (searching) filteredReviews = reviews.filter((r) => r.Product.item_name.toLowerCase().includes(searching.toLowerCase()))
 
-
+  const handleInputChange = (e) => {
+		if (e.key == "Enter" || e.type == "click") setSearching(searchQuery)
+	};
 
   //   console.log("user review:", userReviews.Reviews)
 
@@ -54,12 +57,13 @@ function ReviewsCurr() {
       <div id="reviews">
       {filteredReviews.length ? filteredReviews.map((review) => (
         <>
-        <div className="reviewHeader"><p> Created at: {new Date(review.createdAt).toLocaleString('default', {
+        {/* <div className="reviewHeader"><p> Created at: {new Date(review.createdAt).toLocaleString('default', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
-                    })}</p></div>
+                    })}</p></div> */}
           <ReviewCard
+            page={true}
             key={review.id}
             userFirstName={currentUser.username}
             review={review}
@@ -73,15 +77,13 @@ function ReviewsCurr() {
       </div>
       <div id="searchRevs">
         <input
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-          setSearching(e.target.value);
-           }
-          }}
+        onChange={((e) => setSearchQuery(e.target.value))}
+        onKeyDown={handleInputChange}
         type="text" placeholder="Search"></input>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <i onClick={handleInputChange} class="fa-solid fa-magnifying-glass"></i>
       </div>
       </div>
+      <div id="padding"></div>
       <div className="footerThree-1">
         <div className="foot1">
         <img src="https://m.media-amazon.com/images/I/51froJYdRmL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="meaningful text"></img>
@@ -93,11 +95,11 @@ function ReviewsCurr() {
         </div>
         <div className="foot2">
         <p >© 2023 Edgy, Inc.</p>
-        <p className="line">Terms of use</p>
-        <p className="line">Privacy</p>
-        <p className="line">Interest-based ads</p>
-        <p className="line">Local Shops</p>
-        <p className="line">Regions</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Terms of use</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Privacy</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Interest-based ads</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Local Shops</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Regions</p>
         </div>
         </div>
     </div>

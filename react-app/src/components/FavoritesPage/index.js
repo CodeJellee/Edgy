@@ -53,8 +53,8 @@ function FavoritesPage() {
           <div id="user-options__name-profile">
             <div className="profileName">{user.first_name}</div>
             <div className="editProfile">
-              <NavLink to="">Edit public profile</NavLink>
-              <NavLink to="">About</NavLink>
+              <NavLink onClick={((e) => window.alert("Feature coming soon"))} to="/favorites/current">Edit public profile</NavLink>
+              <NavLink onClick={((e) => window.alert("Feature coming soon"))} to="/favorites/current">About</NavLink>
             </div>
           </div>
         </div>

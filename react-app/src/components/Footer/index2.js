@@ -1,9 +1,21 @@
 import "./Footer.css"
 import { Link } from "react-router-dom"
+import { useState } from "react";
 
 
 
 function FooterTwo(){
+    const [inputValue, setInputValue] = useState('');
+
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter' || e.type == "click") {
+            e.preventDefault(); // Prevent the default Enter key behavior (form submission)
+            setInputValue('');
+        }
+      };
+
+
     return (
     <div className="foots">
         <div className="background2">
@@ -11,8 +23,13 @@ function FooterTwo(){
             <div className="footer4">
                 <p>Yes! Send me exclusive offers, unique gift ideas, and personalized tips for shopping and selling on Edgy.</p>
                 <div className="e">
-                <input type="email" placeholder="Enter your email"></input>
-                <span>Subscribe</span>
+                <input
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyPress}
+                type="email"
+                placeholder="Enter your email"></input>
+                <span onClick={handleKeyPress}>Subscribe</span>
                 </div>
             </div>
             </div>
@@ -22,7 +39,7 @@ function FooterTwo(){
             </div>
         </div>
     <div className="footer2">
-        <div className="shopFoot">
+        <div onClick={((e) => window.alert("Feature coming soon"))} className="shopFoot">
             <h3>Shop</h3>
             <p>Gift cards</p>
             <p>Edgy Registry</p>
@@ -32,14 +49,14 @@ function FooterTwo(){
             <p>Edgy Germany</p>
             <p>Edgy Canada</p>
         </div>
-        <div className="sellFoot">
+        <div onClick={((e) => window.alert("Feature coming soon"))} className="sellFoot">
             <h3>Sell</h3>
             <p>Sell on Edgy</p>
             <p>Teams</p>
             <p>Forums</p>
             <p>Affiliates & Creators</p>
         </div>
-        <div className="aboutFoot">
+        <div onClick={((e) => window.alert("Feature coming soon"))} className="aboutFoot">
             <h3>About</h3>
             <p>Edgy, Inc.</p>
             <p>Policies</p>
@@ -48,7 +65,7 @@ function FooterTwo(){
             <p>Press</p>
             <p>Impact</p>
         </div>
-        <div className="helpFoot">
+        <div onClick={((e) => window.alert("Feature coming soon"))} className="helpFoot">
             <h3>Help</h3>
             <p>Help Center</p>
             <p>Privacy settings</p>
@@ -73,11 +90,11 @@ function FooterTwo(){
         </div>
         <div className="foot2">
         <p >© 2023 Edgy, Inc.</p>
-        <p className="line">Terms of use</p>
-        <p className="line">Privacy</p>
-        <p className="line">Interest-based ads</p>
-        <p className="line">Local Shops</p>
-        <p className="line">Regions</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Terms of use</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Privacy</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Interest-based ads</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Local Shops</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Regions</p>
         </div>
     </div>
     </div>

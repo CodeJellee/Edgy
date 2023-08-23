@@ -110,7 +110,7 @@
   display: flex;
   border-radius: 10px;
   box-shadow: 2px 2px 8px rgb(158, 158, 150);
-  z-index: 4;
+  z-index: 6;
   flex-direction: column;
   right: 60px;
   margin: 10px;
@@ -131,4 +131,8 @@
 #logout:hover {
   background-color: #bfbebe;
   cursor: pointer;
+}
+
+#padding {
+  margin-top: 300px
 }
