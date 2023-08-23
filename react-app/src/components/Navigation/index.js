@@ -5,16 +5,23 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useHistory } from 'react-router-dom/'
 import OpenModalButton from '../OpenModalButton';
+import { useState } from 'react';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 	const history = useHistory()
+	const [searchQuery, setSearchQuery] = useState('');
 
 
-	const handleInputChange = (event) => {
-		event.stopPropagation()
-		if (event.key == "Enter") history.push(`/categories/search/${event.target.value}`)
-	  };
+	const handleInput = (event) => {
+		setSearchQuery(event.target.value);
+		if (event.key == "Enter") handleInputChange()
+	};
+
+
+const handleInputChange = () => {
+		if (searchQuery) history.push(`/categories/search/${searchQuery}`)
+	};
 
 	return (
 		<>
@@ -22,8 +29,8 @@ function Navigation({ isLoaded }){
 		<div className="edgy">
 		<h1 onClick={((e)=> history.push('/'))}>Edgy</h1>
 		<div className="s">
-		<input type="text" onKeyDown={handleInputChange} placeholder='Search for anything'></input>
-		<i id="searchI" class="fa-solid fa-magnifying-glass"></i>
+		<input type="text" onChange={searchQuery} onKeyDown={handleInput} placeholder='Search for anything'></input>
+		<i onClick={handleInputChange} id="searchI" class="fa-solid fa-magnifying-glass"></i>
 		</div>
 		<i onClick={(e) => history.push("/favorites/current/")} class="fa-regular fa-heart"></i>
 		{isLoaded ?

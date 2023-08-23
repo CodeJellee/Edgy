@@ -109,6 +109,7 @@
 .name-description{
     text-decoration: none;
     width: 60%;
+    overflow: hidden;
 }
 
 .items-link{
@@ -123,7 +124,14 @@
     font-size: 13px;
     padding: 10px;
     height: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
+}
+
+#payment-method > input[type="checkbox"] {
+    cursor: pointer;
 }
 
 .price-how-many-is-left{

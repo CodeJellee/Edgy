@@ -81,9 +81,7 @@ function AllProductsPage() {
         <p>Sort</p>
         <select onChange={((e) => setSorting(e.target.value))} id="productSort">
         <option value="Id">Id</option>
-        <option value="Newest">Newest - Oldest</option>
-        <option value="Oldest">Oldest - Newest</option>
-        <option value="Alphabetical">A - Z</option>
+        
         </select>
         </div>
         </div>
@@ -98,11 +96,11 @@ function AllProductsPage() {
         </div>
         <div className="foot2">
         <p >© 2023 Edgy, Inc.</p>
-        <p className="line">Terms of use</p>
-        <p className="line">Privacy</p>
-        <p className="line">Interest-based ads</p>
-        <p className="line">Local Shops</p>
-        <p className="line">Regions</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Terms of use</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Privacy</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Interest-based ads</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Local Shops</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Regions</p>
         </div>
         </div>
 

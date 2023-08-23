@@ -5,7 +5,7 @@ function ShopSelectionCard() {
     return (
         <div className="shopSelection">
 
-            <h1>Shop our selections<i class="fa-solid fa-arrow-right"></i></h1>
+            <h1 onClick={((e) => window.alert("Feature coming soon"))}>Shop our selections<i class="fa-solid fa-arrow-right"></i></h1>
             <p>Curated collections hand-picked by Edgy's editors</p>
             <div className='collections'>
                 <div onClick={((e) => window.alert("Feature Coming Soon"))}>

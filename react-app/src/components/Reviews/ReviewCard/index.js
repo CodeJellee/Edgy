@@ -6,8 +6,9 @@ import * as reviewsActions from '../../../store/reviews'
 import * as productsActions from "../../../store/products";
 import ReviewForm from "../ReviewForm";
 import { useHistory } from 'react-router-dom';
+import '../ReviewsCurr/ReviewsCurr.css'
 
-function ReviewCard({ userFirstName, review, from, user, }) {
+function ReviewCard({ userFirstName, review, from, user, page}) {
     const history = useHistory();
 
 
@@ -101,6 +102,11 @@ function ReviewCard({ userFirstName, review, from, user, }) {
 
     return (
         <>
+           {page && <div className="reviewHeader"><p> Created at: {new Date(review.createdAt).toLocaleString('default', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })}</p></div>}
 
             <div className="Rc-card">
 

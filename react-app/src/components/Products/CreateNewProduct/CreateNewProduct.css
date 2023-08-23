@@ -4,11 +4,11 @@
 }
 
 .imgSide-1 {
-    width: 30%;
+    width: 34%;
 }
 
 .imgSide-2 {
-    width: 68%;
+    width: 63%;
     margin-top: 7.3px;
     display: flex;
     flex-direction: column;
@@ -74,13 +74,12 @@
     width: 30%;
     margin-right: 20px;
     padding-right: 40px;
-    margin-top: 9px;
 }
 
 .productSide-2 {
     width: 68%;
     display: flex;
-    margin-top: 24px;
+    margin-top: 11px;
     flex-direction: column;
     gap: 15px;
 
@@ -89,6 +88,7 @@
 .productAbout {
     display:flex;
     flex-direction: row;
+    margin-top: 13px;
 }
 
 .productAbout > div {

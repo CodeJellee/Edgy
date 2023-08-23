@@ -200,7 +200,7 @@ function ShoppingCartPage() {
                   </div>
 
                   <div className="note-and-delivery">
-                    <div className="add-note">+ Add a note to Seller
+                    <div onClick={((e) => window.alert("Feature coming soon"))}className="add-note">+ Add a note to Seller
                       <div className="gift-toggle">
                         <div id="gift">
                         <input type="checkbox" class="toggle-input" />

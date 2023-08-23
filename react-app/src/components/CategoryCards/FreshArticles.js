@@ -12,7 +12,7 @@ function FreshArticlesCard(){
 
     return (
     <div className="articles">
-        <h1>Fresh articles we love<i class="fa-solid fa-arrow-right"></i></h1>
+        <h1 onClick={((e) => window.alert("Feature coming soon"))}>Fresh articles we love<i class="fa-solid fa-arrow-right"></i></h1>
         <div className="eA">
             <div onClick={((e) => window.open('https://www.gothicbeauty.com/', '_blank'))} className="a">
                 <img src="https://www.gothicbeauty.com/wp-content/uploads/2017/01/punkrave-re.jpg"></img>
