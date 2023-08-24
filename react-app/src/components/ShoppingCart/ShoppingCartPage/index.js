@@ -20,9 +20,9 @@ function ShoppingCartPage() {
   console.log(userCart)
   const paymentMethods = [
     'https://icons.veryicon.com/png/o/business/third-party-sharing-payment/apple-pay.png' ,
-     'https://icon-library.com/images/visa-master-icon/visa-master-icon-6.jpg' ,
-  'https://www.freeiconspng.com/uploads/paypal-icon-8.png'
-];
+    'https://icon-library.com/images/visa-master-icon/visa-master-icon-6.jpg' ,
+    'https://www.freeiconspng.com/uploads/paypal-icon-8.png'
+  ];
   // console.log("THIS IS USERCART", userCart);
   //had to insert Object.values to const userCart because item was not rendering properly, bc of that no need to Object.values in the return at the bottom/html section for userCart
   //wasn't working with Object.values and chaining it with .map
