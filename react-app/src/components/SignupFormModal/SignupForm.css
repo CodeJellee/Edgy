@@ -32,7 +32,7 @@
 
 .signup-input:focus, input:valid {
     outline: none;
-    border: 5px solid #52057B;
+    border: 2px solid #52057B;
 }
 
 .signup-input:focus ~ label, input:valid ~ label {

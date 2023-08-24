@@ -252,7 +252,8 @@
 
 .iconFoot {
     display: flex;
-    gap: 25px
+    gap: 25px;
+    cursor: pointer;
 }
 
 .footer5 > p, .footer5 > i {

@@ -9,10 +9,11 @@ import { useState } from 'react';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const { userCart } = useSelector(state => state.shoppingCart);
 	const history = useHistory()
 	const [searchQuery, setSearchQuery] = useState('');
 
-
+	let items = Object.values(userCart)
 	const handleInput = (event) => {
 		setSearchQuery(event.target.value);
 		if (event.key == "Enter") handleInputChange()
@@ -40,7 +41,7 @@ const handleInputChange = () => {
 		:
 			null
 		}
-			<i onClick={((e) => history.push("/shopping_cart"))} class="fa-solid fa-cart-shopping"></i>
+			<i onClick={((e) => history.push("/shopping_cart"))} class="fa-solid fa-cart-shopping"><div id="numI">{items.length}</div></i>
 		</div>
 
 		<div className="navigation">
