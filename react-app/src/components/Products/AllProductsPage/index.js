@@ -80,8 +80,9 @@ function AllProductsPage() {
         <button onClick={((e) => window.alert('Feature coming soon'))} className="qEdit">Quick edit</button>
         <p>Sort</p>
         <select onChange={((e) => setSorting(e.target.value))} id="productSort">
-        <option value="Id">Id</option>
-        
+        <option value="Oldest">Oldest - Newest</option>
+        <option value="Newest">Newest - Oldest</option>
+        <option value="Alphabetical">A - Z</option>
         </select>
         </div>
         </div>

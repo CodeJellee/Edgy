@@ -20,6 +20,53 @@ function Categories({ category, name }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { query } = useParams();
+  const [ hidden, setHidden ] = useState(true)
+  const [ relevancy, setRelevancy ] = useState(true)
+  const [ highest, setHighest ] = useState(false)
+  const [ lowest, setLowest ] = useState(false)
+  const [ recent, setRecent ] = useState(false)
+  const [ top, setTop ] = useState(false)
+
+
+  const handleRelevancy = () => {
+    setRelevancy(true)
+    setHighest(false)
+    setLowest(false)
+    setRecent(false)
+    setTop(false)
+  }
+
+  const handleHighest = () => {
+    setRelevancy(false)
+    setHighest(true)
+    setLowest(false)
+    setRecent(false)
+    setTop(false)
+  }
+
+  const handleLowest = () => {
+    setRelevancy(false)
+    setHighest(false)
+    setLowest(true)
+    setRecent(false)
+    setTop(false)
+  }
+
+  const handleRecent = () => {
+    setRelevancy(false)
+    setHighest(false)
+    setLowest(false)
+    setRecent(true)
+    setTop(false)
+  }
+
+  const handleTop = () => {
+    setRelevancy(false)
+    setHighest(false)
+    setLowest(false)
+    setRecent(false)
+    setTop(true)
+  }
   // console.log(query);
   // console.log(search);
 
@@ -55,9 +102,12 @@ function Categories({ category, name }) {
 
 //   if (!eachProduct.length) return <h1>Loading</h1>;
 
-  if (!query && category !== "All")
-    eachProduct = eachProduct.filter((p) => p.category == category);
+  if (!query && category !== "All") eachProduct = eachProduct.filter((p) => p.category == category);
 
+  console.log(eachProduct)
+  if (lowest) eachProduct = eachProduct.sort((a, b) => a.price - b.price);
+  if (highest) eachProduct = eachProduct.sort((a, b) => b.price - a.price);
+  if (recent) eachProduct = eachProduct.sort((a, b) => b.id - a.id);
 
   return (
     <>
@@ -80,7 +130,7 @@ function Categories({ category, name }) {
                   </span>
                 </div>
                 <p className="numberR">
-                  ({eachProduct.length} resultes, with Ads)
+                  ({eachProduct.length} resultes, with Ads <i class="fi fi-rr-interrogation"></i>)
                 </p>
               </div>
               <div></div>
@@ -111,9 +161,19 @@ function Categories({ category, name }) {
           </button>
         </div>
         <div className="filter2">
-          <button onClick={((e) => window.alert("Feature coming soon"))}>
+          <button onClick={(() => setHidden(!hidden))}>
             <span>Sort by:</span>Relevancy<i class="fa-solid fa-caret-down"></i>
           </button>
+          <div id={ hidden ? "hidden" : "relevancy"}>
+          <div id="rel" onClick={(() => setHidden(!hidden))}><span id="forty">Sort by:</span>Relevancy<i class="fa-solid fa-caret-down"></i></div>
+          <div id="choose55">
+            <span onClick={handleRelevancy} id={relevancy ? "c-c" : ""}>Relevancy<i id={relevancy ? "" : "hidden"} class="fi fi-br-check"></i></span>
+            <span onClick={handleLowest} id={lowest ? "c-c" : ""}>Lowest Price<i id={lowest ? "" : "hidden"} class="fi fi-br-check"></i></span>
+            <span onClick={handleHighest} id={highest ? "c-c" : ""}>Highest Price<i id={highest ? "" : "hidden"} class="fi fi-br-check"></i></span>
+            <span onClick={handleTop} id={top ? "c-c" : ""}>Top Customer Reviews<i id={top ? "" : "hidden"} class="fi fi-br-check"></i></span>
+            <span onClick={handleRecent} id={recent ? "c-c" : ""}>Most Recent<i id={recent ? "" : "hidden"} class="fi fi-br-check"></i></span>
+          </div>
+          </div>
         </div>
       </div>
       <div className="products">

@@ -85,6 +85,10 @@
     line-height: 90px;
 }
 
+#gift > input {
+    margin: 0px;
+    margin-right: 5px;
+}
 
 .image-title-price-container{
     display: flex;
@@ -119,7 +123,7 @@
 }
 
 .item-description{
-    background-color: rgba(128, 128, 128, 0.2);
+    background-color: rgba(234,234,234,.6);
     border-radius: 5px;
     font-size: 13px;
     padding: 10px;
@@ -130,8 +134,28 @@
 
 }
 
-#payment-method > input[type="checkbox"] {
+#payment-method {
+    display: flex;
+    align-items: center;
+    height: 45px;
+}
+
+#not-method {
+    color: gray
+}
+
+#payment-method > i {
     cursor: pointer;
+    font-size: 28px;
+    margin-right: 5px;
+    height: 28px;
+}
+
+#footT {
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .price-how-many-is-left{
@@ -251,7 +275,16 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px
+}
+
+#ninty {
+    font-size: 35px;
+    margin-right: 5px;
+}
+
+#the-note {
+    display: flex;
+    align-items: center;
 }
 
 #gift {

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as CartActions from "../../../store/shoppingCart"; //this will be grabbing all of our thunks/reducer from the store file
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
@@ -10,6 +10,7 @@ import "./ShoppingCart.css";
 
 function ShoppingCartPage() {
   const { id } = useParams();
+  const [ method, setMethod ] = useState(1)
 
   const dispatch = useDispatch();
 
@@ -207,7 +208,7 @@ function ShoppingCartPage() {
                       </div>
 
                   <div className="note-and-delivery">
-                    <div className="add-note">+ Add a note to Seller
+                    <div className="add-note"><div onClick={(() => window.alert("Feature coming soon"))} id="the-note"><span id="ninty">+</span> Add a note to Seller</div>
                       <div className="gift-toggle">
                         <div id="gift">
                         <input type="checkbox" class="toggle-input" />
@@ -228,8 +229,9 @@ function ShoppingCartPage() {
               <h2>How you'll pay</h2>
       <div id="payMe">
       {paymentMethods.map((image, index) => (
-        <div id="payment-method">
-          <input type="checkbox" />
+        <div onClick={(() => setMethod(index))} id="payment-method">
+          { index === method ? <i class="fi fi-ss-dot-circle"></i> :
+          <i id="not-method" class="fi fi-rs-circle"></i> }
           <img id={`imgCard${index}`} src={image} alt={`Image ${index + 1}`} />
         </div>
 
@@ -253,7 +255,7 @@ function ShoppingCartPage() {
         </>
       )}
     </div>
-    <p id="footT">Edgy offsets carbon emissions from every delivery</p>
+    <p id="footT"><i class="fi fi-br-leaf"></i>Edgy offsets carbon emissions from every delivery</p>
     <div className="border"></div>
     <div id="cartF">
 
