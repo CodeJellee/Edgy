@@ -54,16 +54,15 @@ export const thunkGetShoppingCart = () => async (dispatch) => {
 };
 
 export const thunkDeleteCartItem = (productId) => async (dispatch) => {
-  console.log(productId)
+  // console.log(productId);
   let product = await fetch(`/api/carts/shopping_cart/${productId}`, {
     method: "DELETE",
   });
   product = await product.json();
-  console.log('THIS IS DELETE THUNK', product, productId)
+  // console.log("THIS IS DELETE THUNK", product, productId);
   await dispatch(deleteShoppingCartAction(productId));
   return product;
 };
-
 
 //ORIGINAL BELOW
 // export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
@@ -107,7 +106,6 @@ export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
   return res;
 };
 
-
 //*  ======================= end of thunks ===================//
 
 //? ================== reducer================================//
@@ -120,7 +118,7 @@ export default function reducer(state = initialState, action) {
     case GET_SHOPPING_CART: {
       newState = { ...state };
       newState.userCart = {};
-      console.log("REDUCER ACTION.CART", action.cart)
+      // console.log("REDUCER ACTION.CART", action.cart);
 
       action.cart.Shopping_Cart.forEach(
         (product) => (newState.userCart[product.productId] = { ...product })
@@ -148,15 +146,18 @@ export default function reducer(state = initialState, action) {
     case POST_ITEM_IN_CART: {
       newState = { ...state };
       // console.log('REDUCER NEWSTATE', newState)
-      const productPayLoad = action.res
-      // console.log('PRODUCTPAYLOAD = action.res IN REDUCER', productPayLoad)
-      newState.userCart[productPayLoad.Product.id] = {"Product": productPayLoad.Product, ...productPayLoad.CartItem }
+      const productPayLoad = action.res;
+      // console.log("PRODUCTPAYLOAD = action.res IN REDUCER", productPayLoad);
+      newState.userCart[productPayLoad.Product.id] = {
+        Product: productPayLoad.Product,
+        ...productPayLoad.CartItem,
+      };
       return newState;
     }
     case DELETE_CART_ITEM: {
       newState = { ...state };
       newState.userCart = { ...newState.userCart };
-      console.log('WHAT IS THIS', newState.userCart[action.productId])
+      // console.log("WHAT IS THIS", newState.userCart[action.productId]);
       delete newState.userCart[action.productId]; // refactor the get route to normalize by product id
       return newState;
     }

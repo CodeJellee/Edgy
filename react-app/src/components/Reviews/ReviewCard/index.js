@@ -63,14 +63,14 @@ function ReviewCard({ userFirstName, review, from, user, page}) {
                 // Step 2: Update the state variable after successful deletion
                 setDeleteTrigger(true);
                 if (from === "productPage") {
-                    console.log("in productPage conditional")
+                    // console.log("in productPage conditional")
 
                     // dispatch(reviewsActions.thunkGetReviewsByProductId(reviewid));
                     dispatch(productsActions.thunkGetSingleProduct(review.productId));
-                    console.log("REVIEW IN CARD", review.productId)
+                    // console.log("REVIEW IN CARD", review.productId)
 
                 }
-                console.log(review.id)
+                // console.log(review.id)
             })
             .catch((error) => {
                 // Handle any errors here, if needed
@@ -140,7 +140,7 @@ function ReviewCard({ userFirstName, review, from, user, page}) {
                         </button>
                     </>
                 }
-
+{/* test */}
                 {/* </div> */}
                 <hr className='Rc-hr Rc-hr-bottom'></hr>
             </div>

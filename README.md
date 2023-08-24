@@ -373,10 +373,12 @@ Returns the details of a product specified by its id.
     {
       "id": 1,
       "itemName": "Spiked Collar",
-      "price": 15.99,
+      "price": "15.99",
       "description": "Black pleather spiked collar will attract the attention you seek!",
       "previewImage": "image url",
       "category": "jewelry",
+      "quantity": 3,
+      "sellerId": 3,
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36" ,
       "Reviews": [
@@ -384,19 +386,25 @@ Returns the details of a product specified by its id.
           "id": 1,
           "userId": 1,
           "star": 4,
-          "review": "looks so cute"
+          "review": "looks so cute",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36" ,
         },
         {
           "id": 2,
           "userId": 1,
           "star": 5,
-          "review": "matches my outfit perfectly"
+          "review": "matches my outfit perfectly",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36" ,
         }
       ],
       "Seller": {
         "id": 1,
         "firstName": "John",
-        "lastName": "Smith"
+        "lastName": "Smith",
+        "email": "john@aa.io",
+        "username": "john",
       }
     }
     ```
@@ -433,7 +441,7 @@ Creates and returns a new Product.
 
     ```json
     {
-      "itemName": "Spiked Collar",
+      "item_name": "Spiked Collar",
       "price": 15.99,
       "description": "Black pleather spiked collar will attract the attention you seek!",
       "quantity": 3,
@@ -452,12 +460,14 @@ Creates and returns a new Product.
     {
       "id": 1,
       "sellerId": 1,
-      "itemName": "Spiked Collar",
-      "price": 15.99,
+      "item_name": "Spiked Collar",
+      "price": "15.99",
       "description": "Black pleather spiked collar will attract the attention you seek!",
       "quantity": 3,
       "previewImage": "image url",
       "category": "jewelry",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36" ,
     }
     ```
 
@@ -471,65 +481,13 @@ Creates and returns a new Product.
     {
       "message": "Bad Request",
       "errors": {
-      "itemName": "Item name is required",
+      "item_name": "Item name is required",
       "price": "Price is required",
       "description": "Description is required",
       "quantity": "Quantity is required",
       "previewImage": "Preview image is required",
       "category": "Category is required",
       }
-    }
-    ```
-
-### Add an Image to a Product based on the Products's id
-
-Create and return a new image for a product specified by id.
-
-* Require Authentication: true
-* Require proper authorization: Product must belong to the current user
-* Request
-  <!--!!START SILENT -->
-  * Method: POST
-  * URL: /api/products/:productId/images
-  <!--!!END -->
-  <!--!!ADD -->
-  <!-- * Method: ? -->
-  <!-- * URL: ? -->
-  <!--!!END_ADD -->
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "url": "image url",
-      
-    }
-    ```
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "id": 1,
-      "url": "image url",
-      
-    }
-    ```
-
-* Error response: Couldn't find a Product with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Product couldn't be found"
     }
     ```
 
@@ -584,7 +542,7 @@ Returns all the reviews written by the current user.
 * Request
   <!--!!START SILENT -->
   * Method: GET
-  * URL: /api/reviews/current
+  * URL: /api/reviews/your_reviews
   <!--!!END -->
   <!--!!ADD -->
   <!-- * Method: ? -->
@@ -613,12 +571,11 @@ Returns all the reviews written by the current user.
           "Product": {
             "id": 1,
             "sellerId": 1,
-            "itemName": "Spiked Collar",
-            "price": 15.99,
+            "item_name": "Spiked Collar",
+            "price": "15.99",
             "description": "Black pleather spiked collar will attract the attention you seek!",
             "previewImageURL": "https://m.media-amazon.com/images/S/mms-media-storage-prod/final/BrandPosts/brandPosts/a868ad77-879d-40d7-8bed-dad04be63a15/f43af8aa-0309-40d6-a244-87b52d0ef5df/media._SL480_.jpeg",
             "quantity": 3,
-            "previewImage": "image url",
             "category": "jewelry",
           },
         }
@@ -628,13 +585,13 @@ Returns all the reviews written by the current user.
 
 ### Get all Reviews by a Products's id
 
-Returns all the reviews that belong to a product specified by id.
+Returns all the reviews that belong to a product specified by product id.
 
 * Require Authentication: false
 * Request
   <!--!!START SILENT -->
   * Method: GET
-  * URL: /api/products/:productId/reviews
+  * URL: /api/products/:productId
   <!--!!END -->
   <!--!!ADD -->
   <!-- * Method: ? -->
@@ -650,25 +607,45 @@ Returns all the reviews that belong to a product specified by id.
 
     ```json
     {
+      "id": 1,
+      "itemName": "Spiked Collar",
+      "price": "15.99",
+      "description": "Black pleather spiked collar will attract the attention you seek!",
+      "previewImage": "image url",
+      "category": "jewelry",
+      "quantity": 3,
+      "sellerId": 3,
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36" ,
       "Reviews": [
         {
           "id": 1,
           "userId": 1,
-          "stars": 5,
-          "review": "This was an awesome product!",
+          "star": 4,
+          "review": "looks so cute",
           "createdAt": "2021-11-19 20:39:36",
           "updatedAt": "2021-11-19 20:39:36" ,
-          "User": {
-            "id": 1,
-            "firstName": "John",
-            "lastName": "Smith"
-          },
+        },
+        {
+          "id": 2,
+          "userId": 1,
+          "star": 5,
+          "review": "matches my outfit perfectly",
+          "createdAt": "2021-11-19 20:39:36",
+          "updatedAt": "2021-11-19 20:39:36" ,
         }
-      ]
+      ],
+      "Seller": {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "john@aa.io",
+        "username": "john",
+      }
     }
     ```
 
-* Error response: Couldn't find a Review with the specified id
+* Error response: Couldn't find a product with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -676,7 +653,7 @@ Returns all the reviews that belong to a product specified by id.
 
     ```json
     {
-      "message": "Review couldn't be found"
+      "message": "Item couldn't be found"
     }
     ```
 
@@ -733,7 +710,7 @@ Create and return a new review for a product specified by id.
       "message": "Bad Request",
       "errors": {
         "review": "Review text is required",
-        "stars": "Stars must be an integer from 1 to 5",
+        "stars": "Stars must be rated from 1 to 5",
       }
     }
     ```
@@ -762,7 +739,7 @@ Create and return a new review for a product specified by id.
     }
     ```
 
-### Edit a Review
+### Edit a Review from products page
 
 Update and return an existing review.
 
@@ -771,7 +748,7 @@ Update and return an existing review.
 * Request
   <!--!!START SILENT -->
   * Method: PUT
-  * URL: /api/reviews/:reviewId
+  * URL: /api/products/:productId
   <!--!!END -->
   <!--!!ADD -->
   <!-- * Method: ? -->
@@ -816,12 +793,12 @@ Update and return an existing review.
       "message": "Bad Request",
       "errors": {
         "review": "Review text is required",
-        "stars": "Stars must be an integer from 1 to 5",
+        "stars": "Stars must be rated from 1 to 5",
       }
     }
     ```
 
-* Error response: Couldn't find a Review with the specified id
+* Error response: Couldn't find a product with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -829,11 +806,71 @@ Update and return an existing review.
 
     ```json
     {
-      "message": "Review couldn't be found"
+      "message": "Product couldn't be found"
     }
     ```
 
-### Delete a Review
+### Edit a Review from the user's review page
+
+Update and return an existing review.
+
+* Require Authentication: true
+* Require proper authorization: Review must belong to the current user
+* Request
+  <!--!!START SILENT -->
+  * Method: PUT
+  * URL: /api/reviews/your_reviews
+  <!--!!END -->
+  <!--!!ADD -->
+  <!-- * Method: ? -->
+  <!-- * URL: ? -->
+  <!--!!END_ADD -->
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "review": "This was an awesome product!",
+      "stars": 5,
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "userId": 1,
+      "stars": 5,
+      "review": "This was an awesome product!",
+      "createdAt": "2021-11-19 20:39:36",
+      "updatedAt": "2021-11-19 20:39:36" ,
+    }
+    ```
+
+* Error Response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Bad Request",
+      "errors": {
+        "review": "Review text is required",
+        "stars": "Stars must be rated from 1 to 5",
+      }
+    }
+    ```
+
+
+### Delete a Review from Product page
 
 Delete an existing review.
 
@@ -842,7 +879,7 @@ Delete an existing review.
 * Request
   <!--!!START SILENT -->
   * Method: DELETE
-  * URL: /api/reviews/:reviewId
+  * URL: /api/products/:productId
   <!--!!END -->
   <!--!!ADD -->
   <!-- * Method: ? -->
@@ -862,7 +899,7 @@ Delete an existing review.
     }
     ```
 
-* Error response: Couldn't find a Review with the specified id
+* Error response: Couldn't find a Product with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -870,9 +907,39 @@ Delete an existing review.
 
     ```json
     {
-      "message": "Review couldn't be found"
+      "message": "Product couldn't be found"
     }
     ```
+
+### Delete a Review from the Users review page
+
+Delete an existing review.
+
+* Require Authentication: true
+* Require proper authorization: Review must belong to the current user
+* Request
+  <!--!!START SILENT -->
+  * Method: DELETE
+  * URL: /api/reviews/your_reviews
+  <!--!!END -->
+  <!--!!ADD -->
+  <!-- * Method: ? -->
+  <!-- * URL: ? -->
+  <!--!!END_ADD -->
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted"
+    }
+    ```
+
 
 ## Shopping Cart
 
@@ -884,7 +951,7 @@ Return all the shopping cart that the current user has made.
 * Request
   <!--!!START SILENT -->
   * Method: GET
-  * URL: /api/shopping_cart
+  * URL: /api/carts/shopping_cart
   <!--!!END -->
   <!--!!ADD -->
   <!-- * Method: ? -->
@@ -904,6 +971,7 @@ Return all the shopping cart that the current user has made.
         {
           "id": 1,
           "userId": 2,
+          "productId": 1,
           "Products":
             {
             "id": 1,
@@ -914,6 +982,8 @@ Return all the shopping cart that the current user has made.
             "quantity": 3,
             "previewImage": "image url",
             "category": "jewelry",
+            "createdAt": "2021-11-19 20:39:36",
+            "updatedAt": "2021-11-19 20:39:36" ,
             },
         }
       ]
@@ -948,7 +1018,7 @@ Adds an item to the cart for the current user
     }
     ```
 
-* Error response: Couldn't find item
+* Error response: Item already added to the cart
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -956,7 +1026,7 @@ Adds an item to the cart for the current user
 
     ```json
     {
-      "message": "Item couldn't be found"
+      "message": "You already added the item to the cart."
     }
     ```
 
@@ -968,7 +1038,7 @@ Adds an item to the cart for the current user
 
     ```json
     {
-      "message": "You may not add your own product to your cart"
+      "message": "You cannot add your own product to the cart."
     }
     ```
 
@@ -982,7 +1052,7 @@ Delete an existing cartId.
 * Request
   <!--!!START SILENT -->
   * Method: DELETE
-  * URL: /api/shopping_cart/:productId
+  * URL: /api/carts/shopping_cart/:productId
   <!--!!END -->
   <!--!!ADD -->
   <!-- * Method: ? -->
@@ -1014,116 +1084,7 @@ Delete an existing cartId.
     }
     ```
 
-## IMAGES
 
-### Delete a Product Image
-
-Delete an existing image for a Product.
-
-* Require Authentication: true
-* Require proper authorization: Product must belong to the current user
-* Request
-  <!--!!START SILENT -->
-  * Method: DELETE
-  * URL: /api/product-image/:imageId
-  <!--!!END -->
-  <!--!!ADD -->
-  <!-- * Method: ? -->
-  <!-- * URL: ? -->
-  <!--!!END_ADD -->
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Successfully deleted"
-    }
-    ```
-
-* Error response: Couldn't find a Product Image with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Product Image couldn't be found"
-    }
-    ```
-
-## Add Query Filters to Get All Products
-
-Return products filtered by query parameters.
-
-* Require Authentication: false
-* Request
-  <!--!!START SILENT -->
-  * Method: GET
-  * URL: /api/products
-  <!--!!END -->
-  <!--!!ADD -->
-  <!-- * Method: ? -->
-  <!-- * URL: ? -->
-  <!--!!END_ADD -->
-  * Query Parameters
-    * page: integer, minimum: 1, maximum: 10, default: 1
-    * size: integer, minimum: 1, maximum: 20, default: 20
-    * minPrice: decimal, optional, minimum: 0
-    * maxPrice: decimal, optional, minimum: 0
-  * Body: none
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "Products": [
-        {
-          "id": 1,
-          "itemName": "Spiked Collar",
-          "price": 15.99,
-          "description": "Black pleather spiked collar will attract the attention you seek!",
-          "previewImage": "image url",
-          "category": "jewelry"
-        }
-      ],
-      "page": 2,
-      "size": 25
-    }
-    ```
-
-* Error Response: Query parameter validation errors
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Bad Request",
-      "errors": {
-        "page": "Page must be greater than or equal to 1",
-        "size": "Size must be greater than or equal to 1",
-        "minPrice": "Minimum price must be greater than or equal to 0",
-        "maxPrice": "Maximum price must be greater than or equal to 0",
-        "itemName": "Item name is required",
-        "price": "Price is required",
-        "description": "Description is required",
-        "quantity": "Quantity is required",
-        "previewImage": "Preview image is required",
-        "category": "Category is required",
-      }
-    }
-    ```
 ### Get all Favorites by Current User
 
 Returns all the Favorite Items that belong to the Current User
@@ -1148,23 +1109,19 @@ Returns all the Favorite Items that belong to the Current User
 
     ```json
     {
-      "Favorites": [
+      "user": {
+        "id": 2,
+        "first_name": "John",
+        "last_name": "Smith",
+      "userFavorites":
         {
-          "User": {
-            "id": 1,
-            "firstName": "John",
-            "lastName": "Smith"
-          },
-            "Product": [
-            {
+            "Seller": {
               "id": 1,
-              "productId": 1,
-              "itemName": "Spiked Collar",
-              "price": 15.99,
-              "description": "Black pleather spiked collar will attract the attention you seek!",
-              "previewImage": "image url",
-              "category": "jewelry"
+              "first_name": "Demo",
+              "last_name": "User",
+              "username": "demo",
             },
+            "Product":
             {
               "id": 1,
               "productId": 1,
@@ -1172,28 +1129,15 @@ Returns all the Favorite Items that belong to the Current User
               "price": 15.99,
               "description": "Black pleather spiked collar will attract the attention you seek!",
               "previewImage": "image url",
-              "category": "jewelry"
+              "category": "jewelry",
+              "sellerId": 1,
             }
-          ]
         }
-      ]
+    }
     }
     ```
 
-* Error response: Couldn't find a favorite item belonging to the current user
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Favorites couldn't be found"
-    }
-    ```
-
-
-### Favorite an Item
+### Favorite an Item through products page
 
 Favorites an item for the current user
 
@@ -1209,19 +1153,7 @@ Favorites an item for the current user
   <!--!!END_ADD -->
   * Body: none
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "You've successfully favorited this item."
-    }
-    ```
-
-* Error response: Couldn't find a favorite item belonging to the current user
+* Error response: Item already added to favorites
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -1229,12 +1161,90 @@ Favorites an item for the current user
 
     ```json
     {
-      "message": "Item couldn't be found"
+      "message": "You already favorite this item."
+    }
+    ```
+
+* Error response: Current user Id matches product sellerId
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "You cannot favorite your own product."
+    }
+    ```
+
+* Error response: Not logged in
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "You need to be logged in."
     }
     ```
 
 
-### Delete a Favorite by Current User
+
+### Favorite an Item through home page
+
+Favorites an item for the current user
+
+* Require Authentication: True
+* Request
+  <!--!!START SILENT -->
+  * Method: POST
+  * URL: /api/
+  <!--!!END -->
+  <!--!!ADD -->
+  <!-- * Method: ? -->
+  <!-- * URL: ? -->
+  <!--!!END_ADD -->
+  * Body: none
+
+* Error response: Item already added to favorites
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "You already favorite this item."
+    }
+    ```
+
+* Error response: Current user Id matches product sellerId
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "You cannot favorite your own product."
+    }
+    ```
+
+* Error response: Not logged in
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "You need to be logged in."
+    }
+    ```
+
+
+### Delete a Favorite by Current User on products page
 
 Delete a Favorite by Current User
 
@@ -1250,26 +1260,18 @@ Delete a Favorite by Current User
   <!--!!END_ADD -->
   * Body: none
 
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+### Delete a Favorite by Current User on favorites page
 
-    ```json
-    {
-      "message": "Successfully deleted"
-    }
-    ```
+Delete a Favorite by Current User
 
-* Error response: Couldn't find a favorite item belonging to the current user
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-    {
-      "message": "Favorite couldn't be found"
-    }
-    ```
+* Require Authentication: True
+* Request
+  <!--!!START SILENT -->
+  * Method: DELETE
+  * URL: /api/favorites/current
+  <!--!!END -->
+  <!--!!ADD -->
+  <!-- * Method: ? -->
+  <!-- * URL: ? -->
+  <!--!!END_ADD -->
+  * Body: none

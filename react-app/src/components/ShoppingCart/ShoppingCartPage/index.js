@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import DeleteCartIem from "../DeleteCartItem";
 import ProceedToCheckout from "../ProceedToCheckout";
-import Footer2 from "../../Footer/index2"
+import Footer2 from "../../Footer/index2";
 import "./ShoppingCart.css";
 
 function ShoppingCartPage() {
@@ -17,31 +17,31 @@ function ShoppingCartPage() {
   const userCart = useSelector((state) =>
     Object.values(state.shoppingCart.userCart)
   );
-  console.log(userCart)
+  // console.log(userCart);
   const paymentMethods = [
-    'https://icons.veryicon.com/png/o/business/third-party-sharing-payment/apple-pay.png' ,
-    'https://icon-library.com/images/visa-master-icon/visa-master-icon-6.jpg' ,
-    'https://www.freeiconspng.com/uploads/paypal-icon-8.png'
+    "https://icons.veryicon.com/png/o/business/third-party-sharing-payment/apple-pay.png",
+    "https://icon-library.com/images/visa-master-icon/visa-master-icon-6.jpg",
+    "https://www.freeiconspng.com/uploads/paypal-icon-8.png",
   ];
   // console.log("THIS IS USERCART", userCart);
   //had to insert Object.values to const userCart because item was not rendering properly, bc of that no need to Object.values in the return at the bottom/html section for userCart
   //wasn't working with Object.values and chaining it with .map
 
-  const sum = userCart.reduce((total, c) => total + c.Product.price, 0).toFixed(2)
+  const sum = userCart
+    .reduce((total, c) => total + Number(c.Product.price), 0)
+    .toFixed(2);
 
   const itemLength = userCart.length;
   // console.log("length of cart here", itemLength);
 
   useEffect(() => {
-
-      //if user is logged in, dispatch thunk
-      dispatch(CartActions.thunkGetShoppingCart());
-      // dispatch(CartActions.thunkDeleteCartItem(productId));
+    //if user is logged in, dispatch thunk
+    dispatch(CartActions.thunkGetShoppingCart());
+    // dispatch(CartActions.thunkDeleteCartItem(productId));
   }, [dispatch]);
 
   if (!sessionUser) return null;
   // if (userCart.length === 0 || !userCart) return null
-
 
   // const handleRemoveItem = (productId) => {
   //     // Call the thunkDeleteCartItem action creator to remove the item from the cart.
@@ -148,59 +148,66 @@ function ShoppingCartPage() {
     // </>
 
     <>
-    <div className="primary-cart-container">
-      {userCart?.length === 0 || !userCart ? (
-        <h1 className="empty-cart-message">Your cart is empty! Time to go shopping!</h1>
-      ) : (
-        <>
-          <h1>{itemLength} items in your cart</h1>
-          <div className="products-and-checkout-container">
-            <div className="products-only-container">
-              {userCart?.map((item) => (
-                <>
-                {/* {console.log(item)} */}
-                <div className="each-cart-item-container">
-                  <div>
-                    <div className="sellerId-container">
-                      Purchasing from Seller {item.Product.sellerId}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="image-title-price-container">
-                      <NavLink
-                        to={`/products/${item.Product.id}`}
-                        className="preview-image"
-                      >
-                        <img
-                          className="cart-product-image"
-                          src={item.Product.preview_imageURL}
-                          alt={item.Product.item_name}
-                        />
-                        <div className="remove-save">
-                    <DeleteCartIem
-                      cartItemId={item.Product.id}
-                    />
-                    <div id="remove-save-button" >Save for Later</div>
-                  </div>
-                      </NavLink>
-
-                      <div className="name-blurb-cost-quantity">
-                        <div className="name-description">
-                          <div className="item-description">
-                            {item.Product.description}
-                            <div className="quantity">Quantity:</div>
-                          <input id="quantity-input" type="number" className="quantity-input" name="quantity" min="1" defaultValue="1"/>
-                          </div>
-                        </div>
-                        <div className="price-how-many-is-left">
-                          <div>${item.Product.price}</div>
+      <div className="primary-cart-container">
+        {userCart?.length === 0 || !userCart ? (
+          <h1 className="empty-cart-message">
+            Your cart is empty! Time to go shopping!
+          </h1>
+        ) : (
+          <>
+            <h1>{itemLength} items in your cart</h1>
+            <div className="products-and-checkout-container">
+              <div className="products-only-container">
+                {userCart?.map((item) => (
+                  <>
+                    {/* {console.log(item)} */}
+                    <div className="each-cart-item-container">
+                      <div>
+                        <div className="sellerId-container">
+                          Purchasing from Seller {item.Product.sellerId}
                         </div>
                       </div>
-                    </div>
-                  </div>
+                      <div>
+                        <div className="image-title-price-container">
+                          <NavLink
+                            to={`/products/${item.Product.id}`}
+                            className="preview-image"
+                          >
+                            <img
+                              className="cart-product-image"
+                              src={item.Product.preview_imageURL}
+                              alt={item.Product.item_name}
+                            />
+                            <div className="remove-save">
+                              <DeleteCartIem cartItemId={item.Product.id} />
+                              <div id="remove-save-button">Save for Later</div>
+                            </div>
+                          </NavLink>
+
+                          <div className="name-blurb-cost-quantity">
+                            <div className="name-description">
+                              <div className="item-description">
+                                {item.Product.description}
+                                <div className="quantity">Quantity:</div>
+                                <input
+                                  id="quantity-input"
+                                  type="number"
+                                  className="quantity-input"
+                                  name="quantity"
+                                  min="1"
+                                  defaultValue="1"
+                                />
+                              </div>
+                            </div>
+                            <div className="price-how-many-is-left">
+                              <div>${item.Product.price}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
                   <div className="note-and-delivery">
-                    <div onClick={((e) => window.alert("Feature coming soon"))}className="add-note">+ Add a note to Seller
+                    <div className="add-note">+ Add a note to Seller
                       <div className="gift-toggle">
                         <div id="gift">
                         <input type="checkbox" class="toggle-input" />
@@ -272,7 +279,6 @@ function ShoppingCartPage() {
     </div>
 
     </>
-
   );
 }
 
