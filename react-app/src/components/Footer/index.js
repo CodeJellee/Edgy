@@ -85,7 +85,7 @@ function Footer(){
         </div>
     </div>
     <div className="footer1">
-        <div onClick={((e) => window.alert("Feature coming soon"))} className="foot1">
+        <div className="foot1">
         <img src="https://m.media-amazon.com/images/I/51froJYdRmL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="meaningful text"></img>
         <p>United States</p>
         <p>|</p>
@@ -102,11 +102,11 @@ function Footer(){
         </div>
         <div className="foot2">
         <p >© 2023 Edgy, Inc.</p>
-        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Terms of use</p>
-        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Privacy</p>
-        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Interest-based ads</p>
-        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Local Shops</p>
-        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Regions</p>
+        <p className="line">Terms of use</p>
+        <p className="line">Privacy</p>
+        <p className="line">Interest-based ads</p>
+        <p className="line">Local Shops</p>
+        <p className="line">Regions</p>
         </div>
     </div>
     </div>
