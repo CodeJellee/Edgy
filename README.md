@@ -1,5 +1,58 @@
 <!--!!START SILENT -->
-# EDGY
+# `Edgy <e-commerce-service>`
+
+## INTRODUCTION
+![Screenshot 2023-08-25 at 1 44 42 PM](https://github.com/CodeJellee/Edgy/assets/108435185/6cf84355-9a93-4250-8999-80cde6a173b1)
+![Screenshot 2023-08-25 at 1 46 11 PM](https://github.com/CodeJellee/Edgy/assets/108435185/f5bb8d92-a867-492a-88be-109e5dec5b8e)
+![Screenshot 2023-08-25 at 1 47 18 PM](https://github.com/CodeJellee/Edgy/assets/108435185/776be7db-d40b-4a6b-91d7-5c29e3fd2b85)
+
+
+## Link to website 
+https://edgy.onrender.com
+
+Edgy, an Etsy replica, is an anime themed platform where users can search, buy, sell and engage in the popularity of products through reviews and likes.
+
+## Feature List
+## 1. New account creation, log in, log out, and guest/demo log in with user authentication/authorization
+
+* Users can sign up, log in, and log out.
+* Users can use a demo login to try the site.
+* Users can't use certain features without logging in (ex: create product to sell, leave/edit a review, like a product, add to cart).
+* Logged in users and logged out users are directed to a landing page recommending various category discoveries to find products, trending gifts, personalized gifts, editor picks, and more!
+
+## 2. Products
+
+* Users can create, update, and delete products.
+* Products will contain both text and images.
+* Each product displays its product name, cost, star reviews if there are any available and if it has been favorited by the user.
+* Users can navigate to a detailed view of a product which includes the written reviews and description of the product.
+* Users can view a list all their listings.
+* The main feed displays products from all users.
+
+## 3. Reviews
+
+* Users can review any product as long as it is not their own.
+* Users can update or delete their own reviews.
+* Users can view a list all the reviews they have created.
+* Each review displays a star rating between 1 to 5 stars, the review content, name of reviewer and posted date (MM/DD/YYYY).
+* Reviews are displayed beneath the products they are associated with.
+
+## 4. Favorites
+
+* Users can like and unlike products.
+* Each products displays a heart icon that will notify users if they have liked a product or not.
+* Users can view a list of products they have liked.
+
+## 5. Cart
+
+* Users can view a shopping cart with items they would like to purchase.
+* Users can add and remove items from their cart.
+
+## 6. Search
+
+* Users search for certain types of products in the search bar.
+* Users can sort through their postings via a filter function
+ 
 <!--!!END -->
 <!--!!ADD -->
 <!-- # `<name of application here>` -->
