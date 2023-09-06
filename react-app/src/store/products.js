@@ -1,3 +1,5 @@
+import ProductIdPage from "../components/Products/ProductIdPage";
+
 const GET_ALL_PRODUCTS_ACTION = "products/GET_ALL_PRODUCTS_ACTION";
 const GET_SINGLE_PRODUCT_ACTION = "products/GET_SINGLE_PRODUCT_ACTION";
 const GET_USER_PRODUCTS_ACTION = "products/GET_USER_PRODUCTS_ACTION";
@@ -81,7 +83,7 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
   });
   product = await product.json();
 
-
+  console.log("product in thunk pr dis", product)
 
 
 
@@ -124,7 +126,6 @@ export const thunkGetUserProducts = () => async (dispatch) => {
 
 export const thunkCreateProduct = (productFormData) => async (dispatch) => {
   try {
-    console.log("in thunk!!!!!!!!!", productFormData)
 
     let newProduct = await fetch(`/api/products/new`, {
       method: "POST",
@@ -141,6 +142,7 @@ export const thunkCreateProduct = (productFormData) => async (dispatch) => {
     }
 
     newProduct = await newProduct.json();
+    console.log("in thunk!!!!!!!!!", newProduct)
     dispatch(createProduct(newProduct));
     return newProduct;
   } catch (e) {
@@ -197,14 +199,19 @@ export default function reducer(state = initialState, action) {
       );
       // console.log("this is STATE", state);
       return newState;
+
     case GET_SINGLE_PRODUCT_ACTION: {
       newState = { ...state };
       const product = action.product;
-      newState.singleProduct = { ...product };
-      newState.singleProduct.Seller = { ...product.Seller };
-      newState.singleProduct.ProductImages.push(...product.ProductImages);
 
-      // Accumulate reviews into an object with unique review IDs as keys
+      // newState.singleProduct = {...product};
+       newState.singleProduct = product;
+      newState.singleProduct.Seller = { ...product.Seller };
+
+      newState.singleProduct.ProductImages = product.ProductImages;
+
+
+
       const uniqueReviews = product.Reviews.reduce((acc, review) => {
         acc[review.id] = review;
         return acc;
@@ -225,6 +232,7 @@ export default function reducer(state = initialState, action) {
       );
       return newState;
     }
+
     case CREATE_PRODUCT_ACTION: {
       newState = { ...state };
       newState.singleProduct = {};
@@ -236,6 +244,7 @@ export default function reducer(state = initialState, action) {
       };
       return newState;
     }
+
     case DELETE_PRODUCT_ACTION: {
       newState = { ...state };
       newState.products = { ...newState.products };
@@ -243,7 +252,7 @@ export default function reducer(state = initialState, action) {
       newState.singleProduct = {};
       // console.log('this is action.product', action.productId) //returns integer
       delete newState.products[action.productId];
-      //need to add userproducts, by passing in a userid/user in the thunk and action
+ 
       delete newState.userProducts[action.productId];
       return newState;
     }

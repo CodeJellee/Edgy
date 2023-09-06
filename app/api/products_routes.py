@@ -61,6 +61,9 @@ def product_details(id):
     sellerId = product["sellerId"]
     seller = User.query.get(sellerId).to_dict()
     product_images = ProductImage.query.filter(ProductImage.productId == id).all()
+    print("!!!!!!!!!!!!!!!!!!!!")
+    print(product_images)
+    print("!!!!!!!!!!!!!!!!!!!!")
     product_images = [i.to_dict() for i in product_images]
     product["Reviews"] = reviews
     product["Seller"] = seller
@@ -102,8 +105,7 @@ def create_product():
             new_product = new_product.to_dict()
 
             print("form !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            pprint(len(form.data["preview_imageURL2"]))
-            print("form !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
             if len(form.data["preview_imageURL2"]) >0:
                 img2 = ProductImage(
                     productId=new_product["id"],
@@ -114,9 +116,10 @@ def create_product():
                 db.session.commit()
 
 
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            pprint(new_product)
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+            images = ProductImage.query.filter(ProductImage.productId == new_product["id"]).all()
+
+
             return_product = jsonify(new_product, seller)
             print(
                 "this is return jsonified",

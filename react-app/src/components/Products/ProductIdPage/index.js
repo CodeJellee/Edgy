@@ -100,6 +100,7 @@ function ProductIdPage() {
     for (let i = 0; i < starAvg; i++) {
         stars.push("hi")
     }
+    
     let images = Object.values(product.ProductImages);
     console.log("IMAGES ARR !!!!!!!!!!!!!", images)
 
