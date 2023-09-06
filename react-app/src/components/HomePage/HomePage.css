@@ -77,6 +77,11 @@ body, p, button {
 
 .slider {
     margin-bottom: 100px;
+    display: flex;
+}
+
+#root {
+    overflow: hidden;
 }
 
 .result > a:hover {

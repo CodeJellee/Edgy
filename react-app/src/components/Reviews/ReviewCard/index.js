@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import './ReviewCard.css'
 import * as reviewsActions from '../../../store/reviews'
+import * as productsActions from "../../../store/products";
 import ReviewForm from "../ReviewForm";
 import { useHistory } from 'react-router-dom';
+import '../ReviewsCurr/ReviewsCurr.css'
 
-function ReviewCard({ userFirstName, review, from, user, setDeletedReview }) {
+function ReviewCard({ userFirstName, review, from, user, page}) {
     const history = useHistory();
 
 
@@ -61,12 +63,14 @@ function ReviewCard({ userFirstName, review, from, user, setDeletedReview }) {
                 // Step 2: Update the state variable after successful deletion
                 setDeleteTrigger(true);
                 if (from === "productPage") {
-                    console.log("in productPage conditional")
-                    // history.push(`/products/${review.id}`)
-                    setDeletedReview(true)
+                    // console.log("in productPage conditional")
+
+                    // dispatch(reviewsActions.thunkGetReviewsByProductId(reviewid));
+                    dispatch(productsActions.thunkGetSingleProduct(review.productId));
+                    // console.log("REVIEW IN CARD", review.productId)
 
                 }
-                console.log(review.id)
+                // console.log(review.id)
             })
             .catch((error) => {
                 // Handle any errors here, if needed
@@ -98,6 +102,11 @@ function ReviewCard({ userFirstName, review, from, user, setDeletedReview }) {
 
     return (
         <>
+           {page && <div className="reviewHeader"><p> Created at: {new Date(review.createdAt).toLocaleString('default', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })}</p></div>}
 
             <div className="Rc-card">
 
@@ -131,7 +140,7 @@ function ReviewCard({ userFirstName, review, from, user, setDeletedReview }) {
                         </button>
                     </>
                 }
-
+{/* test */}
                 {/* </div> */}
                 <hr className='Rc-hr Rc-hr-bottom'></hr>
             </div>

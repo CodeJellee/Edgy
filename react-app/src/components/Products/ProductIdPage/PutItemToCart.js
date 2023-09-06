@@ -43,7 +43,7 @@ function PutCartItemToCart({productId}) {
             return;
         }
         else {
-            console.log('THUNKPOSTITEMINCART', product.id, productId)
+            // console.log('THUNKPOSTITEMINCART', product.id, productId)
             dispatch(thunkPostItemInCart(product.id, currentUser.id))
             history.push("/shopping_cart")
 

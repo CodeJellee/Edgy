@@ -56,3 +56,18 @@
     border: 2px solid black;
     background-color: white;
 }
+
+.login-signup__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-signup__buttons > button {
+    cursor: pointer;
+    border-radius: 20px;
+    width: 110px;
+    height: 35px;
+    border: 2px solid black;
+    background-color: white;
+}

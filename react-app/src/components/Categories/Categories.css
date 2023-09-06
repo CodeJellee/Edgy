@@ -33,9 +33,20 @@
 .page {
     width: 100%;
     height: 220px;
-    background-color: #BC6FF1;
+    background-color: #bd6ff1c8;
     position: absolute;
     left: 0;
+}
+
+.numberR {
+    display: flex;
+}
+.numberR > i {
+    font-size: 12px;
+    height: 12px;
+    align-items: center;
+    display: flex;
+    margin-left: 5px;
 }
 
 .pageT {
@@ -76,7 +87,7 @@
     align-items: center;
     gap: 5px;
     font-weight: bold;
-    transition: transform 0.3s ease; /* Add a smooth transition for scaling */
+    transition: transform 0.1s ease; /* Add a smooth transition for scaling */
 
 }
 
@@ -116,6 +127,82 @@
     font-size: 14px;
 }
 
+#choose55 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    height: 86%;
+}
+
+#hidden {
+    display: none;
+}
+
+#c-c {
+    background-color: rgba(34,34,34,.05);
+}
+
+#choose55 > span {
+    height: 20%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-left: 15px;
+    padding-right: 15px;
+    justify-content: space-between;
+
+    /* background-color: rgba(34,34,34,.05); */
+}
+
+#choose55 > span:hover {
+    background-color: rgba(15, 15, 15, 0.078);
+}
+
+
+#relevancy {
+    width: 280px;
+    height: 250px;
+    background-color: white;
+    position: absolute;
+    border: 2px solid rgba(34,34,34,.05);
+    border-radius: 12px;
+    right: 0px;
+    top: 0px;
+    font-size: 14px;
+    z-index: 10;
+    overflow: hidden;
+}
+
+#rel {
+    height: 36px;
+    font-size: 14px;
+    display: flex;
+    gap: 5px;
+    font-weight: bold;
+    justify-content: flex-end;
+    margin-right: 18px;
+    align-items: center;
+    cursor: pointer;
+}
+
+#rel > i {
+    font-size: 10px;
+}
+
+#relevancy > div > span {
+    font-weight: 100;
+}
+
+#hidden {
+    display: none;
+}
+
+.filter2 {
+    position: relative;
+}
+
+
 .des {
     font-size: 15px;
     color: rgb(50, 50, 50);
@@ -132,8 +219,8 @@
 }
 
 .filter1 > button:hover, .filter2 > button:hover {
-    transform: scale(1.03); /* Increase the scale to make the box bigger on hover */
-    box-shadow: 2px 2px 6px rgb(181, 180, 180);
+    transform: scale(1.02); /* Increase the scale to make the box bigger on hover */
+    box-shadow: 2px 2px 6px rgb(215, 215, 215);
 }
 
 .p:hover > img {

@@ -111,7 +111,7 @@ const NewProductForm = () => {
     //   console.log('AFTER SET PRICE', price)
     // }
 
-    console.log('what is price here', price)
+    // console.log('what is price here', price)
 
     let payload = {
       item_name: itemName,
@@ -140,6 +140,8 @@ const NewProductForm = () => {
 
   return (
     <>
+    <div className="pageColor">
+
     <form className="create-new-spot-form" onSubmit={onSubmit}>
       <Link to="/your_products">Back to products</Link>
       <h2>Add a new Product!</h2>
@@ -172,13 +174,18 @@ const NewProductForm = () => {
           <li>see all their opuons.</li>
         </ul>
         </div>
-        <div className="imgSide-2">
-        <label>
-          <div className="label-and-error-info">
-            {submitted && errors.previewImageURL && (
-              <div className="errors">{errors.previewImageURL}</div>
-            )}
-          </div>
+        {/* <div className="imgSide-2"> */}
+            <div className="imgSide-2">
+              <label>
+                <input
+                  type="text"
+                  name="previewImageURL"
+                  placeholder="REQUIRED IMAGE URL"
+                  value={previewImageURL}
+                  onChange={(e) => setPreviewImageURL(e.target.value)}
+                />
+              </label>
+              <label>
           <input
             type="text"
             name="previewImageURL"
@@ -243,10 +250,13 @@ const NewProductForm = () => {
             onChange={(e) => setPreviewImageURL(e.target.value)}
           />
         </label>
+            <div className="label-and-error-info">
+                  {submitted && errors.previewImageURL && (
+                    <div className="errors">{errors.previewImageURL}</div>
+                  )}
+                </div>
+            </div>
         </div>
-        </div>
-      <div>
-      </div>
       </div>
       <div className="productDetails">
 
@@ -257,18 +267,24 @@ const NewProductForm = () => {
       <div className="pDetails">
 
       <div className="productSide-1">
+        <div id="pS-1">
+
               <h4>Title*</h4>
               <p>
                 Include keywords that
                 buyers would use to search
                 or your item.
               </p>
+          </div>
+          <div id="pS-2">
               <h4>About this product*</h4>
               <p>
                 Learn more about what
                 types of items are allowed
                 on Ftsy.
               </p>
+              </div>
+              <div id="pS-3">
               <h4>Category*</h4>
               <p>
               Type a two- or three-word
@@ -277,25 +293,25 @@ const NewProductForm = () => {
               that will help more shoppers
               find it.
               </p>
+              </div>
+              <div id="pS-3">
               <h4>Description*</h4>
-              <p>Start with a brief overview
-that describes your item's
-finest features. Shoppers will
-only see the first few lines of
-your description at first, so
-make it countl
-Not sure what else to say?
-Shoppers also like hearing
-about vour process, and the
-story behind this item.</p>
+             <p>Start with a brief overview
+                that describes your item's
+                finest features. Shoppers will
+                only see the first few lines of
+                your description at first, so
+                make it count
+                Not sure what else to say?
+                Shoppers also like hearing
+                about your process, and the
+                story behind this item.</p>
+            </div>
       </div>
           <div className="productSide-2">
-        <label>
+        <label id="pS-1">
           <div className="label-and-error-info">
             Item Name
-            {submitted && errors.itemName && (
-              <div className="errors">{errors.itemName}</div>
-            )}
           </div>
           <input
             type="text"
@@ -303,17 +319,17 @@ story behind this item.</p>
             placeholder="Item Name"
             value={itemName}
             onChange={(e) => setItemName(e.target.value)}
-          />
+            />
+            {submitted && errors.itemName && (
+              <div className="errors">{errors.itemName}</div>
+            )}
         </label>
         <div className="productAbout">
 
-      <div >
+      <div id="pS-2" >
         <label>
           <div className="label-and-error-info">
             Price
-            {submitted && errors.price && (
-              <div className="errors">{errors.price}</div>
-            )}
           </div>
           <input
             type="text" //double check this
@@ -323,14 +339,14 @@ story behind this item.</p>
             onChange={(e) => setPrice(e.target.value)}
           />
         </label>
+            {submitted && errors.price && (
+              <div className="errors">{errors.price}</div>
+            )}
       </div>
       <div>
         <label>
           <div className="label-and-error-info">
             Quantity
-            {submitted && errors.quantity && (
-              <div className="errors">{errors.quantity}</div>
-            )}
           </div>
           <input
             type="number"
@@ -340,17 +356,17 @@ story behind this item.</p>
             onChange={(e) => setQuantity(e.target.value)}
           />
         </label>
+            {submitted && errors.quantity && (
+              <div className="errors">{errors.quantity}</div>
+            )}
       </div>
         </div>
 
 
-      <div>
+      <div id="pS-3">
         <label>
           <div className="label-and-error-info">
             Category
-            {submitted && errors.category && (
-              <div className="errors">{errors.category}</div>
-            )}
           </div>
           <select
           className="sel"
@@ -368,16 +384,16 @@ story behind this item.</p>
             <option value="Music">Music</option>
             <option value="Figurines">Figurines</option>
           </select>
+            {submitted && errors.category && (
+              <div className="errors">{errors.category}</div>
+            )}
         </label>
       </div>
 
-      <div>
+      <div id="pS-4">
         <label>
           <div className="label-and-error-info">
             Description
-            {submitted && errors.description && (
-              <div className="errors">{errors.description}</div>
-            )}
           </div>
           <textarea
           className="ta"
@@ -387,17 +403,22 @@ story behind this item.</p>
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+          {submitted && errors.description && (
+            <div className="errors">{errors.description}</div>
+          )}
         </label>
-      </div>
-
-      <div className="subForm">
-        <button type="submit">Create Product</button>
       </div>
           </div>
       </div>
       </div>
     </form>
-    <FooterTwo />
+    <div className="footerFour">
+      <div className="subForm">
+        <button onClick={onSubmit} type="submit">Create Product</button>
+      </div>
+        </div>
+    </div>
+
     </>
   );
 };

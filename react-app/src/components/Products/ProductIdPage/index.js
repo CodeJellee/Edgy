@@ -19,7 +19,7 @@ function ProductIdPage() {
     const product = useSelector(state => state.products.singleProduct)
     const [mainImage, setMainImage] = useState()
     const [itemState, setItemState ] = useState(false)
-    const [ deletedReview, setDeletedReview ] = useState(false)
+
     const history = useHistory()
     let userFavorites = useSelector((state) =>
     Object.values(state.favorites.userFavorites)
@@ -30,7 +30,7 @@ function ProductIdPage() {
 
     if (userFavorites.filter(favs => favs.id === id).length) setItemState(true)
 
-    console.log(userFavorites)
+    // console.log(userFavorites)
     // if deletedReview is changed to true, cause form to be rendered
 
     const handleFavoriteClick = (productId) => {
@@ -61,7 +61,7 @@ function ProductIdPage() {
             let check = await dispatch(productsActions.thunkGetSingleProduct(id))
 
             if (check === "Product Id does not exist") {
-                console.log("in use effect check")
+                // console.log("in use effect check")
                 // redirect to somewhere
                 history.push(`/categories`)
                 //setProductExist(true)
@@ -75,12 +75,13 @@ function ProductIdPage() {
     }, [dispatch, id])
 
 
-    console.log(deletedReview)
+
 
     // if (productExist) {
     //     console.log("in the product no exist")
     //     return ( <>no exist</>)
     // }
+
 
     if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
 
@@ -219,13 +220,12 @@ function ProductIdPage() {
                         {user && noUserReviewExist && notSeller &&
                             <ReviewForm from="post"></ReviewForm>}
 
-                        {/* handles scenario to render form, if the user deletes their review, could not use noUserReviewsExist as it causes rerender cycles */}
-                        {deletedReview && <ReviewForm from="post"></ReviewForm>}
+
 
                         {reviews?.map((review) => (
                             <>
 
-                                <ReviewCard key={review.id} setDeletedReview={setDeletedReview} userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
+                                <ReviewCard key={review.id}  userFirstName="hi" review={review} from="productPage" user={user}></ReviewCard>
                             </>
                         ))}
 

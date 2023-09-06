@@ -252,8 +252,8 @@ def post_cart_items(productId):
     seller = User.query.get(product_exists.sellerId)
     # print('what is seller s/p User.query.get(product)exists.sellerId', seller)
 
-    #Edge Cases
-    #1- checking if item is already in our cart
+    # Edge Cases
+    # 1- checking if item is already in our cart
     existing_cart_item = (
         db.session.query(CartItem)
         .filter((CartItem.userId == user_id) & (CartItem.productId == productId))
@@ -265,19 +265,17 @@ def post_cart_items(productId):
 
     # print ("existing_cart_item this is value", existing_cart_item)
 
-    #2- checking if the user owns the product (userId = sellerId)
+    # 2- checking if the user owns the product (userId = sellerId)
     if product_exists and user_id == product_exists.sellerId:
         return {"message": "You may not add your own product to cart."}
 
-    #if doesn't fall into any of the edge cases above, add item to cart!
+    # if doesn't fall into any of the edge cases above, add item to cart!
     if product_exists and product_exists.sellerId != user_id:
-        add_item_to_cart = insert(CartItem).values(
-            userId=user_id, productId=productId
-        )
+        add_item_to_cart = insert(CartItem).values(userId=user_id, productId=productId)
         db.session.execute(add_item_to_cart)
         db.session.commit()
         product_to_return = {
-            "CartItem": add_to_cart.to_dict(),
+            "CartItem": add_item_to_cart.to_dict(),
             "Product": product_exists,
         }
         # UPDATE API FOR THE RETURN, NO MSG
@@ -299,25 +297,29 @@ def search_products():
 
     searchQuery_list = []
     if "," in searchQuery:
-      searchQuery_list = searchQuery.split(",")
+        searchQuery_list = searchQuery.split(",")
 
     filtered_products_list = []
     for s in searchQuery_list:
-        filtered_products_list.extend(Product.query.filter(Product.item_name.ilike(f"%{str(s)}%")).all())
+        filtered_products_list.extend(
+            Product.query.filter(Product.item_name.ilike(f"%{str(s)}%")).all()
+        )
 
     filtered_products = []
 
     if len(filtered_products_list) == 0:
-      filtered_products = Product.query.filter(Product.item_name.ilike(f"%{str(searchQuery)}%")).all()
+        filtered_products = Product.query.filter(
+            Product.item_name.ilike(f"%{str(searchQuery)}%")
+        ).all()
 
     products = []
 
     if filtered_products:
-      products = [product.to_dict() for product in filtered_products]
+        products = [product.to_dict() for product in filtered_products]
     # pprint(products)
 
     if filtered_products_list:
-      products = [product.to_dict() for product in filtered_products_list]
+        products = [product.to_dict() for product in filtered_products_list]
 
     print(products)
     for product in products:

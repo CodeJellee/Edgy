@@ -24,15 +24,15 @@ function ShopLookCard(){
         <div className="shopImg">
         <div>
         <img src="https://m.media-amazon.com/images/I/91Cq8423E5L._AC_UF894,1000_QL80_.jpg" alt="meaningfult text"></img>
-        <p>Demon Slayer photographs</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))}>Demon Slayer photographs</p>
         </div>
         <div>
         <img src="https://blog.displate.com/wp-content/uploads/2021/09/img_6141ab4ca7e04.jpg" alt="meaningfult text"></img>
-        <p>Cute desk setup</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))}>Cute desk setup</p>
         </div>
         <div>
         <img src="https://m.media-amazon.com/images/I/81i0oL1CGJL.jpg" alt="meaningfult text"></img>
-        <p>Anime posters for anime wall decore</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))}>Anime posters for anime wall decore</p>
         </div>
         </div>
     </div>

@@ -37,7 +37,8 @@
 
 .foot2 {
     margin-right: 30px;
-    gap: 28px
+    gap: 28px;
+    margin-left: 10px
 }
 
 .footer2 {
@@ -251,7 +252,8 @@
 
 .iconFoot {
     display: flex;
-    gap: 25px
+    gap: 25px;
+    cursor: pointer;
 }
 
 .footer5 > p, .footer5 > i {
@@ -270,4 +272,24 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
     margin-top: 50px
+}
+
+.about{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.about-info{
+    text-decoration: none;
+}
+
+.icons, .fab {
+    color: white;
+    text-decoration: none;
+    padding-left: 5px;
+  }
+
+.anti-link {
+    text-decoration: none;
 }

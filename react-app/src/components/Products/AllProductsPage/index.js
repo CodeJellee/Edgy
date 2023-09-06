@@ -45,6 +45,8 @@ function AllProductsPage() {
             </div>
         </div>
         <div className="border"> </div>
+        <div className="pageColor">
+
         <div className="productPage">
 
         <div className="userProducts">
@@ -78,14 +80,32 @@ function AllProductsPage() {
         <button onClick={((e) => window.alert('Feature coming soon'))} className="qEdit">Quick edit</button>
         <p>Sort</p>
         <select onChange={((e) => setSorting(e.target.value))} id="productSort">
-        <option value="Id">Id</option>
-        <option value="Newest">Newest - Oldest</option>
         <option value="Oldest">Oldest - Newest</option>
+        <option value="Newest">Newest - Oldest</option>
         <option value="Alphabetical">A - Z</option>
         </select>
         </div>
         </div>
-        <FooterTwo />
+        <div className="footerThree-1">
+        <div className="foot1">
+        <img src="https://m.media-amazon.com/images/I/51froJYdRmL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="meaningful text"></img>
+        <p>United States</p>
+        <p>|</p>
+        <p>English (US)</p>
+        <p>|</p>
+        <p>$ (USD)</p>
+        </div>
+        <div className="foot2">
+        <p >© 2023 Edgy, Inc.</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Terms of use</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Privacy</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Interest-based ads</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Local Shops</p>
+        <p onClick={((e) => window.alert("Feature coming soon"))} className="line">Regions</p>
+        </div>
+        </div>
+
+        </div>
         </>
 
     )

@@ -100,6 +100,28 @@
   margin-left: 8px;
 }
 
+#numI {
+  position: absolute;
+  background-color: rgb(157, 1, 157);
+  border: 1.5px solid white;
+  color: white;
+  font-size: 9px;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  margin-top: -10px;
+  right: 0;
+  margin-right: -10px;
+}
+
+.fa-solid {
+  position: relative;
+}
+
 .profile-dropdown {
   position: absolute;
   background-color: white;
@@ -110,7 +132,7 @@
   display: flex;
   border-radius: 10px;
   box-shadow: 2px 2px 8px rgb(158, 158, 150);
-  z-index: 4;
+  z-index: 6;
   flex-direction: column;
   right: 60px;
   margin: 10px;
@@ -131,4 +153,8 @@
 #logout:hover {
   background-color: #bfbebe;
   cursor: pointer;
+}
+
+#padding {
+  margin-top: 300px
 }
