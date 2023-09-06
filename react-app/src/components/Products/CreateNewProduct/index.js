@@ -19,11 +19,30 @@ const NewProductForm = () => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [previewImageURL, setPreviewImageURL] = useState("");
+  const [previewImageURL1, setPreviewImageURL1] = useState("");
+  const [previewImageURL2, setPreviewImageURL2] = useState("");
+  const [previewImageURL3, setPreviewImageURL3] = useState("");
+  const [previewImageURL4, setPreviewImageURL4] = useState("");
+  const [previewImageURL5, setPreviewImageURL5] = useState("");
+  const [previewImageURL6, setPreviewImageURL6] = useState("");
+  const [previewImageURL7, setPreviewImageURL7] = useState("");
+  const [previewImageURL8, setPreviewImageURL8] = useState("");
+  const [previewImageURL9, setPreviewImageURL9] = useState("");
   const [sellerId, setSellerId] = useState("");
 
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+
+  function imageIsWrongFormat(imgUrl) {
+    if (imgUrl &&!(
+        imgUrl.endsWith(".png") ||
+        imgUrl.endsWith(".jpg") ||
+        imgUrl.endsWith(".jpeg")
+      )
+    ){
+      return true
+    }
+  }
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -79,38 +98,71 @@ const NewProductForm = () => {
       errorsObject.quantity = "Quantity needs to be an integer.";
     }
 
-    if (previewImageURL === "") {
+    if (previewImageURL1 === "") {
       errorsObject.previewImageURL = "Preview image is required.";
     }
 
-    if (
-      previewImageURL &&
-      !(
-        previewImageURL.endsWith(".png") ||
-        previewImageURL.endsWith(".jpg") ||
-        previewImageURL.endsWith(".jpeg")
-      )
-    ) {
-      errorsObject.previewImageURL =
-        "Preview image must end in .png, .jpg, or .jpeg";
+      if(imageIsWrongFormat(previewImageURL1)){
+        errorsObject.previewImageURL1 = "Preview image 1 must end in .png, .jpg, or .jpeg"
+      }
+    if(imageIsWrongFormat(previewImageURL2)){
+      errorsObject.previewImageURL2 = "Preview image 2 must end in .png, .jpg, or .jpeg"
     }
+    if(imageIsWrongFormat(previewImageURL3)){
+      errorsObject.previewImageURL3 = "Preview image 3 must end in .png, .jpg, or .jpeg"
+    }
+    if(imageIsWrongFormat(previewImageURL4)){
+      errorsObject.previewImageURL4 = "Preview image 4 must end in .png, .jpg, or .jpeg"
+    }
+    if(imageIsWrongFormat(previewImageURL5)){
+      errorsObject.previewImageURL5 = "Preview image 5 must end in .png, .jpg, or .jpeg"
+    }
+    if(imageIsWrongFormat(previewImageURL6)){
+      errorsObject.previewImageURL6 = "Preview image 6 must end in .png, .jpg, or .jpeg"
+    }
+    if(imageIsWrongFormat(previewImageURL7)){
+      errorsObject.previewImageURL7 = "Preview image 7 must end in .png, .jpg, or .jpeg"
+    }
+    if(imageIsWrongFormat(previewImageURL8)){
+      errorsObject.previewImageURL8 = "Preview image 8 must end in .png, .jpg, or .jpeg"
+    }
+    if(imageIsWrongFormat(previewImageURL9)){
+      errorsObject.previewImageURL9 = "Preview image 9 must end in .png, .jpg, or .jpeg"
+    }
+
+
+
+
+    // if (
+    //   previewImageURL &&
+    //   !(
+    //     previewImageURL.endsWith(".png") ||
+    //     previewImageURL.endsWith(".jpg") ||
+    //     previewImageURL.endsWith(".jpeg")
+    //   )
+    // ) {
+    //   errorsObject.previewImageURL =
+    //     "Preview image must end in .png, .jpg, or .jpeg";
+    // }
+
+
+    // if (
+    //   previewImageURL2 &&
+    //   !(
+    //     previewImageURL2.endsWith(".png") ||
+    //     previewImageURL2.endsWith(".jpg") ||
+    //     previewImageURL2.endsWith(".jpeg")
+    //   )
+    // ) {
+    //   errorsObject.previewImageURL =
+    //     "Preview image 2 must end in .png, .jpg, or .jpeg";
+    // }
+
+
+
+
     // console.log("Create Component - Err Obj onSubmit", errorsObject);
-    if (Object.values(errorsObject).length > 0) return setErrors(errorsObject); // if there are any errors, stop here and return the errors
-
-    // console.log("what is price", price)
-    // console.log("what is type", typeof(price))
-
-    // if (!price.includes(".")){
-    //   console.log('BEFORE SETPRICE', price)
-    //   setPrice(`${price}.00`);
-    // }
-
-    // if (price.includes(".") && price.split('.')[1].length === 1){
-    //   console.log('BEFORE SETPRICE', price)
-    //   setPrice(`${price}0`);
-    //   console.log('AFTER SET PRICE', price)
-    // }
-
+    if (Object.values(errorsObject).length > 0) return setErrors(errorsObject); // if there are any errors, stop
     // console.log('what is price here', price)
 
     let payload = {
@@ -119,12 +171,12 @@ const NewProductForm = () => {
       category: category,
       description: description,
       quantity: Number(quantity),
-      preview_imageURL: previewImageURL,
+      preview_imageURL: previewImageURL1,
       sellerId: user.id,
     };
 
     let fetchResponseFromThunk = await dispatch(thunkCreateProduct(payload));
-    // console.log("return from createProduct dispatch", fetchResponseFromThunk);
+ ;
     if (fetchResponseFromThunk) {
       await dispatch(
         productActions.thunkGetSingleProduct(
@@ -133,9 +185,7 @@ const NewProductForm = () => {
       );
       history.push(`/products/${fetchResponseFromThunk.New_Product.id}`);
     }
-    // console.log(
-    // "you've made it past the create and get single product dispatches - now redirect"
-    // );
+
   };
 
   return (
@@ -155,7 +205,7 @@ const NewProductForm = () => {
       <div className="imgSide-1">
         <h4>Photos*</h4>
         <p>
-        Please add atleast one photo to
+        Please add at least one photo to
         show your item's most
         important qualities.
         </p>
@@ -169,85 +219,85 @@ const NewProductForm = () => {
           <li>held. worn, or used.</li>
           <li>Shoot against a clean,</li>
           <li>simple background.</li>
-          <li>Add photos to your</li>
+          <li>Add photos to your </li>
           <li>variations so buyers can</li>
           <li>see all their opuons.</li>
         </ul>
         </div>
-        {/* <div className="imgSide-2"> */}
+
             <div className="imgSide-2">
               <label>
                 <input
                   type="text"
-                  name="previewImageURL"
-                  placeholder="REQUIRED IMAGE URL"
-                  value={previewImageURL}
-                  onChange={(e) => setPreviewImageURL(e.target.value)}
+                  name="previewImageURL1"
+                  placeholder="Preview Image URL 1 (REQUIRED)"
+                  value={previewImageURL1}
+                  onChange={(e) => setPreviewImageURL1(e.target.value)}
                 />
               </label>
               <label>
           <input
             type="text"
-            name="previewImageURL"
-            placeholder="Preview Image URL"
-            value={previewImageURL}
-            onChange={(e) => setPreviewImageURL(e.target.value)}
+            name="previewImageURL2"
+            placeholder="Preview Image URL 2"
+            value={previewImageURL2}
+            onChange={(e) => setPreviewImageURL2(e.target.value)}
           />
         </label>
         <label>
           <input
             type="text"
-            placeholder="Preview Image URL"
-            value={previewImageURL}
-            onChange={(e) => setPreviewImageURL(e.target.value)}
+            placeholder="Preview Image URL 3"
+            value={previewImageURL3}
+            onChange={(e) => setPreviewImageURL3(e.target.value)}
           />
         </label>
         <label>
           <input
             type="text"
-            placeholder="Preview Image URL"
-            value={previewImageURL}
-            onChange={(e) => setPreviewImageURL(e.target.value)}
+            placeholder="Preview Image URL 4"
+            value={previewImageURL4}
+            onChange={(e) => setPreviewImageURL4(e.target.value)}
           />
         </label>
         <label>
           <input
             type="text"
-            placeholder="Preview Image URL"
-            value={previewImageURL}
-            onChange={(e) => setPreviewImageURL(e.target.value)}
+            placeholder="Preview Image URL 5"
+            value={previewImageURL5}
+            onChange={(e) => setPreviewImageURL5(e.target.value)}
           />
         </label>
         <label>
           <input
             type="text"
-            placeholder="Preview Image URL"
-            value={previewImageURL}
-            onChange={(e) => setPreviewImageURL(e.target.value)}
+            placeholder="Preview Image URL 6"
+            value={previewImageURL6}
+            onChange={(e) => setPreviewImageURL6(e.target.value)}
           />
         </label>
         <label>
           <input
             type="text"
-            placeholder="Preview Image URL"
-            value={previewImageURL}
-            onChange={(e) => setPreviewImageURL(e.target.value)}
+            placeholder="Preview Image URL 7"
+            value={previewImageURL7}
+            onChange={(e) => setPreviewImageURL7(e.target.value)}
           />
         </label>
         <label>
           <input
             type="text"
-            placeholder="Preview Image URL"
-            value={previewImageURL}
-            onChange={(e) => setPreviewImageURL(e.target.value)}
+            placeholder="Preview Image URL 8"
+            value={previewImageURL8}
+            onChange={(e) => setPreviewImageURL8(e.target.value)}
           />
         </label>
         <label>
           <input
             type="text"
-            placeholder="Preview Image URL"
-            value={previewImageURL}
-            onChange={(e) => setPreviewImageURL(e.target.value)}
+            placeholder="Preview Image URL 9"
+            value={previewImageURL9}
+            onChange={(e) => setPreviewImageURL9(e.target.value)}
           />
         </label>
             <div className="label-and-error-info">
