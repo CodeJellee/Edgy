@@ -92,13 +92,31 @@ def create_product():
             )
             print("THIS IS TO DICT USER ID", current_user.to_dict()["id"])
             print("new_product after validation")
-            pprint(new_product.to_dict())
-            db.session.add(new_product)
-            db.session.commit()
 
+            db.session.add(new_product)
+            db.session.flush()
+
+            # moved this up because uploading additional images requires the product id
             # Attach Reviews and Seller information to match Chris' getAllProducts reducer - this is to properly create one and attach all necessary information for each single page to load
             seller = current_user.to_dict()
             new_product = new_product.to_dict()
+
+            print("form !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            pprint(len(form.data["preview_imageURL2"]))
+            print("form !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            if len(form.data["preview_imageURL2"]) >0:
+                img2 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL2"]
+                )
+
+                db.session.add(img2)
+                db.session.commit()
+
+
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            pprint(new_product)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             return_product = jsonify(new_product, seller)
             print(
                 "this is return jsonified",
@@ -114,6 +132,9 @@ def create_product():
         print("Traceback:", traceback_str)
         return jsonify(error=error_message, traceback=traceback_str), 500
         return "Bad Data"
+
+
+
 
 
 @products_routes.route("/<int:id>/images", methods=["POST"])

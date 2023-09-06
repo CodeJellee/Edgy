@@ -91,8 +91,7 @@ function ProductIdPage() {
     let sum = 0
     let count = Object.values(product.Reviews).length
     let reviews = Object.values(product.Reviews)
-    // console.log(reviews)
-    // console.log("reviews:", product.Reviews)
+
     for (const review of reviews) {
         sum += review.stars
     }
@@ -102,7 +101,7 @@ function ProductIdPage() {
         stars.push("hi")
     }
     let images = Object.values(product.ProductImages);
-
+    console.log("IMAGES ARR !!!!!!!!!!!!!", images)
 
 
     let noUserReviewExist = true;
@@ -130,6 +129,8 @@ function ProductIdPage() {
             <div id="TopOfPage" className="column-holder">
                 <div className="column">
                     <div className='PID-product'>
+
+
                         <div className='PID-all-Images'>
                             <div className='PID-images-div'>
                                 <img className='PID-small-img' alt="product first loaded" onClick={changeMainImage} src={product.preview_imageURL} ></img>
