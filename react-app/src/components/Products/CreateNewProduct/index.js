@@ -186,7 +186,7 @@ const NewProductForm = () => {
     let fetchResponseFromThunk = await dispatch(thunkCreateProduct(payload));
     ;
     if (fetchResponseFromThunk) {
-      console.log(fetchResponseFromThunk)
+    
       await dispatch(
         productActions.thunkGetSingleProduct(
           fetchResponseFromThunk.New_Product.id
