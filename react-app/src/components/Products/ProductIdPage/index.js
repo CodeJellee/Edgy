@@ -89,10 +89,10 @@ function ProductIdPage() {
 
     // create average stars
     let sum = 0
+    console.log(product, "before count")
     let count = Object.values(product.Reviews).length
     let reviews = Object.values(product.Reviews)
-    // console.log(reviews)
-    // console.log("reviews:", product.Reviews)
+
     for (const review of reviews) {
         sum += review.stars
     }
@@ -101,8 +101,9 @@ function ProductIdPage() {
     for (let i = 0; i < starAvg; i++) {
         stars.push("hi")
     }
-    let images = Object.values(product.ProductImages);
 
+    let images = Object.values(product.ProductImages);
+    console.log("IMAGES ARR !!!!!!!!!!!!!", images)
 
 
     let noUserReviewExist = true;
@@ -130,6 +131,8 @@ function ProductIdPage() {
             <div id="TopOfPage" className="column-holder">
                 <div className="column">
                     <div className='PID-product'>
+
+
                         <div className='PID-all-Images'>
                             <div className='PID-images-div'>
                                 <img className='PID-small-img' alt="product first loaded" onClick={changeMainImage} src={product.preview_imageURL} ></img>
