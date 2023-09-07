@@ -220,17 +220,17 @@ const NewProductForm = () => {
                 </p>
                 <h4>Tips:</h4>
                 <ul>
-                  <li>Use natural light and no</li>
-                  <li>flash.</li>
-                  <li>Include a common object</li>
-                  <li>for scale.</li>
-                  <li>Show the item being</li>
-                  <li>held. worn, or used.</li>
-                  <li>Shoot against a clean,</li>
-                  <li>simple background.</li>
-                  <li>Add photos to your </li>
-                  <li>variations so buyers can</li>
-                  <li>see all their opuons.</li>
+                  <li>Use natural light and no
+                  flash.</li>
+                  <li>Include a common object
+                  for scale.</li>
+                  <li>Show the item being
+                  , held worn, or used.</li>
+                  <li>Shoot against a clean,
+                  simple background.</li>
+                  <li>Add photos to your
+                 variations so buyers can
+                  see all their options.</li>
                 </ul>
               </div>
 
@@ -448,6 +448,8 @@ const NewProductForm = () => {
             placeholder="Quantity"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
+            min="1"
+            max="50"
           />
         </label>
             {submitted && errors.quantity && (
