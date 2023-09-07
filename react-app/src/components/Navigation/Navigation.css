@@ -73,6 +73,7 @@
 .nav > a {
   text-decoration: none;
   color: black;
+  padding: 0px 0.1px;
   font-size: 13.5px;
   height: 26px;
   z-index: 3;

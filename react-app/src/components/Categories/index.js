@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as productActions from "../../store/products";
 import "./Categories.css";
 import FooterTwo from "../Footer/index2";
@@ -26,7 +26,7 @@ function Categories({ category, name }) {
   const [ lowest, setLowest ] = useState(false)
   const [ recent, setRecent ] = useState(false)
   const [ top, setTop ] = useState(false)
-
+  const targetRef = useRef()
 
   const handleRelevancy = () => {
     setRelevancy(true)
@@ -34,6 +34,7 @@ function Categories({ category, name }) {
     setLowest(false)
     setRecent(false)
     setTop(false)
+    setHidden(true)
   }
 
   const handleHighest = () => {
@@ -42,6 +43,7 @@ function Categories({ category, name }) {
     setLowest(false)
     setRecent(false)
     setTop(false)
+    setHidden(true)
   }
 
   const handleLowest = () => {
@@ -50,6 +52,7 @@ function Categories({ category, name }) {
     setLowest(true)
     setRecent(false)
     setTop(false)
+    setHidden(true)
   }
 
   const handleRecent = () => {
@@ -58,6 +61,7 @@ function Categories({ category, name }) {
     setLowest(false)
     setRecent(true)
     setTop(false)
+    setHidden(true)
   }
 
   const handleTop = () => {
@@ -66,13 +70,23 @@ function Categories({ category, name }) {
     setLowest(false)
     setRecent(false)
     setTop(true)
+    setHidden(true)
   }
-  // console.log(query);
-  // console.log(search);
 
-  // useEffect(() => {
-  //   dispatch(productActions.thunkGetAllProducts());
-  // }, [dispatch]);
+  useEffect(() => {
+    // if (!showMenu) return;
+
+     const closeMenu = (e) => {
+       if (targetRef && !targetRef.current?.contains(e.target)) {
+         setHidden(true);
+       }
+     };
+
+     document.addEventListener('click', closeMenu);
+
+     return () => document.removeEventListener("click", closeMenu);
+
+    }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top instantly when the page loads
@@ -160,17 +174,16 @@ function Categories({ category, name }) {
             <i class="fa-solid fa-filter"></i>All Filters
           </button>
         </div>
-        <div className="filter2">
+        <div ref={targetRef} className="filter2">
           <button onClick={(() => setHidden(!hidden))}>
-            <span>Sort by:</span>Relevancy<i class="fa-solid fa-caret-down"></i>
+            <span>Sort by:</span>{relevancy ? "Relevancy" : lowest ? "Lowest" : highest ? "Highest" : recent ? "Recent" : null}<i class="fa-solid fa-caret-down"></i>
           </button>
           <div id={ hidden ? "hidden" : "relevancy"}>
-          <div id="rel" onClick={(() => setHidden(!hidden))}><span id="forty">Sort by:</span>Relevancy<i class="fa-solid fa-caret-down"></i></div>
+          <div id="rel" onClick={(() => setHidden(!hidden))}><span id="forty">Sort by:</span>{relevancy ? "Relevancy" : lowest ? "Lowest" : highest ? "Highest" : recent ? "Recent" : null}<i class="fa-solid fa-caret-down"></i></div>
           <div id="choose55">
             <span onClick={handleRelevancy} id={relevancy ? "c-c" : ""}>Relevancy<i id={relevancy ? "" : "hidden"} class="fi fi-br-check"></i></span>
             <span onClick={handleLowest} id={lowest ? "c-c" : ""}>Lowest Price<i id={lowest ? "" : "hidden"} class="fi fi-br-check"></i></span>
             <span onClick={handleHighest} id={highest ? "c-c" : ""}>Highest Price<i id={highest ? "" : "hidden"} class="fi fi-br-check"></i></span>
-            <span onClick={handleTop} id={top ? "c-c" : ""}>Top Customer Reviews<i id={top ? "" : "hidden"} class="fi fi-br-check"></i></span>
             <span onClick={handleRecent} id={recent ? "c-c" : ""}>Most Recent<i id={recent ? "" : "hidden"} class="fi fi-br-check"></i></span>
           </div>
           </div>

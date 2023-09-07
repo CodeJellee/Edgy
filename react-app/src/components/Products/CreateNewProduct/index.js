@@ -186,7 +186,7 @@ const NewProductForm = () => {
     let fetchResponseFromThunk = await dispatch(thunkCreateProduct(payload));
     ;
     if (fetchResponseFromThunk) {
-    
+
       await dispatch(
         productActions.thunkGetSingleProduct(
           fetchResponseFromThunk.New_Product.id
@@ -206,145 +206,110 @@ const NewProductForm = () => {
           <h2>Add a new Product!</h2>
           <div className="productImages">
 
-            <div className="photoTitle">
-              <h4>Photos</h4>
-              <p>Add as many as you can so buyers can see every detail.</p>
-            </div>
-            <div className="addPhotos">
-              <div className="imgSide-1">
-                <h4>Photos*</h4>
-                <p>
-                  Please add at least one photo to
-                  show your item's most
-                  important qualities.
-                </p>
-                <h4>Tips:</h4>
-                <ul>
-                  <li>Use natural light and no</li>
-                  <li>flash.</li>
-                  <li>Include a common object</li>
-                  <li>for scale.</li>
-                  <li>Show the item being</li>
-                  <li>held. worn, or used.</li>
-                  <li>Shoot against a clean,</li>
-                  <li>simple background.</li>
-                  <li>Add photos to your </li>
-                  <li>variations so buyers can</li>
-                  <li>see all their opuons.</li>
-                </ul>
-              </div>
-
-              <div className="imgSide-2">
-                <label>
-                  <div className="label-and-error-info">
-                    {submitted && errors.previewImageURL1 && (
-                      <div className="errors">{errors.previewImageURL1}</div>
-                    )}
-                  </div>
-
-
-
-
-                  <input
-                    type="text"
-                    name="previewImageURL1"
-                    placeholder="Preview Image URL 1 (REQUIRED)"
-                    value={previewImageURL1}
-                    onChange={(e) => setPreviewImageURL1(e.target.value)}
-                  />
-                </label>
-                <label>
-                <div className="label-and-error-info">
-                    {submitted && errors.previewImageURL2 && (
-                      <div className="errors">{errors.previewImageURL2}</div>
-                    )}
-                  </div>
-                  <input
-                    type="text"
-                    name="previewImageURL2"
-                    placeholder="Preview Image URL 2"
-                    value={previewImageURL2}
-                    onChange={(e) => setPreviewImageURL2(e.target.value)}
-                  />
-                </label>
-                <label>
-                {submitted && errors.previewImageURL3 && (
-                      <div className="errors">{errors.previewImageURL3}</div>
-                    )}
-                  <input
-                    type="text"
-                    placeholder="Preview Image URL 3"
-                    value={previewImageURL3}
-                    onChange={(e) => setPreviewImageURL3(e.target.value)}
-                  />
-                </label>
-                <label>
-                {submitted && errors.previewImageURL4 && (
-                      <div className="errors">{errors.previewImageURL4}</div>
-                    )}
-                  <input
-                    type="text"
-                    placeholder="Preview Image URL 4"
-                    value={previewImageURL4}
-                    onChange={(e) => setPreviewImageURL4(e.target.value)}
-                  />
-                </label>
-                <label>
-                {submitted && errors.previewImageURL5 && (
-                      <div className="errors">{errors.previewImageURL5}</div>
-                    )}
-                  <input
-                    type="text"
-                    placeholder="Preview Image URL 5"
-                    value={previewImageURL5}
-                    onChange={(e) => setPreviewImageURL5(e.target.value)}
-                  />
-                </label>
-                <label>
-                {submitted && errors.previewImageURL6 && (
-                      <div className="errors">{errors.previewImageURL6}</div>
-                    )}
-                  <input
-                    type="text"
-                    placeholder="Preview Image URL 6"
-                    value={previewImageURL6}
-                    onChange={(e) => setPreviewImageURL6(e.target.value)}
-                  />
-                </label>
-                <label>
-                   {submitted && errors.previewImageURL7 && (
-                      <div className="errors">{errors.previewImageURL7}</div>
-                    )}
-                  <input
-                    type="text"
-                    placeholder="Preview Image URL 7"
-                    value={previewImageURL7}
-                    onChange={(e) => setPreviewImageURL7(e.target.value)}
-                  />
-                </label>
-                <label>
-                {submitted && errors.previewImageURL8 && (
-                      <div className="errors">{errors.previewImageURL8}</div>
-                    )}
-                  <input
-                    type="text"
-                    placeholder="Preview Image URL 8"
-                    value={previewImageURL8}
-                    onChange={(e) => setPreviewImageURL8(e.target.value)}
-                  />
-                </label>
-                <label>
-                {submitted && errors.previewImageURL9 && (
-                      <div className="errors">{errors.previewImageURL9}</div>
-                    )}
-                  <input
-                    type="text"
-                    placeholder="Preview Image URL 9"
-                    value={previewImageURL9}
-                    onChange={(e) => setPreviewImageURL9(e.target.value)}
-                  />
-                </label>
-                <div className="label-and-error-info">
+      <div className="photoTitle">
+        <h4>Photos</h4>
+        <p>Add as many as you can so buyers can see every detail.</p>
+      </div>
+        <div className="addPhotos">
+      <div className="imgSide-1">
+        <h4>Photos*</h4>
+        <p>
+        Please add atleast one photo to
+        show your item's most
+        important qualities.
+        </p>
+        <h4>Tips:</h4>
+        <ul>
+          <li>Use natural light and no</li>
+          <li>flash.</li>
+          <li>Include a common object</li>
+          <li>for scale.</li>
+          <li>Show the item being</li>
+          <li>held. worn, or used.</li>
+          <li>Shoot against a clean,</li>
+          <li>simple background.</li>
+          <li>Add photos to your</li>
+          <li>variations so buyers can</li>
+          <li>see all their opuons.</li>
+        </ul>
+        </div>
+        {/* <div className="imgSide-2"> */}
+            <div className="imgSide-2">
+              <label>
+                <input
+                  type="text"
+                  name="previewImageURL"
+                  placeholder="REQUIRED IMAGE URL"
+                  value={previewImageURL}
+                  onChange={(e) => setPreviewImageURL(e.target.value)}
+                />
+              </label>
+              <label>
+          <input
+            type="text"
+            name="previewImageURL"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            placeholder="Preview Image URL"
+            value={previewImageURL}
+            onChange={(e) => setPreviewImageURL(e.target.value)}
+          />
+        </label>
+            <div className="label-and-error-info">
                   {submitted && errors.previewImageURL && (
                     <div className="errors">{errors.previewImageURL}</div>
                   )}
@@ -420,41 +385,41 @@ const NewProductForm = () => {
                 </label>
                 <div className="productAbout">
 
-                  <div id="pS-2" >
-                    <label>
-                      <div className="label-and-error-info">
-                        Price
-                      </div>
-                      <input
-                        type="text" //double check this
-                        name="price"
-                        placeholder="$"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                      />
-                    </label>
-                    {submitted && errors.price && (
-                      <div className="errors">{errors.price}</div>
-                    )}
-                  </div>
-                  <div>
-                    <label>
-                      <div className="label-and-error-info">
-                        Quantity
-                      </div>
-                      <input
-                        type="number"
-                        name="quantity"
-                        placeholder="Quantity"
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                      />
-                    </label>
-                    {submitted && errors.quantity && (
-                      <div className="errors">{errors.quantity}</div>
-                    )}
-                  </div>
-                </div>
+      <div id="pS-2" >
+        <label>
+          <div className="label-and-error-info">
+            Price
+          </div>
+          <input
+            type="text" //double check this
+            name="price"
+            placeholder="$"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </label>
+            {submitted && errors.price && (
+              <div className="errors">{errors.price}</div>
+            )}
+      </div>
+      <div>
+        <label>
+          <div className="label-and-error-info">
+            Quantity
+          </div>
+          <input
+            type="number"
+            name="quantity"
+            placeholder="Quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </label>
+            {submitted && errors.quantity && (
+              <div className="errors">{errors.quantity}</div>
+            )}
+      </div>
+        </div>
 
 
                 <div id="pS-3">

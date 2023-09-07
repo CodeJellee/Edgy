@@ -55,10 +55,16 @@ function ProfileButton({ user }) {
           <>
             <p>{user.username}</p>
             <p>{user.email}</p>
-            <div onClick={(e) => history.push('/your_reviews')} className="yR">
+            <div onClick={(e) => {
+              setShowMenu(false)
+              history.push('/your_reviews')
+          }} className="yR">
               <p className="yourReviews">Your Reviews</p>
             </div>
-            <div onClick={(e) => history.push('/your_products')} className="yP">
+            <div onClick={(e) => {
+              history.push('/your_products')
+              setShowMenu(false)
+              }} className="yP">
               <p className="yourProducts">Your Products</p>
             </div>
             <p id="logout">
