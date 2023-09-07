@@ -60,10 +60,10 @@ def product_details(id):
     reviews = [r.to_dict() for r in reviews]
     sellerId = product["sellerId"]
     seller = User.query.get(sellerId).to_dict()
-    product_images = ProductImage.query.filter(ProductImage.productId == id).all()
-    print("!!!!!!!!!!!!!!!!!!!!")
-    print(product_images)
-    print("!!!!!!!!!!!!!!!!!!!!")
+    product_images = ProductImage.query.filter_by(productId=id).all()
+    print("PRODUCT IMAGES!!!!!!!!!!!!!!!!!!!!")
+    pprint(product_images)
+    print("PRODUCT IMAGES!!!!!!!!!!!!!!!!!!!!")
     product_images = [i.to_dict() for i in product_images]
     product["Reviews"] = reviews
     product["Seller"] = seller
@@ -104,20 +104,86 @@ def create_product():
             seller = current_user.to_dict()
             new_product = new_product.to_dict()
 
-            print("form !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("form !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", form.data)
 
-            if len(form.data["preview_imageURL2"]) >0:
+            if form.data["preview_imageURL2"]:
                 img2 = ProductImage(
                     productId=new_product["id"],
                     product_imageURL=form.data["preview_imageURL2"]
                 )
 
                 db.session.add(img2)
-                db.session.commit()
+                db.session.flush()
+
+            if form.data["preview_imageURL3"]:
+                img3 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL3"]
+                )
+
+                db.session.add(img3)
+                db.session.flush()
 
 
 
-            images = ProductImage.query.filter(ProductImage.productId == new_product["id"]).all()
+            if form.data["preview_imageURL4"]:
+                img4 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL4"]
+                )
+
+                db.session.add(img4)
+                db.session.flush()
+
+            if form.data["preview_imageURL5"]:
+                img5 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL5"]
+                )
+
+                db.session.add(img5)
+                db.session.flush()
+
+            if form.data["preview_imageURL6"]:
+                img6 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL6"]
+                )
+
+                db.session.add(img6)
+                db.session.flush()
+
+            if form.data["preview_imageURL7"]:
+                img7 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL7"]
+                )
+
+                db.session.add(img7)
+                db.session.flush()
+
+            if form.data["preview_imageURL8"]:
+                img8 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL8"]
+                )
+
+                db.session.add(img8)
+                db.session.flush()
+
+            if form.data["preview_imageURL9"]:
+                img9 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL9"]
+                )
+
+                db.session.add(img9)
+                db.session.flush()
+
+            db.session.commit()
+
+
+
 
 
             return_product = jsonify(new_product, seller)

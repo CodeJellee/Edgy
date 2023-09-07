@@ -89,6 +89,7 @@ function ProductIdPage() {
 
     // create average stars
     let sum = 0
+    console.log(product, "before count")
     let count = Object.values(product.Reviews).length
     let reviews = Object.values(product.Reviews)
 
@@ -100,7 +101,7 @@ function ProductIdPage() {
     for (let i = 0; i < starAvg; i++) {
         stars.push("hi")
     }
-    
+
     let images = Object.values(product.ProductImages);
     console.log("IMAGES ARR !!!!!!!!!!!!!", images)
 

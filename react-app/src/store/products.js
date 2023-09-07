@@ -204,10 +204,10 @@ export default function reducer(state = initialState, action) {
       newState = { ...state };
       const product = action.product;
 
-      // newState.singleProduct = {...product};
-       newState.singleProduct = product;
+      newState.singleProduct = {...product};
       newState.singleProduct.Seller = { ...product.Seller };
 
+      console.log("!!! REDUCER GET SINGLE PRODUCT", product.ProductImages)
       newState.singleProduct.ProductImages = product.ProductImages;
 
 
@@ -252,7 +252,7 @@ export default function reducer(state = initialState, action) {
       newState.singleProduct = {};
       // console.log('this is action.product', action.productId) //returns integer
       delete newState.products[action.productId];
- 
+      //need to add userproducts, by passing in a userid/user in the thunk and action
       delete newState.userProducts[action.productId];
       return newState;
     }
