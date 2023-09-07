@@ -10,10 +10,14 @@
 /* .RF-form-item {
     width: 600px;
 } */
-
+.ER-div {
+    width:800px
+}
 
 .RF-textarea {
     height: 110px;
+    /* width: 100vh; */
+    resize: none;
 }
 
 .RF-subButt {

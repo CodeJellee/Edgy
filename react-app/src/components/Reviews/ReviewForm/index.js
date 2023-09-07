@@ -194,7 +194,7 @@ function ReviewForm({
     return (
       <>
         {!submittedSuc && (
-          <div className="">
+          <div className="edit-column">
             <h3>Edit your review</h3>
             <form onSubmit={handleSubmit} className="RF-Form">
               {/* {submitted &&  <displayError>} */}
