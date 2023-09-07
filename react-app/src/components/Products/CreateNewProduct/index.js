@@ -117,7 +117,7 @@ const NewProductForm = () => {
     if (previewImageURL5 && imageIsWrongFormat(previewImageURL5)) {
       errorsObject.previewImageURL5 = "Preview image 5 must end in .png, .jpg, or .jpeg"
     }
-    if (previewImageURL6 &&  imageIsWrongFormat(previewImageURL6)) {
+    if (previewImageURL6 && imageIsWrongFormat(previewImageURL6)) {
       errorsObject.previewImageURL6 = "Preview image 6 must end in .png, .jpg, or .jpeg"
     }
     if (previewImageURL7 && imageIsWrongFormat(previewImageURL7)) {
@@ -186,7 +186,7 @@ const NewProductForm = () => {
     let fetchResponseFromThunk = await dispatch(thunkCreateProduct(payload));
     ;
     if (fetchResponseFromThunk) {
-    
+
       await dispatch(
         productActions.thunkGetSingleProduct(
           fetchResponseFromThunk.New_Product.id
@@ -254,7 +254,7 @@ const NewProductForm = () => {
                   />
                 </label>
                 <label>
-                <div className="label-and-error-info">
+                  <div className="label-and-error-info">
                     {submitted && errors.previewImageURL2 && (
                       <div className="errors">{errors.previewImageURL2}</div>
                     )}
@@ -268,9 +268,9 @@ const NewProductForm = () => {
                   />
                 </label>
                 <label>
-                {submitted && errors.previewImageURL3 && (
-                      <div className="errors">{errors.previewImageURL3}</div>
-                    )}
+                  {submitted && errors.previewImageURL3 && (
+                    <div className="errors">{errors.previewImageURL3}</div>
+                  )}
                   <input
                     type="text"
                     placeholder="Preview Image URL 3"
@@ -279,9 +279,9 @@ const NewProductForm = () => {
                   />
                 </label>
                 <label>
-                {submitted && errors.previewImageURL4 && (
-                      <div className="errors">{errors.previewImageURL4}</div>
-                    )}
+                  {submitted && errors.previewImageURL4 && (
+                    <div className="errors">{errors.previewImageURL4}</div>
+                  )}
                   <input
                     type="text"
                     placeholder="Preview Image URL 4"
@@ -290,9 +290,9 @@ const NewProductForm = () => {
                   />
                 </label>
                 <label>
-                {submitted && errors.previewImageURL5 && (
-                      <div className="errors">{errors.previewImageURL5}</div>
-                    )}
+                  {submitted && errors.previewImageURL5 && (
+                    <div className="errors">{errors.previewImageURL5}</div>
+                  )}
                   <input
                     type="text"
                     placeholder="Preview Image URL 5"
@@ -301,9 +301,9 @@ const NewProductForm = () => {
                   />
                 </label>
                 <label>
-                {submitted && errors.previewImageURL6 && (
-                      <div className="errors">{errors.previewImageURL6}</div>
-                    )}
+                  {submitted && errors.previewImageURL6 && (
+                    <div className="errors">{errors.previewImageURL6}</div>
+                  )}
                   <input
                     type="text"
                     placeholder="Preview Image URL 6"
@@ -312,9 +312,9 @@ const NewProductForm = () => {
                   />
                 </label>
                 <label>
-                   {submitted && errors.previewImageURL7 && (
-                      <div className="errors">{errors.previewImageURL7}</div>
-                    )}
+                  {submitted && errors.previewImageURL7 && (
+                    <div className="errors">{errors.previewImageURL7}</div>
+                  )}
                   <input
                     type="text"
                     placeholder="Preview Image URL 7"
@@ -323,9 +323,9 @@ const NewProductForm = () => {
                   />
                 </label>
                 <label>
-                {submitted && errors.previewImageURL8 && (
-                      <div className="errors">{errors.previewImageURL8}</div>
-                    )}
+                  {submitted && errors.previewImageURL8 && (
+                    <div className="errors">{errors.previewImageURL8}</div>
+                  )}
                   <input
                     type="text"
                     placeholder="Preview Image URL 8"
@@ -334,9 +334,9 @@ const NewProductForm = () => {
                   />
                 </label>
                 <label>
-                {submitted && errors.previewImageURL9 && (
-                      <div className="errors">{errors.previewImageURL9}</div>
-                    )}
+                  {submitted && errors.previewImageURL9 && (
+                    <div className="errors">{errors.previewImageURL9}</div>
+                  )}
                   <input
                     type="text"
                     placeholder="Preview Image URL 9"
@@ -468,6 +468,7 @@ const NewProductForm = () => {
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                     >
+
                       <option value="">Select Category</option>
                       <option value="Clothing">Clothing</option>
                       <option value="Home Decor">Home Decor</option>
