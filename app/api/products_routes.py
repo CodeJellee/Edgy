@@ -60,12 +60,12 @@ def product_details(id):
     reviews = [r.to_dict() for r in reviews]
     sellerId = product["sellerId"]
     seller = User.query.get(sellerId).to_dict()
-    product_images = ProductImage.query.filter(ProductImage.productId == id).all()
+    product_images = ProductImage.query.filter_by(productId=id).all()
     product_images = [i.to_dict() for i in product_images]
     product["Reviews"] = reviews
     product["Seller"] = seller
     product["ProductImages"] = product_images
-    # pprint(product["Reviews"])
+
     return product
 
 
@@ -74,8 +74,8 @@ def product_details(id):
 def create_product():
     try:
         form = NewProduct()
-        print("ROUTE IS HIT!!! THIS IS FORM.DATA")
-        pprint(form.data)
+
+
 
         # Flask-WTF and WTForms by default require a CSRF_TOKEN because these packages are meant to handle CSRF protection therefore your code will break if it does not have these two lines of code: the request csrf token from cookies and validate_on_submit
         # on the other hand, if you remove these two lines of code, it will work locally, just not on production
@@ -90,30 +90,110 @@ def create_product():
                 preview_imageURL=form.data["preview_imageURL"],
                 sellerId=current_user.to_dict()["id"],
             )
-            print("THIS IS TO DICT USER ID", current_user.to_dict()["id"])
-            print("new_product after validation")
-            pprint(new_product.to_dict())
-            db.session.add(new_product)
-            db.session.commit()
 
+            db.session.add(new_product)
+            db.session.flush()
+
+            # moved this up because uploading additional images requires the product id
             # Attach Reviews and Seller information to match Chris' getAllProducts reducer - this is to properly create one and attach all necessary information for each single page to load
             seller = current_user.to_dict()
             new_product = new_product.to_dict()
+
+
+
+            if form.data["preview_imageURL2"]:
+                img2 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL2"]
+                )
+
+                db.session.add(img2)
+                db.session.flush()
+
+            if form.data["preview_imageURL3"]:
+                img3 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL3"]
+                )
+
+                db.session.add(img3)
+                db.session.flush()
+
+
+
+            if form.data["preview_imageURL4"]:
+                img4 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL4"]
+                )
+
+                db.session.add(img4)
+                db.session.flush()
+
+            if form.data["preview_imageURL5"]:
+                img5 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL5"]
+                )
+
+                db.session.add(img5)
+                db.session.flush()
+
+            if form.data["preview_imageURL6"]:
+                img6 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL6"]
+                )
+
+                db.session.add(img6)
+                db.session.flush()
+
+            if form.data["preview_imageURL7"]:
+                img7 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL7"]
+                )
+
+                db.session.add(img7)
+                db.session.flush()
+
+            if form.data["preview_imageURL8"]:
+                img8 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL8"]
+                )
+
+                db.session.add(img8)
+                db.session.flush()
+
+            if form.data["preview_imageURL9"]:
+                img9 = ProductImage(
+                    productId=new_product["id"],
+                    product_imageURL=form.data["preview_imageURL9"]
+                )
+
+                db.session.add(img9)
+                db.session.flush()
+
+            db.session.commit()
+
+
+
+
+
             return_product = jsonify(new_product, seller)
-            print(
-                "this is return jsonified",
-                return_product,
-            )
-            print("this is the type jsonified", type(return_product))
+
+
             return jsonify({"New_Product": new_product, "Seller": seller})
     except Exception as e:
         error_message = str(e)
         traceback_str = traceback.format_exc()
-        print("THIS IS THE FORM ERRORS", form.errors)
-        print("Error:", error_message)
-        print("Traceback:", traceback_str)
+
         return jsonify(error=error_message, traceback=traceback_str), 500
         return "Bad Data"
+
+
+
 
 
 @products_routes.route("/<int:id>/images", methods=["POST"])
@@ -190,9 +270,6 @@ def create_review(id):
     except Exception as e:
         error_message = str(e)
         traceback_str = traceback.format_exc()
-        print("THIS IS THE FORM ERRORS", form.errors)
-        print("Error:", error_message)
-        print("Traceback:", traceback_str)
         return jsonify(error=error_message, traceback=traceback_str), 500
 
 
@@ -204,8 +281,6 @@ def post_favorite_item(productId):
     product_exists = Product.query.get(productId)
     user = User.query.get(user_id)
     seller = User.query.get(product_exists.sellerId)
-
-    # print(product_exists.to_dict())
 
     # ! Edge Case for Postman
     existing_favorite = (
@@ -220,7 +295,7 @@ def post_favorite_item(productId):
     if product_exists and user_id == product_exists.sellerId:
         return {"message": "You may not favorite your own product."}
 
-    # print("this is the product_exists", product_exists)
+
     if product_exists and product_exists.sellerId != user_id:
         add_user_favorite = insert(favorites).values(
             userId=user_id, productId=productId
@@ -241,16 +316,16 @@ def post_favorite_item(productId):
 @products_routes.route("/<int:productId>/add_to_cart", methods=["POST"])
 @login_required
 def post_cart_items(productId):
-    # print("value going into post_cart_items: productId", productId)
-    print(productId)
+
+
     user_id = current_user.id
-    # print('what is current user id', user_id)
+
     product_exists = Product.query.get(productId)
-    # print('what is product exists s/p Product.query.get(productId)', product_exists)
+
     user = User.query.get(user_id)
-    # print('what is user s/p User.query.get(user_id)', user)
+
     seller = User.query.get(product_exists.sellerId)
-    # print('what is seller s/p User.query.get(product)exists.sellerId', seller)
+
 
     # Edge Cases
     # 1- checking if item is already in our cart
@@ -263,7 +338,7 @@ def post_cart_items(productId):
     if existing_cart_item:
         return {"message": "You have already added this product to your cart."}
 
-    # print ("existing_cart_item this is value", existing_cart_item)
+
 
     # 2- checking if the user owns the product (userId = sellerId)
     if product_exists and user_id == product_exists.sellerId:
@@ -279,10 +354,10 @@ def post_cart_items(productId):
             "Product": product_exists,
         }
         # UPDATE API FOR THE RETURN, NO MSG
-        # print("ADD TO CART", add_to_cart.to_dict())
+
         return product_to_return
     else:
-        # print("this dont work")
+
         return {"message": "Item couldn't be found"}
 
 
@@ -316,12 +391,12 @@ def search_products():
 
     if filtered_products:
         products = [product.to_dict() for product in filtered_products]
-    # pprint(products)
+
 
     if filtered_products_list:
         products = [product.to_dict() for product in filtered_products_list]
 
-    print(products)
+  
     for product in products:
         reviews = Review.query.filter(Review.productId == product["id"])
         reviews = [review.to_dict() for review in reviews]

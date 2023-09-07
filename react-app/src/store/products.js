@@ -1,3 +1,5 @@
+import ProductIdPage from "../components/Products/ProductIdPage";
+
 const GET_ALL_PRODUCTS_ACTION = "products/GET_ALL_PRODUCTS_ACTION";
 const GET_SINGLE_PRODUCT_ACTION = "products/GET_SINGLE_PRODUCT_ACTION";
 const GET_USER_PRODUCTS_ACTION = "products/GET_USER_PRODUCTS_ACTION";
@@ -43,7 +45,7 @@ export const thunkGetAllProducts = () => async (dispatch) => {
     },
   });
 
-  // console.log(response)
+
   if (response.ok) {
     const data = await response.json();
 
@@ -61,10 +63,10 @@ export const thunkSearchAllProducts = (query) => async (dispatch) => {
     },
   });
 
-  // console.log(response)
+
   if (response.ok) {
     const data = await response.json();
-    // console.log(data);
+
     dispatch(getFilteredProducts(data));
     return data;
   }
@@ -118,18 +120,19 @@ export const thunkGetUserProducts = () => async (dispatch) => {
 
   userProducts = await userProducts.json();
   dispatch(getUserProducts(userProducts));
-  // await console.log(userProducts);
+
   return userProducts;
 };
 
 export const thunkCreateProduct = (productFormData) => async (dispatch) => {
   try {
+
     let newProduct = await fetch(`/api/products/new`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      // body: JSON.stringify(productFormData),
+
       body: JSON.stringify(productFormData),
     });
 
@@ -139,6 +142,7 @@ export const thunkCreateProduct = (productFormData) => async (dispatch) => {
     }
 
     newProduct = await newProduct.json();
+    console.log("in thunk!!!!!!!!!", newProduct)
     dispatch(createProduct(newProduct));
     return newProduct;
   } catch (e) {
@@ -173,7 +177,7 @@ export const thunkDeleteProduct = (productId) => async (dispatch) => {
     method: "DELETE",
   });
   product = await product.json();
-  // console.log(productId)
+
   await dispatch(deleteProduct(productId));
   return product;
 };
@@ -193,16 +197,21 @@ export default function reducer(state = initialState, action) {
       action.products.Products.forEach(
         (product) => (newState.products[product.id] = product)
       );
-      // console.log("this is STATE", state);
+
       return newState;
+
     case GET_SINGLE_PRODUCT_ACTION: {
       newState = { ...state };
       const product = action.product;
-      newState.singleProduct = { ...product };
-      newState.singleProduct.Seller = { ...product.Seller };
-      newState.singleProduct.ProductImages.push(...product.ProductImages);
 
-      // Accumulate reviews into an object with unique review IDs as keys
+      newState.singleProduct = {...product};
+      newState.singleProduct.Seller = { ...product.Seller };
+
+
+      newState.singleProduct.ProductImages = product.ProductImages;
+
+
+
       const uniqueReviews = product.Reviews.reduce((acc, review) => {
         acc[review.id] = review;
         return acc;
@@ -214,8 +223,7 @@ export default function reducer(state = initialState, action) {
     }
     case GET_USER_PRODUCTS_ACTION: {
       newState = { ...state };
-      // console.log("this is state", state);
-      // console.log("this is action.products", action.products);
+
 
       newState.userProducts = {};
       action.products.Products.forEach(
@@ -223,6 +231,7 @@ export default function reducer(state = initialState, action) {
       );
       return newState;
     }
+
     case CREATE_PRODUCT_ACTION: {
       newState = { ...state };
       newState.singleProduct = {};
@@ -234,12 +243,13 @@ export default function reducer(state = initialState, action) {
       };
       return newState;
     }
+
     case DELETE_PRODUCT_ACTION: {
       newState = { ...state };
       newState.products = { ...newState.products };
       newState.userProducts = { ...newState.userProducts };
       newState.singleProduct = {};
-      // console.log('this is action.product', action.productId) //returns integer
+
       delete newState.products[action.productId];
       //need to add userproducts, by passing in a userid/user in the thunk and action
       delete newState.userProducts[action.productId];
@@ -248,7 +258,7 @@ export default function reducer(state = initialState, action) {
     case SEARCH_PRODUCT_ACTION:
       // minh's code normalizing the data
       newState = { ...state };
-      // console.log('this is action.products', action.products.Products)
+
       newState.search = {};
       action.products.Products.forEach(
         (product) => (newState.search[product.id] = product)

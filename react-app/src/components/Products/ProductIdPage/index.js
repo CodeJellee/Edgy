@@ -30,7 +30,7 @@ function ProductIdPage() {
 
     if (userFavorites.filter(favs => favs.id === id).length) setItemState(true)
 
-    // console.log(userFavorites)
+
     // if deletedReview is changed to true, cause form to be rendered
 
     const handleFavoriteClick = (productId) => {
@@ -61,7 +61,7 @@ function ProductIdPage() {
             let check = await dispatch(productsActions.thunkGetSingleProduct(id))
 
             if (check === "Product Id does not exist") {
-                // console.log("in use effect check")
+               
                 // redirect to somewhere
                 history.push(`/categories`)
                 //setProductExist(true)
@@ -77,11 +77,6 @@ function ProductIdPage() {
 
 
 
-    // if (productExist) {
-    //     console.log("in the product no exist")
-    //     return ( <>no exist</>)
-    // }
-
 
     if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
 
@@ -89,10 +84,10 @@ function ProductIdPage() {
 
     // create average stars
     let sum = 0
+
     let count = Object.values(product.Reviews).length
     let reviews = Object.values(product.Reviews)
-    // console.log(reviews)
-    // console.log("reviews:", product.Reviews)
+
     for (const review of reviews) {
         sum += review.stars
     }
@@ -101,6 +96,7 @@ function ProductIdPage() {
     for (let i = 0; i < starAvg; i++) {
         stars.push("hi")
     }
+
     let images = Object.values(product.ProductImages);
 
 
@@ -119,7 +115,7 @@ function ProductIdPage() {
         }
     }
 
-    // console.log('WHAT IS THIS IN ', product, product.id)
+
 
     //* if product does't exist return jsx of  " no product :("
 
@@ -130,6 +126,8 @@ function ProductIdPage() {
             <div id="TopOfPage" className="column-holder">
                 <div className="column">
                     <div className='PID-product'>
+
+
                         <div className='PID-all-Images'>
                             <div className='PID-images-div'>
                                 <img className='PID-small-img' alt="product first loaded" onClick={changeMainImage} src={product.preview_imageURL} ></img>

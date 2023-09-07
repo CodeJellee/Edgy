@@ -8,6 +8,11 @@ import * as productsActions from "../../../store/products";
 import StarRating from "./StarRating";
 import cookieParser from "cookie-parser";
 
+
+
+
+
+// !!!! THIS IS NOT BEING USED WE SHOULD DELETE IT
 function EditReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
   const dispatch = useDispatch();
 
@@ -137,7 +142,7 @@ function EditReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
     return (
       <>
         {!submittedSuc && (
-          <div className="">
+          <div className="ER-div">
             <h3>Submit a review for this product:</h3>
             <form onSubmit={handleSubmit} className="RF-Form">
               {/* {submitted &&  <displayError>} */}
@@ -184,7 +189,7 @@ function EditReviewForm({ from, starsEdit, reviewEdit, reviewObj }) {
     return (
       <>
         {!submittedSuc && (
-          <div className="">
+          <div className="edit-column">
             <h3>Edit your review</h3>
             <form onSubmit={handleSubmit} className="RF-Form">
               {/* {submitted &&  <displayError>} */}

@@ -55,7 +55,7 @@ def seed_reviews(user, product):
         },
         {
             # "id": 8,
-            "stars": 9,
+            "stars": 5,
             "userId": 1,
             "productId": 5,
             "review": "Outstanding service and product quality!",
