@@ -30,7 +30,7 @@ function ProductIdPage() {
 
     if (userFavorites.filter(favs => favs.id === id).length) setItemState(true)
 
-    // console.log(userFavorites)
+
     // if deletedReview is changed to true, cause form to be rendered
 
     const handleFavoriteClick = (productId) => {
@@ -61,7 +61,7 @@ function ProductIdPage() {
             let check = await dispatch(productsActions.thunkGetSingleProduct(id))
 
             if (check === "Product Id does not exist") {
-                // console.log("in use effect check")
+               
                 // redirect to somewhere
                 history.push(`/categories`)
                 //setProductExist(true)
@@ -77,11 +77,6 @@ function ProductIdPage() {
 
 
 
-    // if (productExist) {
-    //     console.log("in the product no exist")
-    //     return ( <>no exist</>)
-    // }
-
 
     if (Object.values(product) === 0 || !product) return <h1>...loading</h1>
 
@@ -89,7 +84,7 @@ function ProductIdPage() {
 
     // create average stars
     let sum = 0
-    console.log(product, "before count")
+
     let count = Object.values(product.Reviews).length
     let reviews = Object.values(product.Reviews)
 
@@ -103,7 +98,7 @@ function ProductIdPage() {
     }
 
     let images = Object.values(product.ProductImages);
-    console.log("IMAGES ARR !!!!!!!!!!!!!", images)
+
 
 
     let noUserReviewExist = true;
@@ -120,7 +115,7 @@ function ProductIdPage() {
         }
     }
 
-    // console.log('WHAT IS THIS IN ', product, product.id)
+
 
     //* if product does't exist return jsx of  " no product :("
 
