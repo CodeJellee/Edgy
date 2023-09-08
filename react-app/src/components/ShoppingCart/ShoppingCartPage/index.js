@@ -11,6 +11,7 @@ import "./ShoppingCart.css";
 function ShoppingCartPage() {
   const { id } = useParams();
   const [ method, setMethod ] = useState(1)
+  const [ quantity, setQuantity ] = useState(1)
 
   const dispatch = useDispatch();
 
@@ -189,15 +190,15 @@ function ShoppingCartPage() {
                             <div className="name-description">
                               <div className="item-description">
                                 {item.Product.description}
-                                <div className="quantity">Quantity:</div>
-                                <input
+                                <div className="quantity">Quantity: 1</div>
+                                {/* <input
                                   id="quantity-input"
                                   type="number"
                                   className="quantity-input"
                                   name="quantity"
                                   min="1"
                                   defaultValue="1"
-                                />
+                                /> */}
                               </div>
                             </div>
                             <div className="price-how-many-is-left">
