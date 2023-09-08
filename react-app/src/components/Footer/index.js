@@ -95,10 +95,10 @@ function Footer(){
         </div>
         <div className="about">
         <p >About Links: </p>
-        <p className="about-info">Chris Thornburg  <a href="https://github.com/CJThornburg" className="icons" class="fab fa-github"></a> <a href="https://www.linkedin.com/in/chris-thornburg-swe/" className="icons" class="fab fa-linkedin"></a></p>
-        <p className="about-info">Jennifer Lee <a href="https://github.com/CodeJellee" className="icons" class="fab fa-github"></a> <a href="www.linkedin.com/in/lee-pac-swe" className="icons" class="fab fa-linkedin"></a></p>
-        <p className="about-info">Minh Tran <a href="https://github.com/itsmingyoo" className="icons" class="fab fa-github"></a> <a href="https://www.linkedin.com/in/minh-tran-36501a251/" className="icons" class="fab fa-linkedin"></a></p>
-        <p className="about-info">Thandi Mpofu <a href="https://github.com/thandi14" className="icons" class="fab fa-github"></a> <a href="https://www.linkedin.com/in/thandi-mpofu-b15784275/" className="icons" class="fab fa-linkedin"></a></p>
+        <p className="about-info">Chris Thornburg  <a target="_blank" href="https://github.com/CJThornburg" className="icons" class="fab fa-github"></a> <a target="_blank" href="https://www.linkedin.com/in/chris-thornburg-swe/" className="icons" class="fab fa-linkedin"></a></p>
+        <p className="about-info">Jennifer Lee <a target="_blank" href="https://github.com/CodeJellee" className="icons" class="fab fa-github"></a> <a target="_blank" href="www.linkedin.com/in/lee-pac-swe" className="icons" class="fab fa-linkedin"></a></p>
+        <p className="about-info">Minh Tran <a target="_blank" href="https://github.com/itsmingyoo" className="icons" class="fab fa-github"></a> <a target="_blank" href="https://www.linkedin.com/in/minh-tran-36501a251/" className="icons" class="fab fa-linkedin"></a></p>
+        <p className="about-info">Thandi Mpofu <a target="_blank" href="https://github.com/thandi14" className="icons" class="fab fa-github"></a> <a target="_blank" href="https://www.linkedin.com/in/thandi-mpofu-b15784275/" className="icons" class="fab fa-linkedin"></a></p>
         </div>
         <div className="foot2">
         <p >© 2023 Edgy, Inc.</p>
