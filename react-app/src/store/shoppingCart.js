@@ -3,7 +3,7 @@
 const GET_SHOPPING_CART = "shoppingCart/GET_SHOPPING_CART";
 const DELETE_CART_ITEM = "shoppingCart/DELETE_CART_ITEM";
 const POST_ITEM_IN_CART = "shoppingCart/POST_ITEM_IN_CART";
-// const CLEAR_USER_CART = "shoppingCart/CLEAR_USER_CART";
+const CHECKOUT_CART = "carts/CHECKOUT_CART";
 
 //?  ===================end of types ===================//
 
@@ -30,11 +30,10 @@ const postItemInCartAction = (res) => {
   };
 };
 
-// export const clearCartAction = () => {
-//   return {
-//     type: CLEAR_USER_CART,
-//   };
-// };
+export const actionCheckoutCart = () => ({
+  type: CHECKOUT_CART,
+
+})
 //*  ======================= end of actions ===================//
 
 //*  =====================  thunks ===========================//
@@ -106,6 +105,26 @@ export const thunkPostItemInCart = (productId, userId) => async (dispatch) => {
   return res;
 };
 
+export const thunkCheckoutCart = () => async (dispatch) => {
+  try {
+      const response = await fetch(`/api/carts/checkout`, {
+          method: 'DELETE',
+          headers: {
+              "Content-Type": "application/json",
+          },
+      });
+
+      if (response.ok) {
+          dispatch(actionCheckoutCart(response));
+      } else {
+          const errorResponse = await response.json();
+          return errorResponse;
+      }
+  } catch (e) {
+      return { error: e.message }
+  }
+}
+
 //*  ======================= end of thunks ===================//
 
 //? ================== reducer================================//
@@ -161,10 +180,11 @@ export default function reducer(state = initialState, action) {
       delete newState.userCart[action.productId]; // refactor the get route to normalize by product id
       return newState;
     }
-    // case CLEAR_USER_CART: {
-    //   newState = {}
-    //   return newState
-    // }
+    case CHECKOUT_CART: {
+      newState = {};
+      newState.userCart = {};
+      return newState;
+  }
     default:
       return state;
   }
