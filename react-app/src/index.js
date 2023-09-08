@@ -28,6 +28,7 @@ if (process.env.NODE_ENV !== "production") {
 //window.store.dispatch(window.productActions.thunkGetAllProducts())
 //window.store.dispatch(window.productActions.thunkDeleteProduct(1))
 //window.store.dispatch(window.cartActions.thunkGetShoppingCart(cart.id))
+//window.store.dispatch(window.cartActions.thunkCheckoutCart())
 
 // Wrap the application with the Modal provider and render the Modal component
 // after the App component so that all the Modal content will be layered as

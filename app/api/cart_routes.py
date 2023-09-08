@@ -91,7 +91,7 @@ def delete_cart_item(productId):
     return {"message": "Successfully deleted"}
 
 
-#DELETE CART/CLEAR CART
+#DELETE CART/CLEAR CART - works on postman
 @cart_routes.route("/checkout", methods=["DELETE"])
 @login_required
 def clear_cart():
